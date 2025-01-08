@@ -1,0 +1,23 @@
+-dontwarn android.arch.**
+
+-keep class com.google.unity.**{
+   public *;
+}
+-keep public class com.google.android.gms.ads.**{
+   public *;
+}
+-keep public class com.google.android.gms.ads.mediation.admob.**{
+   public *;
+}
+-keep public class com.google.ads.mediation.**{
+   public *;
+}
+-keep public com.google.android.gms.ads.mediation.admob.AdMobExtras.**{
+   public *;
+}
+-keep public class com.google.firebase.**{
+   public *;
+}
+
+-keepattributes *Annotation*
+-keepattributes Signature

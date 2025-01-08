@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bird
+  - Brick
+  - Pig
+  - ground
+  - ground3
+  - ground5
+  - ground4
+  - ground7
+  - ground8
+  - gameOverPanel
+  - text
+  - levelup
+  - lock1
+  - lock2
+  - lock3
+  - level2_2star
+  - level2_3star
+  - nWorld
+  - dWorld
+  - sWorld
+  - rewardTxt
+  - rewardCanvas
+  - water
+  - pig
+  - borderwall
+  - stone
+  - bottle
+  - button
+  - enemy
+  - FxTemporaire
+  - key
+  - portal
+  - bomb
+  - laser
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Loading
+  - obstacle
+  - MagicBall
+  - Bottle
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4006910437
+    locked: 0
+  - name: Trees
+    uniqueID: 3761566587
+    locked: 0
+  - name: Floor
+    uniqueID: 1334385355
+    locked: 0
+  - name: New Layer
+    uniqueID: 1953573439
+    locked: 0
+  - name: New Layer
+    uniqueID: 549098091
+    locked: 0
+  - name: Platform
+    uniqueID: 300510823
+    locked: 0
+  - name: Gameplay
+    uniqueID: 3693839357
+    locked: 0
+  - name: Foreground
+    uniqueID: 2623055943
+    locked: 0
+  - name: Canvas
+    uniqueID: 856022467
+    locked: 0

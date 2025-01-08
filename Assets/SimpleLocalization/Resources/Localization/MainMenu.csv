@@ -1,0 +1,70 @@
+Key,English,German,Russian,Japanese,Chinese,Spanish,Portuguese,Arabic,Polish,French,Dutch,Turkish,Italian
+Splashscreen.Title1,Knockdown,Niederschlagen,Сбить,倒す,击倒,Noquear,Derrubar,صرع,Ogłuszający,Abattre,Omver gooien,Yere sermek,Stendere
+Splashscreen.Title2,Bottles,Flaschen,Бутылки,ボトル,瓶子,botellas,Garrafas,زجاجات,butelki,Bouteilles,flessen,şişeler,bottiglie
+Splashscreen.Play,Play,abspielen,Играть,演奏する,玩,Jugar,Jogar,لعب,Grać,Jouer,Speel,Oyna,Giocare
+Mainmenu.Select,Select world,Wählen Welt,Выберите мир,世界を選択,选择世界,Selección de mundo,Select mundo,حدد العالم,Wybierz świat,Sélectionner le monde,Select wereld,seç Dünya,Selezionare mondo
+WorldsPanel_name0,Forest,Wald,лес,森林,森林,Bosque,Floresta,غابة,Las,Forêt,Woud,Orman,foresta
+WorldsPanel_name1,Ancient,altertümlich,древний,古代の,古,Antiguo,Antigo,عتيق,Starożytny,Ancien,Oude,Antik,Antico
+WorldsPanel_name2,Mettle,Eifer,лихость,気迫,气概,Brío,impetuosidade,همة,Zapał,Courage,Moed,hırs,Coraggio
+WorldsPanel_name3,Desert,Wüste,пустынный,砂漠,沙漠,Desierto,Deserto,صحراء,Pustynia,désert,Woestijn,Çöl,Deserto
+WorldsPanel_name4,Snowy,Schneebedeckt,Снежный,雪の降ります,似雪,Nevado,Nevado,مثلج,Śnieżny,Neigeux,besneeuwd,Kar yağışlı,Nevoso
+WinPanel.Text,Level Cleared,Niveau Gelöscht,Уровень Очищенные,レベルクリア,等级清零,Nivel completado,nível Cleared,تطهيرها مستوى,Poziom wyczyszczone,niveau Effacé,niveau gewist,Seviye Temizlendi,livello Azzerato
+FailPanel.Text,Level Failed,Niveau gescheitert,Уровень провален,レベルに失敗しました,级失败的,Nivel fracasado,Nível falhado,فشل مستوى,Poziom nieudany,Niveau échoué,niveau mislukt,Seviye geçilemedi,Livello fallito
+TutorialText,Do not hit this bottle,Schlagen Sie diese Flasche nicht,Не бейте эту бутылку,このボトルをヒットしないでください。,不要打这瓶,No golpear esta botella,Não bata esta garrafa,لا تصل هذه الزجاجة,Nie bij tę butelkę,Ne pas frapper cette bouteille,Niet slaan deze fles,bu şişeyi Vurmayın,Non colpire questa bottiglia
+PausePanel.Text,Pause,Pause,Пауза,休止,暂停,Pausa,Pausa,وقفة,Pauza,Pause,Pauze,Duraklat,Pausa
+Worldlock_popupClue1,Achieve _ stars in forest world to unlock this world,"Erreichen _ Sterne in Wald Welt, diese Welt zu entsperren","Достичь _ звезды в лесном мире, чтобы разблокировать этот мир",_森の世界で星はこの世界のロックを解除するために達成,实现_星森林的世界解开这个世界,Lograr _ estrellas en el mundo de los bosques para desbloquear este mundo,Alcançar _ estrelas no mundo da floresta para desbloquear este mundo,تحقيق _ النجوم في العالم الغابات لفتح هذا العالم,"Osiągnąć _ gwiazdy w leśnej świata, aby odblokować ten świat",_ Stars réaliser monde forestier pour débloquer ce monde,Bereiken _ sterren in het bos wereld om deze wereld te ontgrendelen,_ Orman dünyasında yıldız bu dünyayı kilidini Başarmak,Ottenere _ stelle nel mondo della foresta per sbloccare questo mondo
+Worldlock_popupClue2,Achieve _ stars in ancient world to unlock this world,"Erreichen _ Sterne in der alten Welt, diese Welt zu entsperren","Достичь _ звезды в древнем мире, чтобы разблокировать этот мир",この世界のロックを解除するには、古代世界で_実現星,实现_星在古代世界解开这个世界,_ Alcanzar las estrellas en mundo antiguo para desbloquear este mundo,Alcançar _ estrelas no mundo antigo para desbloquear este mundo,تحقيق _ النجوم في العالم القديم لفتح هذا العالم,"Osiągnąć _ gwiazdy w świecie starożytnym, aby odblokować ten świat",_ Stars atteindre ancien monde pour débloquer ce monde,Bereiken _ sterren in oude wereld naar deze wereld te ontgrendelen,_ Antik dünyada yıldız bu dünyayı kilidini Başarmak,Ottenere _ stelle nel mondo antico per sbloccare questo mondo
+Worldlock_popupClue3,Achieve _ stars in mettle world to unlock this world,"Erreiche _ Sterne, um eine gute Welt freizuschalten","Достичь _ звезды в Mettle мире, чтобы разблокировать этот мир",この世界のロックを解除する気概世界で_星を達成,实现_明星秉性世界解开这个世界,Lograr _ estrellas en el mundo temple para desbloquear este mundo,Alcançar _ estrelas no mundo coragem para desbloquear este mundo,تحقيق _ النجوم في همة العالم لفتح هذا العالم,"Osiągnąć _ gwiazdy zapał świata, aby odblokować ten świat",_ Stars obtenir monde courage pour débloquer ce monde,Bereiken _ sterren in moed wereld om deze wereld te ontgrendelen,_ Hırs dünyasında yıldız bu dünyayı kilidini Başarmak,Ottenere _ stelle nel mondo coraggio per sbloccare questo mondo
+Worldlock_popupClue4,Achieve _ stars in desert world to unlock this world,"Erreichen _ Sterne in der Wüste Welt, diese Welt zu entsperren","Достичь _ звезды в пустыне мира, чтобы разблокировать этот мир",_砂漠の世界で星はこの世界のロックを解除するために達成,实现_星在沙漠世界解开这个世界,Lograr _ estrellas en el mundo del desierto para desbloquear este mundo,Alcançar _ estrelas no mundo do deserto para desbloquear este mundo,تحقيق _ النجوم في العالم الصحراء لفتح هذا العالم,"Osiągnąć _ gwiazdy w pustyni świata, aby odblokować ten świat",_ Stars atteindre monde du désert pour débloquer ce monde,Bereiken _ sterren in de woestijn ter wereld om deze wereld te ontgrendelen,_ Çöl dünyasında yıldız bu dünyayı kilidini Başarmak,Ottenere _ stelle nel mondo deserto per sbloccare questo mondo
+Worldlock_popupClue5,Achieve _ stars in snow world to unlock this world,"Erreichen _ Sterne in Schnee Welt, diese Welt zu entsperren","Достичь _ звезды в снежном мире, чтобы разблокировать этот мир",この世界のロックを解除するために雪の世界で_実現星,实现_星在冰雪世界解开这个世界,Lograr _ estrellas en el mundo de la nieve para desbloquear este mundo,Alcançar _ estrelas no mundo da neve para desbloquear este mundo,تحقيق _ النجوم في العالم الثلوج لفتح هذا العالم,"Osiągnąć _ gwiazdy w śniegu świecie, aby odblokować ten świat",_ Stars atteindre la neige du monde pour débloquer ce monde,Bereiken _ sterren in de sneeuw wereld om deze wereld te ontgrendelen,_ Kar dünyada yıldız bu dünyayı kilidini Başarmak,Ottenere _ stelle nel mondo della neve per sbloccare questo mondo
+Exit.Title,Exit,Ausgang,Выход,出口,出口,Salida,Saída,خروج,Wyjście,Sortie,Uitgang,çıkış,Uscita
+Exit.ConfirmText,ARE YOU SURE..?,BIST DU SICHER..?,ТЫ УВЕРЕН..?,本気ですか..？,你确定吗..？,ESTÁS SEGURO..?,VOCÊ TEM CERTEZA..?,هل أنت واثق..؟,JESTEŚ PEWNY..?,ÊTES-VOUS SÛR..?,WEET JE HET ZEKER..?,EMİN MİSİNİZ..?,SEI SICURO..?
+HidePanel.Text,Loading...,Wird geladen...,Загружается ...,読み込んでいます...,载入中...,Cargando...,Carregando...,جار التحميل...,Ładowanie...,Chargement...,Bezig met laden...,Yükleniyor...,Caricamento in corso...
+StorePanel.text,StorePanel,Geschäftpanel,магазинная панель,ストアパネル,面板,panel de la tienda,painel de loja,لوحة التخزين,panel sklepowy,panneau de magasin,opbergpaneel,mağaza paneli,pannello del negozio
+Select.text,Select,Wählen,Выбирать,選択する,选择,Seleccione,selecione,اختر العالميختار,Wybierz,Sélectionner,Selecteer,Seçiniz,Selezionare
+SpinWheel.text,Spin wheel,Rad drehen,Вращающееся колесо,糸車,旋转轮,Rueda giratoria,Roda giratória,أدر العجلة,Zakręć kołem,Roue de rotation,Draai het wiel,Döndürme çarkı,Gira la ruota
+Watchvideo.Text,"WATCH VIDEO
+ TO SPIN","SCHAU VIDEO
+  DREHEN","СМОТРЕТЬ ВИДЕО
+  ВРАЩАТЬ","ビデオを見る
+  スピンするには","看视频
+  旋转","VER VIDEO
+  GIRAR","ASSISTA VÍDEO
+  GIRAR","شاهد الفيديو
+  لتدور","OBEJRZYJ WIDEO
+  KRĘCIĆ","REGARDER LA VIDÉO
+  TOURNER","BEKIJK VIDEO
+  DRAAIEN","VİDEO İZLE
+  DÖNDÜRMEK","GUARDA UN VIDEO
+  PER GIRARE"
+Spin.text,Spin,Rotieren,Вращение,スピン,旋转,Girar,Rodar,غزل,Obracać,Tourner,Draai,Çevirmek,Rotazione
+Nospin.text,No Free Spins Available! Try Tomorrow,Keine Freispiele verfügbar! Versuchen Sie es morgen,Нет доступных бесплатных вращений! Попробуй завтра,利用可能なフリースピンはありません！ 明日お試しください,没有可用的免费旋转！ 明天尝试,¡No hay giros gratis disponibles! Intenta mañana,Não há rodadas grátis disponíveis! Tenta amanhã,لا توجد دورات مجانية متاحة! محاولة غدا,Brak darmowych spinów! Spróbuj jutro,Pas de tours gratuits disponibles! Essayez demain,Geen gratis spins beschikbaar! Probeer morgen,Ücretsiz Döndürme Yok! Yarın dene,Nessun giro gratuito disponibile! Prova domani
+GetCoins,"Get
+1000 
+coins","Erhalten
+1000
+Münzen
+","Получать
+1000
+монеты
+","取得する
+1000
+コイン","得到
+1000
+硬币","Obtener
+1000
+monedas
+","Obter
+1000
+moedas","احصل على 1000
+عملات معدنية","Otrzymać
+1000
+monety","Obtenir
+1000
+pièces de monnaie","Krijgen
+1000
+munten","Almak
+1000
+madeni paralar","Ottenere
+1000
+monete"
