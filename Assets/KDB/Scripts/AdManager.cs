@@ -237,7 +237,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
             //
         }
-        //Debug.unityLogger.logEnabled = false;
 
     }
     //public void OnInitializationComplete()

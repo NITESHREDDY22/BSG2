@@ -174,7 +174,6 @@ public class Pig : MonoBehaviour
             }
 
 
-
             if (target.gameObject.tag == "ground")
             {
                 //audioSource.Play();
@@ -189,7 +188,8 @@ public class Pig : MonoBehaviour
                 }
                 if (!Global.botList.Contains(gameObject))
                 {
-                    Debug.LogError("count " + Global.count);
+                    Debug.Log("count " + Global.count);
+
                     Global.count = Global.count + 1;
                     Global.isBottleCollission = true;
                     Global.botList.Add(gameObject);
