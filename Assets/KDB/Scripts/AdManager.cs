@@ -130,7 +130,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     private IEnumerator Start()
     {
-
         if (!Global.loadedFromServer)
         {
 
@@ -609,12 +608,18 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
     }
 
+    public bool LaunchInterstitialState()
+    {
+        return(launchInterstitial != null && launchInterstitial.IsLoaded());
+    }
+
     public void ShowLaunchInterstitial()
     {
         try
         {
             if (this.launchInterstitial != null && this.launchInterstitial.IsLoaded())
             {
+                Debug.Log("IXD Show");
                 this.launchInterstitial.Show();
                 lastAdDisplayTime = Time.time;
             }
