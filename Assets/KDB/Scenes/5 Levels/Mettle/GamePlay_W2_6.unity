@@ -4202,11 +4202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82521,7 +82521,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 1876404952628938, guid: ac03fefafef004fea8bd013224d0555b, type: 3}
   birdsgroup: {fileID: 1262838808}
   Level_ballCount: 04000000050000000600000005000000050000000500000005000000080000000600000003000000080000000600000006000000050000000800000006000000060000000700000007000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000
-  Give3Stars: 000000000000000000000000000000000000000000
+  Give3Stars: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   currentBirdIndex: 0
   gameOverPanel: {fileID: 616109203}
   SkipLevelBtn: {fileID: 1654498913}
@@ -85126,11 +85126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.29577774
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23053896
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.z

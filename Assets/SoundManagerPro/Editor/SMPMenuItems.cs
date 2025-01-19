@@ -75,7 +75,7 @@ public class SMPMenuItems : MonoBehaviour {
 		    
 		    // Everything is OK if status is empty
 		    if (status != "") {
-		        Debug.LogError(status + ": " + file.Name + "\nMove the '"+path+"' folder to '"+newpath+"' yourself.");
+		        Debug.Log(status + ": " + file.Name + "\nMove the '"+path+"' folder to '"+newpath+"' yourself.");
 		    }
 		}
 		

@@ -56,13 +56,7 @@ public class MainMenuScript : MonoBehaviour
             }
         }
         */
-        //Debug.unityLogger.logEnabled = false;
-#if UNITY_EDITOR
-        Debug.unityLogger.logEnabled = true;
-#else
-         //Debug.unityLogger.logEnabled = false;
-#endif
-      // PlayerPrefs.DeleteAll();
+
     }
 
     public void LevelSelection()

@@ -15,7 +15,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
 	}
     public  void needextraballactivate()
     {
-        Debug.LogError("NEEDEXTRA OK CLICKED");
+        Debug.Log("NEEDEXTRA OK CLICKED");
         AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
         #if UNITY_EDITOR
                 GameManager.Instance.gameState = GameState.Reward_Video_Completed;

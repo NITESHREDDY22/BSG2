@@ -135,7 +135,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     private IEnumerator Start()
     {
-
         if (!Global.loadedFromServer)
         {
 
@@ -238,7 +237,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
             //
         }
-        //Debug.unityLogger.logEnabled = false;
 
     }
   
@@ -552,13 +550,20 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
     }
 
+    public bool LaunchInterstitialState()
+    {
+        return(launchInterstitial != null && launchInterstitial.IsLoaded());
+    }
+
     public void ShowLaunchInterstitial()
     {
         try
         {
             if (this.launchInterstitial != null && this.launchInterstitial.IsAdReady())
             {
+
                 this.launchInterstitial.ShowAd();
+
                 lastAdDisplayTime = Time.time;
             }
             /*

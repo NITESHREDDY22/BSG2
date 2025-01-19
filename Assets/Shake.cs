@@ -21,7 +21,7 @@ public class Shake : MonoBehaviour {
 	void Update () {
         if (isVibrate)
         {
-            Debug.LogError(OriginalPos.position.x);
+            Debug.Log(OriginalPos.position.x);
             pos = OriginalPos.position;
             pos.x = pos.x+ Mathf.Sin(Time.time * speed) * amount ;
             transform.position= pos;

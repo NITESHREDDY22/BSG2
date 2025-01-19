@@ -659,7 +659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Presented  by  SigmaAppLabs
+  m_Text: Loading assets...
 --- !u!222 &637603976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -882,7 +882,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressslider: {fileID: 1702213887}
-  timetoload: 2
+  loadingText: {fileID: 637603975}
+  timetoload: 12
+  editorTest: 0
 --- !u!114 &873370746
 MonoBehaviour:
   m_ObjectHideFlags: 0

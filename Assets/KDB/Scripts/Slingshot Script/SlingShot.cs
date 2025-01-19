@@ -34,7 +34,7 @@ public class SlingShot : MonoBehaviour
             ribbonPullSoundPlayed = false;
             trajectoryLineRenderer.sortingLayerName = "Foreground";
             slingShootState = SlingshotState.Idle;
-            Debug.LogError("SlingShot AWAKE CALLL....................   " + slingShootState);
+            Debug.Log("SlingShot AWAKE CALLL....................   " + slingShootState);
             slingShootLineRenderer1.SetPosition(0, leftSlingShootOrigin.position);
             slingShootLineRenderer2.SetPosition(0, rightSlingShootOrigin.position);
             slingShootMiddleVector = new Vector3((leftSlingShootOrigin.position.x + rightSlingShootOrigin.position.x) / 2,
@@ -147,7 +147,7 @@ public class SlingShot : MonoBehaviour
                                 {
                                     birdToThrow.GetComponent<CircleCollider2D>().radius = Global.BirdColliderRadiusZero;
                                     slingShootState = SlingshotState.UserPulling;
-                                    Debug.LogError("SlingShot CASE IDLEIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII   " + slingShootState);
+                                    Debug.Log("SlingShot CASE IDLEIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII   " + slingShootState);
                                 }
                             }
                             else
@@ -160,7 +160,7 @@ public class SlingShot : MonoBehaviour
                                     {
                                         birdToThrow.GetComponent<CircleCollider2D>().radius = Global.BirdColliderRadiusZero;
                                         slingShootState = SlingshotState.UserPulling;
-                                        Debug.LogError("SlingShot CASE IDLEIIIIIIIIIIIIIIIIIIIIIIANYWHEREDRAGFALSE   " + slingShootState);
+                                        Debug.Log("SlingShot CASE IDLEIIIIIIIIIIIIIIIIIIIIIIANYWHEREDRAGFALSE   " + slingShootState);
 
                                     }
                                 }
@@ -242,7 +242,7 @@ public class SlingShot : MonoBehaviour
                                 SetSlingshotLinerenderersActive(false);
                                 SetTrajectoryLineRendererActive(false);
                                 slingShootState = SlingshotState.BirdFlying;
-                                Debug.LogError("SlingShot CASE USERPULLING....................  " + slingShootState);
+                                Debug.Log("SlingShot CASE USERPULLING....................  " + slingShootState);
                                 ThrowBird(distance);
                             }
                             else

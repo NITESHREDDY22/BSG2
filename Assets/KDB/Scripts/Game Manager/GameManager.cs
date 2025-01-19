@@ -64,10 +64,9 @@ public class GameManager : MonoBehaviour
     {
 
         Instance = this;
-        //Debug.unityLogger.logEnabled = false;
-        Debug.LogError("Start World " + WorldSelectionHandler.worldNumb + "Level" + Global.CurrentLeveltoPlay);
+        Debug.Log("Start World " + WorldSelectionHandler.worldNumb + "Level" + Global.CurrentLeveltoPlay);
         startTime = Time.time;
-        Debug.LogError("W" + WorldSelectionHandler.worldNumb + "L" + Global.CurrentLeveltoPlay + " Start Time =" + startTime);
+        Debug.Log("W" + WorldSelectionHandler.worldNumb + "L" + Global.CurrentLeveltoPlay + " Start Time =" + startTime);
         //GetComponent<SpriteRenderer>().sprite = BottleSkins[PlayerPrefs.GetInt("BottleSelected", 0)];
         SessionStart = DateTime.UtcNow;
         levelNo.text = "" + (Global.CurrentLeveltoPlay + 1);
@@ -233,7 +232,7 @@ public class GameManager : MonoBehaviour
     bool rewardUsed = false;
     void Awake()
     {
-        Debug.LogError("Awake World " + WorldSelectionHandler.worldNumb + "Level" + Global.CurrentLeveltoPlay);
+        Debug.Log("Awake World " + WorldSelectionHandler.worldNumb + "Level" + Global.CurrentLeveltoPlay);
 
         if (AdManager._instance != null)
             AdManager._instance.HideLoadingPanel();
@@ -409,7 +408,7 @@ public class GameManager : MonoBehaviour
                         replayBtn.SetActive(true);
                     }
                     AnimateBirdToSlingshot();
-                    Debug.LogError("GAMESTART " + slingShot.slingShootState);
+                    Debug.Log("GAMESTART " + slingShot.slingShootState);
                     break;
 
                 case GameState.Playing:
@@ -426,9 +425,9 @@ public class GameManager : MonoBehaviour
 
                             if (cameraFollow != null)
                             {
-                                Debug.LogError("ANimCamToStartCallBefore " + cameraFollow);
+                                Debug.Log("ANimCamToStartCallBefore " + cameraFollow);
                                 AnimateCameraToStartPosition();
-                                Debug.LogError("ANimCamToStartCall " + cameraFollow);
+                                Debug.Log("ANimCamToStartCall " + cameraFollow);
                             }
                             gameState = GameState.BirdMovingToSlingshot;
                         }
@@ -479,7 +478,7 @@ public class GameManager : MonoBehaviour
                                     rewardCanvas.SetActive(false);
                                     gameState = GameState.RewardState_Success;
                                     AnimateBirdToSlingshot();
-                                    Debug.LogError("REWARDVIDEOCOMPLETE " + slingShot.slingShootState);
+                                    Debug.Log("REWARDVIDEOCOMPLETE " + slingShot.slingShootState);
                                     try
                                     {
                                         if (FirebaseEvents.instance != null)
@@ -647,7 +646,7 @@ public class GameManager : MonoBehaviour
                     }
                     slingShot.enabled = true;
                     slingShot.slingShootState = SlingshotState.Idle;
-                    Debug.LogError("GAMEMANAGER   CALL  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   " + slingShot.slingShootState);
+                    Debug.Log("GAMEMANAGER   CALL  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$   " + slingShot.slingShootState);
                     /*if (ball.transform.position == slingShot.birdWaitPosition.position)
                      {
                          if (!Waited(1))
@@ -842,7 +841,7 @@ public class GameManager : MonoBehaviour
 
                         currentBirdIndex = (intialbirdcount - birdsgroup.childCount);
                         AnimateBirdToSlingshot();
-                        Debug.LogError("From animate camera to START POSITION*****************    " + slingShot.slingShootState);
+                        Debug.Log("From animate camera to START POSITION*****************    " + slingShot.slingShootState);
                         ShowBallsCount();
                     }
                     StartCoroutine(CheckBottlsRemaining());
@@ -1162,7 +1161,7 @@ public class GameManager : MonoBehaviour
     {
         try
         {
-            Debug.LogError("Birds count  " + birdsgroup.childCount);
+            Debug.Log("Birds count  " + birdsgroup.childCount);
 
             if (!Global.isBottleCollission)
             {

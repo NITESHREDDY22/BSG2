@@ -11,7 +11,7 @@ public class LevelSelectionHandler : MonoBehaviour {
 
     void Awake()
     {
-        //Debug.unityLogger.logEnabled = true;
+        Debug.unityLogger.logEnabled = true;
         //UnlockLevel(0);
         //PlayerPrefs.DeleteAll();
         unlockedLevels = PlayerPrefsX.GetBoolArray("_unlockedlevels" + worldNumb, false, WorldSelectionHandler.totalLevels[worldNumb]);
