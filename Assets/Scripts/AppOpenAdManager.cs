@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using GoogleMobileAds.Api;
+//using GoogleMobileAds.Api;
 using UnityEngine;
-
+/*
 public class AppOpenAdManager
 {
 #if UNITY_ANDROID
@@ -15,7 +15,7 @@ public class AppOpenAdManager
 
     private static AppOpenAdManager instance;
 
-    private AppOpenAd ad;
+    //private AppOpenAd ad;
 
     private bool isShowingAd = false;
 
@@ -118,4 +118,6 @@ private DateTime loadTime;
         Debug.LogFormat("Received paid event. (currency: {0}, value: {1}",
                 args.AdValue.CurrencyCode, args.AdValue.Value);
     }
+
 }
+*/
