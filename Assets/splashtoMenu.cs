@@ -47,10 +47,20 @@ public class splashtoMenu : MonoBehaviour {
 
             yield return new WaitForSeconds(Time.deltaTime);
         }
-        if (adReady|| editorTest)
+        if (adReady || editorTest || progress >= timetoload) 
         {
             Debug.Log("IXD Ready");
             AdManager._instance.ShowLaunchInterstitial();
+
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                //Internet not connected
+                //if (FirebaseEvents.instance != null)
+                //{
+                //    FirebaseEvents.instance.LogFirebaseEvent("Internet_Not_Connected");
+                //}
+            }
+
             SceneManager.LoadScene("MainMenu");
         }
     }

@@ -552,7 +552,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public bool LaunchInterstitialState()
     {
-        return(launchInterstitial != null && launchInterstitial.IsLoaded());
+        return(launchInterstitial != null && launchInterstitial.IsAdReady());
     }
 
     public void ShowLaunchInterstitial()
