@@ -75,7 +75,7 @@ public class SpinWheel : MonoBehaviour
                 FreeSpinBtn.SetActive(false);
                 if (DayofYear == oldDate)
                 {
-                    if (_adManager.rewardBasedVideo.IsLoaded())
+                    if (_adManager.rewardBasedVideo.IsAdReady())
                     {
                         MakeWVAvaialable();
                     }
@@ -154,7 +154,6 @@ public class SpinWheel : MonoBehaviour
     }
     public void WatchVideoSpinIt()
     {
-        FirebaseEvents.instance.LogFirebaseEvent("watch_video_btn_clicked_spinpopup");
 
 #if UNITY_EDITOR
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "LevelSelection")
@@ -165,6 +164,7 @@ public class SpinWheel : MonoBehaviour
         FindObjectOfType<AdManager>().ShowRewardedVideo();
 #endif
 
+        FirebaseEvents.instance.LogFirebaseEvent("watch_video_btn_clicked_spinpopup");
 
     }
     public void OnWatchVideoSuccess()
@@ -183,8 +183,7 @@ public class SpinWheel : MonoBehaviour
     IEnumerator SpinTheWheel(float time, float maxAngle)
     {
         spinning = true;
-        //spinwheel events
-        FirebaseEvents.instance.LogFirebaseEvent("Spinclicked");
+        
         float timer = 0.0f;
         float startAngle = transform.eulerAngles.z;
         maxAngle = maxAngle - startAngle;
@@ -213,6 +212,9 @@ public class SpinWheel : MonoBehaviour
         {
             StartCoroutine(ShowCoinsAnimation(prize[itemNumber]));
         }catch(Exception e) { }
+
+        //spinwheel events
+        FirebaseEvents.instance.LogFirebaseEvent("Spinclicked");
 
     }
     [SerializeField] GameObject _coinRef;
@@ -244,7 +246,7 @@ public class SpinWheel : MonoBehaviour
         MakeWVAvaialable();
 #else
      
-    if (_adManager.rewardBasedVideo.IsLoaded())
+    if (_adManager.rewardBasedVideo.IsAdReady())
         {
             MakeWVAvaialable();
         }
