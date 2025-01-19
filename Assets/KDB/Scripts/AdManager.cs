@@ -232,22 +232,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
             LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
 
-            Debug.Log("AdMANAGE START MEthod --------------------------------------------------------------------------------");
-            if (Global.isIntersitialsEnabled)
-            {
-                RequestInterstitial();
-                RequestLaunchInterstitial();
-                RequestExitInterstitial();
-            }
-            if (enableBanner)
-            {
-                RequestBanner();
-                RequestBannerExit();
-            }
-            if (Global.isRewaredAdsEnabled)
-            {
-                this.RequestRewardBasedVideo();
-            }
+           
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         }catch(Exception e)
         {
@@ -779,9 +764,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // Load the interstitial with the request.
         interstitial.LoadAd(request);
         */
-        interstitial.OnAdLoadFailed += HandleOnAdFailedToLoad;
-        interstitial.OnAdClosed += HandleOnAdClosed;
-        interstitial.LoadAd();
+        if (interstitial != null)
+        {
+            interstitial.OnAdLoadFailed += HandleOnAdFailedToLoad;
+            interstitial.OnAdClosed += HandleOnAdClosed;
+            interstitial.LoadAd();
+        }
     }
 
     public void RequestLaunchInterstitial()
@@ -1357,6 +1345,23 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //rewardBasedVideo.OnAdDisplayFailed += OnAdDisplayFailedMethod;
         //rewardBasedVideo.OnAdRewarded += OnAdRewardedMethod;
         //rewardBasedVideo.OnAdClicked += OnAdClickedMethod;
+
+        Debug.Log("LevelPlay START MEthod --------------------------------------------------------------------------------");
+        if (Global.isIntersitialsEnabled)
+        {
+            RequestInterstitial();
+            RequestLaunchInterstitial();
+            RequestExitInterstitial();
+        }
+        if (enableBanner)
+        {
+            RequestBanner();
+            RequestBannerExit();
+        }
+        if (Global.isRewaredAdsEnabled)
+        {
+            RequestRewardBasedVideo();
+        }
 
 
     }

@@ -564,6 +564,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral50D4804BC7D54E5E3D765D78A85B3784DBE80471
 IL2CPP_EXTERN_C String_t* _stringLiteral51FF329B777EDCDAE60F16815BCCF1D912DC5489;
 IL2CPP_EXTERN_C String_t* _stringLiteral526DD4A21A836D0354D0518BC3DEF5B26FD15382;
 IL2CPP_EXTERN_C String_t* _stringLiteral54A34CC6F844DFD49F7EA8AE7EC6B47D3D6F9415;
+IL2CPP_EXTERN_C String_t* _stringLiteral55B1DC3A8961D4929C8BAA01FCBB0085298850CB;
 IL2CPP_EXTERN_C String_t* _stringLiteral56C96BA6492E846A22F2C4E60E7C8F60A02EAF5D;
 IL2CPP_EXTERN_C String_t* _stringLiteral57A5B9F3116ECBC21D1419A60997CB549020FC53;
 IL2CPP_EXTERN_C String_t* _stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E;
@@ -5380,6 +5381,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestExitInterstitial_mA2BDE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_EnableAds_mCF0640B82631F0B50F8A4B69B7AB3586347F2D82 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LevelPlayInterstitialAd__ctor_m2F00AED39A95854988D8B0384EB7368F4A6E79DB (LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* __this, String_t* ___0_adUnitId, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LevelPlayRewardedAd__ctor_mA908C9F53191C2DD8932117A693AB9F58CA6BC04 (LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* __this, String_t* ___0_adUnitId, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestBanner_m16CCADF20C7A824E99637853078F27D8376CB5E3 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestBannerExit_m4C7023F7CB1A941072DEC3298B8530C5C71F1B72 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_Normalize_mEF8349CC39674236CFC694189AFD36E31F89AC8F_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline (float ___0_value, const RuntimeMethod* method) ;
 inline void List_1_AddWithResize_m192785B048EDA211AEC7A758A37D0B1ACCB94B9C (List_1_t8F3790B7F8C471B3A1336522C7415FB0AC36D47B* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_item, const RuntimeMethod* method)
@@ -20421,16 +20424,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpinWheel_WatchVideoSpinIt_m3DEE9C05E49F
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:157>
-		FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_0 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))->___instance;
-		NullCheck(L_0);
-		FirebaseEvents_LogFirebaseEvent_m4ABDFCB535EC270AEC109D402A864408785C535B(L_0, _stringLiteral9ADF55ED8968545D755B503A1A0FD361FDC57F52, (String_t*)NULL, (String_t*)NULL, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:165>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:164>
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
-		AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* L_1;
-		L_1 = Object_FindObjectOfType_TisAdManager_t1389D7135E1F558C870341BC4735A200ABA80F91_m6BF488121985F2946FB21BC973E94B7687684A79(Object_FindObjectOfType_TisAdManager_t1389D7135E1F558C870341BC4735A200ABA80F91_m6BF488121985F2946FB21BC973E94B7687684A79_RuntimeMethod_var);
+		AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* L_0;
+		L_0 = Object_FindObjectOfType_TisAdManager_t1389D7135E1F558C870341BC4735A200ABA80F91_m6BF488121985F2946FB21BC973E94B7687684A79(Object_FindObjectOfType_TisAdManager_t1389D7135E1F558C870341BC4735A200ABA80F91_m6BF488121985F2946FB21BC973E94B7687684A79_RuntimeMethod_var);
+		NullCheck(L_0);
+		AdManager_ShowRewardedVideo_mB64DE5A96D794AD015C7E2B4A8988EED4EF0C25A(L_0, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:167>
+		FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_1 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))->___instance;
 		NullCheck(L_1);
-		AdManager_ShowRewardedVideo_mB64DE5A96D794AD015C7E2B4A8988EED4EF0C25A(L_1, NULL);
+		FirebaseEvents_LogFirebaseEvent_m4ABDFCB535EC270AEC109D402A864408785C535B(L_1, _stringLiteral9ADF55ED8968545D755B503A1A0FD361FDC57F52, (String_t*)NULL, (String_t*)NULL, NULL);
 		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:169>
 		return;
 	}
@@ -20609,7 +20612,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CShowCoinsAnimationU3Ed__22_MoveNext_m
 IL_0022:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:222>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:224>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_3 = V_1;
 		NullCheck(L_3);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_4 = L_3->___spawnPoint;
@@ -20621,7 +20624,7 @@ IL_0022:
 		L_7 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5(L_6, NULL);
 		NullCheck(L_5);
 		VirtualActionInvoker1< String_t* >::Invoke(75, L_5, L_7);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:223>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:225>
 		WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3* L_8 = (WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3*)il2cpp_codegen_object_new(WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var);
 		WaitForSeconds__ctor_m579F95BADEDBAB4B3A7E302C6EE3995926EF2EFC(L_8, (2.0f), NULL);
 		__this->___U3CU3E2__current = L_8;
@@ -20633,14 +20636,14 @@ IL_0022:
 IL_005d:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:225>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:227>
 		__this->___U3CjU3E5__2 = 0;
 		goto IL_0179;
 	}
 
 IL_0070:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:227>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:229>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_9 = V_1;
 		NullCheck(L_9);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_10 = L_9->____coinRef;
@@ -20657,7 +20660,7 @@ IL_0070:
 		L_15 = Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m831D2F71DF2AA6C93AFDFEFA04CF2CFC5FBBCDB4(L_10, L_13, L_14, Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m831D2F71DF2AA6C93AFDFEFA04CF2CFC5FBBCDB4_RuntimeMethod_var);
 		__this->___U3C_coinU3E5__3 = L_15;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3C_coinU3E5__3), (void*)L_15);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:228>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:230>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_16 = __this->___U3C_coinU3E5__3;
 		NullCheck(L_16);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_17;
@@ -20667,7 +20670,7 @@ IL_0070:
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_19 = L_18->___coinSpace;
 		NullCheck(L_17);
 		Transform_SetParent_m6677538B60246D958DD91F931C50F969CCBB5250(L_17, L_19, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:229>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:231>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_20 = __this->___U3C_coinU3E5__3;
 		NullCheck(L_20);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_21;
@@ -20676,7 +20679,7 @@ IL_0070:
 		L_22 = Vector3_get_one_mC9B289F1E15C42C597180C9FE6FB492495B51D02_inline(NULL);
 		NullCheck(L_21);
 		Transform_set_localScale_mBA79E811BAF6C47B80FF76414C12B47B3CD03633(L_21, L_22, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:230>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:232>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_23 = __this->___U3C_coinU3E5__3;
 		NullCheck(L_23);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_24;
@@ -20689,7 +20692,7 @@ IL_0070:
 		L_27 = Transform_get_localPosition_mA9C86B990DF0685EA1061A120218993FDCC60A95(L_26, NULL);
 		NullCheck(L_24);
 		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_24, L_27, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:231>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:233>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_28 = __this->___U3C_coinU3E5__3;
 		NullCheck(L_28);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_29;
@@ -20698,7 +20701,7 @@ IL_0070:
 		L_30 = Vector3_get_zero_m0C1249C3F25B1C70EAD3CC8B31259975A457AE39_inline(NULL);
 		NullCheck(L_29);
 		Transform_set_localScale_mBA79E811BAF6C47B80FF76414C12B47B3CD03633(L_29, L_30, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:232>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:234>
 		int32_t L_31 = __this->___U3CjU3E5__2;
 		WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3* L_32 = (WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3*)il2cpp_codegen_object_new(WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var);
 		WaitForSeconds__ctor_m579F95BADEDBAB4B3A7E302C6EE3995926EF2EFC(L_32, ((float)il2cpp_codegen_multiply(((float)L_31), (0.100000001f))), NULL);
@@ -20711,7 +20714,7 @@ IL_0070:
 IL_010d:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:233>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:235>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_33 = __this->___U3C_coinU3E5__3;
 		NullCheck(L_33);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_34;
@@ -20722,8 +20725,8 @@ IL_010d:
 		L_36 = ShortcutExtensions_DOScale_m5D4EEFCF953640BEDFDE4A43162BEB9E533C24DE(L_34, L_35, (0.25f), NULL);
 		Tweener_tD38633F1A42EDF47A73CE3BF1894D946E830E140* L_37;
 		L_37 = TweenSettingsExtensions_SetEase_TisTweener_tD38633F1A42EDF47A73CE3BF1894D946E830E140_mC0B7CFABEEC4B279F7AAE7A46084C1BBE28057C9(L_36, ((int32_t)30), TweenSettingsExtensions_SetEase_TisTweener_tD38633F1A42EDF47A73CE3BF1894D946E830E140_mC0B7CFABEEC4B279F7AAE7A46084C1BBE28057C9_RuntimeMethod_var);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:234>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:235>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:236>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:237>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_38 = __this->___U3C_coinU3E5__3;
 		NullCheck(L_38);
 		CoinAnimation_t2EF0E7B90C40A054330C3C31BDC9B46F5E28DEA4* L_39;
@@ -20741,10 +20744,10 @@ IL_010d:
 		NullCheck(L_39);
 		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_45;
 		L_45 = MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812(L_39, L_44, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:236>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:238>
 		__this->___U3C_coinU3E5__3 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3C_coinU3E5__3), (void*)(GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:225>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:227>
 		int32_t L_46 = __this->___U3CjU3E5__2;
 		V_2 = L_46;
 		int32_t L_47 = V_2;
@@ -20753,7 +20756,7 @@ IL_010d:
 
 IL_0179:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:225>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:227>
 		int32_t L_48 = __this->___U3CjU3E5__2;
 		if ((((int32_t)L_48) < ((int32_t)5)))
 		{
@@ -20761,23 +20764,23 @@ IL_0179:
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:238>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:240>
 		int32_t L_49;
 		L_49 = PlayerPrefs_GetInt_m4D859DBEABAD3FB406C94485A0B2638A0C7F2987(_stringLiteral16F64B48CE03AD2C8628DC640D3E60B17532257D, NULL);
 		int32_t L_50 = __this->___coinsEarned;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral16F64B48CE03AD2C8628DC640D3E60B17532257D, ((int32_t)il2cpp_codegen_add(L_49, L_50)), NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:239>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:241>
 		il2cpp_codegen_runtime_class_init_inline(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_il2cpp_TypeInfo_var);
 		GameManager_AddCoins_m95A28A3370F808CDE53F3E92519A68EA30FB09C3(NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:240>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:242>
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral8DEACA01F75E7167B27EFF2851764EF73643B19D, 1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:241>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:243>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_51 = V_1;
 		NullCheck(L_51);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_52 = L_51->___FreeSpinBtn;
 		NullCheck(L_52);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_52, (bool)0, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:247>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:249>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_53 = V_1;
 		NullCheck(L_53);
 		AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* L_54 = L_53->____adManager;
@@ -20792,7 +20795,7 @@ IL_0179:
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:249>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:251>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_57 = V_1;
 		NullCheck(L_57);
 		SpinWheel_MakeWVAvaialable_mB6602D29998C2AB6019C3BFC24B79619DC32704F(L_57, NULL);
@@ -20801,13 +20804,13 @@ IL_0179:
 
 IL_01d6:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:253>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:255>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_58 = V_1;
 		NullCheck(L_58);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_59 = L_58->___NoFreeSpinsAvailable;
 		NullCheck(L_59);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_59, (bool)1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:254>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:256>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_60 = V_1;
 		NullCheck(L_60);
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_61 = L_60->___WatchVideoSpinBtn;
@@ -20817,7 +20820,7 @@ IL_01d6:
 
 IL_01ee:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:257>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:259>
 		return (bool)0;
 	}
 }
@@ -20910,7 +20913,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CSpinTheWheelU3Ed__17_MoveNext_m43F2C8
 		int32_t L_3 = V_0;
 		if ((((int32_t)L_3) == ((int32_t)1)))
 		{
-			goto IL_015a;
+			goto IL_0149;
 		}
 	}
 	{
@@ -20925,225 +20928,225 @@ IL_001a:
 		NullCheck(L_4);
 		L_4->___spinning = (bool)1;
 		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:187>
-		FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_5 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))->___instance;
-		NullCheck(L_5);
-		FirebaseEvents_LogFirebaseEvent_m4ABDFCB535EC270AEC109D402A864408785C535B(L_5, _stringLiteral0A26930F34BC2B3A59C90243902106B15AB04938, (String_t*)NULL, (String_t*)NULL, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:188>
 		__this->___U3CtimerU3E5__2 = (0.0f);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:189>
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_6 = V_1;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:188>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_5 = V_1;
+		NullCheck(L_5);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_6;
+		L_6 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_5, NULL);
 		NullCheck(L_6);
-		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_7;
-		L_7 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_6, NULL);
-		NullCheck(L_7);
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_8;
-		L_8 = Transform_get_eulerAngles_mCAAF48EFCF628F1ED91C2FFE75A4FD19C039DD6A(L_7, NULL);
-		float L_9 = L_8.___z;
-		__this->___U3CstartAngleU3E5__3 = L_9;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:190>
-		float L_10 = __this->___maxAngle;
-		float L_11 = __this->___U3CstartAngleU3E5__3;
-		__this->___maxAngle = ((float)il2cpp_codegen_subtract(L_10, L_11));
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:192>
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_12 = V_1;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_7;
+		L_7 = Transform_get_eulerAngles_mCAAF48EFCF628F1ED91C2FFE75A4FD19C039DD6A(L_6, NULL);
+		float L_8 = L_7.___z;
+		__this->___U3CstartAngleU3E5__3 = L_8;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:189>
+		float L_9 = __this->___maxAngle;
+		float L_10 = __this->___U3CstartAngleU3E5__3;
+		__this->___maxAngle = ((float)il2cpp_codegen_subtract(L_9, L_10));
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:191>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_11 = V_1;
+		NullCheck(L_11);
+		List_1_t5EF663E73FF17D3543A010E3E1EC10BE0C94F563* L_12 = L_11->___animationCurves;
 		NullCheck(L_12);
-		List_1_t5EF663E73FF17D3543A010E3E1EC10BE0C94F563* L_13 = L_12->___animationCurves;
-		NullCheck(L_13);
+		int32_t L_13;
+		L_13 = List_1_get_Count_m5C3855222FE3590E8F30EB6C0EBB442BAEDD4EF1_inline(L_12, List_1_get_Count_m5C3855222FE3590E8F30EB6C0EBB442BAEDD4EF1_RuntimeMethod_var);
 		int32_t L_14;
-		L_14 = List_1_get_Count_m5C3855222FE3590E8F30EB6C0EBB442BAEDD4EF1_inline(L_13, List_1_get_Count_m5C3855222FE3590E8F30EB6C0EBB442BAEDD4EF1_RuntimeMethod_var);
-		int32_t L_15;
-		L_15 = Random_Range_m6763D9767F033357F88B6637F048F4ACA4123B68(0, L_14, NULL);
-		__this->___U3CanimationCurveNumberU3E5__4 = L_15;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:193>
-		int32_t* L_16 = (int32_t*)(&__this->___U3CanimationCurveNumberU3E5__4);
+		L_14 = Random_Range_m6763D9767F033357F88B6637F048F4ACA4123B68(0, L_13, NULL);
+		__this->___U3CanimationCurveNumberU3E5__4 = L_14;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:192>
+		int32_t* L_15 = (int32_t*)(&__this->___U3CanimationCurveNumberU3E5__4);
+		String_t* L_16;
+		L_16 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5(L_15, NULL);
 		String_t* L_17;
-		L_17 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5(L_16, NULL);
-		String_t* L_18;
-		L_18 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteralD7DFE91BBF21BD75BA54F35914F8174E7721639C, L_17, NULL);
+		L_17 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteralD7DFE91BBF21BD75BA54F35914F8174E7721639C, L_16, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_18, NULL);
-		goto IL_0161;
+		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_17, NULL);
+		goto IL_0150;
 	}
 
-IL_00a3:
+IL_0092:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:198>
-		float L_19 = __this->___maxAngle;
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_20 = V_1;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:197>
+		float L_18 = __this->___maxAngle;
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_19 = V_1;
+		NullCheck(L_19);
+		List_1_t5EF663E73FF17D3543A010E3E1EC10BE0C94F563* L_20 = L_19->___animationCurves;
+		int32_t L_21 = __this->___U3CanimationCurveNumberU3E5__4;
 		NullCheck(L_20);
-		List_1_t5EF663E73FF17D3543A010E3E1EC10BE0C94F563* L_21 = L_20->___animationCurves;
-		int32_t L_22 = __this->___U3CanimationCurveNumberU3E5__4;
-		NullCheck(L_21);
-		AnimationCurve_tCBFFAAD05CEBB35EF8D8631BD99914BE1A6BB354* L_23;
-		L_23 = List_1_get_Item_m43975FA9FD265777640DE62E23699F7BF8BD5F2F(L_21, L_22, List_1_get_Item_m43975FA9FD265777640DE62E23699F7BF8BD5F2F_RuntimeMethod_var);
-		float L_24 = __this->___U3CtimerU3E5__2;
-		float L_25 = __this->___time;
-		NullCheck(L_23);
-		float L_26;
-		L_26 = AnimationCurve_Evaluate_m50B857043DE251A186032ADBCBB4CEF817F4EE3C(L_23, ((float)(L_24/L_25)), NULL);
-		V_2 = ((float)il2cpp_codegen_multiply(L_19, L_26));
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:199>
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_27 = V_1;
+		AnimationCurve_tCBFFAAD05CEBB35EF8D8631BD99914BE1A6BB354* L_22;
+		L_22 = List_1_get_Item_m43975FA9FD265777640DE62E23699F7BF8BD5F2F(L_20, L_21, List_1_get_Item_m43975FA9FD265777640DE62E23699F7BF8BD5F2F_RuntimeMethod_var);
+		float L_23 = __this->___U3CtimerU3E5__2;
+		float L_24 = __this->___time;
+		NullCheck(L_22);
+		float L_25;
+		L_25 = AnimationCurve_Evaluate_m50B857043DE251A186032ADBCBB4CEF817F4EE3C(L_22, ((float)(L_23/L_24)), NULL);
+		V_2 = ((float)il2cpp_codegen_multiply(L_18, L_25));
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:198>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_26 = V_1;
+		NullCheck(L_26);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_27;
+		L_27 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_26, NULL);
+		float L_28 = V_2;
+		float L_29 = __this->___U3CstartAngleU3E5__3;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_30;
+		memset((&L_30), 0, sizeof(L_30));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_30), (0.0f), (0.0f), ((float)il2cpp_codegen_add(L_28, L_29)), NULL);
 		NullCheck(L_27);
-		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_28;
-		L_28 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_27, NULL);
-		float L_29 = V_2;
-		float L_30 = __this->___U3CstartAngleU3E5__3;
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_31;
-		memset((&L_31), 0, sizeof(L_31));
-		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_31), (0.0f), (0.0f), ((float)il2cpp_codegen_add(L_29, L_30)), NULL);
-		NullCheck(L_28);
-		Transform_set_eulerAngles_m9F0BC484A7915A51FAB87230644229B75BACA004(L_28, L_31, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:200>
-		float L_32 = __this->___U3CtimerU3E5__2;
-		float L_33;
-		L_33 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
-		__this->___U3CtimerU3E5__2 = ((float)il2cpp_codegen_add(L_32, ((float)il2cpp_codegen_multiply(L_33, (4.0f)))));
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:202>
-		float L_34 = __this->___U3CtimerU3E5__2;
-		int32_t L_35;
-		L_35 = Mathf_RoundToInt_m60F8B66CF27F1FA75AA219342BD184B75771EB4B_inline(L_34, NULL);
-		float L_36 = __this->___time;
-		if ((!(((float)((float)L_35)) == ((float)((float)il2cpp_codegen_subtract(L_36, (2.0f)))))))
+		Transform_set_eulerAngles_m9F0BC484A7915A51FAB87230644229B75BACA004(L_27, L_30, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:199>
+		float L_31 = __this->___U3CtimerU3E5__2;
+		float L_32;
+		L_32 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		__this->___U3CtimerU3E5__2 = ((float)il2cpp_codegen_add(L_31, ((float)il2cpp_codegen_multiply(L_32, (4.0f)))));
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:201>
+		float L_33 = __this->___U3CtimerU3E5__2;
+		int32_t L_34;
+		L_34 = Mathf_RoundToInt_m60F8B66CF27F1FA75AA219342BD184B75771EB4B_inline(L_33, NULL);
+		float L_35 = __this->___time;
+		if ((!(((float)((float)L_34)) == ((float)((float)il2cpp_codegen_subtract(L_35, (2.0f)))))))
 		{
-			goto IL_0145;
+			goto IL_0134;
 		}
 	}
 	{
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_37 = V_1;
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_36 = V_1;
+		NullCheck(L_36);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_37;
+		L_37 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(L_36, NULL);
 		NullCheck(L_37);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_38;
-		L_38 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(L_37, NULL);
-		NullCheck(L_38);
-		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_39;
-		L_39 = GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A(L_38, GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A_RuntimeMethod_var);
+		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_38;
+		L_38 = GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A(L_37, GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A_RuntimeMethod_var);
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
-		bool L_40;
-		L_40 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_39, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
-		if (!L_40)
+		bool L_39;
+		L_39 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_38, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_39)
 		{
-			goto IL_0145;
+			goto IL_0134;
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:203>
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_41 = V_1;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:202>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_40 = V_1;
+		NullCheck(L_40);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_41;
+		L_41 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(L_40, NULL);
 		NullCheck(L_41);
-		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_42;
-		L_42 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(L_41, NULL);
-		NullCheck(L_42);
-		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_43;
-		L_43 = GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A(L_42, GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A_RuntimeMethod_var);
+		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_42;
+		L_42 = GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A(L_41, GameObject_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m4F30DAB8E5B57E8DB6BD8C0C3BB11CCB57690C4A_RuntimeMethod_var);
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
-		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_43, NULL);
+		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_42, NULL);
 	}
 
-IL_0145:
+IL_0134:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:205>
-		int32_t L_44 = 0;
-		RuntimeObject* L_45 = Box(Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_il2cpp_TypeInfo_var, &L_44);
-		__this->___U3CU3E2__current = L_45;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)L_45);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:204>
+		int32_t L_43 = 0;
+		RuntimeObject* L_44 = Box(Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_il2cpp_TypeInfo_var, &L_43);
+		__this->___U3CU3E2__current = L_44;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)L_44);
 		__this->___U3CU3E1__state = 1;
 		return (bool)1;
 	}
 
-IL_015a:
+IL_0149:
 	{
 		__this->___U3CU3E1__state = (-1);
 	}
 
-IL_0161:
+IL_0150:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:195>
-		float L_46 = __this->___U3CtimerU3E5__2;
-		float L_47 = __this->___time;
-		if ((((float)L_46) < ((float)L_47)))
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:194>
+		float L_45 = __this->___U3CtimerU3E5__2;
+		float L_46 = __this->___time;
+		if ((((float)L_45) < ((float)L_46)))
 		{
-			goto IL_00a3;
+			goto IL_0092;
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:207>
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_48 = V_1;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:206>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_47 = V_1;
+		NullCheck(L_47);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_48;
+		L_48 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_47, NULL);
+		float L_49 = __this->___maxAngle;
+		float L_50 = __this->___U3CstartAngleU3E5__3;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_51;
+		memset((&L_51), 0, sizeof(L_51));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_51), (0.0f), (0.0f), ((float)il2cpp_codegen_add(L_49, L_50)), NULL);
 		NullCheck(L_48);
-		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_49;
-		L_49 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_48, NULL);
-		float L_50 = __this->___maxAngle;
-		float L_51 = __this->___U3CstartAngleU3E5__3;
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_52;
-		memset((&L_52), 0, sizeof(L_52));
-		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_52), (0.0f), (0.0f), ((float)il2cpp_codegen_add(L_50, L_51)), NULL);
-		NullCheck(L_49);
-		Transform_set_eulerAngles_m9F0BC484A7915A51FAB87230644229B75BACA004(L_49, L_52, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:208>
+		Transform_set_eulerAngles_m9F0BC484A7915A51FAB87230644229B75BACA004(L_48, L_51, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:207>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_52 = V_1;
+		NullCheck(L_52);
+		L_52->___spinning = (bool)0;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:209>
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_53 = V_1;
 		NullCheck(L_53);
-		L_53->___spinning = (bool)0;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:210>
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_54 = V_1;
-		NullCheck(L_54);
-		List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* L_55 = L_54->___prize;
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_56 = V_1;
-		NullCheck(L_56);
-		int32_t L_57 = L_56->___itemNumber;
+		List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* L_54 = L_53->___prize;
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_55 = V_1;
 		NullCheck(L_55);
-		int32_t L_58;
-		L_58 = List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D(L_55, L_57, List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D_RuntimeMethod_var);
-		V_3 = L_58;
+		int32_t L_56 = L_55->___itemNumber;
+		NullCheck(L_54);
+		int32_t L_57;
+		L_57 = List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D(L_54, L_56, List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D_RuntimeMethod_var);
+		V_3 = L_57;
+		String_t* L_58;
+		L_58 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_3), NULL);
 		String_t* L_59;
-		L_59 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_3), NULL);
-		String_t* L_60;
-		L_60 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteralEBEDF8D1E6828D16F8835D8E2C2744ED3A99D276, L_59, NULL);
+		L_59 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteralEBEDF8D1E6828D16F8835D8E2C2744ED3A99D276, L_58, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
-		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_60, NULL);
+		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_59, NULL);
 	}
 	try
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:214>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:213>
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_60 = V_1;
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_61 = V_1;
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_62 = V_1;
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_63 = V_1;
-		NullCheck(L_63);
-		List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* L_64 = L_63->___prize;
-		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_65 = V_1;
-		NullCheck(L_65);
-		int32_t L_66 = L_65->___itemNumber;
-		NullCheck(L_64);
-		int32_t L_67;
-		L_67 = List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D(L_64, L_66, List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D_RuntimeMethod_var);
 		NullCheck(L_62);
-		RuntimeObject* L_68;
-		L_68 = SpinWheel_ShowCoinsAnimation_m719ACD4144B57673CCC381F8EE611A750ACF93CD(L_62, L_67, NULL);
+		List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* L_63 = L_62->___prize;
+		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_64 = V_1;
+		NullCheck(L_64);
+		int32_t L_65 = L_64->___itemNumber;
+		NullCheck(L_63);
+		int32_t L_66;
+		L_66 = List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D(L_63, L_65, List_1_get_Item_mD99081BEFA1AB3526715F489192B0F7F596C183D_RuntimeMethod_var);
 		NullCheck(L_61);
-		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_69;
-		L_69 = MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812(L_61, L_68, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:215>
-		goto IL_01eb;
+		RuntimeObject* L_67;
+		L_67 = SpinWheel_ShowCoinsAnimation_m719ACD4144B57673CCC381F8EE611A750ACF93CD(L_61, L_66, NULL);
+		NullCheck(L_60);
+		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_68;
+		L_68 = MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812(L_60, L_67, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:214>
+		goto IL_01da;
 	}
 	catch(Il2CppExceptionWrapper& e)
 	{
 		if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Exception_t_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
 		{
 			IL2CPP_PUSH_ACTIVE_EXCEPTION(e.ex);
-			goto CATCH_01e8;
+			goto CATCH_01d7;
 		}
 		throw e;
 	}
 
-CATCH_01e8:
+CATCH_01d7:
 	{
-		Exception_t* L_70 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:215>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:215>
+		Exception_t* L_69 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:214>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:214>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
-		goto IL_01eb;
+		goto IL_01da;
 	}
 
-IL_01eb:
+IL_01da:
 	{
 		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:217>
+		FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_70 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))->___instance;
+		NullCheck(L_70);
+		FirebaseEvents_LogFirebaseEvent_m4ABDFCB535EC270AEC109D402A864408785C535B(L_70, _stringLiteral0A26930F34BC2B3A59C90243902106B15AB04938, (String_t*)NULL, (String_t*)NULL, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/K/SpinWheel.cs:219>
 		return (bool)0;
 	}
 }
@@ -26670,11 +26673,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AdManager_Start_mA9A920E632951
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowLoadingPanel_m0621BDA68CE0F4FB4210DEE9A7D0668CA3A540B6 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:263>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:248>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___LoadingPanel;
 		NullCheck(L_0);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_0, (bool)1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:264>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:249>
 		return;
 	}
 }
@@ -26682,11 +26685,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowLoadingPanel_m0621BDA68CE0
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HideLoadingPanel_m8F70C3BAB5C155A66634EB03FBB6569CB30A9442 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:267>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:252>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___LoadingPanel;
 		NullCheck(L_0);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_0, (bool)0, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:268>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:253>
 		return;
 	}
 }
@@ -26694,11 +26697,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HideLoadingPanel_m8F70C3BAB5C1
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowStorePanel_mA2537A8A6C9F33FDE6DBF8D3B5B6FA889FBCD555 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:273>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:258>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___StorePanel;
 		NullCheck(L_0);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_0, (bool)1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:274>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:259>
 		return;
 	}
 }
@@ -26706,11 +26709,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowStorePanel_mA2537A8A6C9F33
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HideStorePanel_m65460336053CA62AE6FD67DD1577966476A357C6 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:277>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:262>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___StorePanel;
 		NullCheck(L_0);
 		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_0, (bool)0, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:278>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:263>
 		return;
 	}
 }
@@ -26727,7 +26730,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_storeBack_mFD362F0D5F0CF44CF97
 	Scene_tA1DC762B79745EB5140F054C884855B922318356 V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:282>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:267>
 		il2cpp_codegen_runtime_class_init_inline(SceneManager_tA0EF56A88ACA4A15731AF7FDC10A869FA4C698FA_il2cpp_TypeInfo_var);
 		Scene_tA1DC762B79745EB5140F054C884855B922318356 L_0;
 		L_0 = SceneManager_GetActiveScene_m0B320EC4302F51A71495D1CCD1A0FF9C2ED1FDC8(NULL);
@@ -26743,16 +26746,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_storeBack_mFD362F0D5F0CF44CF97
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:284>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:269>
 		AdManager_HideStorePanel_m65460336053CA62AE6FD67DD1577966476A357C6(__this, NULL);
 		return;
 	}
 
 IL_0020:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:295>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:280>
 		AdManager_HideStorePanel_m65460336053CA62AE6FD67DD1577966476A357C6(__this, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:298>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:283>
 		return;
 	}
 }
@@ -26772,14 +26775,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowCommonInterstitial_mF50039
 	int32_t V_3 = 0;
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 2> __active_exceptions;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:304>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:289>
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral78EA4C2D145471BE8CCD1F52A6C2AF72582F3C97, NULL);
 	}
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:307>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:292>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___interstitial;
 			NullCheck(L_0);
 			bool L_1;
@@ -26790,13 +26793,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowCommonInterstitial_mF50039
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:309>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:294>
 			AdManager_ShowInterstitial_m8486ECB8084E888CEB463171432E3022A3A8D9BE(__this, NULL);
 		}
 
 IL_001d_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:335>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:320>
 			goto IL_00e3;
 		}
 	}
@@ -26814,17 +26817,17 @@ CATCH_0022:
 	{
 		{
 			Exception_t* L_2 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:336>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:321>
 			V_0 = L_2;
 		}
 		try
 		{
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:340>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:325>
 				Exception_t* L_3 = V_0;
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_4 = (StackTrace_t7C150C7C14136F985311A83A93524B1019F70853*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&StackTrace_t7C150C7C14136F985311A83A93524B1019F70853_il2cpp_TypeInfo_var)));
 				StackTrace__ctor_m9BE489F499935CFA9AD4154B18A3AB35C52886DF(L_4, L_3, (bool)1, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:341>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:326>
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_5 = L_4;
 				NullCheck(L_5);
 				int32_t L_6;
@@ -26832,18 +26835,18 @@ CATCH_0022:
 				NullCheck(L_5);
 				StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443* L_7;
 				L_7 = VirtualFuncInvoker1< StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443*, int32_t >::Invoke(5, L_5, ((int32_t)il2cpp_codegen_subtract(L_6, 1)));
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:342>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:327>
 				NullCheck(L_7);
 				int32_t L_8;
 				L_8 = VirtualFuncInvoker0< int32_t >::Invoke(4, L_7);
 				V_1 = L_8;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:343>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:328>
 				String_t* L_9;
 				L_9 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_1), NULL);
 				String_t* L_10;
 				L_10 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral86C1BE297A8B56C440A90420C8873B185F8D2F86)), L_9, NULL);
 				V_2 = L_10;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:344>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:329>
 				int32_t L_11 = V_1;
 				if (L_11)
 				{
@@ -26851,7 +26854,7 @@ CATCH_0022:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:346>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:331>
 				Exception_t* L_12 = V_0;
 				NullCheck(L_12);
 				String_t* L_13;
@@ -26860,7 +26863,7 @@ CATCH_0022:
 				int32_t L_14;
 				L_14 = String_IndexOf_m69E9BDAFD93767C85A7FF861B453415D3B4A200F(L_13, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E)), NULL);
 				V_3 = L_14;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:347>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:332>
 				Exception_t* L_15 = V_0;
 				NullCheck(L_15);
 				String_t* L_16;
@@ -26872,14 +26875,14 @@ CATCH_0022:
 				NullCheck(L_18);
 				int32_t L_19;
 				L_19 = String_get_Length_m42625D67623FA5CC7A44D47425CE86FB946542D2_inline(L_18, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:348>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:333>
 				if ((((int32_t)L_19) <= ((int32_t)((int32_t)99))))
 				{
 					goto IL_0093_1;
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:350>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:335>
 				Exception_t* L_20 = V_0;
 				NullCheck(L_20);
 				String_t* L_21;
@@ -26896,7 +26899,7 @@ CATCH_0022:
 
 IL_0093_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:354>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:339>
 				Exception_t* L_25 = V_0;
 				NullCheck(L_25);
 				String_t* L_26;
@@ -26912,7 +26915,7 @@ IL_0093_1:
 
 IL_00aa_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:357>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:342>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_30 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var)));
 				bool L_31;
@@ -26923,7 +26926,7 @@ IL_00aa_1:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:359>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:344>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_32 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				Exception_t* L_33 = V_0;
 				NullCheck(L_33);
@@ -26938,7 +26941,7 @@ IL_00aa_1:
 
 IL_00dc_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:361>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:346>
 				goto IL_00e1;
 			}
 		}
@@ -26955,15 +26958,15 @@ IL_00dc_1:
 CATCH_00de:
 		{
 			Exception_t* L_37 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:362>
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:365>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:347>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:350>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00e1;
 		}
 
 IL_00e1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:366>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:351>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00e3;
 		}
@@ -26971,7 +26974,7 @@ IL_00e1:
 
 IL_00e3:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:368>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:353>
 		return;
 	}
 }
@@ -26991,17 +26994,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowGameFailInterstitial_mEDCF
 	int32_t V_3 = 0;
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 2> __active_exceptions;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:372>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:357>
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral78EA4C2D145471BE8CCD1F52A6C2AF72582F3C97, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:373>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:358>
 		int32_t L_0 = __this->___counter;
 		__this->___counter = ((int32_t)il2cpp_codegen_add(L_0, 1));
 	}
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:376>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:361>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_1 = __this->___interstitial;
 			NullCheck(L_1);
 			bool L_2;
@@ -27012,7 +27015,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowGameFailInterstitial_mEDCF
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:378>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:363>
 			int32_t L_3 = __this->___counter;
 			int32_t L_4 = __this->___GOFAdInterval;
 			if ((((int32_t)L_3) < ((int32_t)L_4)))
@@ -27021,15 +27024,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowGameFailInterstitial_mEDCF
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:380>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:365>
 			AdManager_ShowInterstitial_m8486ECB8084E888CEB463171432E3022A3A8D9BE(__this, NULL);
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:381>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:366>
 			__this->___counter = 0;
 		}
 
 IL_0040_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:406>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:391>
 			goto IL_0106;
 		}
 	}
@@ -27047,17 +27050,17 @@ CATCH_0045:
 	{
 		{
 			Exception_t* L_5 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:407>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:392>
 			V_0 = L_5;
 		}
 		try
 		{
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:411>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:396>
 				Exception_t* L_6 = V_0;
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_7 = (StackTrace_t7C150C7C14136F985311A83A93524B1019F70853*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&StackTrace_t7C150C7C14136F985311A83A93524B1019F70853_il2cpp_TypeInfo_var)));
 				StackTrace__ctor_m9BE489F499935CFA9AD4154B18A3AB35C52886DF(L_7, L_6, (bool)1, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:412>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:397>
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_8 = L_7;
 				NullCheck(L_8);
 				int32_t L_9;
@@ -27065,18 +27068,18 @@ CATCH_0045:
 				NullCheck(L_8);
 				StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443* L_10;
 				L_10 = VirtualFuncInvoker1< StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443*, int32_t >::Invoke(5, L_8, ((int32_t)il2cpp_codegen_subtract(L_9, 1)));
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:413>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:398>
 				NullCheck(L_10);
 				int32_t L_11;
 				L_11 = VirtualFuncInvoker0< int32_t >::Invoke(4, L_10);
 				V_1 = L_11;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:414>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:399>
 				String_t* L_12;
 				L_12 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_1), NULL);
 				String_t* L_13;
 				L_13 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral86C1BE297A8B56C440A90420C8873B185F8D2F86)), L_12, NULL);
 				V_2 = L_13;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:415>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:400>
 				int32_t L_14 = V_1;
 				if (L_14)
 				{
@@ -27084,7 +27087,7 @@ CATCH_0045:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:417>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:402>
 				Exception_t* L_15 = V_0;
 				NullCheck(L_15);
 				String_t* L_16;
@@ -27093,7 +27096,7 @@ CATCH_0045:
 				int32_t L_17;
 				L_17 = String_IndexOf_m69E9BDAFD93767C85A7FF861B453415D3B4A200F(L_16, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E)), NULL);
 				V_3 = L_17;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:418>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:403>
 				Exception_t* L_18 = V_0;
 				NullCheck(L_18);
 				String_t* L_19;
@@ -27105,14 +27108,14 @@ CATCH_0045:
 				NullCheck(L_21);
 				int32_t L_22;
 				L_22 = String_get_Length_m42625D67623FA5CC7A44D47425CE86FB946542D2_inline(L_21, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:419>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:404>
 				if ((((int32_t)L_22) <= ((int32_t)((int32_t)99))))
 				{
 					goto IL_00b6_1;
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:421>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:406>
 				Exception_t* L_23 = V_0;
 				NullCheck(L_23);
 				String_t* L_24;
@@ -27129,7 +27132,7 @@ CATCH_0045:
 
 IL_00b6_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:425>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:410>
 				Exception_t* L_28 = V_0;
 				NullCheck(L_28);
 				String_t* L_29;
@@ -27145,7 +27148,7 @@ IL_00b6_1:
 
 IL_00cd_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:428>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:413>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_33 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var)));
 				bool L_34;
@@ -27156,7 +27159,7 @@ IL_00cd_1:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:430>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:415>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_35 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				Exception_t* L_36 = V_0;
 				NullCheck(L_36);
@@ -27171,7 +27174,7 @@ IL_00cd_1:
 
 IL_00ff_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:432>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:417>
 				goto IL_0104;
 			}
 		}
@@ -27188,15 +27191,15 @@ IL_00ff_1:
 CATCH_0101:
 		{
 			Exception_t* L_40 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:433>
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:436>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:418>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:421>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_0104;
 		}
 
 IL_0104:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:437>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:422>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_0106;
 		}
@@ -27204,7 +27207,7 @@ IL_0104:
 
 IL_0106:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:438>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:423>
 		return;
 	}
 }
@@ -27224,17 +27227,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowGameWinInterstitial_m7E70D
 	int32_t V_3 = 0;
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 2> __active_exceptions;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:443>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:428>
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral78EA4C2D145471BE8CCD1F52A6C2AF72582F3C97, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:444>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:429>
 		int32_t L_0 = __this->___counter2;
 		__this->___counter2 = ((int32_t)il2cpp_codegen_add(L_0, 1));
 	}
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:447>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:432>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_1 = __this->___interstitial;
 			NullCheck(L_1);
 			bool L_2;
@@ -27245,7 +27248,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowGameWinInterstitial_m7E70D
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:449>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:434>
 			int32_t L_3 = __this->___counter2;
 			int32_t L_4 = __this->___GOWAdInterval;
 			if ((((int32_t)L_3) < ((int32_t)L_4)))
@@ -27254,15 +27257,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowGameWinInterstitial_m7E70D
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:451>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:436>
 			AdManager_ShowInterstitial_m8486ECB8084E888CEB463171432E3022A3A8D9BE(__this, NULL);
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:452>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:437>
 			__this->___counter2 = 0;
 		}
 
 IL_0040_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:476>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:461>
 			goto IL_0106;
 		}
 	}
@@ -27280,17 +27283,17 @@ CATCH_0045:
 	{
 		{
 			Exception_t* L_5 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:477>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:462>
 			V_0 = L_5;
 		}
 		try
 		{
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:481>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:466>
 				Exception_t* L_6 = V_0;
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_7 = (StackTrace_t7C150C7C14136F985311A83A93524B1019F70853*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&StackTrace_t7C150C7C14136F985311A83A93524B1019F70853_il2cpp_TypeInfo_var)));
 				StackTrace__ctor_m9BE489F499935CFA9AD4154B18A3AB35C52886DF(L_7, L_6, (bool)1, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:482>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:467>
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_8 = L_7;
 				NullCheck(L_8);
 				int32_t L_9;
@@ -27298,18 +27301,18 @@ CATCH_0045:
 				NullCheck(L_8);
 				StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443* L_10;
 				L_10 = VirtualFuncInvoker1< StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443*, int32_t >::Invoke(5, L_8, ((int32_t)il2cpp_codegen_subtract(L_9, 1)));
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:483>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:468>
 				NullCheck(L_10);
 				int32_t L_11;
 				L_11 = VirtualFuncInvoker0< int32_t >::Invoke(4, L_10);
 				V_1 = L_11;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:484>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:469>
 				String_t* L_12;
 				L_12 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_1), NULL);
 				String_t* L_13;
 				L_13 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral86C1BE297A8B56C440A90420C8873B185F8D2F86)), L_12, NULL);
 				V_2 = L_13;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:485>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:470>
 				int32_t L_14 = V_1;
 				if (L_14)
 				{
@@ -27317,7 +27320,7 @@ CATCH_0045:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:487>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:472>
 				Exception_t* L_15 = V_0;
 				NullCheck(L_15);
 				String_t* L_16;
@@ -27326,7 +27329,7 @@ CATCH_0045:
 				int32_t L_17;
 				L_17 = String_IndexOf_m69E9BDAFD93767C85A7FF861B453415D3B4A200F(L_16, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E)), NULL);
 				V_3 = L_17;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:488>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:473>
 				Exception_t* L_18 = V_0;
 				NullCheck(L_18);
 				String_t* L_19;
@@ -27338,14 +27341,14 @@ CATCH_0045:
 				NullCheck(L_21);
 				int32_t L_22;
 				L_22 = String_get_Length_m42625D67623FA5CC7A44D47425CE86FB946542D2_inline(L_21, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:489>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:474>
 				if ((((int32_t)L_22) <= ((int32_t)((int32_t)99))))
 				{
 					goto IL_00b6_1;
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:491>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:476>
 				Exception_t* L_23 = V_0;
 				NullCheck(L_23);
 				String_t* L_24;
@@ -27362,7 +27365,7 @@ CATCH_0045:
 
 IL_00b6_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:495>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:480>
 				Exception_t* L_28 = V_0;
 				NullCheck(L_28);
 				String_t* L_29;
@@ -27378,7 +27381,7 @@ IL_00b6_1:
 
 IL_00cd_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:498>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:483>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_33 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var)));
 				bool L_34;
@@ -27389,7 +27392,7 @@ IL_00cd_1:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:500>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:485>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_35 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				Exception_t* L_36 = V_0;
 				NullCheck(L_36);
@@ -27404,7 +27407,7 @@ IL_00cd_1:
 
 IL_00ff_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:502>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:487>
 				goto IL_0104;
 			}
 		}
@@ -27421,15 +27424,15 @@ IL_00ff_1:
 CATCH_0101:
 		{
 			Exception_t* L_40 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:503>
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:506>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:488>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:491>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_0104;
 		}
 
 IL_0104:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:507>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:492>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_0106;
 		}
@@ -27437,7 +27440,7 @@ IL_0104:
 
 IL_0106:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:508>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:493>
 		return;
 	}
 }
@@ -27452,7 +27455,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowInterstitial_m8486ECB8084E
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:516>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:501>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___interstitial;
 			if (!L_0)
 			{
@@ -27470,11 +27473,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowInterstitial_m8486ECB8084E
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:518>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:503>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_3 = __this->___interstitial;
 			NullCheck(L_3);
 			LevelPlayInterstitialAd_ShowAd_mC20AB6BC3F548CA30B953E778AC9CDA41F20544E(L_3, (String_t*)NULL, NULL);
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:519>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:504>
 			float L_4;
 			L_4 = Time_get_time_m3A271BB1B20041144AC5B7863B71AB1F0150374B(NULL);
 			__this->___lastAdDisplayTime = L_4;
@@ -27482,7 +27485,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowInterstitial_m8486ECB8084E
 
 IL_002c_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:536>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:521>
 			goto IL_00f2;
 		}
 	}
@@ -27500,17 +27503,17 @@ CATCH_0031:
 	{
 		{
 			Exception_t* L_5 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:537>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:522>
 			V_0 = L_5;
 		}
 		try
 		{
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:541>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:526>
 				Exception_t* L_6 = V_0;
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_7 = (StackTrace_t7C150C7C14136F985311A83A93524B1019F70853*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&StackTrace_t7C150C7C14136F985311A83A93524B1019F70853_il2cpp_TypeInfo_var)));
 				StackTrace__ctor_m9BE489F499935CFA9AD4154B18A3AB35C52886DF(L_7, L_6, (bool)1, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:542>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:527>
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_8 = L_7;
 				NullCheck(L_8);
 				int32_t L_9;
@@ -27518,18 +27521,18 @@ CATCH_0031:
 				NullCheck(L_8);
 				StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443* L_10;
 				L_10 = VirtualFuncInvoker1< StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443*, int32_t >::Invoke(5, L_8, ((int32_t)il2cpp_codegen_subtract(L_9, 1)));
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:543>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:528>
 				NullCheck(L_10);
 				int32_t L_11;
 				L_11 = VirtualFuncInvoker0< int32_t >::Invoke(4, L_10);
 				V_1 = L_11;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:544>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:529>
 				String_t* L_12;
 				L_12 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_1), NULL);
 				String_t* L_13;
 				L_13 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral86C1BE297A8B56C440A90420C8873B185F8D2F86)), L_12, NULL);
 				V_2 = L_13;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:545>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:530>
 				int32_t L_14 = V_1;
 				if (L_14)
 				{
@@ -27537,7 +27540,7 @@ CATCH_0031:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:547>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:532>
 				Exception_t* L_15 = V_0;
 				NullCheck(L_15);
 				String_t* L_16;
@@ -27546,7 +27549,7 @@ CATCH_0031:
 				int32_t L_17;
 				L_17 = String_IndexOf_m69E9BDAFD93767C85A7FF861B453415D3B4A200F(L_16, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E)), NULL);
 				V_3 = L_17;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:548>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:533>
 				Exception_t* L_18 = V_0;
 				NullCheck(L_18);
 				String_t* L_19;
@@ -27558,14 +27561,14 @@ CATCH_0031:
 				NullCheck(L_21);
 				int32_t L_22;
 				L_22 = String_get_Length_m42625D67623FA5CC7A44D47425CE86FB946542D2_inline(L_21, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:549>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:534>
 				if ((((int32_t)L_22) <= ((int32_t)((int32_t)99))))
 				{
 					goto IL_00a2_1;
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:551>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:536>
 				Exception_t* L_23 = V_0;
 				NullCheck(L_23);
 				String_t* L_24;
@@ -27582,7 +27585,7 @@ CATCH_0031:
 
 IL_00a2_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:555>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:540>
 				Exception_t* L_28 = V_0;
 				NullCheck(L_28);
 				String_t* L_29;
@@ -27598,7 +27601,7 @@ IL_00a2_1:
 
 IL_00b9_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:558>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:543>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_33 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var)));
 				bool L_34;
@@ -27609,7 +27612,7 @@ IL_00b9_1:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:560>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:545>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_35 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				Exception_t* L_36 = V_0;
 				NullCheck(L_36);
@@ -27624,7 +27627,7 @@ IL_00b9_1:
 
 IL_00eb_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:562>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:547>
 				goto IL_00f0;
 			}
 		}
@@ -27641,15 +27644,15 @@ IL_00eb_1:
 CATCH_00ed:
 		{
 			Exception_t* L_40 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:563>
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:566>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:548>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:551>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00f0;
 		}
 
 IL_00f0:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:567>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:552>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00f2;
 		}
@@ -27657,7 +27660,7 @@ IL_00f0:
 
 IL_00f2:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:568>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:553>
 		return;
 	}
 }
@@ -27672,7 +27675,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowLaunchInterstitial_m5C909F
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:574>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:559>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___launchInterstitial;
 			if (!L_0)
 			{
@@ -27690,11 +27693,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowLaunchInterstitial_m5C909F
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:576>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:561>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_3 = __this->___launchInterstitial;
 			NullCheck(L_3);
 			LevelPlayInterstitialAd_ShowAd_mC20AB6BC3F548CA30B953E778AC9CDA41F20544E(L_3, (String_t*)NULL, NULL);
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:577>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:562>
 			float L_4;
 			L_4 = Time_get_time_m3A271BB1B20041144AC5B7863B71AB1F0150374B(NULL);
 			__this->___lastAdDisplayTime = L_4;
@@ -27702,7 +27705,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowLaunchInterstitial_m5C909F
 
 IL_002c_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:594>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:579>
 			goto IL_00f2;
 		}
 	}
@@ -27720,17 +27723,17 @@ CATCH_0031:
 	{
 		{
 			Exception_t* L_5 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:595>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:580>
 			V_0 = L_5;
 		}
 		try
 		{
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:599>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:584>
 				Exception_t* L_6 = V_0;
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_7 = (StackTrace_t7C150C7C14136F985311A83A93524B1019F70853*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&StackTrace_t7C150C7C14136F985311A83A93524B1019F70853_il2cpp_TypeInfo_var)));
 				StackTrace__ctor_m9BE489F499935CFA9AD4154B18A3AB35C52886DF(L_7, L_6, (bool)1, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:600>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:585>
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_8 = L_7;
 				NullCheck(L_8);
 				int32_t L_9;
@@ -27738,18 +27741,18 @@ CATCH_0031:
 				NullCheck(L_8);
 				StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443* L_10;
 				L_10 = VirtualFuncInvoker1< StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443*, int32_t >::Invoke(5, L_8, ((int32_t)il2cpp_codegen_subtract(L_9, 1)));
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:601>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:586>
 				NullCheck(L_10);
 				int32_t L_11;
 				L_11 = VirtualFuncInvoker0< int32_t >::Invoke(4, L_10);
 				V_1 = L_11;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:602>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:587>
 				String_t* L_12;
 				L_12 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_1), NULL);
 				String_t* L_13;
 				L_13 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral86C1BE297A8B56C440A90420C8873B185F8D2F86)), L_12, NULL);
 				V_2 = L_13;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:603>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:588>
 				int32_t L_14 = V_1;
 				if (L_14)
 				{
@@ -27757,7 +27760,7 @@ CATCH_0031:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:605>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:590>
 				Exception_t* L_15 = V_0;
 				NullCheck(L_15);
 				String_t* L_16;
@@ -27766,7 +27769,7 @@ CATCH_0031:
 				int32_t L_17;
 				L_17 = String_IndexOf_m69E9BDAFD93767C85A7FF861B453415D3B4A200F(L_16, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E)), NULL);
 				V_3 = L_17;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:606>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:591>
 				Exception_t* L_18 = V_0;
 				NullCheck(L_18);
 				String_t* L_19;
@@ -27778,14 +27781,14 @@ CATCH_0031:
 				NullCheck(L_21);
 				int32_t L_22;
 				L_22 = String_get_Length_m42625D67623FA5CC7A44D47425CE86FB946542D2_inline(L_21, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:607>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:592>
 				if ((((int32_t)L_22) <= ((int32_t)((int32_t)99))))
 				{
 					goto IL_00a2_1;
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:609>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:594>
 				Exception_t* L_23 = V_0;
 				NullCheck(L_23);
 				String_t* L_24;
@@ -27802,7 +27805,7 @@ CATCH_0031:
 
 IL_00a2_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:613>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:598>
 				Exception_t* L_28 = V_0;
 				NullCheck(L_28);
 				String_t* L_29;
@@ -27818,7 +27821,7 @@ IL_00a2_1:
 
 IL_00b9_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:616>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:601>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_33 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var)));
 				bool L_34;
@@ -27829,7 +27832,7 @@ IL_00b9_1:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:618>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:603>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_35 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				Exception_t* L_36 = V_0;
 				NullCheck(L_36);
@@ -27844,7 +27847,7 @@ IL_00b9_1:
 
 IL_00eb_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:620>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:605>
 				goto IL_00f0;
 			}
 		}
@@ -27861,15 +27864,15 @@ IL_00eb_1:
 CATCH_00ed:
 		{
 			Exception_t* L_40 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:621>
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:624>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:606>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:609>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00f0;
 		}
 
 IL_00f0:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:625>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:610>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00f2;
 		}
@@ -27877,7 +27880,7 @@ IL_00f0:
 
 IL_00f2:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:627>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:612>
 		return;
 	}
 }
@@ -27892,7 +27895,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowExitInterstitial_m8B2FC53E
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:633>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:618>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___exitInterstitial;
 			if (!L_0)
 			{
@@ -27910,7 +27913,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowExitInterstitial_m8B2FC53E
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:635>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:620>
 			LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_3 = __this->___exitInterstitial;
 			NullCheck(L_3);
 			LevelPlayInterstitialAd_ShowAd_mC20AB6BC3F548CA30B953E778AC9CDA41F20544E(L_3, (String_t*)NULL, NULL);
@@ -27918,7 +27921,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowExitInterstitial_m8B2FC53E
 
 IL_0021_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:654>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:639>
 			goto IL_00e7;
 		}
 	}
@@ -27936,17 +27939,17 @@ CATCH_0026:
 	{
 		{
 			Exception_t* L_4 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:655>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:640>
 			V_0 = L_4;
 		}
 		try
 		{
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:659>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:644>
 				Exception_t* L_5 = V_0;
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_6 = (StackTrace_t7C150C7C14136F985311A83A93524B1019F70853*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&StackTrace_t7C150C7C14136F985311A83A93524B1019F70853_il2cpp_TypeInfo_var)));
 				StackTrace__ctor_m9BE489F499935CFA9AD4154B18A3AB35C52886DF(L_6, L_5, (bool)1, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:660>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:645>
 				StackTrace_t7C150C7C14136F985311A83A93524B1019F70853* L_7 = L_6;
 				NullCheck(L_7);
 				int32_t L_8;
@@ -27954,18 +27957,18 @@ CATCH_0026:
 				NullCheck(L_7);
 				StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443* L_9;
 				L_9 = VirtualFuncInvoker1< StackFrame_tB901270D6679ED5D24D872C25D4AD053F22F3443*, int32_t >::Invoke(5, L_7, ((int32_t)il2cpp_codegen_subtract(L_8, 1)));
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:661>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:646>
 				NullCheck(L_9);
 				int32_t L_10;
 				L_10 = VirtualFuncInvoker0< int32_t >::Invoke(4, L_9);
 				V_1 = L_10;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:662>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:647>
 				String_t* L_11;
 				L_11 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&V_1), NULL);
 				String_t* L_12;
 				L_12 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral86C1BE297A8B56C440A90420C8873B185F8D2F86)), L_11, NULL);
 				V_2 = L_12;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:663>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:648>
 				int32_t L_13 = V_1;
 				if (L_13)
 				{
@@ -27973,7 +27976,7 @@ CATCH_0026:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:665>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:650>
 				Exception_t* L_14 = V_0;
 				NullCheck(L_14);
 				String_t* L_15;
@@ -27982,7 +27985,7 @@ CATCH_0026:
 				int32_t L_16;
 				L_16 = String_IndexOf_m69E9BDAFD93767C85A7FF861B453415D3B4A200F(L_15, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral5CAB87F6B3ED1D0AB3511FC787A210897543525E)), NULL);
 				V_3 = L_16;
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:666>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:651>
 				Exception_t* L_17 = V_0;
 				NullCheck(L_17);
 				String_t* L_18;
@@ -27994,14 +27997,14 @@ CATCH_0026:
 				NullCheck(L_20);
 				int32_t L_21;
 				L_21 = String_get_Length_m42625D67623FA5CC7A44D47425CE86FB946542D2_inline(L_20, NULL);
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:667>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:652>
 				if ((((int32_t)L_21) <= ((int32_t)((int32_t)99))))
 				{
 					goto IL_0097_1;
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:669>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:654>
 				Exception_t* L_22 = V_0;
 				NullCheck(L_22);
 				String_t* L_23;
@@ -28018,7 +28021,7 @@ CATCH_0026:
 
 IL_0097_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:673>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:658>
 				Exception_t* L_27 = V_0;
 				NullCheck(L_27);
 				String_t* L_28;
@@ -28034,7 +28037,7 @@ IL_0097_1:
 
 IL_00ae_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:676>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:661>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_32 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var)));
 				bool L_33;
@@ -28045,7 +28048,7 @@ IL_00ae_1:
 				}
 			}
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:678>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:663>
 				FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC* L_34 = ((FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_StaticFields*)il2cpp_codegen_static_fields_for(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&FirebaseEvents_t9F4DAC86C871AE4ACD1FD2D56CC42E423E8A4FAC_il2cpp_TypeInfo_var))))->___instance;
 				Exception_t* L_35 = V_0;
 				NullCheck(L_35);
@@ -28060,7 +28063,7 @@ IL_00ae_1:
 
 IL_00e0_1:
 			{
-				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:680>
+				//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:665>
 				goto IL_00e5;
 			}
 		}
@@ -28077,15 +28080,15 @@ IL_00e0_1:
 CATCH_00e2:
 		{
 			Exception_t* L_39 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:681>
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:684>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:666>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:669>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00e5;
 		}
 
 IL_00e5:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:685>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:670>
 			IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 			goto IL_00e7;
 		}
@@ -28093,7 +28096,7 @@ IL_00e5:
 
 IL_00e7:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:687>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:672>
 		return;
 	}
 }
@@ -28102,13 +28105,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowRewardedVideo_mB64DE5A96D7
 {
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 1> __active_exceptions;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:692>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:677>
 		String_t* L_0 = __this->___androidRewardedVideoID;
 	}
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:702>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:687>
 			LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_1 = __this->___rewardBasedVideo;
 			NullCheck(L_1);
 			bool L_2;
@@ -28119,13 +28122,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowRewardedVideo_mB64DE5A96D7
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:704>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:689>
 			AdManager_ShowAdmobRewardedVideo_m9E015D9A1AF43635A11769AC2D828F1B3950C72D(__this, NULL);
 		}
 
 IL_001a_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:714>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:699>
 			goto IL_001f;
 		}
 	}
@@ -28142,15 +28145,15 @@ IL_001a_1:
 CATCH_001c:
 	{
 		Exception_t* L_3 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:715>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:716>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:700>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:701>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_001f;
 	}
 
 IL_001f:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:720>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:705>
 		return;
 	}
 }
@@ -28167,23 +28170,35 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestInterstitial_m6FFFD62C6
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:782>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:767>
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___interstitial;
-		Action_1_t03AA749C1379BA2CD8FC328835C0B433F94D3A43* L_1 = (Action_1_t03AA749C1379BA2CD8FC328835C0B433F94D3A43*)il2cpp_codegen_object_new(Action_1_t03AA749C1379BA2CD8FC328835C0B433F94D3A43_il2cpp_TypeInfo_var);
-		Action_1__ctor_m6077AF9E2483242ECAFCFA780350DC39C93F97D5(L_1, __this, (intptr_t)((void*)AdManager_HandleOnAdFailedToLoad_m8E88CC80F8C04C7656439D04480E7FB9363C4253_RuntimeMethod_var), NULL);
-		NullCheck(L_0);
-		LevelPlayInterstitialAd_add_OnAdLoadFailed_m0CE3DE80F0E6247E96C2163CA5B009906FD6B062(L_0, L_1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:783>
-		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_2 = __this->___interstitial;
-		Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548* L_3 = (Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548*)il2cpp_codegen_object_new(Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548_il2cpp_TypeInfo_var);
-		Action_1__ctor_mAF23177EB1A92BB6DEAD6E760CFFE5FB09D9A26C(L_3, __this, (intptr_t)((void*)AdManager_HandleOnAdClosed_m5A6A909EC74C30E4BAB6AF2D5A18B46E282C366E_RuntimeMethod_var), NULL);
-		NullCheck(L_2);
-		LevelPlayInterstitialAd_add_OnAdClosed_m9B4269BA054EC5D33CEE97504B704BE8B5FC6531(L_2, L_3, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:784>
-		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_4 = __this->___interstitial;
-		NullCheck(L_4);
-		LevelPlayInterstitialAd_LoadAd_m385C1934C111CED8B9BF904866FA6D7530FE0A9E(L_4, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:785>
+		if (!L_0)
+		{
+			goto IL_0041;
+		}
+	}
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:769>
+		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_1 = __this->___interstitial;
+		Action_1_t03AA749C1379BA2CD8FC328835C0B433F94D3A43* L_2 = (Action_1_t03AA749C1379BA2CD8FC328835C0B433F94D3A43*)il2cpp_codegen_object_new(Action_1_t03AA749C1379BA2CD8FC328835C0B433F94D3A43_il2cpp_TypeInfo_var);
+		Action_1__ctor_m6077AF9E2483242ECAFCFA780350DC39C93F97D5(L_2, __this, (intptr_t)((void*)AdManager_HandleOnAdFailedToLoad_m8E88CC80F8C04C7656439D04480E7FB9363C4253_RuntimeMethod_var), NULL);
+		NullCheck(L_1);
+		LevelPlayInterstitialAd_add_OnAdLoadFailed_m0CE3DE80F0E6247E96C2163CA5B009906FD6B062(L_1, L_2, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:770>
+		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_3 = __this->___interstitial;
+		Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548* L_4 = (Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548*)il2cpp_codegen_object_new(Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548_il2cpp_TypeInfo_var);
+		Action_1__ctor_mAF23177EB1A92BB6DEAD6E760CFFE5FB09D9A26C(L_4, __this, (intptr_t)((void*)AdManager_HandleOnAdClosed_m5A6A909EC74C30E4BAB6AF2D5A18B46E282C366E_RuntimeMethod_var), NULL);
+		NullCheck(L_3);
+		LevelPlayInterstitialAd_add_OnAdClosed_m9B4269BA054EC5D33CEE97504B704BE8B5FC6531(L_3, L_4, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:771>
+		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_5 = __this->___interstitial;
+		NullCheck(L_5);
+		LevelPlayInterstitialAd_LoadAd_m385C1934C111CED8B9BF904866FA6D7530FE0A9E(L_5, NULL);
+	}
+
+IL_0041:
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:773>
 		return;
 	}
 }
@@ -28198,17 +28213,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestLaunchInterstitial_m203
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:832>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:820>
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___launchInterstitial;
 		Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548* L_1 = (Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548*)il2cpp_codegen_object_new(Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548_il2cpp_TypeInfo_var);
 		Action_1__ctor_mAF23177EB1A92BB6DEAD6E760CFFE5FB09D9A26C(L_1, __this, (intptr_t)((void*)AdManager_HandleOnAdClosedLaunch_m2AD9A2AAA99D51A7A41E9296BE7B844F62B02961_RuntimeMethod_var), NULL);
 		NullCheck(L_0);
 		LevelPlayInterstitialAd_add_OnAdClosed_m9B4269BA054EC5D33CEE97504B704BE8B5FC6531(L_0, L_1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:833>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:821>
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_2 = __this->___launchInterstitial;
 		NullCheck(L_2);
 		LevelPlayInterstitialAd_LoadAd_m385C1934C111CED8B9BF904866FA6D7530FE0A9E(L_2, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:834>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:822>
 		return;
 	}
 }
@@ -28223,17 +28238,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestExitInterstitial_mA2BDE
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:881>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:869>
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_0 = __this->___exitInterstitial;
 		Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548* L_1 = (Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548*)il2cpp_codegen_object_new(Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548_il2cpp_TypeInfo_var);
 		Action_1__ctor_mAF23177EB1A92BB6DEAD6E760CFFE5FB09D9A26C(L_1, __this, (intptr_t)((void*)AdManager_HandleOnAdClosedExit_mD3AB944D9910115DB33E418563635726CCE84903_RuntimeMethod_var), NULL);
 		NullCheck(L_0);
 		LevelPlayInterstitialAd_add_OnAdClosed_m9B4269BA054EC5D33CEE97504B704BE8B5FC6531(L_0, L_1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:882>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:870>
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_2 = __this->___exitInterstitial;
 		NullCheck(L_2);
 		LevelPlayInterstitialAd_LoadAd_m385C1934C111CED8B9BF904866FA6D7530FE0A9E(L_2, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:883>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:871>
 		return;
 	}
 }
@@ -28241,7 +28256,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestExitInterstitial_mA2BDE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestBanner_m16CCADF20C7A824E99637853078F27D8376CB5E3 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:934>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:922>
 		return;
 	}
 }
@@ -28249,7 +28264,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestBanner_m16CCADF20C7A824
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestBannerExit_m4C7023F7CB1A941072DEC3298B8530C5C71F1B72 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:984>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:972>
 		return;
 	}
 }
@@ -28257,7 +28272,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestBannerExit_m4C7023F7CB1
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_showbanner_m6201015E787AFDA1841A404C1A763A93A1B9961F (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1033>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1021>
 		return;
 	}
 }
@@ -28265,7 +28280,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_showbanner_m6201015E787AFDA184
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_hidebanner_m5AB9874334F4C225AF3B4A10AA08936AEC699516 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1046>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1034>
 		return;
 	}
 }
@@ -28273,7 +28288,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_hidebanner_m5AB9874334F4C225AF
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_showbannerExit_m8EBAC37C558E25DC26A3F3E97BBF16848041F25C (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1064>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1052>
 		return;
 	}
 }
@@ -28281,7 +28296,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_showbannerExit_m8EBAC37C558E25
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_hidebannerExit_m819261075F4B2D6F9710FA261BE76F55263144C6 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1078>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1066>
 		return;
 	}
 }
@@ -28298,23 +28313,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_RequestRewardBasedVideo_m5D5C6
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1125>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1113>
 		LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_0 = __this->___rewardBasedVideo;
 		Action_2_t0A97288168D3B9C8C58F8B97C867D24C36AA403C* L_1 = (Action_2_t0A97288168D3B9C8C58F8B97C867D24C36AA403C*)il2cpp_codegen_object_new(Action_2_t0A97288168D3B9C8C58F8B97C867D24C36AA403C_il2cpp_TypeInfo_var);
 		Action_2__ctor_mB85A8D890FB176AF546CAB86F6C02EDC12D5151C(L_1, __this, (intptr_t)((void*)AdManager_HandleRewardBasedVideoRewarded_mF86CA92161C587B3BFCAF3CB74880A33E0490451_RuntimeMethod_var), NULL);
 		NullCheck(L_0);
 		LevelPlayRewardedAd_add_OnAdRewarded_mC0DF27B428E8AB62051F0D000FC582174ACB58FA(L_0, L_1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1126>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1114>
 		LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_2 = __this->___rewardBasedVideo;
 		Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548* L_3 = (Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548*)il2cpp_codegen_object_new(Action_1_t703599DDC1BD20577FF6C5FBA38E27C277C18548_il2cpp_TypeInfo_var);
 		Action_1__ctor_mAF23177EB1A92BB6DEAD6E760CFFE5FB09D9A26C(L_3, __this, (intptr_t)((void*)AdManager_HandleRewardBasedVideoClosed_m94A4209490A782C51AAC7DBE3F45AAC222AA9575_RuntimeMethod_var), NULL);
 		NullCheck(L_2);
 		LevelPlayRewardedAd_add_OnAdClosed_m91FF216A50319E0946D432D952C35E4659572564(L_2, L_3, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1127>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1115>
 		LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_4 = __this->___rewardBasedVideo;
 		NullCheck(L_4);
 		LevelPlayRewardedAd_LoadAd_m5A9354D0733BC13E75D9EE03BB6761E7113C05DA(L_4, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1128>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1116>
 		return;
 	}
 }
@@ -28323,7 +28338,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowAdmobRewardedVideo_m9E015D
 {
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 1> __active_exceptions;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1132>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1120>
 		LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_0 = __this->___rewardBasedVideo;
 		NullCheck(L_0);
 		bool L_1;
@@ -28334,16 +28349,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowAdmobRewardedVideo_m9E015D
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1134>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1122>
 		__this->___rewardedvideosuccess = (bool)0;
 	}
 	try
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1138>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1126>
 		LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_2 = __this->___rewardBasedVideo;
 		NullCheck(L_2);
 		LevelPlayRewardedAd_ShowAd_m9A233AB674FE584CC04E1CF80AB9937F6151CDA8(L_2, (String_t*)NULL, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1139>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1127>
 		goto IL_0025;
 	}
 	catch(Il2CppExceptionWrapper& e)
@@ -28359,15 +28374,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_ShowAdmobRewardedVideo_m9E015D
 CATCH_0022:
 	{
 		Exception_t* L_3 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1140>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1141>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1128>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1129>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0025;
 	}
 
 IL_0025:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1143>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1131>
 		return;
 	}
 }
@@ -28383,12 +28398,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoStarted_
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 1> __active_exceptions;
 	try
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1152>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1140>
 		il2cpp_codegen_runtime_class_init_inline(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_il2cpp_TypeInfo_var);
 		GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* L_0 = ((GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_StaticFields*)il2cpp_codegen_static_fields_for(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_il2cpp_TypeInfo_var))->___Instance;
 		NullCheck(L_0);
 		L_0->___gameState = 7;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1153>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1141>
 		goto IL_0010;
 	}
 	catch(Il2CppExceptionWrapper& e)
@@ -28404,15 +28419,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoStarted_
 CATCH_000d:
 	{
 		Exception_t* L_1 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1154>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1155>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1142>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1143>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0010;
 	}
 
 IL_0010:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1159>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1147>
 		return;
 	}
 }
@@ -28428,20 +28443,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoClosed_m
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 1> __active_exceptions;
 	try
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1165>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1153>
 		il2cpp_codegen_runtime_class_init_inline(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_il2cpp_TypeInfo_var);
 		GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* L_0 = ((GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_StaticFields*)il2cpp_codegen_static_fields_for(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_il2cpp_TypeInfo_var))->___Instance;
 		NullCheck(L_0);
 		L_0->___gameState = 8;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1166>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1154>
 		AdManager_onreward_mF3452E9F041CF900DE2CE46B026AA4B13276AC05(__this, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1167>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1155>
 		GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* L_1 = ((GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_StaticFields*)il2cpp_codegen_static_fields_for(GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6_il2cpp_TypeInfo_var))->___Instance;
 		NullCheck(L_1);
 		GameManager_ingamevideosuccess_m96872508443CD6832BF7F7DB68C27E5667E149F5(L_1, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1168>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1156>
 		AdManager_RequestRewardBasedVideo_m5D5C6C1F5EAF72DF413CFBF0F09C2B13919BD805(__this, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1169>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1157>
 		goto IL_0026;
 	}
 	catch(Il2CppExceptionWrapper& e)
@@ -28457,15 +28472,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoClosed_m
 CATCH_0023:
 	{
 		Exception_t* L_2 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1170>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1171>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1158>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1159>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0026;
 	}
 
 IL_0026:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1176>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1164>
 		return;
 	}
 }
@@ -28482,12 +28497,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoRewarded
 	il2cpp::utils::ExceptionSupportStack<RuntimeObject*, 1> __active_exceptions;
 	try
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1183>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1171>
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral6E4E89FDD137CED290FADA13477D55B8BA5AD2F7, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1184>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1172>
 		__this->___rewardedvideosuccess = (bool)1;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1185>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1173>
 		goto IL_0016;
 	}
 	catch(Il2CppExceptionWrapper& e)
@@ -28503,15 +28518,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoRewarded
 CATCH_0013:
 	{
 		Exception_t* L_0 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1186>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1187>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1174>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1175>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0016;
 	}
 
 IL_0016:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1191>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1179>
 		return;
 	}
 }
@@ -28522,7 +28537,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_OnApplicationFocus_m45EF649392
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1197>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1185>
 			bool L_0 = ___0_hasFocus;
 			if (!L_0)
 			{
@@ -28530,13 +28545,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_OnApplicationFocus_m45EF649392
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1199>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1187>
 			AdManager_onreward_mF3452E9F041CF900DE2CE46B026AA4B13276AC05(__this, NULL);
 		}
 
 IL_0009_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1201>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1189>
 			goto IL_000e;
 		}
 	}
@@ -28553,15 +28568,15 @@ IL_0009_1:
 CATCH_000b:
 	{
 		Exception_t* L_1 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1202>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1203>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1190>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1191>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_000e;
 	}
 
 IL_000e:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1205>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1193>
 		return;
 	}
 }
@@ -28582,7 +28597,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_onreward_mF3452E9F041CF900DE2C
 	Scene_tA1DC762B79745EB5140F054C884855B922318356 V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1209>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1197>
 		bool L_0 = __this->___rewardedvideosuccess;
 		if (!L_0)
 		{
@@ -28590,7 +28605,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_onreward_mF3452E9F041CF900DE2C
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1211>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1199>
 		il2cpp_codegen_runtime_class_init_inline(SceneManager_tA0EF56A88ACA4A15731AF7FDC10A869FA4C698FA_il2cpp_TypeInfo_var);
 		Scene_tA1DC762B79745EB5140F054C884855B922318356 L_1;
 		L_1 = SceneManager_GetActiveScene_m0B320EC4302F51A71495D1CCD1A0FF9C2ED1FDC8(NULL);
@@ -28605,7 +28620,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_onreward_mF3452E9F041CF900DE2C
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1213>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1201>
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		SpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6* L_4;
 		L_4 = Object_FindObjectOfType_TisSpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6_mFED4804ECD0B1E121ECB62EFF6529A046DC16135(Object_FindObjectOfType_TisSpinWheel_t7CB05314BCAE05A0A981F155C88C2D7FAD4E77D6_mFED4804ECD0B1E121ECB62EFF6529A046DC16135_RuntimeMethod_var);
@@ -28616,7 +28631,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_onreward_mF3452E9F041CF900DE2C
 
 IL_002c:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1215>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1203>
 		il2cpp_codegen_runtime_class_init_inline(SceneManager_tA0EF56A88ACA4A15731AF7FDC10A869FA4C698FA_il2cpp_TypeInfo_var);
 		Scene_tA1DC762B79745EB5140F054C884855B922318356 L_5;
 		L_5 = SceneManager_GetActiveScene_m0B320EC4302F51A71495D1CCD1A0FF9C2ED1FDC8(NULL);
@@ -28631,7 +28646,7 @@ IL_002c:
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1218>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1206>
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		StoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32* L_8;
 		L_8 = Object_FindObjectOfType_TisStoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32_m8524A9E05EDE12869DB425CEA4DBA628EF2D9E53(Object_FindObjectOfType_TisStoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32_m8524A9E05EDE12869DB425CEA4DBA628EF2D9E53_RuntimeMethod_var);
@@ -28642,7 +28657,7 @@ IL_002c:
 
 IL_0050:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1221>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1209>
 		il2cpp_codegen_runtime_class_init_inline(SceneManager_tA0EF56A88ACA4A15731AF7FDC10A869FA4C698FA_il2cpp_TypeInfo_var);
 		Scene_tA1DC762B79745EB5140F054C884855B922318356 L_9;
 		L_9 = SceneManager_GetActiveScene_m0B320EC4302F51A71495D1CCD1A0FF9C2ED1FDC8(NULL);
@@ -28655,7 +28670,7 @@ IL_0050:
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1224>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1212>
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		StoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32* L_11;
 		L_11 = Object_FindObjectOfType_TisStoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32_m8524A9E05EDE12869DB425CEA4DBA628EF2D9E53(Object_FindObjectOfType_TisStoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32_m8524A9E05EDE12869DB425CEA4DBA628EF2D9E53_RuntimeMethod_var);
@@ -28670,7 +28685,7 @@ IL_0050:
 		}
 	}
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1226>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1214>
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		StoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32* L_14;
 		L_14 = Object_FindObjectOfType_TisStoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32_m8524A9E05EDE12869DB425CEA4DBA628EF2D9E53(Object_FindObjectOfType_TisStoreManager_t1F347E0FAC21A65F295C448A68E7C1A6317FEF32_m8524A9E05EDE12869DB425CEA4DBA628EF2D9E53_RuntimeMethod_var);
@@ -28680,7 +28695,7 @@ IL_0050:
 
 IL_007b:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1231>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1219>
 		return;
 	}
 }
@@ -28688,7 +28703,7 @@ IL_007b:
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoLeftApplication_m8211A23685BFF41E4EABBAD5C6B62E20E558E98F (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, RuntimeObject* ___0_sender, EventArgs_t37273F03EAC87217701DD431B190FBD84AD7C377* ___1_args, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1235>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1223>
 		return;
 	}
 }
@@ -28696,7 +28711,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleRewardBasedVideoLeftAppl
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdFailedToLoad_m8E88CC80F8C04C7656439D04480E7FB9363C4253 (AdManager_t1389D7135E1F558C870341BC4735A200ABA80F91* __this, LevelPlayAdError_t35ADB096E5CF822A256BBDC31728E602BC6AF34C* ___0_levelPlayAdError, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1255>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1243>
 		return;
 	}
 }
@@ -28713,7 +28728,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdClosed_m5A6A909EC74C
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1267>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1255>
 			il2cpp_codegen_runtime_class_init_inline(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var);
 			bool L_0 = ((Global_tF64A693BAE0831504E24A030A2EB614753D0526D_StaticFields*)il2cpp_codegen_static_fields_for(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var))->___isIntersitialsEnabled;
 			if (!L_0)
@@ -28722,13 +28737,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdClosed_m5A6A909EC74C
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1269>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1257>
 			AdManager_RequestInterstitial_m6FFFD62C6D2046F510313B801AE0015E48697F95(__this, NULL);
 		}
 
 IL_000d_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1271>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1259>
 			goto IL_0012;
 		}
 	}
@@ -28745,15 +28760,15 @@ IL_000d_1:
 CATCH_000f:
 	{
 		Exception_t* L_1 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1272>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1273>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1260>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1261>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0012;
 	}
 
 IL_0012:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1274>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1262>
 		return;
 	}
 }
@@ -28770,7 +28785,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdClosedLaunch_m2AD9A2
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1283>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1271>
 			il2cpp_codegen_runtime_class_init_inline(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var);
 			bool L_0 = ((Global_tF64A693BAE0831504E24A030A2EB614753D0526D_StaticFields*)il2cpp_codegen_static_fields_for(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var))->___isIntersitialsEnabled;
 			if (!L_0)
@@ -28779,13 +28794,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdClosedLaunch_m2AD9A2
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1285>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1273>
 			AdManager_RequestLaunchInterstitial_m203357FC1D3C406611E9B550EE7387F4249F9ACE(__this, NULL);
 		}
 
 IL_000d_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1287>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1275>
 			goto IL_0012;
 		}
 	}
@@ -28802,15 +28817,15 @@ IL_000d_1:
 CATCH_000f:
 	{
 		Exception_t* L_1 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1288>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1289>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1276>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1277>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0012;
 	}
 
 IL_0012:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1290>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1278>
 		return;
 	}
 }
@@ -28827,7 +28842,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdClosedExit_mD3AB944D
 	try
 	{
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1300>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1288>
 			il2cpp_codegen_runtime_class_init_inline(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var);
 			bool L_0 = ((Global_tF64A693BAE0831504E24A030A2EB614753D0526D_StaticFields*)il2cpp_codegen_static_fields_for(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var))->___isIntersitialsEnabled;
 			if (!L_0)
@@ -28836,13 +28851,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_HandleOnAdClosedExit_mD3AB944D
 			}
 		}
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1302>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1290>
 			AdManager_RequestExitInterstitial_mA2BDEBFDD7FA0181E0B1D456B027090855D0753E(__this, NULL);
 		}
 
 IL_000d_1:
 		{
-			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1304>
+			//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1292>
 			goto IL_0012;
 		}
 	}
@@ -28859,15 +28874,15 @@ IL_000d_1:
 CATCH_000f:
 	{
 		Exception_t* L_1 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1305>
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1306>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1293>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1294>
 		IL2CPP_POP_ACTIVE_EXCEPTION(Exception_t*);
 		goto IL_0012;
 	}
 
 IL_0012:
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1307>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1295>
 		return;
 	}
 }
@@ -28888,7 +28903,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_SdkInitializationCompletedEven
 	String_t* G_B3_0 = NULL;
 	String_t* G_B3_1 = NULL;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1313>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1301>
 		LevelPlayConfiguration_tDE7E2D4AE0247D4D6BBF893A605FCE643D7A5743* L_0 = ___0_config;
 		LevelPlayConfiguration_tDE7E2D4AE0247D4D6BBF893A605FCE643D7A5743* L_1 = L_0;
 		if (L_1)
@@ -28921,9 +28936,9 @@ IL_0012:
 		L_3 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(G_B3_1, G_B3_0, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_3, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1314>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1302>
 		AdManager_EnableAds_mCF0640B82631F0B50F8A4B69B7AB3586347F2D82(__this, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1315>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1303>
 		return;
 	}
 }
@@ -28944,7 +28959,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_SdkInitializationFailedEvent_m
 	String_t* G_B3_0 = NULL;
 	String_t* G_B3_1 = NULL;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1319>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1307>
 		LevelPlayInitError_tD9341B0F996A5A533D5DF493DBC19ACB90FB225D* L_0 = ___0_error;
 		LevelPlayInitError_tD9341B0F996A5A533D5DF493DBC19ACB90FB225D* L_1 = L_0;
 		if (L_1)
@@ -28977,7 +28992,7 @@ IL_0012:
 		L_3 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(G_B3_1, G_B3_0, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(L_3, NULL);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1320>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1308>
 		return;
 	}
 }
@@ -28987,19 +29002,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_EnableAds_mCF0640B82631F0B50F8
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral55B1DC3A8961D4929C8BAA01FCBB0085298850CB);
 		s_Il2CppMethodInitialized = true;
 	}
 	LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* V_0 = NULL;
 	{
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1340>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1328>
 		String_t* L_0 = __this->___interstitialAdUnitId;
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_1 = (LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952*)il2cpp_codegen_object_new(LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952_il2cpp_TypeInfo_var);
 		LevelPlayInterstitialAd__ctor_m2F00AED39A95854988D8B0384EB7368F4A6E79DB(L_1, L_0, NULL);
 		__this->___interstitial = L_1;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___interstitial), (void*)L_1);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1341>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1329>
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_2 = __this->___interstitial;
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_3 = L_2;
 		V_0 = L_3;
@@ -29008,13 +29026,66 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdManager_EnableAds_mCF0640B82631F0B50F8
 		LevelPlayInterstitialAd_tBE504B78727693204597A19BE8FF45DDCE828952* L_4 = V_0;
 		__this->___launchInterstitial = L_4;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___launchInterstitial), (void*)L_4);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1351>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1339>
 		String_t* L_5 = __this->___rewardAdUnitId;
 		LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9* L_6 = (LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9*)il2cpp_codegen_object_new(LevelPlayRewardedAd_t7B9C72B5E90350F5982A4E04FC85A52F7F15C8A9_il2cpp_TypeInfo_var);
 		LevelPlayRewardedAd__ctor_mA908C9F53191C2DD8932117A693AB9F58CA6BC04(L_6, L_5, NULL);
 		__this->___rewardBasedVideo = L_6;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___rewardBasedVideo), (void*)L_6);
-		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1362>
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1349>
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB(_stringLiteral55B1DC3A8961D4929C8BAA01FCBB0085298850CB, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1350>
+		il2cpp_codegen_runtime_class_init_inline(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var);
+		bool L_7 = ((Global_tF64A693BAE0831504E24A030A2EB614753D0526D_StaticFields*)il2cpp_codegen_static_fields_for(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var))->___isIntersitialsEnabled;
+		if (!L_7)
+		{
+			goto IL_005a;
+		}
+	}
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1352>
+		AdManager_RequestInterstitial_m6FFFD62C6D2046F510313B801AE0015E48697F95(__this, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1353>
+		AdManager_RequestLaunchInterstitial_m203357FC1D3C406611E9B550EE7387F4249F9ACE(__this, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1354>
+		AdManager_RequestExitInterstitial_mA2BDEBFDD7FA0181E0B1D456B027090855D0753E(__this, NULL);
+	}
+
+IL_005a:
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1356>
+		bool L_8 = __this->___enableBanner;
+		if (!L_8)
+		{
+			goto IL_006e;
+		}
+	}
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1358>
+		AdManager_RequestBanner_m16CCADF20C7A824E99637853078F27D8376CB5E3(__this, NULL);
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1359>
+		AdManager_RequestBannerExit_m4C7023F7CB1A941072DEC3298B8530C5C71F1B72(__this, NULL);
+	}
+
+IL_006e:
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1361>
+		il2cpp_codegen_runtime_class_init_inline(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var);
+		bool L_9 = ((Global_tF64A693BAE0831504E24A030A2EB614753D0526D_StaticFields*)il2cpp_codegen_static_fields_for(Global_tF64A693BAE0831504E24A030A2EB614753D0526D_il2cpp_TypeInfo_var))->___isRewaredAdsEnabled;
+		if (!L_9)
+		{
+			goto IL_007b;
+		}
+	}
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1363>
+		AdManager_RequestRewardBasedVideo_m5D5C6C1F5EAF72DF413CFBF0F09C2B13919BD805(__this, NULL);
+	}
+
+IL_007b:
+	{
+		//<source_info:D:/Kiran/BSG2/Assets/KDB/Scripts/AdManager.cs:1367>
 		return;
 	}
 }
