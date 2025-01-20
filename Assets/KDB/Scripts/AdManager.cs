@@ -82,6 +82,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField] string bannerAdUnitId = "thnfvcsog13bhn08";
     [SerializeField] string interstitialAdUnitId = "z8axy0332hnr585z";
     [SerializeField] string rewardAdUnitId = "hgncqhneupu7bppt";
+    [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
+
 
     private void Awake()
     {
@@ -1331,7 +1333,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         // Create Interstitial object
         interstitial = new LevelPlayInterstitialAd(interstitialAdUnitId);
-        launchInterstitial=exitInterstitial=interstitial;
+        exitInterstitial=interstitial;
+        launchInterstitial = new LevelPlayInterstitialAd(LaunchinterstitialAdUnitId);
         // Register to Interstitial events
         //interstitial.OnAdLoaded += InterstitialOnAdLoadedEvent;
         //interstitial.OnAdLoadFailed += InterstitialOnAdLoadFailedEvent;
