@@ -75,7 +75,7 @@ public class SpinWheel : MonoBehaviour
                 FreeSpinBtn.SetActive(false);
                 if (DayofYear == oldDate)
                 {
-                    if (_adManager.rewardBasedVideo.IsAdReady())
+                    if (_adManager.levelPlayrewardBasedVideo.IsAdReady())
                     {
                         MakeWVAvaialable();
                     }
@@ -246,7 +246,7 @@ public class SpinWheel : MonoBehaviour
         MakeWVAvaialable();
 #else
      
-    if (_adManager.rewardBasedVideo.IsAdReady())
+    if (_adManager.adMobRewardBasedVideo.CanShowAd() || _adManager.levelPlayrewardBasedVideo.IsAdReady())
         {
             MakeWVAvaialable();
         }

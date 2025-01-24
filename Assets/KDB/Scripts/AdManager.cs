@@ -9,6 +9,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 using com.unity3d.mediation;
+using GoogleMobileAds;
+using GoogleMobileAds.Api;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -34,19 +36,26 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     #region Admob
 
     [Header(" Android ")]
-    public static string interstitialId = "ca-app-pub-3411062052281263/3692188687";
+    //public static string interstitialId = "ca-app-pub-3411062052281263/3692188687";
+    public string adMobInterstitialId;
+    public string adMobLaunchinterStitialId;
+    public string admobexitInterstitialId;
+    public string adMobRewardBasedVideoId;    
+
     public string bannerId;
-    public string rewardedId;
 
     [Header(" iOS ")]
     public string iOS_interstitialID;
     public string iOS_bannerID;
     public string iOS_rewardedId;
 
-    public LevelPlayInterstitialAd interstitial,launchInterstitial,exitInterstitial;
-    public LevelPlayBannerAd bannerView, bannerViewExit;
-    public LevelPlayRewardedAd rewardBasedVideo;
 
+
+    public InterstitialAd adMobInterstitial, adMobLaunchInterstitial, adMobExitInterstitial;
+    public bool adMobInterstitialReady, adMobLaunchInterstitialReady, adMobExitInterstitialReady;
+    public RewardedAd adMobRewardBasedVideo;
+    public bool adMobRewardBasedVideoReady;
+    private bool isAdMobInitialized;
     #endregion
 
     #region Unity Ads
@@ -83,6 +92,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField] string interstitialAdUnitId = "z8axy0332hnr585z";
     [SerializeField] string rewardAdUnitId = "hgncqhneupu7bppt";
     [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
+
+    #region LevelPlay
+    public LevelPlayInterstitialAd levelPlayInterstitial,levelPlayLaunchInterstitial,levelPlayExitInterstitial;
+    public LevelPlayBannerAd bannerView, bannerViewExit;
+    public LevelPlayRewardedAd levelPlayrewardBasedVideo;
+    #endregion
 
 
     private void Awake()
@@ -233,7 +248,27 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
             LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
 
-           
+            MobileAds.Initialize((InitializationStatus initStatus) =>
+            {
+                isAdMobInitialized = true;
+                // This callback is called once the MobileAds SDK is initialized.
+                if (Global.isIntersitialsEnabled)
+                {
+                    RequestInterstitial();
+                    RequestLaunchInterstitial();
+                    RequestExitInterstitial();
+                }
+                if (enableBanner)
+                {
+                    RequestBanner();
+                    RequestBannerExit();
+                }
+                if (Global.isRewaredAdsEnabled)
+                {
+                    RequestRewardBasedVideo();
+                }
+            });
+
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         }catch(Exception e)
         {
@@ -286,13 +321,24 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowCommonInterstitial()
     {
+       
+
         Debug.Log("Increase Interstitial Counter");
         try
         {
-            if (interstitial.IsAdReady())
+
+            GenericShowInterstitialAd(adMobInterstitial, adMobInterstitialReady, (adsuccess) =>
             {
-                ShowInterstitial();
-            }
+                if (!adsuccess)
+                {
+                    if (levelPlayInterstitial.IsAdReady())
+                    {
+                        ShowInterstitial();
+                     
+                    }
+                }                
+            });
+      
             /*
             else
             {
@@ -358,14 +404,26 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         counter++;
         try
         {
-            if (interstitial.IsAdReady())
+
+            if (counter >= GOFAdInterval)
             {
-                if (counter >= GOFAdInterval)
+                GenericShowInterstitialAd(adMobInterstitial, adMobInterstitialReady, (adsuccess) =>
                 {
-                    ShowInterstitial();
-                    counter = 0;
-                }
+                    if (!adsuccess)
+                    {
+                        if (levelPlayInterstitial.IsAdReady())
+                        {
+                            ShowInterstitial();
+                            counter = 0;
+                        }
+                    }
+                    else
+                    {
+                        counter = 0;
+                    }
+                });
             }
+
             /*
             else
             {
@@ -429,14 +487,26 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         counter2++;
         try
         {
-            if (interstitial.IsAdReady())
+            if (counter2 >= GOWAdInterval)
             {
-                if (counter2 >= GOWAdInterval)
+                GenericShowInterstitialAd(adMobInterstitial, adMobInterstitialReady, (adsuccess) =>
                 {
-                    ShowInterstitial();
-                    counter2 = 0;
-                }
+                    if (!adsuccess)
+                    {
+                        if (levelPlayInterstitial.IsAdReady())
+                        {
+                            ShowInterstitial();
+                            counter2 = 0;
+                        }
+                    }
+                    else
+                    {
+                        counter2 = 0;
+                    }
+                });
             }
+
+           
             /*
             else if (GifAdsManager.Instance._adObjs.Length > 1)
             {
@@ -496,13 +566,23 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowInterstitial()
     {
+      
+
         try
         {
-            if (this.interstitial != null && this.interstitial.IsAdReady())
+           
+            GenericShowInterstitialAd(adMobInterstitial,adMobInterstitialReady,(adsuccess)=>
             {
-                this.interstitial.ShowAd();
-                lastAdDisplayTime = Time.time;
-            }
+                if (!adsuccess)
+                {
+                    if (this.levelPlayInterstitial != null && this.levelPlayInterstitial.IsAdReady())
+                    {
+                        this.levelPlayInterstitial.ShowAd();
+                        lastAdDisplayTime = Time.time;
+                    }
+                }
+            });
+           
             /*
             else
             if (Advertisement.IsReady() && enableUnityAds)
@@ -554,20 +634,29 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public bool LaunchInterstitialState()
     {
-        return(launchInterstitial != null && launchInterstitial.IsAdReady());
+        return((adMobLaunchInterstitial != null && adMobLaunchInterstitial.CanShowAd())
+            || (levelPlayLaunchInterstitial != null && levelPlayLaunchInterstitial.IsAdReady()));
     }
 
     public void ShowLaunchInterstitial()
     {
+        
         try
         {
-            if (this.launchInterstitial != null && this.launchInterstitial.IsAdReady())
+            GenericShowInterstitialAd(adMobLaunchInterstitial, adMobLaunchInterstitialReady, (adsuccess) =>
             {
+                if (!adsuccess)
+                {
+                    if (this.levelPlayLaunchInterstitial != null && this.levelPlayLaunchInterstitial.IsAdReady())
+                    {
 
-                this.launchInterstitial.ShowAd();
+                        this.levelPlayLaunchInterstitial.ShowAd();
 
-                lastAdDisplayTime = Time.time;
-            }
+                        lastAdDisplayTime = Time.time;
+                    }
+                }
+            });
+        
             /*
             else
             if (Advertisement.IsReady() && enableUnityAds)
@@ -620,13 +709,23 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowExitInterstitial()
     {
+       
         try
         {
-            if (this.exitInterstitial != null && this.exitInterstitial.IsAdReady())
+
+            GenericShowInterstitialAd(adMobExitInterstitial, adMobExitInterstitialReady, (adsuccess) =>
             {
-                this.exitInterstitial.ShowAd();
-               // lastAdDisplayTime = Time.time;
-            }
+                if (!adsuccess)
+                {
+                    if (this.levelPlayExitInterstitial != null && this.levelPlayExitInterstitial.IsAdReady())
+                    {
+                        this.levelPlayExitInterstitial.ShowAd();
+                        // lastAdDisplayTime = Time.time;
+                    }
+                }
+            });
+
+           
             /*
             else
             if (Advertisement.IsReady() && enableUnityAds)
@@ -691,7 +790,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
        
         try
         {
-            if (rewardBasedVideo.IsAdReady())
+            if (levelPlayrewardBasedVideo.IsAdReady())
             {
                 ShowAdmobRewardedVideo();
             }
@@ -714,6 +813,50 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     #endregion
 
     #region AdMob
+
+    private void GenericRequestInterstitial(InterstitialAd currentAd, string adID, bool isAdReady)
+    {
+        if (string.IsNullOrEmpty(adID) || !isAdMobInitialized)
+            return;
+
+        if (!isAdReady)
+        {
+            InterstitialAd.Load(adID, new AdRequest(),
+                    (InterstitialAd ad, LoadAdError loadAdError) =>
+                    {
+                        if (loadAdError != null)
+                        {
+                            Debug.Log("Interstitial ad failed to load with error: " +
+                            loadAdError.GetMessage());
+                            return;
+                        }
+                        else if (ad == null)
+                        {
+                            Debug.Log("Interstitial ad failed to load.");
+                            return;
+                        }
+
+                        Debug.Log("Interstitial ad loaded.");
+                        currentAd = ad;                       
+                        isAdReady = true;
+                    });
+        }
+    }
+
+    private  void GenericShowInterstitialAd(InterstitialAd currentAd, bool isAdReady,Action<bool> callBack=null)
+    {
+        if (currentAd != null && currentAd.CanShowAd())
+        {
+            currentAd.Show();
+            isAdReady = false;
+            callBack?.Invoke(true);
+        }
+        else
+        {
+            Debug.Log("Interstitial ad cannot be shown.");
+            callBack?.Invoke(false);
+        }
+    }
 
     public void RequestInterstitial()
     {
@@ -771,11 +914,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // Load the interstitial with the request.
         interstitial.LoadAd(request);
         */
-        if (interstitial != null)
+
+        GenericRequestInterstitial(adMobInterstitial, adMobInterstitialId, adMobInterstitialReady);
+
+
+        if (levelPlayInterstitial != null)
         {
-            interstitial.OnAdLoadFailed += HandleOnAdFailedToLoad;
-            interstitial.OnAdClosed += HandleOnAdClosed;
-            interstitial.LoadAd();
+            levelPlayInterstitial.OnAdLoadFailed += HandleOnAdFailedToLoad;
+            levelPlayInterstitial.OnAdClosed += HandleOnAdClosed;
+            levelPlayInterstitial.LoadAd();
         }
     }
 
@@ -824,8 +971,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
          //Load the interstitial with the request.
         launchInterstitial.LoadAd(request);
         */
-        launchInterstitial.OnAdClosed += HandleOnAdClosedLaunch;
-        launchInterstitial.LoadAd();
+
+
+        GenericRequestInterstitial(adMobLaunchInterstitial, adMobLaunchinterStitialId, adMobLaunchInterstitialReady);
+
+        levelPlayLaunchInterstitial.OnAdClosed += HandleOnAdClosedLaunch;
+        levelPlayLaunchInterstitial.LoadAd();
     }
 
     public void RequestExitInterstitial()
@@ -873,8 +1024,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // Load the interstitial with the request.
         exitInterstitial.LoadAd(request);
         */
-        exitInterstitial.OnAdClosed += HandleOnAdClosedExit;
-        exitInterstitial.LoadAd();
+
+
+        GenericRequestInterstitial(adMobExitInterstitial, admobexitInterstitialId, adMobExitInterstitialReady);
+
+        levelPlayExitInterstitial.OnAdClosed += HandleOnAdClosedExit;
+        levelPlayExitInterstitial.LoadAd();
     }
 
 
@@ -1117,24 +1272,71 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // Load the rewarded video ad with the request.
         */
 
-        rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
-        rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
-        rewardBasedVideo.LoadAd();
+        if (!adMobRewardBasedVideoReady && isAdMobInitialized)
+        {
+            RewardedAd.Load(adMobRewardBasedVideoId, new AdRequest(),
+               (RewardedAd ad, LoadAdError loadError) =>
+               {
+                   if (loadError != null)
+                   {
+                       Debug.Log("Rewarded ad failed to load with error: " +
+                                  loadError.GetMessage());
+                       return;
+                   }
+                   else if (ad == null)
+                   {
+                       Debug.Log("Rewarded ad failed to load.");
+                       return;
+                   }
+
+                   Debug.Log("Rewarded ad loaded.");
+                   adMobRewardBasedVideo = ad;
+                   adMobRewardBasedVideoReady = true;                   
+               });
+        }
+        levelPlayrewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
+        levelPlayrewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
+        levelPlayrewardBasedVideo.LoadAd();
     }
 
     private void ShowAdmobRewardedVideo()
     {
-        if (rewardBasedVideo.IsAdReady())
+        if (adMobRewardBasedVideo != null && adMobRewardBasedVideo.CanShowAd())
+        {
+            adMobRewardBasedVideo.Show((Reward reward) =>
+            {
+                if (reward != null)
+                {
+
+                    Debug.Log("Rewarded ad granted a reward: ");
+                    adMobRewardBasedVideoReady = false;
+                    HandleRewardBasedVideoRewarded(null,null);
+                    HandleRewardBasedVideoClosed(null);
+                }
+                else
+                {
+
+                }
+
+            });
+        }
+        else if (levelPlayrewardBasedVideo.IsAdReady())
         {
             rewardedvideosuccess = false;
-           
+
             try
             {
-                rewardBasedVideo.ShowAd();
+                levelPlayrewardBasedVideo.ShowAd();
             }
             catch (Exception e)
             { }
         }
+        else
+        {
+            Debug.Log("Rewarded ad cannot be shown.");
+        }
+
+       
     }
 
     #region Rewarded Video Callbacks
@@ -1332,9 +1534,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         */
 
         // Create Interstitial object
-        interstitial = new LevelPlayInterstitialAd(interstitialAdUnitId);
-        exitInterstitial=interstitial;
-        launchInterstitial = new LevelPlayInterstitialAd(LaunchinterstitialAdUnitId);
+        levelPlayInterstitial = new LevelPlayInterstitialAd(interstitialAdUnitId);
+        levelPlayExitInterstitial=levelPlayInterstitial;
+        levelPlayLaunchInterstitial = new LevelPlayInterstitialAd(LaunchinterstitialAdUnitId);
         // Register to Interstitial events
         //interstitial.OnAdLoaded += InterstitialOnAdLoadedEvent;
         //interstitial.OnAdLoadFailed += InterstitialOnAdLoadFailedEvent;
@@ -1344,7 +1546,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //interstitial.OnAdClosed += InterstitialOnAdClosedEvent;
         //interstitial.OnAdInfoChanged += InterstitialOnAdInfoChangedEvent;
 
-        rewardBasedVideo = new LevelPlayRewardedAd(rewardAdUnitId);
+        levelPlayrewardBasedVideo = new LevelPlayRewardedAd(rewardAdUnitId);
 
         //rewardBasedVideo.OnAdDisplayed += OnAdDisplayedMethod;
         //rewardBasedVideo.OnAdClosed += OnAdClosedMethod;

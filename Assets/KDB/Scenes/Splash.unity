@@ -1223,7 +1223,7 @@ PrefabInstance:
     - target: {fileID: 224110683824838766, guid: 54378afee7edf9b41a3a25c71b58aa3f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 224110683824838766, guid: 54378afee7edf9b41a3a25c71b58aa3f,
         type: 3}
@@ -1233,7 +1233,7 @@ PrefabInstance:
     - target: {fileID: 224243162439766594, guid: 54378afee7edf9b41a3a25c71b58aa3f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 224243162439766594, guid: 54378afee7edf9b41a3a25c71b58aa3f,
         type: 3}
@@ -1338,7 +1338,7 @@ PrefabInstance:
     - target: {fileID: 224880763329707578, guid: 54378afee7edf9b41a3a25c71b58aa3f,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 52
+      value: 52.682926
       objectReference: {fileID: 0}
     - target: {fileID: 224957891828665904, guid: 54378afee7edf9b41a3a25c71b58aa3f,
         type: 3}
@@ -1470,11 +1470,18 @@ MonoBehaviour:
   ReplayAdInterval: 90
   enableBanner: 0
   enableGreedy: 0
+  adMobInterstitialId: ca-app-pub-3411062052281263/3692188687
+  adMobLaunchinterStitialId: ca-app-pub-3411062052281263/3169444505
+  admobexitInterstitialId: ca-app-pub-3411062052281263/3169444505
+  adMobRewardBasedVideoId: ca-app-pub-3411062052281263/8038627800
   bannerId: ca-app-pub-3411062052281263/7601829325
-  rewardedId: ca-app-pub-3411062052281263/8038627800
   iOS_interstitialID: 
   iOS_bannerID: 
   iOS_rewardedId: 
+  adMobInterstitialReady: 0
+  adMobLaunchInterstitialReady: 0
+  adMobExitInterstitialReady: 0
+  adMobRewardBasedVideoReady: 0
   enableUnityAds: 0
   androidGameID: 3804023
   androidRewardedVideoID: rewardedVideo
@@ -1484,6 +1491,11 @@ MonoBehaviour:
   rewardedvideosuccess: 0
   LoadingPanel: {fileID: 925032424}
   StorePanel: {fileID: 1219491934}
+  appKey: 1ab7561b5
+  bannerAdUnitId: thnfvcsog13bhn08
+  interstitialAdUnitId: z8axy0332hnr585z
+  rewardAdUnitId: hgncqhneupu7bppt
+  LaunchinterstitialAdUnitId: 68ozdvrgw2w8rw44
 --- !u!4 &1163193293
 Transform:
   m_ObjectHideFlags: 0

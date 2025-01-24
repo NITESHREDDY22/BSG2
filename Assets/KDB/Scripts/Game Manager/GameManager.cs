@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         ballCounts = PlayerPrefsX.GetIntArray("ballPowerCounts", 2, 6);
         SetCountTexts();
         ShowBallsCount();
-        if (!(AdManager._instance.interstitial != null && AdManager._instance.interstitial.IsAdReady()))
+        if (!(AdManager._instance.levelPlayInterstitial != null && AdManager._instance.levelPlayInterstitial.IsAdReady()))
         {
             if (Global.isIntersitialsEnabled)
             {
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (AdManager._instance.rewardBasedVideo == null || !AdManager._instance.rewardBasedVideo.IsAdReady())
+        if (AdManager._instance.levelPlayrewardBasedVideo == null || !AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
         {
             if (Global.isRewaredAdsEnabled)
             {
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
         SkipLevelBtn.SetActive(false);
         //if (Global.noOfTries>= Global.retryCount &&((AdManager._instance.rewardBasedVideo.IsLoaded() || (AdManager._instance.unityRewardReady && AdManager._instance.enableUnityAds))))
-        if (Global.noOfTries >= Global.retryCount && AdManager._instance.rewardBasedVideo.IsAdReady())
+        if (Global.noOfTries >= Global.retryCount && AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
         {
             SkipLevelBtn.SetActive(true);
         }
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         currentAdDisplayTime = Time.time;
-        if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue) && (AdManager._instance.rewardBasedVideo != null && AdManager._instance.rewardBasedVideo.IsAdReady()))
+        if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue) && (AdManager._instance.levelPlayrewardBasedVideo != null && AdManager._instance.levelPlayrewardBasedVideo.IsAdReady()))
         {
             AdManager._instance.rewardTypeToUnlock = RewardType.continuegame;
             if (rewardtext)
@@ -1178,7 +1178,7 @@ public class GameManager : MonoBehaviour
                     AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                     rewardCanvas.SetActive(true);
 #elif UNITY_ANDROID
-                    if(AdManager._instance.rewardBasedVideo.IsAdReady())
+                    if (AdManager._instance.adMobRewardBasedVideo.CanShowAd() || AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
                     {
                     AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                     rewardCanvas.SetActive(true);
