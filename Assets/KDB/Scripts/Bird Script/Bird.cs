@@ -315,7 +315,7 @@ public class Bird : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(" triggers to  " + collision.tag);
+       // Debug.Log(" triggers to  " + collision.tag);
         if (collision.CompareTag("Brick") && FindObjectOfType<SlingShot>()._ballType == SlingShot.BallType.magic)
         {
             magicTrail.enabled = true;

@@ -239,7 +239,8 @@ public class StoreManager : MonoBehaviour
             {
 
                 //Show Popup For not Enough Coins
-                if (AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
+                if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd()
+                    || AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
                 {
                     RewardPanel.SetActive(true);
                     FirebaseEvents.instance.LogFirebaseEvent("StoreRewardPopupShown");
@@ -290,7 +291,8 @@ public class StoreManager : MonoBehaviour
             else
             {
                 //Show Popup For not Enough Coins
-                if (AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
+                if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd()
+                   || AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
                 {
                     RewardPanel.SetActive(true);
                     FirebaseEvents.instance.LogFirebaseEvent("StoreRewardPopupShown");
@@ -357,8 +359,11 @@ public class StoreManager : MonoBehaviour
 
         AdManager._instance.rewardedvideosuccess = true;
         onRewardVideoSuccess();
-#else
-        AdManager._instance.ShowRewardedVideo();
+ #else
+        AdManager._instance.ShowRewardedVideo(result =>
+        {
+            onRewardVideoSuccess();
+        });
 #endif
     }
 

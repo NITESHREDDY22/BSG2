@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 using com.unity3d.mediation;
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
+using UnityEngine.Assertions.Must;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -48,14 +49,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public string iOS_interstitialID;
     public string iOS_bannerID;
     public string iOS_rewardedId;
-
-
-
-    public InterstitialAd adMobInterstitial, adMobLaunchInterstitial, adMobExitInterstitial;
-    public bool adMobInterstitialReady, adMobLaunchInterstitialReady, adMobExitInterstitialReady;
-    public RewardedAd adMobRewardBasedVideo;
-    public bool adMobRewardBasedVideoReady;
+     
     private bool isAdMobInitialized;
+    
     #endregion
 
     #region Unity Ads
@@ -94,11 +90,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
 
     #region LevelPlay
-    public LevelPlayInterstitialAd levelPlayInterstitial,levelPlayLaunchInterstitial,levelPlayExitInterstitial;
-    public LevelPlayBannerAd bannerView, bannerViewExit;
-    public LevelPlayRewardedAd levelPlayrewardBasedVideo;
+ 
     #endregion
 
+    public AdMobNetworkHandler adMobNetworkHandler;
+    public LevelPlayNetworkHandler levelPlayNetworkHandler;
+    public static bool onlyOnce=false;
 
     private void Awake()
     {
@@ -148,6 +145,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 //
             }
         }
+        Initialize();
     }
 
     private IEnumerator Start()
@@ -237,38 +235,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             yield return new WaitForSeconds(1f);
         try
         {
-            IronSource.Agent.validateIntegration();
 
-            Debug.Log("unity-script: unity version" + IronSource.unityVersion());
-
-            // SDK init
-            Debug.Log("unity-script: LevelPlay SDK initialization");
-            LevelPlay.Init(appKey, null);
-
-            LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-            LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
-
-            MobileAds.Initialize((InitializationStatus initStatus) =>
-            {
-                isAdMobInitialized = true;
-                // This callback is called once the MobileAds SDK is initialized.
-                if (Global.isIntersitialsEnabled)
-                {
-                    RequestInterstitial();
-                    RequestLaunchInterstitial();
-                    RequestExitInterstitial();
-                }
-                if (enableBanner)
-                {
-                    RequestBanner();
-                    RequestBannerExit();
-                }
-                if (Global.isRewaredAdsEnabled)
-                {
-                    RequestRewardBasedVideo();
-                }
-            });
-
+            InitializeAdNetworks();
+            lastAdDisplayTime = Time.time;
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         }catch(Exception e)
         {
@@ -318,360 +287,144 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     }
 
 
+    #region ADS REGION
 
-    public void ShowCommonInterstitial()
+    void Initialize()
     {
-       
+        levelPlayNetworkHandler = new LevelPlayNetworkHandler();
+        levelPlayNetworkHandler.SetInterStitalId(interstitialAdUnitId);
+        levelPlayNetworkHandler.SetLaunchInterStitalId(LaunchinterstitialAdUnitId);
+        levelPlayNetworkHandler.SetRewardId(rewardAdUnitId);
+        levelPlayNetworkHandler.Initialize();
+        levelPlayNetworkHandler.InitAdManager(this);
 
-        Debug.Log("Increase Interstitial Counter");
-        try
-        {
-
-            GenericShowInterstitialAd(adMobInterstitial, adMobInterstitialReady, (adsuccess) =>
-            {
-                if (!adsuccess)
-                {
-                    if (levelPlayInterstitial.IsAdReady())
-                    {
-                        ShowInterstitial();
-                     
-                    }
-                }                
-            });
-      
-            /*
-            else
-            {
-                try
-                {
-                    
-                    if (GifAdsManager.Instance._adObjs[1]._Adtype == ADType.Interstitial)
-                    {
-                        GifAdsManager.Instance.ShowAd(GifAdsManager.Instance._adObjs[1]);
-                        lastAdDisplayTime = Time.time;
-                        bannerView.Hide();
-                    }
-                }
-                catch (Exception e)
-                { }
-            }
-            
-            else
-            if (Advertisement.IsReady())
-            {
-                Advertisement.Show();
-                lastAdDisplayTime = Time.time;
-
-            }*/
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowCommonInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
+        adMobNetworkHandler = new AdMobNetworkHandler();
+        adMobNetworkHandler.SetInterStitalId(adMobInterstitialId);
+        adMobNetworkHandler.SetLaunchInterStitalId(adMobLaunchinterStitialId);
+        adMobNetworkHandler.SetRewardId(adMobRewardBasedVideoId);
+        adMobNetworkHandler.InitAdManager(this);
+        adMobNetworkHandler.Init();
 
     }
-
-    public void ShowGameFailInterstitial()
+    void InitializeAdNetworks()
     {
-        Debug.Log("Increase Interstitial Counter");
-        counter++;
-        try
+        IronSource.Agent.validateIntegration();
+        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+        // SDK init
+        Debug.Log("unity-script: LevelPlay SDK initialization");
+        LevelPlay.Init(appKey, null);     
+
+        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+
+        MobileAds.Initialize((InitializationStatus initStatus) =>
         {
-
-            if (counter >= GOFAdInterval)
+            // This callback is called once the MobileAds SDK is initialized.
+            isAdMobInitialized = true;
+            adMobNetworkHandler.Initialize(isAdMobInitialized);
+            if (Global.isIntersitialsEnabled)
             {
-                GenericShowInterstitialAd(adMobInterstitial, adMobInterstitialReady, (adsuccess) =>
-                {
-                    if (!adsuccess)
-                    {
-                        if (levelPlayInterstitial.IsAdReady())
-                        {
-                            ShowInterstitial();
-                            counter = 0;
-                        }
-                    }
-                    else
-                    {
-                        counter = 0;
-                    }
-                });
+                RequestLaunchInterstitial();
             }
 
-            /*
-            else
-            {
-                try
-                {
-                    if (GifAdsManager.Instance._adObjs[1]._Adtype == ADType.Interstitial)
-                    {
-                        GifAdsManager.Instance.ShowAd(GifAdsManager.Instance._adObjs[1]);
-                        lastAdDisplayTime = Time.time;
-                        bannerView.Hide();
-                    }
-                }
-                catch (Exception e)
-                { }
-            }
-            else
-                if (Advertisement.IsReady())
-            {
-                Advertisement.Show();
-                lastAdDisplayTime = Time.time;
-
-            }*/
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowFailInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
+        });
     }
 
-
-    public void ShowGameWinInterstitial()
+    void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
     {
-        Debug.Log("Increase Interstitial Counter");
-        counter2++;
-        try
-        {
-            if (counter2 >= GOWAdInterval)
-            {
-                GenericShowInterstitialAd(adMobInterstitial, adMobInterstitialReady, (adsuccess) =>
-                {
-                    if (!adsuccess)
-                    {
-                        if (levelPlayInterstitial.IsAdReady())
-                        {
-                            ShowInterstitial();
-                            counter2 = 0;
-                        }
-                    }
-                    else
-                    {
-                        counter2 = 0;
-                    }
-                });
-            }
-
-           
-            /*
-            else if (GifAdsManager.Instance._adObjs.Length > 1)
-            {
-                if (GifAdsManager.Instance._adObjs[1]._Adtype == ADType.Interstitial)
-                {
-                    if (counter2 >= GOWAdInterval)
-                    {
-                        GifAdsManager.Instance.ShowAd(GifAdsManager.Instance._adObjs[1]);
-                        lastAdDisplayTime = Time.time;
-                        bannerView.Hide();
-                        counter2 = 0;
-                    }
-                }
-            }
-            else
-                if (Advertisement.IsReady())
-            {
-                Advertisement.Show();
-                lastAdDisplayTime = Time.time;
-
-            }*/
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowGameWinInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
-    }
-    // Update is called once per frame
-    #region Unity Ads
-
-    public void ShowInterstitial()
-    {
-      
-
-        try
-        {
-           
-            GenericShowInterstitialAd(adMobInterstitial,adMobInterstitialReady,(adsuccess)=>
-            {
-                if (!adsuccess)
-                {
-                    if (this.levelPlayInterstitial != null && this.levelPlayInterstitial.IsAdReady())
-                    {
-                        this.levelPlayInterstitial.ShowAd();
-                        lastAdDisplayTime = Time.time;
-                    }
-                }
-            });
-           
-            /*
-            else
-            if (Advertisement.IsReady() && enableUnityAds)
-            {
-                Advertisement.Show();
-                lastAdDisplayTime = Time.time;
-
-            }
-            else if (GifAdsManager.Instance._adObjs[1]._Adtype == ADType.Interstitial)
-            {
-                GifAdsManager.Instance.ShowAd(GifAdsManager.Instance._adObjs[1]);
-                lastAdDisplayTime = Time.time;
-                bannerView.Hide();
-            }
-            */
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
+        Debug.Log("unity-script: I got SdkInitializationCompletedEvent with config: " + config);
+        //EnableAds();
+        levelPlayNetworkHandler.EnableAds();
     }
 
-    public bool LaunchInterstitialState()
+    void SdkInitializationFailedEvent(LevelPlayInitError error)
     {
-        return((adMobLaunchInterstitial != null && adMobLaunchInterstitial.CanShowAd())
-            || (levelPlayLaunchInterstitial != null && levelPlayLaunchInterstitial.IsAdReady()));
+        Debug.Log("unity-script: I got SdkInitializationFailedEvent with error: " + error);
     }
 
+    public void RequestLaunchInterstitial()
+    {
+        /*
+        string adUnitId;
+        if (testMode)
+        {
+        #if UNITY_ANDROID
+                    adUnitId = "ca-app-pub-3940256099942544/1033173712";
+        #elif UNITY_IOS
+                       adUnitId = "ca-app-pub-3940256099942544/4411468910";
+        #else
+                       adUnitId = "unexpected_platform";
+        #endif
+        }
+        else
+        {
+        #if UNITY_ANDROID
+                    adUnitId = "ca-app-pub-3411062052281263/3169444505";
+        #elif UNITY_IOS
+                    adUnitId = iOS_interstitialID;
+        #else
+                    adUnitId = "unexpected_platform";
+        #endif
+        }
+        // Initialize an InterstitialAd.
+        launchInterstitial = new InterstitialAd(adUnitId);
+
+        // Called when an ad request has successfully loaded.
+        //this.launchInterstitial.OnAdLoaded += HandleOnAdLoadedLaunch;
+        // Called when an ad request failed to load.
+        //this.launchInterstitial.OnAdFailedToLoad += HandleOnAdFailedToLoadLaunch;
+        // Called when an ad is shown.
+        //this.launchInterstitial.OnAdOpening += HandleOnAdOpenedLaunch;
+        // Called when the ad is closed.
+        this.launchInterstitial.OnAdClosed += HandleOnAdClosedLaunch;
+        // Called when the ad click caused the user to leave the application.
+        //this.launchInterstitial.OnAdLeavingApplication += HandleOnAdLeavingApplicationLaunch;
+
+        // Create an empty ad request.
+        AdRequest request = new AdRequest.Builder().Build();
+
+
+         //Load the interstitial with the request.
+        launchInterstitial.LoadAd(request);
+        */
+
+        //Debug.Log("Asdf RequestLaunchInterstitial 0000");
+
+        adMobNetworkHandler.RequestInterstitial(AdType.Launch);
+        levelPlayNetworkHandler.RequestInterstitial(AdType.Launch);
+    }
     public void ShowLaunchInterstitial()
     {
         
         try
-        {
-            GenericShowInterstitialAd(adMobLaunchInterstitial, adMobLaunchInterstitialReady, (adsuccess) =>
+        {       
+            adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
+            void ShowLevelPlayLaunchInterStital(bool flag)
             {
-                if (!adsuccess)
-                {
-                    if (this.levelPlayLaunchInterstitial != null && this.levelPlayLaunchInterstitial.IsAdReady())
+               
+                if (!flag)
+                {                   
+                    levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
                     {
-
-                        this.levelPlayLaunchInterstitial.ShowAd();
-
-                        lastAdDisplayTime = Time.time;
-                    }
+                        if(result)
+                        {
+                            lastAdDisplayTime = Time.time;
+                        }
+                    });
                 }
-            });
-        
-            /*
-            else
-            if (Advertisement.IsReady() && enableUnityAds)
-            {
-                Advertisement.Show();
-                lastAdDisplayTime = Time.time;
+                else
+                {
+                    lastAdDisplayTime = Time.time;
+                }
 
+                if (Global.isIntersitialsEnabled)
+                {
+                   RequestInterstitial();
+                }
+
+                
+                //Debug.Log("lastAdDisplayTime " + lastAdDisplayTime);
             }
-            
-            else if (GifAdsManager.Instance._adObjs[1]._Adtype == ADType.Interstitial)
-            {
-                GifAdsManager.Instance.ShowAd(GifAdsManager.Instance._adObjs[1]);
-                lastAdDisplayTime = Time.time;
-                bannerView.Hide();
-            }*/
         }
         catch (Exception exp)
         {
@@ -706,158 +459,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
 
     }
-
-    public void ShowExitInterstitial()
-    {
-       
-        try
-        {
-
-            GenericShowInterstitialAd(adMobExitInterstitial, adMobExitInterstitialReady, (adsuccess) =>
-            {
-                if (!adsuccess)
-                {
-                    if (this.levelPlayExitInterstitial != null && this.levelPlayExitInterstitial.IsAdReady())
-                    {
-                        this.levelPlayExitInterstitial.ShowAd();
-                        // lastAdDisplayTime = Time.time;
-                    }
-                }
-            });
-
-           
-            /*
-            else
-            if (Advertisement.IsReady() && enableUnityAds)
-            {
-                Advertisement.Show();
-                //lastAdDisplayTime = Time.time;
-
-            }
-            
-            else if (GifAdsManager.Instance._adObjs[1]._Adtype == ADType.Interstitial)
-            {
-                GifAdsManager.Instance.ShowAd(GifAdsManager.Instance._adObjs[1]);
-                lastAdDisplayTime = Time.time;
-                bannerView.Hide();
-            }
-            */
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowExitInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
-
-    }
-
-
-    public void ShowRewardedVideo()
-    {
-        string rewardedVideoID = androidRewardedVideoID;
-
-#if UNITY_IOS
-        rewardedVideoID = iosRewardedVideoID;
-#endif
-
-
-       
-        try
-        {
-            if (levelPlayrewardBasedVideo.IsAdReady())
-            {
-                ShowAdmobRewardedVideo();
-            }
-            /*
-            else
-            if(Advertisement.IsReady(rewardedVideoID) && enableUnityAds)
-            {
-                Advertisement.Show(rewardedVideoID);
-            }*/
-
-
-        }
-        catch (Exception e)
-        { }
-
-
-
-    }
-    
-    #endregion
-
-    #region AdMob
-
-    private void GenericRequestInterstitial(InterstitialAd currentAd, string adID, bool isAdReady)
-    {
-        if (string.IsNullOrEmpty(adID) || !isAdMobInitialized)
-            return;
-
-        if (!isAdReady)
-        {
-            InterstitialAd.Load(adID, new AdRequest(),
-                    (InterstitialAd ad, LoadAdError loadAdError) =>
-                    {
-                        if (loadAdError != null)
-                        {
-                            Debug.Log("Interstitial ad failed to load with error: " +
-                            loadAdError.GetMessage());
-                            return;
-                        }
-                        else if (ad == null)
-                        {
-                            Debug.Log("Interstitial ad failed to load.");
-                            return;
-                        }
-
-                        Debug.Log("Interstitial ad loaded.");
-                        currentAd = ad;                       
-                        isAdReady = true;
-                    });
-        }
-    }
-
-    private  void GenericShowInterstitialAd(InterstitialAd currentAd, bool isAdReady,Action<bool> callBack=null)
-    {
-        if (currentAd != null && currentAd.CanShowAd())
-        {
-            currentAd.Show();
-            isAdReady = false;
-            callBack?.Invoke(true);
-        }
-        else
-        {
-            Debug.Log("Interstitial ad cannot be shown.");
-            callBack?.Invoke(false);
-        }
-    }
-
     public void RequestInterstitial()
     {
         /*
@@ -915,123 +516,509 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         interstitial.LoadAd(request);
         */
 
+        /*
         GenericRequestInterstitial(adMobInterstitial, adMobInterstitialId, adMobInterstitialReady);
-
-
         if (levelPlayInterstitial != null)
         {
             levelPlayInterstitial.OnAdLoadFailed += HandleOnAdFailedToLoad;
             levelPlayInterstitial.OnAdClosed += HandleOnAdClosed;
             levelPlayInterstitial.LoadAd();
         }
-    }
-
-    public void RequestLaunchInterstitial()
-    {
-        /*
-        string adUnitId;
-        if (testMode)
-        {
-        #if UNITY_ANDROID
-                    adUnitId = "ca-app-pub-3940256099942544/1033173712";
-        #elif UNITY_IOS
-                       adUnitId = "ca-app-pub-3940256099942544/4411468910";
-        #else
-                       adUnitId = "unexpected_platform";
-        #endif
-        }
-        else
-        {
-        #if UNITY_ANDROID
-                    adUnitId = "ca-app-pub-3411062052281263/3169444505";
-        #elif UNITY_IOS
-                    adUnitId = iOS_interstitialID;
-        #else
-                    adUnitId = "unexpected_platform";
-        #endif
-        }
-        // Initialize an InterstitialAd.
-        launchInterstitial = new InterstitialAd(adUnitId);
-
-        // Called when an ad request has successfully loaded.
-        //this.launchInterstitial.OnAdLoaded += HandleOnAdLoadedLaunch;
-        // Called when an ad request failed to load.
-        //this.launchInterstitial.OnAdFailedToLoad += HandleOnAdFailedToLoadLaunch;
-        // Called when an ad is shown.
-        //this.launchInterstitial.OnAdOpening += HandleOnAdOpenedLaunch;
-        // Called when the ad is closed.
-        this.launchInterstitial.OnAdClosed += HandleOnAdClosedLaunch;
-        // Called when the ad click caused the user to leave the application.
-        //this.launchInterstitial.OnAdLeavingApplication += HandleOnAdLeavingApplicationLaunch;
-
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-
-
-         //Load the interstitial with the request.
-        launchInterstitial.LoadAd(request);
         */
 
-
-        GenericRequestInterstitial(adMobLaunchInterstitial, adMobLaunchinterStitialId, adMobLaunchInterstitialReady);
-
-        levelPlayLaunchInterstitial.OnAdClosed += HandleOnAdClosedLaunch;
-        levelPlayLaunchInterstitial.LoadAd();
+        adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
+        levelPlayNetworkHandler.RequestInterstitial(AdType.Interstital);
     }
-
-    public void RequestExitInterstitial()
+    
+    public void ShowInterstitial(Action<bool> callBack=null)
     {
-        /*
-        string adUnitId;
-        if (testMode)
+        try
         {
-            #if UNITY_ANDROID
-                        adUnitId = "ca-app-pub-3940256099942544/1033173712";
-            #elif UNITY_IOS
-                           adUnitId = "ca-app-pub-3940256099942544/4411468910";
-            #else
-                           adUnitId = "unexpected_platform";
-            #endif
+
+            adMobNetworkHandler.ShowInterstitialAd(AdType.Interstital, ShowLevelPlayLaunchInterStital);
+            void ShowLevelPlayLaunchInterStital(bool flag)
+            {
+                if (!flag)
+                {
+                    levelPlayNetworkHandler.ShowInterstitialAd(AdType.Interstital, (result)=>
+                    {
+                        callBack?.Invoke(result);
+                        if(result)
+                        {
+                            lastAdDisplayTime = Time.time;
+                        }
+                    });
+                }
+                else
+                {
+                    callBack?.Invoke(true);
+                    lastAdDisplayTime = Time.time;
+                }
+            }    
         }
-        else
+        catch (Exception exp)
         {
-            #if UNITY_ANDROID
-                        adUnitId = "ca-app-pub-3411062052281263/8827945071";
-            #elif UNITY_IOS 
-                        adUnitId = iOS_interstitialID;
-            #else
-                        adUnitId = "unexpected_platform";
-            #endif
+            try
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
+                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
+                var lineNumber = stackFrame.GetFileLineNumber();
+                string errorline = "Line:" + lineNumber;
+                if (lineNumber == 0)
+                {
+                    int index = exp.ToString().IndexOf("at");
+                    int length = exp.ToString().Substring(index).Length;
+                    if (length > 99)
+                    {
+                        errorline = "Line:" + exp.ToString().Substring(index, 100);
+                    }
+                    else
+                    {
+                        errorline = "Line2:" + exp.ToString().Substring(index);
+                    }
+                }
+                if (FirebaseEvents.instance != null)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowInterstitial", exp.Message + "at " + errorline);
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }
         }
-        // Initialize an InterstitialAd.
-        exitInterstitial = new InterstitialAd(adUnitId);
-
-        // Called when an ad request has successfully loaded.
-        //this.exitInterstitial.OnAdLoaded += HandleOnAdLoadedExit;
-        // Called when an ad request failed to load.
-        //this.exitInterstitial.OnAdFailedToLoad += HandleOnAdFailedToLoadExit;
-        // Called when an ad is shown.
-        //this.exitInterstitial.OnAdOpening += HandleOnAdOpenedExit;
-        // Called when the ad is closed.
-        this.exitInterstitial.OnAdClosed += HandleOnAdClosedExit;
-        // Called when the ad click caused the user to leave the application.
-        //this.exitInterstitial.OnAdLeavingApplication += HandleOnAdLeavingApplicationExit;
-
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-
-
-        // Load the interstitial with the request.
-        exitInterstitial.LoadAd(request);
-        */
-
-
-        GenericRequestInterstitial(adMobExitInterstitial, admobexitInterstitialId, adMobExitInterstitialReady);
-
-        levelPlayExitInterstitial.OnAdClosed += HandleOnAdClosedExit;
-        levelPlayExitInterstitial.LoadAd();
     }
 
+    public void ShowCommonInterstitial()
+    {
+       
+
+        Debug.Log("Increase Interstitial Counter");
+        try
+        {
+            ShowInterstitial();           
+        }
+        catch (Exception exp)
+        {
+            try
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
+                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
+                var lineNumber = stackFrame.GetFileLineNumber();
+                string errorline = "Line:" + lineNumber;
+                if (lineNumber == 0)
+                {
+                    int index = exp.ToString().IndexOf("at");
+                    int length = exp.ToString().Substring(index).Length;
+                    if (length > 99)
+                    {
+                        errorline = "Line:" + exp.ToString().Substring(index, 100);
+                    }
+                    else
+                    {
+                        errorline = "Line2:" + exp.ToString().Substring(index);
+                    }
+                }
+                if (FirebaseEvents.instance != null)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowCommonInterstitial", exp.Message + "at " + errorline);
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }
+        }
+
+    }
+
+    public void ShowGameFailInterstitial()
+    {
+        Debug.Log("Increase Interstitial Counter");
+        counter++;
+        try
+        {
+
+            if (counter >= GOFAdInterval)
+            {
+                ShowInterstitial((result) =>
+                {
+                    if(result)
+                    {
+                        counter = 0;
+                    }
+                });
+                
+            }
+           
+        }
+        catch (Exception exp)
+        {
+            try
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
+                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
+                var lineNumber = stackFrame.GetFileLineNumber();
+                string errorline = "Line:" + lineNumber;
+                if (lineNumber == 0)
+                {
+                    int index = exp.ToString().IndexOf("at");
+                    int length = exp.ToString().Substring(index).Length;
+                    if (length > 99)
+                    {
+                        errorline = "Line:" + exp.ToString().Substring(index, 100);
+                    }
+                    else
+                    {
+                        errorline = "Line2:" + exp.ToString().Substring(index);
+                    }
+                }
+                if (FirebaseEvents.instance != null)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowFailInterstitial", exp.Message + "at " + errorline);
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }
+        }
+    }
+
+    public void ShowGameWinInterstitial()
+    {
+        Debug.Log("Increase Interstitial Counter"+counter2+ "");
+        counter2++;
+        try
+        {
+            if (counter2 >= GOWAdInterval)
+            {
+                    ShowInterstitial((result) =>
+                    {
+                        if (result)
+                        {
+                            counter2 = 0;
+                        }
+                    });                
+            }          
+            
+        }
+        catch (Exception exp)
+        {
+            try
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
+                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
+                var lineNumber = stackFrame.GetFileLineNumber();
+                string errorline = "Line:" + lineNumber;
+                if (lineNumber == 0)
+                {
+                    int index = exp.ToString().IndexOf("at");
+                    int length = exp.ToString().Substring(index).Length;
+                    if (length > 99)
+                    {
+                        errorline = "Line:" + exp.ToString().Substring(index, 100);
+                    }
+                    else
+                    {
+                        errorline = "Line2:" + exp.ToString().Substring(index);
+                    }
+                }
+                if (FirebaseEvents.instance != null)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowGameWinInterstitial", exp.Message + "at " + errorline);
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }
+        }
+    }
+
+    public bool LaunchInterstitialState()
+    {
+        return((adMobNetworkHandler !=null && adMobNetworkHandler.adMobLaunchInterstitial != null && adMobNetworkHandler != null && adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
+            || (levelPlayNetworkHandler.levelPlayLaunchInterstitial != null && levelPlayNetworkHandler.levelPlayLaunchInterstitial.IsAdReady()));
+    }
+
+    public void ShowRewardedVideo(Action<bool> callBack)
+    {
+        string rewardedVideoID = androidRewardedVideoID;
+
+#if UNITY_IOS
+        rewardedVideoID = iosRewardedVideoID;
+#endif
+       
+        try
+        {
+            adMobNetworkHandler.ShowAdmobRewardedVideo(ShowLevelPlayRewarVideo);
+            void ShowLevelPlayRewarVideo(bool flag)
+            {
+                if (!flag)
+                {
+                    levelPlayNetworkHandler.ShowRewardBasedVideo((result) =>
+                    {
+                        callBack?.Invoke(result);
+                        if(result)
+                        {
+                            lastAdDisplayTime = Time.time;
+                        }
+                    });
+                }
+                else
+                {
+                    lastAdDisplayTime = Time.time;
+                    callBack?.Invoke(true);
+                }
+            }
+        }
+        catch (Exception e)
+        { }
+
+
+
+    }
+
+    public void RequestRewardBasedVideo()
+    {
+        Debug.Log("Asdf RequestRewardBasedVideo..");
+        adMobNetworkHandler.RequestRewardBasedVideo();
+        levelPlayNetworkHandler.RequestRewardBasedVideo();
+    }
+    
+    public void RequestWithDelay(float timer,Action callback)
+    {
+        StopCoroutine(RequestDelay(timer, callback));
+        StartCoroutine(RequestDelay(timer, callback));
+    }
+
+    IEnumerator RequestDelay(float timer,Action callBack)
+    {
+        yield return new WaitForSeconds(timer);
+        callBack?.Invoke();
+    }
+
+    #endregion
+
+    #region AdMob
+
+
+    private void ShowAdmobRewardedVideo()
+    {
+            //TODO       
+    }
+
+    #region Rewarded Video Callbacks
+
+    // Admob reward callbacks
+    public void HandleRewardBasedVideoStarted(object sender, EventArgs args)
+    {
+        try
+        {
+            GameManager.Instance.gameState = GameState.Reward_Video_Started;
+        }
+        catch (Exception e)
+        { }
+        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
+        //    //GameManager.Instance.gameState = GameState.Reward_Video_Started;
+        //});
+    }
+
+    public void HandleRewardBasedVideoClosed(LevelPlayAdInfo levelPlayAdInfo)
+    {
+        try
+        {
+            GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+            onreward();
+            GameManager.Instance.ingamevideosuccess();
+            this.RequestRewardBasedVideo();
+        }
+        catch (Exception e)
+        { }
+        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
+        //    //
+        //});
+        //FindObjectOfType<GameManager>().onrewardvideoSuccess();
+    }
+
+    public void HandleRewardBasedVideoRewarded(LevelPlayAdInfo obj, LevelPlayReward args)
+    {
+        try
+        {
+            // Reward the user for watching the ad to completion.
+            Debug.Log("rewardhandle___log");
+            //rewardedvideosuccess = true;
+        }
+        catch (Exception e)
+        { }
+        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
+        //    ///
+        //});
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        try
+        {
+            if (hasFocus)
+            {
+                onreward();
+            }
+        }
+        catch (Exception e)
+        { }
+
+    }
+
+    public void onreward()
+    {
+        return;
+
+        if (rewardedvideosuccess)
+        {
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "LevelSelection")
+            {
+                FindObjectOfType<SpinWheel>().OnWatchVideoSuccess();
+            }
+            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "MainMenu")
+            {
+
+                FindObjectOfType<StoreManager>().onRewardVideoSuccess();
+
+            }
+            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 2)
+
+            {
+                if (FindObjectOfType<StoreManager>().RewardPanel.activeInHierarchy)
+                {
+                    FindObjectOfType<StoreManager>().onRewardVideoSuccess();
+                }
+
+            }
+        }
+    }
+    public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
+    {
+
+    }
+   
+
+
+
+#endregion
+
+
+    public void HandleOnAdFailedToLoad(LevelPlayAdError levelPlayAdError)
+    {
+        //MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        //{
+           
+        //});
+        try
+        {
+            //interstitialId = "ca-app-pub-3411062052281263/2087800960";
+        }
+        catch (Exception e)
+        { }
+    }
+
+
+
+    public void HandleOnAdClosed(LevelPlayAdInfo levelPlayAdInfo)
+    {
+        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
+         
+        //});
+
+        try
+        {
+            if (Global.isIntersitialsEnabled)
+            {
+                //RequestInterstitial();
+            }
+        }
+        catch (Exception e)
+        { }
+    }
+
+    public void HandleOnAdClosedLaunch(LevelPlayAdInfo levelPlayAdInfo)
+    {
+        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
+           
+        //});
+        try
+        {
+            if (Global.isIntersitialsEnabled)
+            {
+              //  RequestLaunchInterstitial();
+            }
+        }
+        catch (Exception e)
+        { }
+    }
+
+
+    public void HandleOnAdClosedExit(LevelPlayAdInfo levelPlayAdInfo)
+    { 
+        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
+            
+        //});
+        try
+        {
+            
+        }
+        catch (Exception e)
+        { }
+    }
+
+    #region Init callback handlers
+
+    #endregion
+
+    public void ShowExitInterstitial()
+    {
+        return;
+
+        try
+        {
+
+            
+
+        }
+        catch (Exception exp)
+        {
+            try
+            {
+                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
+                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
+                var lineNumber = stackFrame.GetFileLineNumber();
+                string errorline = "Line:" + lineNumber;
+                if (lineNumber == 0)
+                {
+                    int index = exp.ToString().IndexOf("at");
+                    int length = exp.ToString().Substring(index).Length;
+                    if (length > 99)
+                    {
+                        errorline = "Line:" + exp.ToString().Substring(index, 100);
+                    }
+                    else
+                    {
+                        errorline = "Line2:" + exp.ToString().Substring(index);
+                    }
+                }
+                if (FirebaseEvents.instance != null)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowExitInterstitial", exp.Message + "at " + errorline);
+                }
+            }
+            catch (Exception e)
+            {
+                //
+            }
+        }
+
+    }
 
     private void RequestBanner()
     {
@@ -1227,356 +1214,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         */
     }
 
-
-    public void RequestRewardBasedVideo()
-    {
-        /*
-        string adUnitId;
-
-
-        if (testMode)
-        {
-        #if UNITY_ANDROID
-                    adUnitId = "ca-app-pub-3940256099942544/5224354917";
-        #elif UNITY_IPHONE
-                    adUnitId = "ca-app-pub-3940256099942544/1712485313";
-        #else
-                    adUnitId = "unexpected_platform";
-        #endif
-                }
-                else
-                {
-        #if UNITY_ANDROID
-                    adUnitId = rewardedId;
-        #elif UNITY_IPHONE
-                    adUnitId = iOS_rewardedId;
-        #else
-                    adUnitId = "unexpected_platform";
-        #endif
-        }
-
-        // Get singleton reward based video ad reference.
-        this.rewardBasedVideo = new RewardedAd(adUnitId);
-
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-        this.rewardBasedVideo.LoadAd(request);
-        // Called when an ad request has successfully loaded.
-        //rewardBasedVideo.OnAdStarted += HandleRewardBasedVideoStarted;
-        // Called when the user should be rewarded for watching a video.
-        rewardBasedVideo.OnUserEarnedReward += HandleRewardBasedVideoRewarded;
-        // Called when the ad is closed.
-        rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
-        // Called when the ad click caused the user to leave the application.
-        //rewardBasedVideo.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
-        // Load the rewarded video ad with the request.
-        */
-
-        if (!adMobRewardBasedVideoReady && isAdMobInitialized)
-        {
-            RewardedAd.Load(adMobRewardBasedVideoId, new AdRequest(),
-               (RewardedAd ad, LoadAdError loadError) =>
-               {
-                   if (loadError != null)
-                   {
-                       Debug.Log("Rewarded ad failed to load with error: " +
-                                  loadError.GetMessage());
-                       return;
-                   }
-                   else if (ad == null)
-                   {
-                       Debug.Log("Rewarded ad failed to load.");
-                       return;
-                   }
-
-                   Debug.Log("Rewarded ad loaded.");
-                   adMobRewardBasedVideo = ad;
-                   adMobRewardBasedVideoReady = true;                   
-               });
-        }
-        levelPlayrewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
-        levelPlayrewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
-        levelPlayrewardBasedVideo.LoadAd();
-    }
-
-    private void ShowAdmobRewardedVideo()
-    {
-        if (adMobRewardBasedVideo != null && adMobRewardBasedVideo.CanShowAd())
-        {
-            adMobRewardBasedVideo.Show((Reward reward) =>
-            {
-                if (reward != null)
-                {
-
-                    Debug.Log("Rewarded ad granted a reward: ");
-                    adMobRewardBasedVideoReady = false;
-                    HandleRewardBasedVideoRewarded(null,null);
-                    HandleRewardBasedVideoClosed(null);
-                }
-                else
-                {
-
-                }
-
-            });
-        }
-        else if (levelPlayrewardBasedVideo.IsAdReady())
-        {
-            rewardedvideosuccess = false;
-
-            try
-            {
-                levelPlayrewardBasedVideo.ShowAd();
-            }
-            catch (Exception e)
-            { }
-        }
-        else
-        {
-            Debug.Log("Rewarded ad cannot be shown.");
-        }
-
+    public void RequestExitInterstitial()
+    {  
        
     }
 
-    #region Rewarded Video Callbacks
-
-    // Admob reward callbacks
-    public void HandleRewardBasedVideoStarted(object sender, EventArgs args)
-    {
-        try
-        {
-            GameManager.Instance.gameState = GameState.Reward_Video_Started;
-        }
-        catch (Exception e)
-        { }
-        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
-        //    //GameManager.Instance.gameState = GameState.Reward_Video_Started;
-        //});
-    }
-
-    public void HandleRewardBasedVideoClosed(LevelPlayAdInfo levelPlayAdInfo)
-    {
-        try
-        {
-            GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-            onreward();
-            GameManager.Instance.ingamevideosuccess();
-            this.RequestRewardBasedVideo();
-        }
-        catch (Exception e)
-        { }
-        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
-        //    //
-        //});
-        //FindObjectOfType<GameManager>().onrewardvideoSuccess();
-    }
-
-    public void HandleRewardBasedVideoRewarded(LevelPlayAdInfo obj, LevelPlayReward args)
-    {
-        try
-        {
-            // Reward the user for watching the ad to completion.
-            Debug.Log("rewardhandle___log");
-            rewardedvideosuccess = true;
-        }
-        catch (Exception e)
-        { }
-        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
-        //    ///
-        //});
-    }
-
-    void OnApplicationFocus(bool hasFocus)
-    {
-        try
-        {
-            if (hasFocus)
-            {
-                onreward();
-            }
-        }
-        catch (Exception e)
-        { }
-
-    }
-
-    public void onreward()
-    {
-        if (rewardedvideosuccess)
-        {
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "LevelSelection")
-            {
-                FindObjectOfType<SpinWheel>().OnWatchVideoSuccess();
-            }
-            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "MainMenu")
-            {
-
-                FindObjectOfType<StoreManager>().onRewardVideoSuccess();
-
-            }
-            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 2)
-
-            {
-                if (FindObjectOfType<StoreManager>().RewardPanel.activeInHierarchy)
-                {
-                    FindObjectOfType<StoreManager>().onRewardVideoSuccess();
-                }
-
-            }
-        }
-    }
-    public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
-    {
-
-    }
-   
-
-
-
-#endregion
-
-
-    public void HandleOnAdFailedToLoad(LevelPlayAdError levelPlayAdError)
-    {
-        //MobileAdsEventExecutor.ExecuteInUpdate(() =>
-        //{
-           
-        //});
-        try
-        {
-            //interstitialId = "ca-app-pub-3411062052281263/2087800960";
-        }
-        catch (Exception e)
-        { }
-    }
-
-
-
-    public void HandleOnAdClosed(LevelPlayAdInfo levelPlayAdInfo)
-    {
-        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
-         
-        //});
-
-        try
-        {
-            if (Global.isIntersitialsEnabled)
-            {
-                RequestInterstitial();
-            }
-        }
-        catch (Exception e)
-        { }
-    }
-
-    public void HandleOnAdClosedLaunch(LevelPlayAdInfo levelPlayAdInfo)
-    {
-        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
-           
-        //});
-        try
-        {
-            if (Global.isIntersitialsEnabled)
-            {
-                RequestLaunchInterstitial();
-            }
-        }
-        catch (Exception e)
-        { }
-    }
-
-
-    public void HandleOnAdClosedExit(LevelPlayAdInfo levelPlayAdInfo)
-    { 
-        //MobileAdsEventExecutor.ExecuteInUpdate(() => {
-            
-        //});
-        try
-        {
-            if (Global.isIntersitialsEnabled)
-            {
-                RequestExitInterstitial();
-            }
-        }
-        catch (Exception e)
-        { }
-    }
-
-    #region Init callback handlers
-
-    void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
-    {
-        Debug.Log("unity-script: I got SdkInitializationCompletedEvent with config: " + config);
-        EnableAds();
-    }
-
-    void SdkInitializationFailedEvent(LevelPlayInitError error)
-    {
-        Debug.Log("unity-script: I got SdkInitializationFailedEvent with error: " + error);
-    }
-
-
-    void EnableAds()
-    {
-
-        /*
-        bannerAd = new LevelPlayBannerAd(bannerAdUnitId);
-        // Register to Banner events
-        bannerAd.OnAdLoaded += BannerOnAdLoadedEvent;
-        bannerAd.OnAdLoadFailed += BannerOnAdLoadFailedEvent;
-        bannerAd.OnAdDisplayed += BannerOnAdDisplayedEvent;
-        bannerAd.OnAdDisplayFailed += BannerOnAdDisplayFailedEvent;
-        bannerAd.OnAdClicked += BannerOnAdClickedEvent;
-        bannerAd.OnAdCollapsed += BannerOnAdCollapsedEvent;
-        bannerAd.OnAdLeftApplication += BannerOnAdLeftApplicationEvent;
-        bannerAd.OnAdExpanded += BannerOnAdExpandedEvent;
-        */
-
-        // Create Interstitial object
-        levelPlayInterstitial = new LevelPlayInterstitialAd(interstitialAdUnitId);
-        levelPlayExitInterstitial=levelPlayInterstitial;
-        levelPlayLaunchInterstitial = new LevelPlayInterstitialAd(LaunchinterstitialAdUnitId);
-        // Register to Interstitial events
-        //interstitial.OnAdLoaded += InterstitialOnAdLoadedEvent;
-        //interstitial.OnAdLoadFailed += InterstitialOnAdLoadFailedEvent;
-        //interstitial.OnAdDisplayed += InterstitialOnAdDisplayedEvent;
-        //interstitial.OnAdDisplayFailed += InterstitialOnAdDisplayFailedEvent;
-        //interstitial.OnAdClicked += InterstitialOnAdClickedEvent;
-        //interstitial.OnAdClosed += InterstitialOnAdClosedEvent;
-        //interstitial.OnAdInfoChanged += InterstitialOnAdInfoChangedEvent;
-
-        levelPlayrewardBasedVideo = new LevelPlayRewardedAd(rewardAdUnitId);
-
-        //rewardBasedVideo.OnAdDisplayed += OnAdDisplayedMethod;
-        //rewardBasedVideo.OnAdClosed += OnAdClosedMethod;
-        //rewardBasedVideo.OnAdLoaded += OnAdLoadedMethod;
-        //rewardBasedVideo.OnAdLoadFailed += OnAdLoadFailedMethod;
-        //rewardBasedVideo.OnAdDisplayFailed += OnAdDisplayFailedMethod;
-        //rewardBasedVideo.OnAdRewarded += OnAdRewardedMethod;
-        //rewardBasedVideo.OnAdClicked += OnAdClickedMethod;
-
-        Debug.Log("LevelPlay START MEthod --------------------------------------------------------------------------------");
-        if (Global.isIntersitialsEnabled)
-        {
-            RequestInterstitial();
-            RequestLaunchInterstitial();
-            RequestExitInterstitial();
-        }
-        if (enableBanner)
-        {
-            RequestBanner();
-            RequestBannerExit();
-        }
-        if (Global.isRewaredAdsEnabled)
-        {
-            RequestRewardBasedVideo();
-        }
-
-
-    }
-
-    #endregion
 
 
     //public void OnInitializationComplete()

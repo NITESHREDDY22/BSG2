@@ -17,7 +17,7 @@ public class SpinWheel : MonoBehaviour
     public GameObject FreeSpinBtn, WatchVideoSpinBtn, NoFreeSpinsAvailable;
     public bool _freeSpinAvailable = false;
     public AdManager _adManager;
-    void Start()
+    void OnEnable()
     {
         spinning = false;
         anglePerItem = 360 / prize.Count;
@@ -75,7 +75,7 @@ public class SpinWheel : MonoBehaviour
                 FreeSpinBtn.SetActive(false);
                 if (DayofYear == oldDate)
                 {
-                    if (_adManager.levelPlayrewardBasedVideo.IsAdReady())
+                    if (_adManager.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd() || _adManager.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
                     {
                         MakeWVAvaialable();
                     }
@@ -161,7 +161,11 @@ public class SpinWheel : MonoBehaviour
             OnWatchVideoSuccess();
         }
 #else
-        FindObjectOfType<AdManager>().ShowRewardedVideo();
+        AdManager._instance.ShowRewardedVideo((result)=>
+        {
+            if(result)
+            OnWatchVideoSuccess();
+        });
 #endif
 
         FirebaseEvents.instance.LogFirebaseEvent("watch_video_btn_clicked_spinpopup");
@@ -246,7 +250,7 @@ public class SpinWheel : MonoBehaviour
         MakeWVAvaialable();
 #else
      
-    if (_adManager.adMobRewardBasedVideo.CanShowAd() || _adManager.levelPlayrewardBasedVideo.IsAdReady())
+        if (_adManager.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd() || _adManager.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
         {
             MakeWVAvaialable();
         }

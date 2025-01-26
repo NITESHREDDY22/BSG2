@@ -40,7 +40,7 @@ public class LevelSelectionHandler : MonoBehaviour {
 
         for (int i = 0; i < unlockedLevels.Length; i++)
         {
-            Debug.Log(" 2uNLOCK lENGTH" + unlockedLevels.Length);
+            //Debug.Log(" 2uNLOCK lENGTH" + unlockedLevels.Length);
             GameObject LP = Instantiate(levelPrefab, levelsPanel.transform);
             LP.name = "Level_(" + (i + 1) + ")";
             LP.GetComponent<Button>().onClick.AddListener(() => SelectLevel(LP.transform));

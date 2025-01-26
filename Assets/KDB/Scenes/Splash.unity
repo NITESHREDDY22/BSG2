@@ -1478,10 +1478,6 @@ MonoBehaviour:
   iOS_interstitialID: 
   iOS_bannerID: 
   iOS_rewardedId: 
-  adMobInterstitialReady: 0
-  adMobLaunchInterstitialReady: 0
-  adMobExitInterstitialReady: 0
-  adMobRewardBasedVideoReady: 0
   enableUnityAds: 0
   androidGameID: 3804023
   androidRewardedVideoID: rewardedVideo

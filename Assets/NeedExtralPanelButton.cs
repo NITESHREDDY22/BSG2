@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class NeedExtralPanelButton : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    public static bool AlreadyShown=false;
+    private void OnEnable()
+    {
+        AlreadyShown = false;
+    }
+    void Start () {
 		
 	}
 	
@@ -20,21 +25,40 @@ public class NeedExtralPanelButton : MonoBehaviour {
         #if UNITY_EDITOR
                 GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                 AdManager._instance.rewardedvideosuccess = true;
-        #else
-                AdManager._instance.ShowRewardedVideo();
-        #endif
+#else
+                GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                AdManager._instance.ShowRewardedVideo(result=>
+                        {
+                            if(result)
+                            {   
+                            AdManager._instance.rewardedvideosuccess = true;
+                            GameManager.Instance.ingamevideosuccess();
+                            }
+                        });
+#endif
 
     }
 
     public static void needextraballactivateStatic()
     {
+        if (AlreadyShown)
+            return;
         //AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
         #if UNITY_EDITOR
                 GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                 AdManager._instance.rewardedvideosuccess = true;
-        #else
-                        AdManager._instance.ShowRewardedVideo();
-        #endif
+#else
+                        GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                        AdManager._instance.ShowRewardedVideo(result=>
+                        {
+                            if(result)
+                            {   
+                            AdManager._instance.rewardedvideosuccess = true;
+                            GameManager.Instance.ingamevideosuccess();
+                            AlreadyShown=true;
+                            }
+                        });
+#endif
 
     }
 

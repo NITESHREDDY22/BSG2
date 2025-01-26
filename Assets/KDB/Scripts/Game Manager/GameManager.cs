@@ -7,6 +7,7 @@ using System;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Collections;
+using static UnityEngine.Networking.UnityWebRequest;
 
 public class GameManager : MonoBehaviour
 {
@@ -74,26 +75,41 @@ public class GameManager : MonoBehaviour
         ballCounts = PlayerPrefsX.GetIntArray("ballPowerCounts", 2, 6);
         SetCountTexts();
         ShowBallsCount();
-        if (!(AdManager._instance.levelPlayInterstitial != null && AdManager._instance.levelPlayInterstitial.IsAdReady()))
+        //TODO: 
+        if (!AdManager.onlyOnce)
         {
-            if (Global.isIntersitialsEnabled)
-            {
-                AdManager._instance.RequestInterstitial();
-            }
-        }
+            //if (!(AdManager._instance.levelPlayInterstitial != null && AdManager._instance.levelPlayInterstitial.IsAdReady()))
+            //{
+            //}
 
-        if (AdManager._instance.levelPlayrewardBasedVideo == null || !AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
-        {
+           // if (AdManager._instance.levelPlayrewardBasedVideo == null || !AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
+            //}
+            //{   
+
+                //if (Global.isIntersitialsEnabled)
+                //{
+                //    AdManager._instance.RequestInterstitial();
+                //}
             if (Global.isRewaredAdsEnabled)
             {
                 AdManager._instance.RequestRewardBasedVideo();
             }
+            AdManager.onlyOnce = true;
         }
+
         // AdManager._instance.showbanner();
 
         SkipLevelBtn.SetActive(false);
         //if (Global.noOfTries>= Global.retryCount &&((AdManager._instance.rewardBasedVideo.IsLoaded() || (AdManager._instance.unityRewardReady && AdManager._instance.enableUnityAds))))
-        if (Global.noOfTries >= Global.retryCount && AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
+
+        if (Global.noOfTries >= Global.retryCount && 
+            ((AdManager._instance.adMobNetworkHandler!=null && 
+            AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null && 
+            AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
+            ||
+            (AdManager._instance.levelPlayNetworkHandler!=null &&
+            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
+            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())))
         {
             SkipLevelBtn.SetActive(true);
         }
@@ -173,8 +189,15 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         currentAdDisplayTime = Time.time;
-        if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue) && (AdManager._instance.levelPlayrewardBasedVideo != null && AdManager._instance.levelPlayrewardBasedVideo.IsAdReady()))
-        {
+        //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
+        if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue)
+            && ((AdManager._instance.adMobNetworkHandler!=null && 
+                AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo != null &&
+                AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
+                || (AdManager._instance.levelPlayNetworkHandler!=null && 
+                AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo != null &&
+                AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())))
+            {
             AdManager._instance.rewardTypeToUnlock = RewardType.continuegame;
             if (rewardtext)
             {
@@ -536,6 +559,11 @@ public class GameManager : MonoBehaviour
                         }
                         break;
                 }
+
+                if(AdManager._instance.rewardedvideosuccess)
+                {
+                    AdManager._instance.rewardedvideosuccess = false;
+                }
             }
 
 
@@ -705,7 +733,16 @@ public class GameManager : MonoBehaviour
             GameManager.Instance.gameState = GameState.Reward_Video_Completed;
             AdManager._instance.rewardedvideosuccess = true;
 #else
-        AdManager._instance.ShowRewardedVideo();
+            AdManager._instance.ShowRewardedVideo(result =>
+            {
+                // Debug.Log("asdf Reward status " + result);
+                if (result)
+                {
+                GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                AdManager._instance.rewardedvideosuccess=true;
+                ingamevideosuccess();
+                }
+            });
 #endif
         }
     }
@@ -719,7 +756,16 @@ public class GameManager : MonoBehaviour
             GameManager.Instance.gameState = GameState.Reward_Video_Completed;
             AdManager._instance.rewardedvideosuccess = true;
 #else
-        AdManager._instance.ShowRewardedVideo();
+            AdManager._instance.ShowRewardedVideo(result =>
+            {
+                // Debug.Log("asdf Reward status " + result);
+                if (result)
+                {
+                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    AdManager._instance.rewardedvideosuccess=true;
+                    ingamevideosuccess();
+                }
+            });
 #endif
         }
     }
@@ -1178,7 +1224,12 @@ public class GameManager : MonoBehaviour
                     AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                     rewardCanvas.SetActive(true);
 #elif UNITY_ANDROID
-                    if (AdManager._instance.adMobRewardBasedVideo.CanShowAd() || AdManager._instance.levelPlayrewardBasedVideo.IsAdReady())
+                    if ((AdManager._instance.adMobNetworkHandler!=null &&
+                        AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null &&
+                        AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd()) 
+                        || (AdManager._instance.levelPlayNetworkHandler!=null &&
+                            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
+                            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady()))
                     {
                     AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                     rewardCanvas.SetActive(true);
