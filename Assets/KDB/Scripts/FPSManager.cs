@@ -10,8 +10,6 @@ public class FPSManager : MonoBehaviour
     {
         Application.targetFrameRate = fps;
 
-        "PlayerPref.DeleteAll()"
-
     }
 
 }
