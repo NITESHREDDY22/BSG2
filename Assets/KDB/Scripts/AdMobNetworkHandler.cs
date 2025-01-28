@@ -89,7 +89,7 @@ public class AdMobNetworkHandler
         }
         if (!keyValuePairs.ContainsKey(AdType.Interstital))
         {
-            keyValuePairs.Add(AdType.Interstital, new AdItem(adMobLaunchinterStitialId, adMobInterstitial, false, false));
+            keyValuePairs.Add(AdType.Interstital, new AdItem(adMobInterstitialId, adMobInterstitial, false, false));
         }
     }
     public void Initialize(bool isAdMobInitialized)
