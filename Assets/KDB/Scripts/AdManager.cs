@@ -41,7 +41,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public string adMobInterstitialId;
     public string adMobLaunchinterStitialId;
     public string admobexitInterstitialId;
-    public string adMobRewardBasedVideoId;    
+    public string adMobRewardBasedVideoId;
+    public string adMobContinueModelRewardBasedVideoId;
+
 
     public string bannerId;
 
@@ -291,18 +293,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     void Initialize()
     {
-        levelPlayNetworkHandler = new LevelPlayNetworkHandler();
         levelPlayNetworkHandler.SetInterStitalId(interstitialAdUnitId);
         levelPlayNetworkHandler.SetLaunchInterStitalId(LaunchinterstitialAdUnitId);
         levelPlayNetworkHandler.SetRewardId(rewardAdUnitId);
-        levelPlayNetworkHandler.Initialize();
-        levelPlayNetworkHandler.InitAdManager(this);
 
-        adMobNetworkHandler = new AdMobNetworkHandler();
         adMobNetworkHandler.SetInterStitalId(adMobInterstitialId);
         adMobNetworkHandler.SetLaunchInterStitalId(adMobLaunchinterStitialId);
         adMobNetworkHandler.SetRewardId(adMobRewardBasedVideoId);
-        adMobNetworkHandler.InitAdManager(this);
+        adMobNetworkHandler.SetContinueRewardId(adMobContinueModelRewardBasedVideoId);
         adMobNetworkHandler.Init();
 
     }
@@ -742,7 +740,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             || (levelPlayNetworkHandler.levelPlayLaunchInterstitial != null && levelPlayNetworkHandler.levelPlayLaunchInterstitial.IsAdReady()));
     }
 
-    public void ShowRewardedVideo(Action<bool> callBack)
+    public void ShowRewardedVideo(Action<bool> callBack,AdType adType=AdType.Reward)
     {
         string rewardedVideoID = androidRewardedVideoID;
 
@@ -752,7 +750,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
        
         try
         {
-            adMobNetworkHandler.ShowAdmobRewardedVideo(ShowLevelPlayRewarVideo);
+           
+            adMobNetworkHandler.ShowAdmobRewardedVideo(ShowLevelPlayRewarVideo,adType);       
             void ShowLevelPlayRewarVideo(bool flag)
             {
                 if (!flag)
@@ -780,24 +779,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     }
 
-    public void RequestRewardBasedVideo()
+    public void RequestRewardBasedVideo(AdType adType=AdType.Reward)
     {
-        Debug.Log("Asdf RequestRewardBasedVideo..");
-        adMobNetworkHandler.RequestRewardBasedVideo();
-        levelPlayNetworkHandler.RequestRewardBasedVideo();
+        Debug.Log("Asdf RequestRewardBasedVideo..");       
+        adMobNetworkHandler.RequestRewardBasedVideo(adType);      
+        levelPlayNetworkHandler.RequestRewardBasedVideo(adType);   
+
     }
     
-    public void RequestWithDelay(float timer,Action callback)
-    {
-        StopCoroutine(RequestDelay(timer, callback));
-        StartCoroutine(RequestDelay(timer, callback));
-    }
 
-    IEnumerator RequestDelay(float timer,Action callBack)
-    {
-        yield return new WaitForSeconds(timer);
-        callBack?.Invoke();
-    }
 
     #endregion
 

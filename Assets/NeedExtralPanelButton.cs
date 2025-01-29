@@ -34,7 +34,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
                             AdManager._instance.rewardedvideosuccess = true;
                             GameManager.Instance.ingamevideosuccess();
                             }
-                        });
+                        },AdType.RewardContinue);
 #endif
 
     }
@@ -47,6 +47,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
         #if UNITY_EDITOR
                 GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                 AdManager._instance.rewardedvideosuccess = true;
+
 #else
                         GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                         AdManager._instance.ShowRewardedVideo(result=>
@@ -57,7 +58,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
                             GameManager.Instance.ingamevideosuccess();
                             AlreadyShown=true;
                             }
-                        });
+                        },AdType.RewardContinue);
 #endif
 
     }

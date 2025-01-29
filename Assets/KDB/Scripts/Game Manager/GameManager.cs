@@ -92,7 +92,9 @@ public class GameManager : MonoBehaviour
                 //}
             if (Global.isRewaredAdsEnabled)
             {
-                AdManager._instance.RequestRewardBasedVideo();
+                AdManager._instance.RequestRewardBasedVideo(AdType.Reward);
+                AdManager._instance.RequestRewardBasedVideo(AdType.RewardContinue);
+
             }
             AdManager.onlyOnce = true;
         }
