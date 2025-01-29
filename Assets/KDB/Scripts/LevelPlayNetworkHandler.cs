@@ -157,6 +157,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
     public void ShowInterstitialAd(AdType adType, Action<bool> callBack = null)
     {
 
+
         //Debug.Log("Asdf Level ShowInterstitialAd 1111");
 
         AdItem item = null;
@@ -266,6 +267,10 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
     public void ShowRewardBasedVideo(Action<bool> callback=null,AdType adType=AdType.Reward)
     {
+#if UNITY_EDITOR
+        callback?.Invoke(true);
+#endif
+
         AdItem item = null;
         if (keyValuePairs.TryGetValue(adType, out AdItem adItem))
         {

@@ -228,7 +228,6 @@ public class AdMobNetworkHandler :MonoBehaviour
     public void ShowInterstitialAd(AdType adType, Action<bool> callBack = null)
     {
         //Debug.Log("Asdf ShowInterstitialAd 0000");
-
         AdItem item = null;
         if (keyValuePairs.TryGetValue(adType, out AdItem adItem))
         {
@@ -261,6 +260,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
     void OnAdLoadFailed(AdType adType)
     {
+      
         var item = keyValuePairs[adType];
         if (item != null)
         {
@@ -294,7 +294,8 @@ public class AdMobNetworkHandler :MonoBehaviour
 
     public void RequestRewardBasedVideo(AdType adType=AdType.Reward)
     {
-        AdItem item = null;
+
+         AdItem item = null;
 
         if (keyValuePairs.TryGetValue(adType, out AdItem adItem))
         {
@@ -485,6 +486,10 @@ public class AdMobNetworkHandler :MonoBehaviour
 
     public void ShowAdmobRewardedVideo(Action<bool> callBack,AdType adType=AdType.Reward)
     {
+
+#if UNITY_EDITOR
+        callBack?.Invoke(true);
+#endif
 
         AdItem item = null;
         if (keyValuePairs.TryGetValue(adType, out AdItem adItem))

@@ -21,21 +21,17 @@ public class NeedExtralPanelButton : MonoBehaviour {
     public  void needextraballactivate()
     {
         Debug.Log("NEEDEXTRA OK CLICKED");
-        AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
-        #if UNITY_EDITOR
-                GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                AdManager._instance.rewardedvideosuccess = true;
-#else
-                GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                AdManager._instance.ShowRewardedVideo(result=>
-                        {
-                            if(result)
-                            {   
-                            AdManager._instance.rewardedvideosuccess = true;
-                            GameManager.Instance.ingamevideosuccess();
-                            }
-                        },AdType.RewardContinue);
-#endif
+        AdManager._instance.rewardTypeToUnlock = RewardType.extraball;       
+        AdManager._instance.ShowRewardedVideo(result=>
+                {
+                    if(result)
+                    {
+                        GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                        AdManager._instance.rewardedvideosuccess = true;
+                        GameManager.Instance.ingamevideosuccess();
+                    }
+                },AdType.RewardContinue);
+
 
     }
 
@@ -43,24 +39,19 @@ public class NeedExtralPanelButton : MonoBehaviour {
     {
         if (AlreadyShown)
             return;
-        //AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
-        #if UNITY_EDITOR
+
+       // AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
+       
+        AdManager._instance.ShowRewardedVideo(result=>
+        {
+            if(result)
+            {
                 GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                 AdManager._instance.rewardedvideosuccess = true;
-
-#else
-                        GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                        AdManager._instance.ShowRewardedVideo(result=>
-                        {
-                            if(result)
-                            {   
-                            AdManager._instance.rewardedvideosuccess = true;
-                            GameManager.Instance.ingamevideosuccess();
-                            AlreadyShown=true;
-                            }
-                        },AdType.RewardContinue);
-#endif
-
+                GameManager.Instance.ingamevideosuccess();
+                AlreadyShown =true;
+            }
+        },AdType.RewardContinue);
     }
 
 

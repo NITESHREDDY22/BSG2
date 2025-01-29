@@ -12,6 +12,7 @@ using com.unity3d.mediation;
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
 using UnityEngine.Assertions.Must;
+using UnityEngine.Networking;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -148,6 +149,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
         }
         Initialize();
+
+#if !UNITY_EDITOR
+        StartCoroutine(CheckInternet(0));
+#endif
     }
 
     private IEnumerator Start()
@@ -238,7 +243,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         try
         {
 
-            InitializeAdNetworks();
+            StartCoroutine(InitializeAdNetworks());
             lastAdDisplayTime = Time.time;
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         }catch(Exception e)
@@ -304,8 +309,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         adMobNetworkHandler.Init();
 
     }
-    void InitializeAdNetworks()
+    IEnumerator InitializeAdNetworks()
     {
+        yield return null;
         IronSource.Agent.validateIntegration();
         Debug.Log("unity-script: unity version" + IronSource.unityVersion());
         // SDK init
@@ -962,6 +968,34 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         { }
     }
 
+
+    IEnumerator CheckInternet(float timer=60)
+    {
+        yield return new WaitForSeconds(timer);
+        using (UnityWebRequest request = UnityWebRequest.Get("http://clients3.google.com/generate_204"))
+        {
+            request.timeout = 5;
+            yield return request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                try
+                {
+                    if (FirebaseEvents.instance != null)
+                    {
+                        FirebaseEvents.instance.LogFirebaseEvent("Inetnet Connectivity", "Connected succesfully ");
+                    }
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            else
+            {
+                StartCoroutine(CheckInternet());
+            }
+        }
+    }
     #region Init callback handlers
 
     #endregion

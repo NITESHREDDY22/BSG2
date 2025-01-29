@@ -730,22 +730,19 @@ public class GameManager : MonoBehaviour
     {
         if (AdManager._instance != null)
         {
-            AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
-#if UNITY_EDITOR
-            GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-            AdManager._instance.rewardedvideosuccess = true;
-#else
+            AdManager._instance.rewardTypeToUnlock = RewardType.extraball;     
+
             AdManager._instance.ShowRewardedVideo(result =>
             {
                 // Debug.Log("asdf Reward status " + result);
                 if (result)
                 {
-                GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                AdManager._instance.rewardedvideosuccess=true;
-                ingamevideosuccess();
+                    gameState = GameState.Reward_Video_Completed;
+                    AdManager._instance.rewardedvideosuccess = true;
+                    ingamevideosuccess();
                 }
-            });
-#endif
+            },AdType.RewardContinue);
+
         }
     }
 
@@ -754,21 +751,18 @@ public class GameManager : MonoBehaviour
         if (AdManager._instance != null)
         {
             AdManager._instance.rewardTypeToUnlock = RewardType.skiplevel;
-#if UNITY_EDITOR
-            GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-            AdManager._instance.rewardedvideosuccess = true;
-#else
+
             AdManager._instance.ShowRewardedVideo(result =>
             {
                 // Debug.Log("asdf Reward status " + result);
                 if (result)
                 {
                     GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                    AdManager._instance.rewardedvideosuccess=true;
+                    AdManager._instance.rewardedvideosuccess = true;
                     ingamevideosuccess();
                 }
-            });
-#endif
+            },AdType.Reward);
+
         }
     }
     public GameObject getBall()
