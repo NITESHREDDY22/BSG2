@@ -1472,7 +1472,16 @@ MonoBehaviour:
   ReplayAdInterval: 90
   enableBanner: 0
   enableGreedy: 0
-  adMobInterstitialId: ca-app-pub-3411062052281263/3692188687
+  enableUnityAds: 0
+  androidGameID: 3804023
+  androidRewardedVideoID: rewardedVideo
+  iosRewardedVideoID: 
+  unityRewardReady: 0
+  rewardTypeToUnlock: 0
+  rewardedvideosuccess: 0
+  LoadingPanel: {fileID: 925032424}
+  StorePanel: {fileID: 1219491934}
+  adMobInterstitialId: ca-app-pub-3411062052281263/3692188687**
   useAdMobInterStitial: 1
   adMobLaunchinterStitialId: ca-app-pub-3411062052281263/3169444505
   useLaunchAdMobInterStitial: 1
@@ -1484,15 +1493,6 @@ MonoBehaviour:
   iOS_interstitialID: 
   iOS_bannerID: 
   iOS_rewardedId: 
-  enableUnityAds: 0
-  androidGameID: 3804023
-  androidRewardedVideoID: rewardedVideo
-  iosRewardedVideoID: 
-  unityRewardReady: 0
-  rewardTypeToUnlock: 0
-  rewardedvideosuccess: 0
-  LoadingPanel: {fileID: 925032424}
-  StorePanel: {fileID: 1219491934}
   appKey: 1ab7561b5
   interstitialAdUnitId: z8axy0332hnr585z
   useLevelPlayInterStital: 0
