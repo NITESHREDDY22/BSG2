@@ -1473,10 +1473,13 @@ MonoBehaviour:
   enableBanner: 0
   enableGreedy: 0
   adMobInterstitialId: ca-app-pub-3411062052281263/3692188687
+  useAdMobInterStitial: 1
   adMobLaunchinterStitialId: ca-app-pub-3411062052281263/3169444505
-  admobexitInterstitialId: ca-app-pub-3411062052281263/3169444505----
+  useLaunchAdMobInterStitial: 1
   adMobRewardBasedVideoId: ca-app-pub-3411062052281263/8038627800
+  useadMobRewardBasedVideo: 1
   adMobContinueModelRewardBasedVideoId: ca-app-pub-3411062052281263/5294228744
+  useadMobContinueRewardBasedVideo: 1
   bannerId: ca-app-pub-3411062052281263/7601829325
   iOS_interstitialID: 
   iOS_bannerID: 
@@ -1491,10 +1494,12 @@ MonoBehaviour:
   LoadingPanel: {fileID: 925032424}
   StorePanel: {fileID: 1219491934}
   appKey: 1ab7561b5
-  bannerAdUnitId: thnfvcsog13bhn08
   interstitialAdUnitId: z8axy0332hnr585z
+  useLevelPlayInterStital: 0
   rewardAdUnitId: hgncqhneupu7bppt
+  useLevelPlayReward: 1
   LaunchinterstitialAdUnitId: 68ozdvrgw2w8rw44
+  useLaunchInterStitial: 1
   adMobNetworkHandler: {fileID: 1163193295}
   levelPlayNetworkHandler: {fileID: 1163193294}
 --- !u!4 &1163193293

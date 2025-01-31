@@ -13,6 +13,7 @@ using GoogleMobileAds;
 using GoogleMobileAds.Api;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Networking;
+using GoogleMobileAds.Common;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -35,27 +36,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public bool enableBanner;
     public bool enableGreedy;
 
-    #region Admob
-
-    [Header(" Android ")]
-    //public static string interstitialId = "ca-app-pub-3411062052281263/3692188687";
-    public string adMobInterstitialId;
-    public string adMobLaunchinterStitialId;
-    public string admobexitInterstitialId;
-    public string adMobRewardBasedVideoId;
-    public string adMobContinueModelRewardBasedVideoId;
-
-
-    public string bannerId;
-
-    [Header(" iOS ")]
-    public string iOS_interstitialID;
-    public string iOS_bannerID;
-    public string iOS_rewardedId;
-     
-    private bool isAdMobInitialized;
-    
-    #endregion
+  
 
     #region Unity Ads
 
@@ -82,19 +63,49 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [Header("Store Panel")]
     public GameObject StorePanel;
 
+
+    #region Admob
+
+    [Header(" Android ")]
+    //public static string interstitialId = "ca-app-pub-3411062052281263/3692188687";
+    public string adMobInterstitialId;
+    public bool useAdMobInterStitial;
+
+    public string adMobLaunchinterStitialId;
+    public bool useLaunchAdMobInterStitial;
+    // public string admobexitInterstitialId;
+    public string adMobRewardBasedVideoId;
+    public bool useadMobRewardBasedVideo;
+
+    public string adMobContinueModelRewardBasedVideoId;
+    public bool useadMobContinueRewardBasedVideo;
+
+
+    public string bannerId;
+
+    [Header(" iOS ")]
+    public string iOS_interstitialID;
+    public string iOS_bannerID;
+    public string iOS_rewardedId;
+
+    private bool isAdMobInitialized;
+
+    #endregion
+
     ////fb ads
     //private AudienceNetwork.InterstitialAd fbInterstitialAd;
     //private bool isFBLoaded;
     [Header("LEVEL PLAY")]
     [SerializeField] string appKey = "1ab7561b5";
-    [SerializeField] string bannerAdUnitId = "thnfvcsog13bhn08";
+   // [SerializeField] string bannerAdUnitId = "thnfvcsog13bhn08";
     [SerializeField] string interstitialAdUnitId = "z8axy0332hnr585z";
+    public bool useLevelPlayInterStital;
     [SerializeField] string rewardAdUnitId = "hgncqhneupu7bppt";
+    public bool useLevelPlayReward;
     [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
+    public bool useLaunchInterStitial;
 
-    #region LevelPlay
- 
-    #endregion
+   
 
     public AdMobNetworkHandler adMobNetworkHandler;
     public LevelPlayNetworkHandler levelPlayNetworkHandler;
@@ -153,6 +164,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 #if !UNITY_EDITOR
         StartCoroutine(CheckInternet(0));
 #endif
+       
     }
 
     private IEnumerator Start()
@@ -298,14 +310,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     void Initialize()
     {
-        levelPlayNetworkHandler.SetInterStitalId(interstitialAdUnitId);
-        levelPlayNetworkHandler.SetLaunchInterStitalId(LaunchinterstitialAdUnitId);
-        levelPlayNetworkHandler.SetRewardId(rewardAdUnitId);
+        levelPlayNetworkHandler.SetInterStitalId(interstitialAdUnitId,useLevelPlayInterStital);
+        levelPlayNetworkHandler.SetLaunchInterStitalId(LaunchinterstitialAdUnitId,useLaunchAdMobInterStitial);
+        levelPlayNetworkHandler.SetRewardId(rewardAdUnitId,useLevelPlayReward);
 
-        adMobNetworkHandler.SetInterStitalId(adMobInterstitialId);
-        adMobNetworkHandler.SetLaunchInterStitalId(adMobLaunchinterStitialId);
-        adMobNetworkHandler.SetRewardId(adMobRewardBasedVideoId);
-        adMobNetworkHandler.SetContinueRewardId(adMobContinueModelRewardBasedVideoId);
+        adMobNetworkHandler.SetInterStitalId(adMobInterstitialId,useAdMobInterStitial);
+        adMobNetworkHandler.SetLaunchInterStitalId(adMobLaunchinterStitialId,useLaunchAdMobInterStitial);
+        adMobNetworkHandler.SetRewardId(adMobRewardBasedVideoId,useadMobRewardBasedVideo);
+        adMobNetworkHandler.SetContinueRewardId(adMobContinueModelRewardBasedVideoId,useadMobContinueRewardBasedVideo);
         adMobNetworkHandler.Init();
 
     }
@@ -332,6 +344,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
 
         });
+        MobileAds.RaiseAdEventsOnUnityMainThread = true;
     }
 
     void SdkInitializationCompletedEvent(LevelPlayConfiguration config)

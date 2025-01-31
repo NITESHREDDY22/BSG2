@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 using System.Collections;
+using GoogleMobileAds.Common;
 
 public class LevelPlayNetworkHandler : MonoBehaviour
 {
@@ -59,27 +60,43 @@ public class LevelPlayNetworkHandler : MonoBehaviour
             keyValuePairs.Add(AdType.Reward, new AdItem(rewardAdUnitId, levelPlayrewardBasedVideo, false, false));
     }
 
-    public void SetLaunchInterStitalId(string LaunchinterstitialAdUnitId)
+    public void SetLaunchInterStitalId(string LaunchinterstitialAdUnitId, bool canUse=true)
     {
 #if UNITY_EDITOR
         LaunchinterstitialAdUnitId = string.Empty;
 #endif
+        if (!canUse)
+        {
+            LaunchinterstitialAdUnitId = string.Empty;
+        }
+
         this.LaunchinterstitialAdUnitId = LaunchinterstitialAdUnitId;
     }
 
-    public void SetInterStitalId(string interstitialAdUnitId)
+    public void SetInterStitalId(string interstitialAdUnitId, bool canUse = true)
     {
 #if UNITY_EDITOR
         interstitialAdUnitId = string.Empty;
 #endif
+        if (!canUse)
+        {
+            interstitialAdUnitId = string.Empty;
+
+        }
+
         this.interstitialAdUnitId = interstitialAdUnitId;
     }
 
-    public void SetRewardId(string rewardAdUnitId)
+    public void SetRewardId(string rewardAdUnitId, bool canUse = true)
     {
 #if UNITY_EDITOR
         rewardAdUnitId = string.Empty;
 #endif
+        if (!canUse)
+        {
+            rewardAdUnitId = string.Empty;
+
+        }
         this.rewardAdUnitId = rewardAdUnitId;
     }
 
@@ -97,61 +114,74 @@ public class LevelPlayNetworkHandler : MonoBehaviour
             return;
         //Debug.Log("Asdf Level RequestLaunchInterstitial 2222");
 
-
-        FireBaseActions(adType==AdType.Launch? AdContent.LevelPlayLaunchRequested :AdContent.levelPlayInterstitalRequested, AdMode.Requested, SuccessStatus.Success);
-
-        if (!item.isAdReady)
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
         {
-            //Debug.Log("Asdf Level RequestLaunchInterstitial 3333");
-
-            if (item.Interstitial != null)
+            if (!item.isAdReady)
             {
-                item.Interstitial.DestroyAd();
-                item.Interstitial = null;
-                item.Interstitial = new LevelPlayInterstitialAd(item.AdID);
-                if(adType==AdType.Launch)
-                {
-                    levelPlayLaunchInterstitial=item.Interstitial;
-                }
-                if(adType == AdType.Interstital)
-                {
-                    levelPlayInterstitial=item.Interstitial;
-                }
-                //B Debug.Log("LevelPlay Request interstital called");
+                //Debug.Log("Asdf Level RequestLaunchInterstitial 3333");
+                //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Requested, SuccessStatus.Success);
 
-                item.isAdRequested = true;
-                item.Interstitial.LoadAd();
-                item.Interstitial.OnAdLoadFailed += (x) =>
+                if (item.Interstitial != null)
                 {
-                    item.isAdRequested = false;
-                    InterstitialOnAdLoadFailedEvent(x,adType);
-                    //Debug.Log("Asdf Level RequestLaunchInterstitial 4444");
-                    FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Loaded, SuccessStatus.Failed);
-
-                };
-                item.Interstitial.OnAdClosed += (x) => 
-                {
-                    item.isAdRequested = false;
-                    item.isAdReady = false;
-                    InterstitialOnAdClosedEvent(x); 
-                    if (adType != AdType.Launch)
+                    item.Interstitial.DestroyAd();
+                    item.Interstitial = null;
+                    item.Interstitial = new LevelPlayInterstitialAd(item.AdID);
+                    if (adType == AdType.Launch)
                     {
-                        RequestInterstitial(adType);
+                        levelPlayLaunchInterstitial = item.Interstitial;
                     }
-                    FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchShown : AdContent.levelPlayInterstitalshown, AdMode.Shown, SuccessStatus.Success);
+                    if (adType == AdType.Interstital)
+                    {
+                        levelPlayInterstitial = item.Interstitial;
+                    }
+                    //B Debug.Log("LevelPlay Request interstital called");
 
-                };
-                item.Interstitial.OnAdLoaded += (x)=> 
-                { 
-                    item.isAdReady = true;
-                    InterstitialOnAdLoadedEvent(x);
-                    //Debug.Log("Asdf Level RequestLaunchInterstitial 55555");
+                    item.isAdRequested = true;
+                    item.Interstitial.LoadAd();
+                    item.Interstitial.OnAdLoadFailed += (x) =>
+                    {
+                        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                        {
 
-                    FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Loaded, SuccessStatus.Success);
+                            item.isAdRequested = false;
+                            InterstitialOnAdLoadFailedEvent(x, adType);
+                            //Debug.Log("Asdf Level RequestLaunchInterstitial 4444");
+                            //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Loaded, SuccessStatus.Failed);
 
-                };
+                        });
+                    };
+                    item.Interstitial.OnAdClosed += (x) =>
+                    {
+                        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                        {
+
+                            item.isAdRequested = false;
+                            item.isAdReady = false;
+                            InterstitialOnAdClosedEvent(x);
+                            if (adType != AdType.Launch)
+                            {
+                                RequestInterstitial(adType);
+                            }
+                            FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchShown : AdContent.levelPlayInterstitalshown, AdMode.Shown, SuccessStatus.Success);
+                        });
+
+                    };
+                    item.Interstitial.OnAdLoaded += (x) =>
+                    {
+                        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                        {
+                            item.isAdReady = true;
+                            InterstitialOnAdLoadedEvent(x);
+                            //Debug.Log("Asdf Level RequestLaunchInterstitial 55555");
+
+                            FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Loaded, SuccessStatus.Success);
+
+                        });
+
+                    };
+                }
             }
-        }
+        });
     }
 
     public void ShowInterstitialAd(AdType adType, Action<bool> callBack = null)
@@ -170,7 +200,10 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
         if (item != null && item.Interstitial!= null && item.Interstitial.IsAdReady())
         {
-            item.Interstitial.ShowAd(); 
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                item.Interstitial.ShowAd(); 
+            });
         //Debug.Log("Asdf Level ShowInterstitialAd 3333");
 
         }
@@ -179,11 +212,14 @@ public class LevelPlayNetworkHandler : MonoBehaviour
             //Debug.Log("Asdf Level ShowInterstitialAd 44444");
 
             //B Debug.Log("level ad can't shown ");
-            FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchShown : AdContent.levelPlayInterstitalshown, AdMode.Shown, SuccessStatus.Failed);
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchShown : AdContent.levelPlayInterstitalshown, AdMode.Shown, SuccessStatus.Failed);
+            });
 
         }
     }
-    
+
     public void RequestRewardBasedVideo(AdType adType)
     {
         AdItem item = null;
@@ -196,33 +232,51 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         if (item == null || string.IsNullOrEmpty(item.AdID) || item.isAdRequested)
             return;
 
-        if (!item.isAdReady && item.levelPlayrewardBasedVideo != null)
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
         {
-            item.levelPlayrewardBasedVideo.DestroyAd();
-            item.levelPlayrewardBasedVideo = null;
-            item.levelPlayrewardBasedVideo = new LevelPlayRewardedAd(rewardAdUnitId);
-            levelPlayrewardBasedVideo=item.levelPlayrewardBasedVideo;
 
-            item.levelPlayrewardBasedVideo.LoadAd();
-            item.levelPlayrewardBasedVideo.OnAdClosed += (x) =>
+            if (!item.isAdReady && item.levelPlayrewardBasedVideo != null)
             {
-                OnAdClosedMethod(x,item,adType);
+                item.levelPlayrewardBasedVideo.DestroyAd();
+                item.levelPlayrewardBasedVideo = null;
+                item.levelPlayrewardBasedVideo = new LevelPlayRewardedAd(rewardAdUnitId);
+                levelPlayrewardBasedVideo = item.levelPlayrewardBasedVideo;
 
-            };
-            item.levelPlayrewardBasedVideo.OnAdLoaded +=(x)=>
-            {
-                OnAdLoadedMethod(x,item);               
-            };
-            item.levelPlayrewardBasedVideo.OnAdLoadFailed += (x) =>
-            {
-                OnAdLoadFailedMethod(x,item,adType);
-               
-            };
-            item.levelPlayrewardBasedVideo.OnAdRewarded += (x,y) =>
-            {
-                OnAdRewardedMethod(x,y,item);
-            };
-        }
+                item.levelPlayrewardBasedVideo.LoadAd();
+                item.levelPlayrewardBasedVideo.OnAdClosed += (x) =>
+                {
+                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    {
+                        OnAdClosedMethod(x, item, adType);
+                    });
+
+                };
+                item.levelPlayrewardBasedVideo.OnAdLoaded += (x) =>
+                {
+                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    {
+                        OnAdLoadedMethod(x, item);
+
+                    });
+                };
+                item.levelPlayrewardBasedVideo.OnAdLoadFailed += (x) =>
+                {
+                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    {
+                        OnAdLoadFailedMethod(x, item, adType);
+
+                    });
+
+                };
+                item.levelPlayrewardBasedVideo.OnAdRewarded += (x, y) =>
+                {
+                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    {
+                        OnAdRewardedMethod(x, y, item);
+                    });
+                };
+            }
+        });
     }
 
     private void  OnAdRewardedMethod(LevelPlayAdInfo info, LevelPlayReward reward,AdItem item)
@@ -235,7 +289,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
     private void OnAdLoadFailedMethod(LevelPlayAdError error,AdItem adItem,AdType adType)
     {
         //should add delay      
-        FireBaseActions(AdContent.levelPlayRewardRequested , AdMode.Loaded, SuccessStatus.Failed);
+        //TODO : FireBaseActions(AdContent.levelPlayRewardRequested , AdMode.Loaded, SuccessStatus.Failed);
         adItem.isAdReady = false;
         adItem.isAdRequested = false;
         //B Debug.Log("LevelPlay RequestWithDelay Reward called");
@@ -249,7 +303,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
     {
         //Debug.Log("Asdf RequestRewardBasedVideo..levelPlay2222");
         item.isAdReady= true;
-        FireBaseActions(AdContent.levelPlayRewardRequested, AdMode.Loaded, SuccessStatus.Success);
+        //TODO : FireBaseActions(AdContent.levelPlayRewardRequested, AdMode.Loaded, SuccessStatus.Success);
 
         //throw new NotImplementedException();
     }
@@ -281,8 +335,11 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         {           
             try
             {
-                this.callback = callback;
-                item.levelPlayrewardBasedVideo.ShowAd();
+                MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                {                    
+                    this.callback = callback;
+                    item.levelPlayrewardBasedVideo.ShowAd();
+                });
             }
             catch (Exception e)
             { }
@@ -358,5 +415,5 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         {
 
         }
-    }
+    } 
 }
