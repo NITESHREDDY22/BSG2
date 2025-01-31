@@ -1481,7 +1481,7 @@ MonoBehaviour:
   rewardedvideosuccess: 0
   LoadingPanel: {fileID: 925032424}
   StorePanel: {fileID: 1219491934}
-  adMobInterstitialId: ca-app-pub-3411062052281263/3692188687**
+  adMobInterstitialId: ca-app-pub-3411062052281263/3692188687
   useAdMobInterStitial: 1
   adMobLaunchinterStitialId: ca-app-pub-3411062052281263/3169444505
   useLaunchAdMobInterStitial: 1
