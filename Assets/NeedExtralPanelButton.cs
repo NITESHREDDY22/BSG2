@@ -30,7 +30,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
                         AdManager._instance.rewardedvideosuccess = true;
                         GameManager.Instance.ingamevideosuccess();
                     }
-                },AdType.RewardContinue);
+                },AdType.Reward);
 
 
     }
@@ -40,18 +40,45 @@ public class NeedExtralPanelButton : MonoBehaviour {
         if (AlreadyShown)
             return;
 
-       // AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
-       
-        AdManager._instance.ShowRewardedVideo(result=>
+        // AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
+        if (AdManager._instance.rewardTypeToUnlock == RewardType.continuegame)
         {
-            if(result)
+            AdManager._instance.ShowRewardedInterstitial(result =>
             {
-                GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                AdManager._instance.rewardedvideosuccess = true;
-                GameManager.Instance.ingamevideosuccess();
-                AlreadyShown =true;
-            }
-        },AdType.RewardContinue);
+                if (result)
+                {
+                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    AdManager._instance.rewardedvideosuccess = true;
+                    GameManager.Instance.ingamevideosuccess();
+                    AlreadyShown = true;
+                }
+                else
+                {
+                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    AdManager._instance.rewardedvideosuccess = false;
+                    GameManager.Instance.ingamevideosuccess();
+                }
+            }, AdType.RewardedInterStitial);
+        }
+        else
+        {
+            AdManager._instance.ShowRewardedVideo(result =>
+            {
+                if (result)
+                {
+                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    AdManager._instance.rewardedvideosuccess = true;
+                    GameManager.Instance.ingamevideosuccess();
+                    AlreadyShown = true;
+                }
+                else
+                {
+                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    AdManager._instance.rewardedvideosuccess = false;
+                    GameManager.Instance.ingamevideosuccess();
+                }
+            }, AdType.Reward);
+        }
     }
 
 

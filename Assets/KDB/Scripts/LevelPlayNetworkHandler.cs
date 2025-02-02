@@ -20,6 +20,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
     private int adDelayTimer = 60;
 
+    private AdConfig adConfig;
     public class AdItem
     {
         public string AdID;
@@ -60,47 +61,49 @@ public class LevelPlayNetworkHandler : MonoBehaviour
             keyValuePairs.Add(AdType.Reward, new AdItem(rewardAdUnitId, levelPlayrewardBasedVideo, false, false));
     }
 
-    public void SetLaunchInterStitalId(string LaunchinterstitialAdUnitId, bool canUse=true)
+    public void SetAdConfig(AdConfig adConfig)
     {
-#if UNITY_EDITOR
-        LaunchinterstitialAdUnitId = string.Empty;
-#endif
-        if (!canUse)
-        {
-            LaunchinterstitialAdUnitId = string.Empty;
-        }
-
-        this.LaunchinterstitialAdUnitId = LaunchinterstitialAdUnitId;
+        this.adConfig=adConfig;
+        SetInterStitalId();
+        SetLaunchInterStitalId();
+        SetRewardId();
+    }
+    public void SetLaunchInterStitalId()
+    {
+        this.LaunchinterstitialAdUnitId = GetAdUnitId(AdType.Launch);
     }
 
-    public void SetInterStitalId(string interstitialAdUnitId, bool canUse = true)
-    {
-#if UNITY_EDITOR
-        interstitialAdUnitId = string.Empty;
-#endif
-        if (!canUse)
-        {
-            interstitialAdUnitId = string.Empty;
-
-        }
-
-        this.interstitialAdUnitId = interstitialAdUnitId;
+    public void SetInterStitalId()
+    {       
+        this.interstitialAdUnitId = GetAdUnitId(AdType.Interstital);
     }
 
-    public void SetRewardId(string rewardAdUnitId, bool canUse = true)
+    public void SetRewardId()
     {
-#if UNITY_EDITOR
-        rewardAdUnitId = string.Empty;
-#endif
-        if (!canUse)
-        {
-            rewardAdUnitId = string.Empty;
-
-        }
-        this.rewardAdUnitId = rewardAdUnitId;
+        this.rewardAdUnitId = GetAdUnitId(AdType.Reward);
     }
 
+    string GetAdUnitId(AdType adType) 
+    {
+        AdUnitConfig adUnitConfig= adConfig.adConfigs.Find(x=>x.AdType == adType);  
+        string adUnitId = string.Empty;
 
+        if (adUnitConfig != null)
+        {
+            adUnitId = adUnitConfig.AdUnitId;
+#if UNITY_EDITOR
+            adUnitId = string.Empty;
+  #endif
+            if (adUnitConfig.ActiveStatus == ActiveStatus.Deactive)
+            {
+                adUnitId = string.Empty;
+            }
+            return adUnitId;
+        }
+
+        return adUnitId;
+    }
+    
     public void RequestInterstitial(AdType adType)
     {
         AdItem item = null;

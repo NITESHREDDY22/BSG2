@@ -1497,11 +1497,12 @@ MonoBehaviour:
   interstitialAdUnitId: z8axy0332hnr585z
   useLevelPlayInterStital: 0
   rewardAdUnitId: hgncqhneupu7bppt
-  useLevelPlayReward: 1
+  useLevelPlayReward: 0
   LaunchinterstitialAdUnitId: 68ozdvrgw2w8rw44
-  useLaunchInterStitial: 1
+  useLaunchInterStitial: 0
   adMobNetworkHandler: {fileID: 1163193295}
   levelPlayNetworkHandler: {fileID: 1163193294}
+  AdsConfiguration: {fileID: 11400000, guid: 6745a2c1f03fd824687fa2e30d6cfd62, type: 2}
 --- !u!4 &1163193293
 Transform:
   m_ObjectHideFlags: 0

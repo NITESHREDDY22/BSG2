@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             {
                 AdManager._instance.RequestRewardBasedVideo(AdType.Reward);
                 AdManager._instance.RequestRewardBasedVideo(AdType.RewardContinue);
-
+                AdManager._instance.RequestRewardedInterstitial(AdType.RewardedInterStitial);
             }
             AdManager.onlyOnce = true;
         }
@@ -193,12 +193,9 @@ public class GameManager : MonoBehaviour
         currentAdDisplayTime = Time.time;
         //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
         if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue)
-            && ((AdManager._instance.adMobNetworkHandler!=null && 
-                AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo != null &&
-                AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
-                || (AdManager._instance.levelPlayNetworkHandler!=null && 
-                AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo != null &&
-                AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())))
+            && (AdManager._instance.adMobNetworkHandler!=null && 
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd()))
             {
             AdManager._instance.rewardTypeToUnlock = RewardType.continuegame;
             if (rewardtext)
@@ -542,7 +539,7 @@ public class GameManager : MonoBehaviour
                         else if (AdManager._instance.rewardTypeToUnlock == RewardType.continuegame)
                         {
                             if (AdManager._instance.rewardedvideosuccess)
-                            {
+                            {                                
                                 rewardCanvas.SetActive(false);
                                 try
                                 {
@@ -556,7 +553,7 @@ public class GameManager : MonoBehaviour
                                     //
                                 }
                                 AdManager._instance.rewardTypeToUnlock = RewardType.None;
-                                donextlevelcall();
+                                Invoke("donextlevelcall",0.25f);
                             }
                         }
                         break;
@@ -1216,10 +1213,10 @@ public class GameManager : MonoBehaviour
                         rewardtext.text = "Need Extra Ball?";
                     }
                     rewardUsed = true;
-#if UNITY_EDITOR
-                    AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
-                    rewardCanvas.SetActive(true);
-#elif UNITY_ANDROID
+
+                    //AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
+                    //rewardCanvas.SetActive(true);
+
                     if ((AdManager._instance.adMobNetworkHandler!=null &&
                         AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null &&
                         AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd()) 
@@ -1227,14 +1224,14 @@ public class GameManager : MonoBehaviour
                             AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
                             AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady()))
                     {
-                    AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
-                    rewardCanvas.SetActive(true);
+                        AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
+                        rewardCanvas.SetActive(true);
                     }
                     else 
                     {
                     OnGameFail();
                     }
-#endif
+
                 }
                 else if (birdsgroup.childCount <= 1)
                 {

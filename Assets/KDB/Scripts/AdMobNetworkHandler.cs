@@ -12,7 +12,9 @@ public enum AdType
     Launch,
     Interstital,
     Reward,
-    RewardContinue
+    RewardContinue,
+    RewardedInterStitial,
+    SecondaryInterstitial
 }
 
 public enum AdContent
@@ -21,11 +23,13 @@ public enum AdContent
     AdMobInterstitalRequested,
     AdMobRewardRequested,
     AdMobContinueRewardRequested,
+    AdMobRewardedInterstitialRequested,
 
     AdMobLaunchShown,
     AdMobInterstitalShown,
     AdMobRewardShown,
     AdMobContinueRewardShown,
+    AdMobRewardedInterstitialShown,
 
 
     LevelPlayLaunchRequested,
@@ -55,6 +59,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 {
 
     public InterstitialAd adMobInterstitial, adMobLaunchInterstitial;
+    public RewardedInterstitialAd adMobRewardedInterstitial;
     public RewardedAd adMobRewardBasedVideo;
     public RewardedAd adMobContinueRewardBasedVideo;
 
@@ -65,6 +70,8 @@ public class AdMobNetworkHandler :MonoBehaviour
     private string adMobLaunchinterStitialId;
     private string adMobRewardBasedVideoId;
     private string adMobContinueRewardBasedVideoId;
+    private string adMobRewardedInterstitialVideoId;
+
 
     private int adDelayTimer = 60;
 
@@ -75,6 +82,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         public bool isAdReady;
         public bool isAdRequested;
         public RewardedAd RewardedAd;
+        public RewardedInterstitialAd adMobRewardedInterstitial;
         public AdItem(string AdID, InterstitialAd Interstitial, bool isAdReady,bool isAdRequested)
         {
             this.AdID = AdID;
@@ -90,11 +98,26 @@ public class AdMobNetworkHandler :MonoBehaviour
             this.isAdReady = isAdReady;
             this.isAdRequested = isAdRequested;
         }
+
+        public AdItem(string AdID, RewardedInterstitialAd adMobRewardedInterstitial, bool isAdReady, bool isAdRequested)
+        {
+            this.AdID = AdID;
+            this.adMobRewardedInterstitial = adMobRewardedInterstitial;
+            this.isAdReady = isAdReady;
+            this.isAdRequested = isAdRequested;
+        }
     }
 
     private Dictionary<AdType, AdItem> keyValuePairs = new Dictionary<AdType, AdItem>();
 
     private Action<bool> callBack=null;
+    private Action<bool> rewardedInterStitialcallBack = null;
+    public Action<bool> rewardedInterStitialrequestcallBack = null;
+
+
+
+    private AdConfig adConfig;
+
 
     public void Init()
     {
@@ -112,9 +135,9 @@ public class AdMobNetworkHandler :MonoBehaviour
             keyValuePairs.Add(AdType.Reward, new AdItem(adMobRewardBasedVideoId, adMobContinueRewardBasedVideo, false, false));
         }
 
-        if (!keyValuePairs.ContainsKey(AdType.RewardContinue))
+        if (!keyValuePairs.ContainsKey(AdType.RewardedInterStitial))
         {
-            keyValuePairs.Add(AdType.RewardContinue, new AdItem(adMobContinueRewardBasedVideoId, adMobContinueRewardBasedVideo, false, false));
+            keyValuePairs.Add(AdType.RewardedInterStitial, new AdItem(adMobRewardedInterstitialVideoId, adMobRewardedInterstitial, false, false));
         }
     }
     public void Initialize(bool isAdMobInitialized)
@@ -123,58 +146,62 @@ public class AdMobNetworkHandler :MonoBehaviour
         OnAdClosedAction = OnAdClosed;
     }
 
-    public void SetLaunchInterStitalId(string adMobLaunchinterStitialId, bool canUse = true)
+    public void SetAdConfig(AdConfig adConfig)
     {
-#if UNITY_EDITOR
-        adMobLaunchinterStitialId = string.Empty;
-#endif
+        this.adConfig = adConfig;
+        SetInterStitalId();
+        SetLaunchInterStitalId();
+        SetRewardId();        
+        SetRewardedInterstitalId();
+    }
+    public void SetLaunchInterStitalId()
+    {
 
-        if (!canUse)
-        {
-            adMobLaunchinterStitialId = string.Empty;
-
-        }
-        this.adMobLaunchinterStitialId = adMobLaunchinterStitialId;
+        this.adMobLaunchinterStitialId = GetAdUnitId(AdType.Launch);
     }
 
-    public void SetInterStitalId(string adMobInterstitialId, bool canUse = true)
-    {
-        #if UNITY_EDITOR
-                adMobInterstitialId = string.Empty;
-#endif
-        if (!canUse)
-        {
-            adMobInterstitialId = string.Empty;
+    public void SetInterStitalId(string adMobInterstitialId="")
+    {   
+       this.adMobInterstitialId = string.IsNullOrEmpty(adMobInterstitialId)? GetAdUnitId(AdType.Interstital):adMobInterstitialId;
 
+        if(!string.IsNullOrEmpty(adMobInterstitialId))
+        {
+            if (keyValuePairs.ContainsKey(AdType.Interstital))
+            {
+                keyValuePairs[AdType.Interstital].AdID = this.adMobInterstitialId;
+            }
         }
-        this.adMobInterstitialId = adMobInterstitialId;
     }
 
-    public void SetRewardId(string adMobRewardBasedVideoId, bool canUse = true)
+    public void SetRewardId()
     {
-#if UNITY_EDITOR
-        adMobRewardBasedVideoId = string.Empty;
-#endif
-        if (!canUse)
-        {
-            adMobRewardBasedVideoId = string.Empty;
+        this.adMobRewardBasedVideoId = GetAdUnitId(AdType.Reward); ;
+    }  
 
-        }
-        this.adMobRewardBasedVideoId = adMobRewardBasedVideoId;
-    }
-
-    public void SetContinueRewardId(string adMobContinueRewardBasedVideoId, bool canUse = true)
+    public void SetRewardedInterstitalId()
     {
+        this.adMobRewardedInterstitialVideoId = GetAdUnitId(AdType.RewardedInterStitial);
+    }  
 
-#if UNITY_EDITOR
-        adMobContinueRewardBasedVideoId = string.Empty;
-#endif
-        if(!canUse)
+    string GetAdUnitId(AdType adType)
+    {
+        AdUnitConfig adUnitConfig = adConfig.adConfigs.Find(x => x.AdType == adType);
+        string adUnitId = string.Empty;
+
+        if (adUnitConfig != null)
         {
-            adMobContinueRewardBasedVideoId = string.Empty;
-
+            adUnitId = adUnitConfig.AdUnitId;
+#if UNITY_EDITOR
+            adUnitId = string.Empty;
+#endif
+            if (adUnitConfig.ActiveStatus == ActiveStatus.Deactive)
+            {
+                adUnitId = string.Empty;
+            }
+            return adUnitId;
         }
-        this.adMobContinueRewardBasedVideoId = adMobContinueRewardBasedVideoId;
+
+        return adUnitId;
     }
 
     public void RequestInterstitial(AdType adType)
@@ -191,7 +218,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         if (item == null || string.IsNullOrEmpty(item.AdID) || !isAdMobInitialized || item.isAdRequested)
             return;
 
-        //Debug.Log("Asdf RequestLaunchInterstitial 2222");
+        //B Debug.Log("Asdf RequestLaunchInterstitial 2222  ===="+item.AdID+ " type=== "+adType);
 
 
         MobileAdsEventExecutor.ExecuteInUpdate(() =>
@@ -207,14 +234,14 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                     //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchRequested : AdContent.AdMobInterstitalRequested, AdMode.Requested, SuccessStatus.Success);
                 }
-                Debug.Log("Admob Request InterStital called" + adType);
+                //BDebug.Log("Admob Request InterStital called  " + adType);
 
                 InterstitialAd.Load(item.AdID, new AdRequest(),
                         (InterstitialAd ad, LoadAdError loadAdError) =>
                         {
                             if (loadAdError != null)
                             {
-                                //B Debug.Log("Interstitial ad failed to load with error: " + loadAdError.GetMessage()+adType);
+                                //BDebug.Log("Interstitial ad failed to load with error: " + loadAdError.GetMessage()+adType);
                                 MobileAdsEventExecutor.ExecuteInUpdate(() =>
                                 {
                                     OnAdLoadFailed(adType);
@@ -225,7 +252,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                             }
                             else if (ad == null)
                             {
-                                //B Debug.Log("Interstitial ad failed to load." + adType);
+                                //BDebug.Log("Interstitial ad failed to load." + adType);
                                 MobileAdsEventExecutor.ExecuteInUpdate(() =>
                                 {
                                     //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchRequested : AdContent.AdMobInterstitalRequested, AdMode.Requested, SuccessStatus.Failed);
@@ -237,7 +264,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                             //Debug.Log("Asdf RequestLaunchInterstitial 666666");
 
-                            Debug.Log("Interstitial ad loaded." + adType);
+                            //B Debug.Log("Interstitial ad loaded." + adType + "  "+item.AdID);
                             if (!item.isAdReady)
                             {
                                 item.Interstitial = ad;
@@ -364,7 +391,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                 }
 
-                //B Debug.Log("Admob Request Reward called");
+                Debug.Log("Admob Request Reward called"+adType);
 
                 RewardedAd.Load(item.AdID, new AdRequest(),
                    (RewardedAd ad, LoadAdError loadError) =>
@@ -376,7 +403,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                item.isAdRequested = false;
                                item.isAdReady = false;
                                RequestAgain(adType);
-                               //B Debug.Log("asdf Admob Rewarded ad failed to load with error: " +loadError.GetMessage()+adType);
+                                Debug.Log("asdf Admob Rewarded ad failed to load with error: " +loadError.GetMessage()+adType);
                                //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
 
                            });
@@ -389,14 +416,14 @@ public class AdMobNetworkHandler :MonoBehaviour
                                item.isAdRequested = false;
                                item.isAdReady = false;
                                RequestAgain(adType);
-                               //B Debug.Log("asdf Admob  Rewarded ad failed to load." + adType);
+                               Debug.Log("asdf Admob  Rewarded ad failed to load." + adType);
                                //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
 
                            });
                            return;
                        }
 
-                       //B Debug.Log("asdf Admob  Rewarded ad loaded."+adType);
+                        Debug.Log("asdf Admob  Rewarded ad loaded. "+adType);
                        if (!item.isAdReady)
                        {
                            item.RewardedAd = ad;
@@ -423,7 +450,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                    item.isAdReady = false;
                                    item.isAdRequested = false;
                                    RequestRewardBasedVideo(adType);
-                                   this.callBack?.Invoke(true);
+                                   this.callBack?.Invoke(false);
                                    FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Success);
 
                                });
@@ -446,25 +473,13 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                                });
 
-                           };
+                           };                           
                            FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Loaded, SuccessStatus.Success);
                        }
                    });
             }
         });
     }
-
-    void RequestAgain(AdType adType)
-    {
-        //B Debug.Log("Admob RequestWithDelay reward called");       
-        RequestWithDelay(adDelayTimer, () =>
-        {
-            //Debug.Log("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
-
-            RequestRewardBasedVideo(adType);
-        });
-    }   
-
     public void ShowAdmobRewardedVideo(Action<bool> callBack,AdType adType=AdType.Reward)
     {
 
@@ -487,8 +502,9 @@ public class AdMobNetworkHandler :MonoBehaviour
                 {
                     if (reward != null)
                     {
-                        Debug.Log("asdf Admob  Rewarded ad granted a reward: ");                 
-                    }               
+                        Debug.Log("asdf Admob  Rewarded ad granted a reward: "); 
+                        this.callBack?.Invoke(true);
+                    }
                 });
             });
         }  
@@ -498,6 +514,175 @@ public class AdMobNetworkHandler :MonoBehaviour
             FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
         }
     }
+
+    public void RequestRewardInterstitial(AdType adType = AdType.RewardedInterStitial,Action<bool> callback=null)
+    {
+
+        AdItem item = null;
+
+        if (keyValuePairs.TryGetValue(adType, out AdItem adItem))
+        {
+            item = adItem;
+        }
+        if (item == null || string.IsNullOrEmpty(item.AdID) || !isAdMobInitialized || item.isAdRequested)
+            return;
+
+        //Debug.Log("Admob Request RequestRewardInterstitial called" + adType);       
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            if (!item.isAdReady)
+            {
+                if (item.adMobRewardedInterstitial != null)
+                {
+                    item.adMobRewardedInterstitial.Destroy();
+                    item.adMobRewardedInterstitial = null;
+                    item.isAdRequested = true;
+                    //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Success);
+
+                }
+
+                //B Debug.Log("Admob Request RequestRewardInterstitial called" + adType);
+
+                RewardedInterstitialAd.Load(item.AdID, new AdRequest(),
+                   (RewardedInterstitialAd ad, LoadAdError loadError) =>
+                   {
+                       if (loadError != null)
+                       {
+                           MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                           {
+                               item.isAdRequested = false;
+                               item.isAdReady = false;
+                               RequestWithDelay(adDelayTimer, () =>
+                               {
+                                   //Debug.Log("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
+                                   RequestRewardInterstitial(adType);
+                               });
+                               this.rewardedInterStitialrequestcallBack?.Invoke(false);
+                               //B Debug.Log("asdf Admob RequestRewardInterstitial ad failed to load with error: " + loadError.GetMessage() + adType);
+                               //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
+
+                           });
+                           return;
+                       }
+                       else if (ad == null)
+                       {
+                           MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                           {
+                               item.isAdRequested = false;
+                               item.isAdReady = false;
+                               RequestWithDelay(adDelayTimer, () =>
+                               {
+                                   //Debug.Log("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
+                                   RequestRewardInterstitial(adType);
+                               });
+                               this.rewardedInterStitialrequestcallBack?.Invoke(false);
+                               //B Debug.Log("asdf Admob  RequestRewardInterstitial ad failed to load." + adType);
+                               //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
+
+                           });
+                           return;
+                       }
+
+                       //B Debug.Log("asdf Admob  RequestRewardInterstitial ad loaded. " + adType);
+                       if (!item.isAdReady)
+                       {
+                           item.adMobRewardedInterstitial = ad;
+                           item.isAdReady = true;
+                           this.rewardedInterStitialrequestcallBack?.Invoke(true);
+
+                           if (adType == AdType.RewardedInterStitial)
+                           {
+                               adMobRewardedInterstitial = ad;
+                           }                         
+
+                           ad.OnAdFullScreenContentClosed += () =>
+                           {
+                               //B Debug.Log("asdf Admob  Rewarded Ad full screen content closed.");
+
+                               // Reload the ad so that we can show another as soon as possible.
+                               MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                               {
+                                   this.rewardedInterStitialcallBack?.Invoke(false);
+                                   item.isAdReady = false;
+                                   item.isAdRequested = false;
+                                   RequestRewardInterstitial(adType);                                 
+                                   FireBaseActions( AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
+
+                               });
+                           };
+                           // Raised when the ad failed to open full screen content.
+                           ad.OnAdFullScreenContentFailed += async (AdError error) =>
+                           {
+                               MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                               {
+                                   Debug.LogError("asdf Admob  RequestRewardInterstitial ad failed to open full screen content " +
+                                                  "with error : " + error);
+                                   // Reload the ad so that we can show another as soon as possible.
+
+                                   //Debug.Log("OnAdFullScreenContentFailed. should add delay request");
+                                   item.isAdReady = false;
+                                   item.isAdRequested = false; 
+                                   this.rewardedInterStitialcallBack?.Invoke(false);
+                                   RequestWithDelay(adDelayTimer, () =>
+                                   {
+                                       //Debug.Log("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
+                                       RequestRewardInterstitial(adType);
+                                   });
+                                   //TODO :FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
+
+                               });
+
+                           };
+                           FireBaseActions(AdContent.AdMobRewardedInterstitialRequested, AdMode.Loaded, SuccessStatus.Success);
+                       }
+                   });
+            }
+        });
+    }
+    public void ShowRewardInterstitial(Action<bool> callBack, AdType adType = AdType.RewardedInterStitial)
+    {
+
+#if UNITY_EDITOR
+        callBack?.Invoke(true);
+#endif
+
+        AdItem item = null;
+        if (keyValuePairs.TryGetValue(adType, out AdItem adItem))
+        {
+            item = adItem;
+        }
+       this.rewardedInterStitialcallBack = callBack;
+        if (item != null && item.adMobRewardedInterstitial != null && item.adMobRewardedInterstitial.CanShowAd())
+        {
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                item.adMobRewardedInterstitial.Show((Reward reward) =>
+                {
+                    if (reward != null)
+                    {
+                        //Debug.Log("asdf Admob  RequestRewardInterstitial ad granted a reward: ");
+                        callBack?.Invoke(true);
+                    }
+                });
+            });
+        }
+        else
+        {
+            callBack?.Invoke(false);
+            FireBaseActions( AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Failed);
+        }
+    }
+    void RequestAgain(AdType adType)
+    {
+        //B Debug.Log("Admob RequestWithDelay reward called");       
+        RequestWithDelay(adDelayTimer, () =>
+        {
+            //Debug.Log("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
+            RequestRewardBasedVideo(adType);
+        });
+    }   
+
+
 
     public void FireBaseActions(AdContent adContent, AdMode adMode, SuccessStatus status)
     {

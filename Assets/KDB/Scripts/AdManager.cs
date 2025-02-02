@@ -105,10 +105,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
     public bool useLaunchInterStitial;
 
-   
 
     public AdMobNetworkHandler adMobNetworkHandler;
     public LevelPlayNetworkHandler levelPlayNetworkHandler;
+    public AdsConfig AdsConfiguration;
     public static bool onlyOnce=false;
 
     private void Awake()
@@ -310,15 +310,21 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     void Initialize()
     {
-        levelPlayNetworkHandler.SetInterStitalId(interstitialAdUnitId,useLevelPlayInterStital);
-        levelPlayNetworkHandler.SetLaunchInterStitalId(LaunchinterstitialAdUnitId,useLaunchAdMobInterStitial);
-        levelPlayNetworkHandler.SetRewardId(rewardAdUnitId,useLevelPlayReward);
 
-        adMobNetworkHandler.SetInterStitalId(adMobInterstitialId,useAdMobInterStitial);
-        adMobNetworkHandler.SetLaunchInterStitalId(adMobLaunchinterStitialId,useLaunchAdMobInterStitial);
-        adMobNetworkHandler.SetRewardId(adMobRewardBasedVideoId,useadMobRewardBasedVideo);
-        adMobNetworkHandler.SetContinueRewardId(adMobContinueModelRewardBasedVideoId,useadMobContinueRewardBasedVideo);
-        adMobNetworkHandler.Init();
+        AdConfig levelPlayConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.LevelPlay);
+        if (levelPlayConfig != null)
+        {
+            appKey=levelPlayConfig.AppKey;
+            levelPlayNetworkHandler.SetAdConfig(levelPlayConfig);       
+        }
+
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if (adMobConfig != null)
+        {
+            adMobNetworkHandler.SetAdConfig(adMobConfig);
+            adMobNetworkHandler.Init();
+            adMobNetworkHandler.rewardedInterStitialrequestcallBack += CheckSecondaryInterstitialStatus;
+        }
 
     }
     IEnumerator InitializeAdNetworks()
@@ -800,23 +806,62 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void RequestRewardBasedVideo(AdType adType=AdType.Reward)
     {
-        Debug.Log("Asdf RequestRewardBasedVideo..");       
+        //Debug.Log("Asdf RequestRewardBasedVideo..");       
         adMobNetworkHandler.RequestRewardBasedVideo(adType);      
         levelPlayNetworkHandler.RequestRewardBasedVideo(adType);   
 
     }
-    
+    int count = 0;
+    public void RequestRewardedInterstitial(AdType adType)
+    {
+        adMobNetworkHandler.RequestRewardInterstitial(adType);
+       
+    }
 
+    public void CheckSecondaryInterstitialStatus(bool result)
+    {        
+        if (!result)
+        {
+            LoadSecondaryInterstitialAd();
+        }        
+    }
+    public void ShowRewardedInterstitial(Action<bool> callback,AdType adType)
+    {
+        adMobNetworkHandler.ShowRewardInterstitial((result) =>
+        {
+            callback?.Invoke(result);
+            if (result)
+            {
+                lastAdDisplayTime = Time.time;
+            }
+        }, adType);
+    }
 
+    private void LoadSecondaryInterstitialAd()
+    {
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if(adMobConfig != null)
+        {
+            AdUnitConfig adUnitConfig = adMobConfig.adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
+            if (adUnitConfig!=null && !string.IsNullOrEmpty(adUnitConfig.AdUnitId) && adUnitConfig.ActiveStatus==ActiveStatus.Active)
+            {
+                //Debug.Log("admob LoadSecondaryInterstitialAd requested");
+                adMobNetworkHandler.SetInterStitalId(adUnitConfig.AdUnitId);               
+            }
+        }
+    }
+
+    public void OnDestroy()
+    {
+      adMobNetworkHandler.rewardedInterStitialrequestcallBack -= CheckSecondaryInterstitialStatus;
+
+    }
     #endregion
 
     #region AdMob
 
 
-    private void ShowAdmobRewardedVideo()
-    {
-            //TODO       
-    }
+
 
     #region Rewarded Video Callbacks
 
@@ -1255,6 +1300,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {  
        
     }
+
 
 
 
