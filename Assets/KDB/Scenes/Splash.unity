@@ -1482,13 +1482,13 @@ MonoBehaviour:
   LoadingPanel: {fileID: 925032424}
   StorePanel: {fileID: 1219491934}
   adMobInterstitialId: ca-app-pub-3411062052281263/3692188687
-  useAdMobInterStitial: 1
+  useAdMobInterStitial: 0
   adMobLaunchinterStitialId: ca-app-pub-3411062052281263/3169444505
-  useLaunchAdMobInterStitial: 1
+  useLaunchAdMobInterStitial: 0
   adMobRewardBasedVideoId: ca-app-pub-3411062052281263/8038627800
-  useadMobRewardBasedVideo: 1
+  useadMobRewardBasedVideo: 0
   adMobContinueModelRewardBasedVideoId: ca-app-pub-3411062052281263/5294228744
-  useadMobContinueRewardBasedVideo: 1
+  useadMobContinueRewardBasedVideo: 0
   bannerId: ca-app-pub-3411062052281263/7601829325
   iOS_interstitialID: 
   iOS_bannerID: 
