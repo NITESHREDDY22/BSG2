@@ -318,7 +318,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         item.isAdReady= false;
         item.isAdRequested= false;
         RequestRewardBasedVideo(adType);
-        FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Shown, SuccessStatus.Success);
+        //FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Shown, SuccessStatus.Success);
         //throw new NotImplementedException();
     }
 

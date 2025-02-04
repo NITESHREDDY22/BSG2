@@ -787,6 +787,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         if(result)
                         {
                             lastAdDisplayTime = Time.time;
+
+                            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                            {
+                                if (adType == AdType.Reward)
+                                {
+                                    FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Shown, SuccessStatus.Success);
+                                }
+                            });
+                            
                         }
                     });
                 }
@@ -794,6 +803,18 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 {
                     lastAdDisplayTime = Time.time;
                     callBack?.Invoke(true);
+                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    {
+                        if (adType == AdType.Reward)
+                        {
+                            FireBaseActions(AdContent.AdMobRewardShown, AdMode.Shown, SuccessStatus.Success);
+                        }
+                        if (adType == AdType.RewardedInterStitial)
+                        {
+                            FireBaseActions(AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
+                        }
+                    });
+                   
                 }
             }
         }
@@ -856,6 +877,22 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
       adMobNetworkHandler.rewardedInterStitialrequestcallBack -= CheckSecondaryInterstitialStatus;
 
     }
+
+    public void FireBaseActions(AdContent adContent, AdMode adMode, SuccessStatus status)
+    {
+        try
+        {
+            if (FirebaseEvents.instance != null)
+            {
+                FirebaseEvents.instance.LogFirebaseEvent(adContent.ToString(), adMode.ToString(), status.ToString());
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
     #endregion
 
     #region AdMob

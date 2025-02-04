@@ -451,7 +451,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                    item.isAdRequested = false;
                                    RequestRewardBasedVideo(adType);
                                    this.callBack?.Invoke(false);
-                                   FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Success);
+                                   //FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Success);
 
                                });
                            };
@@ -510,8 +510,11 @@ public class AdMobNetworkHandler :MonoBehaviour
         }  
         else
         {
-            callBack?.Invoke(false);
-            FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                callBack?.Invoke(false);
+            });
+           // FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
         }
     }
 
@@ -606,7 +609,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                    item.isAdReady = false;
                                    item.isAdRequested = false;
                                    RequestRewardInterstitial(adType);                                 
-                                   FireBaseActions( AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
+                                   //FireBaseActions( AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
 
                                });
                            };
@@ -668,8 +671,11 @@ public class AdMobNetworkHandler :MonoBehaviour
         }
         else
         {
-            callBack?.Invoke(false);
-            FireBaseActions( AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Failed);
+            MobileAdsEventExecutor.ExecuteInUpdate(() =>
+            {
+                callBack?.Invoke(false);
+            });
+           // FireBaseActions( AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Failed);
         }
     }
     void RequestAgain(AdType adType)
