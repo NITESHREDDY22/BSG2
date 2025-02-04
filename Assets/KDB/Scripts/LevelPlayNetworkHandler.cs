@@ -149,7 +149,8 @@ public class LevelPlayNetworkHandler : MonoBehaviour
                             item.isAdRequested = false;
                             InterstitialOnAdLoadFailedEvent(x, adType);
                             //Debug.Log("Asdf Level RequestLaunchInterstitial 4444");
-                            //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Loaded, SuccessStatus.Failed);
+                            FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchLoadFailed : AdContent.levelPlayInterstitalAdLoadFailed, 
+                                AdMode.Loaded, SuccessStatus.Failed);
 
                         });
                     };
@@ -177,7 +178,8 @@ public class LevelPlayNetworkHandler : MonoBehaviour
                             InterstitialOnAdLoadedEvent(x);
                             //Debug.Log("Asdf Level RequestLaunchInterstitial 55555");
 
-                            FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchRequested : AdContent.levelPlayInterstitalRequested, AdMode.Loaded, SuccessStatus.Success);
+                            FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchAdLoaded : AdContent.levelPlayInterstitalAdLoaded,
+                               AdMode.Loaded, SuccessStatus.Failed);
 
                         });
 
@@ -287,12 +289,13 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         item.isAdRequested = false;
         item.isAdReady = false;
         callback?.Invoke(true);
+        FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Loaded, SuccessStatus.Success);
+
     }
 
     private void OnAdLoadFailedMethod(LevelPlayAdError error,AdItem adItem,AdType adType)
     {
         //should add delay      
-        //TODO : FireBaseActions(AdContent.levelPlayRewardRequested , AdMode.Loaded, SuccessStatus.Failed);
         adItem.isAdReady = false;
         adItem.isAdRequested = false;
         //B Debug.Log("LevelPlay RequestWithDelay Reward called");
@@ -300,13 +303,14 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         {
             RequestRewardBasedVideo(adType);
         });
+        FireBaseActions(AdContent.levelPlayRewardLoadFailed , AdMode.Loaded, SuccessStatus.Failed);
     }  
 
     private void OnAdLoadedMethod(LevelPlayAdInfo info,AdItem item)
     {
         //Debug.Log("Asdf RequestRewardBasedVideo..levelPlay2222");
         item.isAdReady= true;
-        //TODO : FireBaseActions(AdContent.levelPlayRewardRequested, AdMode.Loaded, SuccessStatus.Success);
+        FireBaseActions(AdContent.levelPlayRewardAdLoaded, AdMode.Loaded, SuccessStatus.Success);
 
         //throw new NotImplementedException();
     }

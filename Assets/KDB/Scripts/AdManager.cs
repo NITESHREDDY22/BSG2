@@ -25,6 +25,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public TargetPlatform targetPlatform;
     public float currentAdDisplayTime = 0;
     public float lastAdDisplayTime = 0;
+    public readonly float levelReloadAdDuration = 60;
 
 
     [Header(" Settings ")]
@@ -657,8 +658,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowGameFailInterstitial()
     {
-        Debug.Log("Increase Interstitial Counter");
-        counter++;
+        counter+=GetCounter;
+       // Debug.Log("Increase Interstitial Counter"+counter + " Get "+GetCounter);
         try
         {
 
@@ -710,8 +711,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowGameWinInterstitial()
     {
-        Debug.Log("Increase Interstitial Counter"+counter2+ "");
-        counter2++;
+        //counter2++;
+        counter2 += GetCounter;
+        //Debug.Log("Increase Interstitial Counter" + counter2 + " Get " + GetCounter);
+
         try
         {
             if (counter2 >= GOWAdInterval)
@@ -759,6 +762,17 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
     }
 
+    
+    int GetCounter
+    {
+        get
+        {
+            int WorldNumber = (WorldSelectionHandler.worldSelected);
+            int currentLevel = Global.CurrentLeveltoPlay;
+            return ((WorldNumber > 0) || (WorldNumber < 1 && currentLevel > 28)) ? 2 : 1;
+        }
+    }
+    
     public bool LaunchInterstitialState()
     {
         return((adMobNetworkHandler !=null && adMobNetworkHandler.adMobLaunchInterstitial != null && adMobNetworkHandler != null && adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
@@ -808,11 +822,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         if (adType == AdType.Reward)
                         {
                             FireBaseActions(AdContent.AdMobRewardShown, AdMode.Shown, SuccessStatus.Success);
-                        }
-                        if (adType == AdType.RewardedInterStitial)
-                        {
-                            FireBaseActions(AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
-                        }
+                        }                        
                     });
                    
                 }
@@ -854,6 +864,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             if (result)
             {
                 lastAdDisplayTime = Time.time;
+
+                if (adType == AdType.RewardedInterStitial)
+                {
+                    FireBaseActions(AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
+                }
             }
         }, adType);
     }

@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
         if (!gameOverPanel.activeInHierarchy && !gameFailed.activeInHierarchy)
         {
             currentAdDisplayTime = Time.time;
-            if (currentAdDisplayTime - AdManager._instance.lastAdDisplayTime > AdManager._instance.ReplayAdInterval)
+            if ((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > AdManager._instance.levelReloadAdDuration)
                 AdManager._instance.ShowCommonInterstitial();
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

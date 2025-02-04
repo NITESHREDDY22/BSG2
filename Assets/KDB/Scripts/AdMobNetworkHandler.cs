@@ -25,6 +25,16 @@ public enum AdContent
     AdMobContinueRewardRequested,
     AdMobRewardedInterstitialRequested,
 
+    AdMobLaunchAdLoaded,
+    AdMobInterstitalAdLoaded,
+    AdMobRewardAdLoaded,    
+    AdMobRewardedInterstitialAdLoaded,
+
+    AdMobLaunchLoadFailed,
+    AdMobInterstitalLoadFailed,
+    AdMobRewardLoadFailed,
+    AdMobRewardedInterstitialLoadFailed,
+
     AdMobLaunchShown,
     AdMobInterstitalShown,
     AdMobRewardShown,
@@ -36,10 +46,20 @@ public enum AdContent
     levelPlayInterstitalRequested,
     levelPlayRewardRequested,
 
+    LevelPlayLaunchAdLoaded,
+    levelPlayInterstitalAdLoaded,
+    levelPlayRewardAdLoaded,
+
+    LevelPlayLaunchLoadFailed,
+    levelPlayInterstitalAdLoadFailed,
+    levelPlayRewardLoadFailed,
 
     LevelPlayLaunchShown,
     levelPlayInterstitalshown,
     levelPlayRewardShown,
+
+    
+
 }
 
 public enum AdMode
@@ -245,7 +265,8 @@ public class AdMobNetworkHandler :MonoBehaviour
                                 MobileAdsEventExecutor.ExecuteInUpdate(() =>
                                 {
                                     OnAdLoadFailed(adType);
-                                    //TODO :  FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchRequested : AdContent.AdMobInterstitalRequested, AdMode.Requested, SuccessStatus.Failed);
+                                    FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchLoadFailed : AdContent.AdMobInterstitalLoadFailed,
+                                        AdMode.Requested, SuccessStatus.Failed);
                                     //Debug.Log("Asdf RequestLaunchInterstitial 44444");
                                 });
                                 return;
@@ -255,7 +276,8 @@ public class AdMobNetworkHandler :MonoBehaviour
                                 //BDebug.Log("Interstitial ad failed to load." + adType);
                                 MobileAdsEventExecutor.ExecuteInUpdate(() =>
                                 {
-                                    //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchRequested : AdContent.AdMobInterstitalRequested, AdMode.Requested, SuccessStatus.Failed);
+                                    FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchLoadFailed : AdContent.AdMobInterstitalLoadFailed, 
+                                        AdMode.Requested, SuccessStatus.Failed);
                                     //Debug.Log("Asdf RequestLaunchInterstitial 55555");
                                     OnAdLoadFailed(adType);
                                 });
@@ -285,7 +307,8 @@ public class AdMobNetworkHandler :MonoBehaviour
                                 {
                                     adMobInterstitial = ad;
                                 }
-                                FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchRequested : AdContent.AdMobInterstitalRequested, AdMode.Loaded, SuccessStatus.Success);
+                                FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchAdLoaded : AdContent.AdMobInterstitalAdLoaded,
+                                    AdMode.Loaded, SuccessStatus.Success);
                             }
 
                         });
@@ -404,7 +427,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                item.isAdReady = false;
                                RequestAgain(adType);
                                 Debug.Log("asdf Admob Rewarded ad failed to load with error: " +loadError.GetMessage()+adType);
-                               //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
+                               FireBaseActions( AdContent.AdMobRewardLoadFailed, AdMode.Requested, SuccessStatus.Failed);
 
                            });
                            return;
@@ -417,7 +440,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                item.isAdReady = false;
                                RequestAgain(adType);
                                Debug.Log("asdf Admob  Rewarded ad failed to load." + adType);
-                               //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
+                               FireBaseActions( AdContent.AdMobRewardLoadFailed, AdMode.Requested, SuccessStatus.Failed);
 
                            });
                            return;
@@ -469,12 +492,12 @@ public class AdMobNetworkHandler :MonoBehaviour
                                    item.isAdRequested = false;
                                    this.callBack?.Invoke(false);
                                    RequestAgain(adType);
-                                   //TODO :FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
+                                  // FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
 
                                });
 
                            };                           
-                           FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Loaded, SuccessStatus.Success);
+                           FireBaseActions( AdContent.AdMobRewardAdLoaded, AdMode.Loaded, SuccessStatus.Success);
                        }
                    });
             }
@@ -562,7 +585,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                });
                                this.rewardedInterStitialrequestcallBack?.Invoke(false);
                                //B Debug.Log("asdf Admob RequestRewardInterstitial ad failed to load with error: " + loadError.GetMessage() + adType);
-                               //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
+                                FireBaseActions( AdContent.AdMobRewardedInterstitialLoadFailed, AdMode.Requested, SuccessStatus.Failed);
 
                            });
                            return;
@@ -580,7 +603,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                });
                                this.rewardedInterStitialrequestcallBack?.Invoke(false);
                                //B Debug.Log("asdf Admob  RequestRewardInterstitial ad failed to load." + adType);
-                               //TODO : FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardRequested : AdContent.AdMobContinueRewardRequested, AdMode.Requested, SuccessStatus.Failed);
+                               FireBaseActions(AdContent.AdMobRewardedInterstitialLoadFailed, AdMode.Requested, SuccessStatus.Failed);
 
                            });
                            return;
