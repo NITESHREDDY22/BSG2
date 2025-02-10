@@ -49,6 +49,15 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
     private Dictionary<AdType, AdItem> keyValuePairs = new Dictionary<AdType, AdItem>();
 
+    public static Action<string, string> OnAdClickedCallBack = null;
+
+    private float timeSinceGameLoaded;
+
+    private void Start()
+    {
+        timeSinceGameLoaded = Time.time;
+    }
+
     public void Initialize()
     {
         if(!keyValuePairs.ContainsKey(AdType.Launch))
@@ -184,10 +193,20 @@ public class LevelPlayNetworkHandler : MonoBehaviour
                         });
 
                     };
+
+                    item.Interstitial.OnAdClicked += (x)=>
+                    {
+                        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                        {
+                            OnAdClicked(adType);
+                        });
+                    };
                 }
             }
         });
     }
+
+   
 
     public void ShowInterstitialAd(AdType adType, Action<bool> callBack = null)
     {
@@ -280,6 +299,14 @@ public class LevelPlayNetworkHandler : MonoBehaviour
                         OnAdRewardedMethod(x, y, item);
                     });
                 };
+
+                item.levelPlayrewardBasedVideo.OnAdClicked += (x) =>
+                {
+                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    {
+                        OnAdClicked(adType);
+                    });
+                };
             }
         });
     }
@@ -359,8 +386,8 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         levelPlayLaunchInterstitial = new LevelPlayInterstitialAd(LaunchinterstitialAdUnitId);
         levelPlayrewardBasedVideo = new LevelPlayRewardedAd(rewardAdUnitId);
 
-        Initialize();
-       
+        Initialize();       
+
         // Register to Interstitial events
         //levelPlayInterstitial.OnAdLoaded += InterstitialOnAdLoadedEvent;
         //levelPlayInterstitial.OnAdLoadFailed += InterstitialOnAdLoadFailedEvent;
@@ -399,6 +426,20 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         //throw new NotImplementedException();
     }
 
+    void OnAdClicked(AdType adType)
+    {
+        if (adType == AdType.Interstital)
+        {
+            FireBaseActions(AdContent.levelPlayInterstitialClicked, AdMode.Clicked, SuccessStatus.Success);
+        }
+        if (adType == AdType.Reward)
+        {
+            FireBaseActions(AdContent.levelPlayRewardClicked, AdMode.Clicked, SuccessStatus.Success);
+        }
+        OnAdClickedCallBack?.Invoke(adType.ToString(),NetworkType.LevelPlay.ToString());
+
+    }
+
     void RequestWithDelay(float timer, Action callback)
     {
         StopCoroutine(RequestDelay(timer, callback));
@@ -416,6 +457,35 @@ public class LevelPlayNetworkHandler : MonoBehaviour
             if (FirebaseEvents.instance != null)
             {
                 FirebaseEvents.instance.LogFirebaseEvent(adContent.ToString(), adMode.ToString(), status.ToString());
+            }
+
+            if (adMode == AdMode.Shown)
+            {
+                float calculatedDuration = Time.time - timeSinceGameLoaded;
+                int mins = Mathf.FloorToInt(calculatedDuration / 60f);
+
+
+                if (FirebaseEvents.instance != null)
+                {
+                    if (mins > 0 && mins <= 3)
+                    {
+                        FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsBefore3Mins.ToString(), adMode.ToString(), status.ToString());
+                    }
+                    else if (mins > 3 && mins <= 6)
+                    {
+                        FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsBefore6Mins.ToString(), adMode.ToString(), status.ToString());
+
+                    }
+                    else if (mins > 6 && mins <= 9)
+                    {
+                        FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsBefore9Mins.ToString(), adMode.ToString(), status.ToString());
+
+                    }
+                    else if (mins > 9)
+                    {
+                        FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsafter9Mins.ToString(), adMode.ToString(), status.ToString());
+                    }
+                }
             }
         }
         catch (Exception e)

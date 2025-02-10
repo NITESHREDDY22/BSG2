@@ -190,6 +190,23 @@ public class GameManager : MonoBehaviour
     float currentAdDisplayTime;
     public void NextLevel()
     {
+        if(InternetValidator.Instance)
+        {
+            if(!InternetValidator.Instance.canProceedToNextLevel)
+            {
+                CheckNoInterNetPopup();
+                return;
+            }
+        }
+
+        if (InappManager.Instance)
+        {
+            if (!InappManager.Instance.canProceedToNextLevel)
+            {
+                CheckPreimumPopUP();
+                return;
+            }
+        }
         currentAdDisplayTime = Time.time;
         //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
         if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue)
@@ -382,6 +399,12 @@ public class GameManager : MonoBehaviour
         {
             slingShot.birdThrown += SlingShotBirdThrown;
         }
+        InternetValidator.Instance.OnInterNetCheck += CheckNoInterNetPopup;
+    }
+
+    private void OnDisable()
+    {
+        InternetValidator.Instance.OnInterNetCheck -= CheckNoInterNetPopup;
     }
 
     public void Update()
@@ -503,9 +526,14 @@ public class GameManager : MonoBehaviour
                                     Debug.Log("REWARDVIDEOCOMPLETE " + slingShot.slingShootState);
                                     try
                                     {
-                                        if (FirebaseEvents.instance != null)
+                                        //if (FirebaseEvents.instance != null)
+                                        //{
+                                        //    FirebaseEvents.instance.LogFirebaseEvent("RewardVideoSuccess", "Revive", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                                        //}
+
+                                        if (AdManager._instance)
                                         {
-                                            FirebaseEvents.instance.LogFirebaseEvent("RewardVideoSuccess", "Revive", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                                            AdManager._instance.FireBaseActions(GameEnum.RewardAdForExtraBall, WorldSelectionHandler.worldNumb, Global.CurrentLeveltoPlay);
                                         }
                                     }
                                     catch (Exception e)
@@ -523,9 +551,14 @@ public class GameManager : MonoBehaviour
                                 PlayerPrefs.SetInt("W" + WorldSelectionHandler.worldNumb + "level" + (Global.CurrentLeveltoPlay), 1);
                                 try
                                 {
-                                    if (FirebaseEvents.instance != null)
+                                    //if (FirebaseEvents.instance != null)
+                                    //{
+                                    //    FirebaseEvents.instance.LogFirebaseEvent("RewardVideoSuccess", "SkipLevel", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                                    //}
+
+                                    if(AdManager._instance)
                                     {
-                                        FirebaseEvents.instance.LogFirebaseEvent("RewardVideoSuccess", "SkipLevel", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                                        AdManager._instance.FireBaseActions(GameEnum.UserSkippedLevel, WorldSelectionHandler.worldNumb, Global.CurrentLeveltoPlay);
                                     }
                                 }
                                 catch (Exception e)
@@ -543,10 +576,10 @@ public class GameManager : MonoBehaviour
                                 rewardCanvas.SetActive(false);
                                 try
                                 {
-                                    if (FirebaseEvents.instance != null)
-                                    {
-                                        FirebaseEvents.instance.LogFirebaseEvent("RewardVideoSuccess", "continuegame", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
-                                    }
+                                    //if (FirebaseEvents.instance != null)
+                                    //{
+                                    //    FirebaseEvents.instance.LogFirebaseEvent("RewardVideoSuccess", "continuegame", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                                    //}
                                 }
                                 catch (Exception e)
                                 {
@@ -1000,7 +1033,7 @@ public class GameManager : MonoBehaviour
     void DelayShowLevelFailAd()
     {
         if (AdManager._instance != null)
-        {
+        {            
             AdManager._instance.ShowGameFailInterstitial();
             //AdManager._instance.ShowFBInterstitial();
         }
@@ -1505,8 +1538,8 @@ public class GameManager : MonoBehaviour
         {
             if (AdManager._instance != null)
             {
-                AdManager._instance.ShowGameWinInterstitial();
-                // AdManager._instance.ShowFBInterstitial();
+                AdManager._instance.ShowGameWinInterstitial();               
+                // AdManager._instance.ShowFBInterstitial();                
             }
         }
         catch (Exception exp)
@@ -1544,7 +1577,7 @@ public class GameManager : MonoBehaviour
 
     public void CallAdInPigScript()
     {
-        Invoke("DelayShowLevelCompleteAd", 1.75f);
+       Invoke("DelayShowLevelCompleteAd", 1.75f);
     }
 
     public delegate void coinsUpdated();
@@ -1818,4 +1851,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void CheckNoInterNetPopup(bool status=false)
+    {
+        if (InternetValidator.Instance != null)
+        {
+            if (gameOverPanel.activeSelf )
+            {
+                InternetValidator.Instance.CheckNoInterNetPopup();
+            }
+        }
+    }
+    void CheckPreimumPopUP()
+    {
+        if (InappManager.Instance != null)
+        {
+            if (gameOverPanel.activeSelf)
+            {
+                InappManager.Instance.CheckPremiumPopup();
+            }
+        }
+    }
 } // GameManager

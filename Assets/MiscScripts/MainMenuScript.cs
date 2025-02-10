@@ -56,7 +56,29 @@ public class MainMenuScript : MonoBehaviour
             }
         }
         */
+        
+    }
+    private void OnEnable()
+    {
+        if (AdManager._instance)
+        {
+            checkIntenetConnection();
+            InternetValidator.Instance.OnInterNetCheck += checkIntenetConnection;
+            if (InappManager.Instance)
+            {               
+                InappManager.Instance.CheckPremiumPopup();                
+            }
+        }
+    }
 
+    private void OnDisable()
+    {
+       InternetValidator.Instance.OnInterNetCheck -= checkIntenetConnection;
+    }
+
+    void checkIntenetConnection(bool status = false)
+    {
+        InternetValidator.Instance?.CheckNoInterNetPopup();
     }
 
     public void LevelSelection()

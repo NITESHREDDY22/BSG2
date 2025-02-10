@@ -27,4 +27,6 @@ public class GameConfig {
     public int World3ReqStars;
     public int World4ReqStars;
     public int World5ReqStars;
+    public int InternetMandtoryLevel;
+    public int showPremiumLevelCheck;
 }

@@ -14,6 +14,8 @@ using GoogleMobileAds.Api;
 using UnityEngine.Assertions.Must;
 using UnityEngine.Networking;
 using GoogleMobileAds.Common;
+using System.Net.Http.Headers;
+using System.Linq;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -63,10 +65,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public GameObject LoadingPanel;
     [Header("Store Panel")]
     public GameObject StorePanel;
+    public StoreManager storeManager;
 
 
+
+    /*
     #region Admob
-
     [Header(" Android ")]
     //public static string interstitialId = "ca-app-pub-3411062052281263/3692188687";
     public string adMobInterstitialId;
@@ -80,8 +84,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public string adMobContinueModelRewardBasedVideoId;
     public bool useadMobContinueRewardBasedVideo;
-
-
     public string bannerId;
 
     [Header(" iOS ")]
@@ -89,15 +91,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public string iOS_bannerID;
     public string iOS_rewardedId;
 
-    private bool isAdMobInitialized;
 
     #endregion
 
     ////fb ads
     //private AudienceNetwork.InterstitialAd fbInterstitialAd;
     //private bool isFBLoaded;
-    [Header("LEVEL PLAY")]
-    [SerializeField] string appKey = "1ab7561b5";
    // [SerializeField] string bannerAdUnitId = "thnfvcsog13bhn08";
     [SerializeField] string interstitialAdUnitId = "z8axy0332hnr585z";
     public bool useLevelPlayInterStital;
@@ -105,13 +104,20 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public bool useLevelPlayReward;
     [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
     public bool useLaunchInterStitial;
+    */
 
+    private bool isAdMobInitialized;    
+    private string appKey = "1ab7561b5";
 
     public AdMobNetworkHandler adMobNetworkHandler;
     public LevelPlayNetworkHandler levelPlayNetworkHandler;
     public AdsConfig AdsConfiguration;
-    public static bool onlyOnce=false;
 
+    [Space(10)]
+    [Header("ADs display for every level after adIntervalLevelCheck reached")]
+    public int adIntervalLevelCheck = 30;
+    public static bool onlyOnce=false;
+    public static Action<GameConfig> OnConfigLoaded;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -161,11 +167,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
         }
         Initialize();
-
-#if !UNITY_EDITOR
-        StartCoroutine(CheckInternet(0));
-#endif
-       
     }
 
     private IEnumerator Start()
@@ -178,7 +179,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             yield return www;
             try
             {
-                if (www.error == null)
+                if (www.error == null )
                 {
 
                     GameConfig config = new GameConfig();
@@ -189,22 +190,21 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.isIntersitialsEnabled = config.isIntersitialsEnabled;
                     Global.isRewaredAdsEnabled = config.isRewaredAdsEnabled;
                     //Global.isNativeAdsEnabled = config.isNativeAdsEnabled;
-                    AdManager._instance.GOFAdInterval = config.GOFAdInterval;
-                    AdManager._instance.GOWAdInterval = config.GOWAdInterval;
+                    GOFAdInterval = config.GOFAdInterval;
+                    GOWAdInterval = config.GOWAdInterval;
                     Global.backFillAdGapToContinue = config.backFillAdGapToContinue;
                     Global.World2ReqStars = config.World2ReqStars;
                     Global.World3ReqStars = config.World3ReqStars;
                     Global.World4ReqStars = config.World4ReqStars;
                     Global.World5ReqStars = config.World5ReqStars;
-                    AdManager._instance.enableBanner = Global.isBannerEnabled;
+                    enableBanner = Global.isBannerEnabled;                   
+                    OnConfigLoaded?.Invoke(config);
                 }
                 else
                 {
                     Debug.Log("ERROR: " + www.error);
                 }
                 Global.loadedFromServer = true;
-
-
             }
             catch (Exception exp)
             {
@@ -280,6 +280,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         //FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         StorePanel.SetActive(true);
+        storeManager.dostorecoinsupdate();
     }
     public void HideStorePanel()
     {
@@ -767,12 +768,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         get
         {
-            int WorldNumber = (WorldSelectionHandler.worldSelected);
-            int currentLevel = Global.CurrentLeveltoPlay;
-            return ((WorldNumber > 0) || (WorldNumber < 1 && currentLevel > 28)) ? 2 : 1;
+            int WorldNumber = GameConstants.getLastWorldUnlocked;      
+            return ((WorldNumber > 0) || (WorldNumber < 1 && GameConstants.getLastUnlcokedLevel > (adIntervalLevelCheck-1))) ? 2 : 1;
         }
     }
+
     
+
     public bool LaunchInterstitialState()
     {
         return((adMobNetworkHandler !=null && adMobNetworkHandler.adMobLaunchInterstitial != null && adMobNetworkHandler != null && adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
@@ -908,6 +910,20 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
     }
 
+    public void FireBaseActions(GameEnum gameEnum, int currentWorld, int currentLevel)
+    {
+        try
+        {
+            if (FirebaseEvents.instance != null)
+            {
+                FirebaseEvents.instance.LogFirebaseEvent(gameEnum.ToString(),string.Concat( "WORLD : ",currentWorld), string.Concat("LEVEL : ", currentLevel));
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
     #endregion
 
     #region AdMob
@@ -935,8 +951,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         try
         {
-            GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-            onreward();
+            GameManager.Instance.gameState = GameState.Reward_Video_Completed;           
             GameManager.Instance.ingamevideosuccess();
             this.RequestRewardBasedVideo();
         }
@@ -963,19 +978,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //});
     }
 
-    void OnApplicationFocus(bool hasFocus)
-    {
-        try
-        {
-            if (hasFocus)
-            {
-                onreward();
-            }
-        }
-        catch (Exception e)
-        { }
-
-    }
+   
 
     public void onreward()
     {
@@ -1008,12 +1011,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
 
     }
+
+
+
+
+    #endregion
+
+
    
-
-
-
-#endregion
-
 
     public void HandleOnAdFailedToLoad(LevelPlayAdError levelPlayAdError)
     {
@@ -1078,34 +1083,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         { }
     }
 
-
-    IEnumerator CheckInternet(float timer=60)
-    {
-        yield return new WaitForSeconds(timer);
-        using (UnityWebRequest request = UnityWebRequest.Get("http://clients3.google.com/generate_204"))
-        {
-            request.timeout = 5;
-            yield return request.SendWebRequest();
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                try
-                {
-                    if (FirebaseEvents.instance != null)
-                    {
-                        FirebaseEvents.instance.LogFirebaseEvent("Inetnet Connectivity", "Connected succesfully ");
-                    }
-                }
-                catch (Exception e)
-                {
-
-                }
-            }
-            else
-            {
-                StartCoroutine(CheckInternet());
-            }
-        }
-    }
+   
     #region Init callback handlers
 
     #endregion
@@ -1491,6 +1469,12 @@ public enum RewardType {
     None=5,
    store =6,
    continuegame =7
+}
+
+public enum GameEnum
+{
+    UserSkippedLevel,
+    RewardAdForExtraBall,
 }
 
 

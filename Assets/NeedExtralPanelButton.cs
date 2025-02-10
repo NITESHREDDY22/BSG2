@@ -46,7 +46,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
             AdManager._instance.ShowRewardedInterstitial(result =>
             {
                 if (result)
-                {
+                {                   
                     GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                     AdManager._instance.rewardedvideosuccess = true;
                     GameManager.Instance.ingamevideosuccess();
@@ -56,7 +56,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
                 {
                     GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                     AdManager._instance.rewardedvideosuccess = false;
-                    GameManager.Instance.ingamevideosuccess();
+                    GameManager.Instance.ingamevideosuccess();                  
                 }
             }, AdType.RewardedInterStitial);
         }
@@ -66,7 +66,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
             {
                 if (result)
                 {
-                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;                   
                     AdManager._instance.rewardedvideosuccess = true;
                     GameManager.Instance.ingamevideosuccess();
                     AlreadyShown = true;
@@ -75,7 +75,7 @@ public class NeedExtralPanelButton : MonoBehaviour {
                 {
                     GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                     AdManager._instance.rewardedvideosuccess = false;
-                    GameManager.Instance.ingamevideosuccess();
+                    GameManager.Instance.ingamevideosuccess();                    
                 }
             }, AdType.Reward);
         }

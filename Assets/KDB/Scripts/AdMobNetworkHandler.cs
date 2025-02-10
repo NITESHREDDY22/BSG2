@@ -41,6 +41,17 @@ public enum AdContent
     AdMobContinueRewardShown,
     AdMobRewardedInterstitialShown,
 
+    AdmobInterstitialImpression,
+    AdmobRewardImpression,
+    AdmobRewardInterstitialImpression,
+
+
+    AdmobInterstitialClicked,
+    AdmobRewardClicked,
+    AdmobRewardInterstitialClicked,
+
+
+
 
     LevelPlayLaunchRequested,
     levelPlayInterstitalRequested,
@@ -56,9 +67,22 @@ public enum AdContent
 
     LevelPlayLaunchShown,
     levelPlayInterstitalshown,
-    levelPlayRewardShown,
+    levelPlayRewardShown,  
 
-    
+    levelPlayInterstitialClicked,
+    levelPlayRewardClicked,
+
+    SessionAdsBefore3Mins,
+    SessionAdsBefore6Mins,
+    SessionAdsBefore9Mins,
+    SessionAdsafter9Mins,
+
+    SessionAdClicksBefore3Mins,
+    SessionAdClicksBefore6Mins,
+    SessionAdClicksBefore9Mins,
+    SessionAdClicksafter9Mins,
+
+
 
 }
 
@@ -66,7 +90,9 @@ public enum AdMode
 {
     Requested,
     Loaded,
-    Shown
+    Shown,
+    Impression,
+    Clicked
 }
 
 public enum SuccessStatus
@@ -133,12 +159,17 @@ public class AdMobNetworkHandler :MonoBehaviour
     private Action<bool> callBack=null;
     private Action<bool> rewardedInterStitialcallBack = null;
     public Action<bool> rewardedInterStitialrequestcallBack = null;
-
+    public static Action<string,string> OnAdImpressionCallBack=null;
+    public static Action<string, string> OnAdClickedCallBack = null;
 
 
     private AdConfig adConfig;
 
-
+    private float timeSinceGameLoaded;
+    private void Start()
+    {
+        timeSinceGameLoaded = Time.time;
+    }
     public void Init()
     {
         if (!keyValuePairs.ContainsKey(AdType.Launch))
@@ -307,6 +338,23 @@ public class AdMobNetworkHandler :MonoBehaviour
                                 {
                                     adMobInterstitial = ad;
                                 }
+
+                                item.Interstitial.OnAdImpressionRecorded += () =>
+                                {
+                                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                                    {
+                                        OnAdImpression(adType);
+                                    });
+                                };
+
+                                item.Interstitial.OnAdClicked += () =>
+                                {
+                                    MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                                    {
+                                        OnAdClicked(adType);
+                                    });
+                                };
+
                                 FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchAdLoaded : AdContent.AdMobInterstitalAdLoaded,
                                     AdMode.Loaded, SuccessStatus.Success);
                             }
@@ -496,7 +544,23 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                                });
 
-                           };                           
+                           };
+
+                           ad.OnAdImpressionRecorded += () =>
+                           {
+                               MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                               {
+                                   OnAdImpression(adType);
+                               });
+                           };
+
+                           ad.OnAdClicked += () =>
+                           {
+                               MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                               {
+                                   OnAdClicked(adType);
+                               });
+                           };
                            FireBaseActions( AdContent.AdMobRewardAdLoaded, AdMode.Loaded, SuccessStatus.Success);
                        }
                    });
@@ -659,6 +723,22 @@ public class AdMobNetworkHandler :MonoBehaviour
                                });
 
                            };
+
+                           ad.OnAdImpressionRecorded += () =>
+                           {
+                               MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                               {
+                                   OnAdImpression(adType);
+                               });
+                           };
+
+                           ad.OnAdClicked += () =>
+                           {
+                               MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                               {
+                                   OnAdClicked(adType);
+                               });
+                           };
                            FireBaseActions(AdContent.AdMobRewardedInterstitialRequested, AdMode.Loaded, SuccessStatus.Success);
                        }
                    });
@@ -709,9 +789,83 @@ public class AdMobNetworkHandler :MonoBehaviour
             //Debug.Log("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
             RequestRewardBasedVideo(adType);
         });
-    }   
+    }
 
 
+
+    void OnAdImpression(AdType adType)
+    {
+        if(adType==AdType.Interstital)
+        {
+            FireBaseActions(AdContent.AdmobInterstitialImpression, AdMode.Impression, SuccessStatus.Success);
+        }
+        if (adType == AdType.Reward)
+        {
+            FireBaseActions(AdContent.AdmobRewardImpression, AdMode.Impression, SuccessStatus.Success);
+        }
+        if (adType == AdType.RewardedInterStitial)
+        {
+            FireBaseActions(AdContent.AdmobRewardInterstitialImpression, AdMode.Impression, SuccessStatus.Success);
+        }
+        OnAdImpressionCallBack?.Invoke(adType.ToString(),  NetworkType.AdMob.ToString());
+
+    }
+
+    void OnAdClicked(AdType adType)
+    {
+
+        OnAdClickEvents();
+
+        OnAdClickSessionEvents();
+
+        void OnAdClickEvents()
+        {
+            if (adType == AdType.Interstital)
+            {
+                FireBaseActions(AdContent.AdmobInterstitialClicked, AdMode.Clicked, SuccessStatus.Success);
+            }
+            if (adType == AdType.Reward)
+            {
+                FireBaseActions(AdContent.AdmobRewardClicked, AdMode.Clicked, SuccessStatus.Success);
+            }
+            if (adType == AdType.RewardedInterStitial)
+            {
+                FireBaseActions(AdContent.AdmobRewardInterstitialClicked, AdMode.Clicked, SuccessStatus.Success);
+            }
+        }
+
+        void OnAdClickSessionEvents()
+        {
+            float calculatedDuration = Time.time - timeSinceGameLoaded;
+            int mins = Mathf.FloorToInt(calculatedDuration / 60f);
+
+
+            if (FirebaseEvents.instance != null)
+            {
+                if (mins > 0 && mins <= 3)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdClicksBefore3Mins.ToString(), AdMode.Clicked.ToString(), adType.ToString());
+                }
+                else if (mins > 3 && mins <= 6)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdClicksBefore6Mins.ToString(), AdMode.Clicked.ToString(), adType.ToString());
+
+                }
+                else if (mins > 6 && mins <= 9)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdClicksBefore9Mins.ToString(), AdMode.Clicked.ToString(), adType.ToString());
+
+                }
+                else if (mins > 9)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdClicksafter9Mins.ToString(), AdMode.Clicked.ToString(), adType.ToString());
+                }
+            }
+        }
+
+        OnAdClickedCallBack?.Invoke(adType.ToString(), NetworkType.AdMob.ToString());
+
+    }
 
     public void FireBaseActions(AdContent adContent, AdMode adMode, SuccessStatus status)
     {
@@ -720,6 +874,40 @@ public class AdMobNetworkHandler :MonoBehaviour
             if (FirebaseEvents.instance != null)
             {
                 FirebaseEvents.instance.LogFirebaseEvent(adContent.ToString(), adMode.ToString(), status.ToString());
+            }
+
+            AdShownEvents();
+
+            void AdShownEvents()
+            {
+                if (adMode == AdMode.Shown)
+                {
+                    float calculatedDuration = Time.time - timeSinceGameLoaded;
+                    int mins = Mathf.FloorToInt(calculatedDuration / 60f);
+
+
+                    if (FirebaseEvents.instance != null)
+                    {
+                        if (mins > 0 && mins <= 3)
+                        {
+                            FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsBefore3Mins.ToString(), adMode.ToString(), status.ToString());
+                        }
+                        else if (mins > 3 && mins <= 6)
+                        {
+                            FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsBefore6Mins.ToString(), adMode.ToString(), status.ToString());
+
+                        }
+                        else if (mins > 6 && mins <= 9)
+                        {
+                            FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsBefore9Mins.ToString(), adMode.ToString(), status.ToString());
+
+                        }
+                        else if (mins > 9)
+                        {
+                            FirebaseEvents.instance.LogFirebaseEvent(AdContent.SessionAdsafter9Mins.ToString(), adMode.ToString(), status.ToString());
+                        }
+                    }
+                }
             }
         }
         catch (Exception e) 
