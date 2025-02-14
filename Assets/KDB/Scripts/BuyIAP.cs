@@ -24,6 +24,11 @@ public class BuyIAP : MonoBehaviour
     void Butproduct()
     {
         InappManager.Instance.PurchaseItem(currentItem);
+
+        if (FirebaseEvents.instance != null)
+        {
+            FirebaseEvents.instance.LogFirebaseEvent("AdBlockerPurchaseClicked", "success");
+        }
     }
 
     void PostPurchase(ItemType itemType)

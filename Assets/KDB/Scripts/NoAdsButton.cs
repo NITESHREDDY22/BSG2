@@ -20,6 +20,10 @@ public class NoAdsButton : MonoBehaviour
         if (InappManager.Instance != null)
         {
             InappManager.Instance.CheckPremiumPopup();
+            if (FirebaseEvents.instance != null)
+            {
+                FirebaseEvents.instance.LogFirebaseEvent("AdBlockerbuttonClicked", "success");
+            }
         }
     }
 
