@@ -63,11 +63,7 @@ public class MainMenuScript : MonoBehaviour
         if (AdManager._instance)
         {
             checkIntenetConnection();
-            InternetValidator.Instance.OnInterNetCheck += checkIntenetConnection;
-            if (InappManager.Instance)
-            {               
-                InappManager.Instance.CheckPremiumPopup();                
-            }
+            InternetValidator.Instance.OnInterNetCheck += checkIntenetConnection;           
         }
     }
 

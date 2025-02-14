@@ -50,7 +50,10 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
 
     public GameObject noAdsPopup;
 
-    [SerializeField] int showPremiumLevelCheck;
+    public GameObject noAdsPopupButton;
+
+
+    public int PremiumPopUpIteration;
     #endregion   
 
     public static InappManager Instance
@@ -88,9 +91,9 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
 
     private void OnConfigLoaded(GameConfig config)
     {
-        showPremiumLevelCheck = config.showPremiumLevelCheck;
-        showPremiumLevelCheck = showPremiumLevelCheck < 1 ? -1 : showPremiumLevelCheck;
+        PremiumPopUpIteration =  config.PremiumPopUpInterval;       
     }
+
     async void Start()
     {
         Debug.Log(" Initializing Unity Gaming Services...");
@@ -148,6 +151,9 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
                 ProductIdPriceKeyPair.Add(item.definition.id, item.metadata.localizedPriceString);
             }
         }
+
+        Debug.LogError("IAP Debug Log: " + m_StoreController.products.WithID("iap_premium").availableToPurchase);
+
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)
@@ -263,13 +269,14 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
     }
 
 
-    public bool canProceedToNextLevel => (GameConstants.GetNoAdsStatus ||
-        (!GameConstants.GetNoAdsStatus &&  !GameConstants.targetLevelReached(showPremiumLevelCheck)));
+    //public bool canProceedToNextLevel => (GameConstants.GetNoAdsStatus ||
+    //    (!GameConstants.GetNoAdsStatus &&  !GameConstants.targetLevelReached(PremiumPopUpIteration)));
 
+   
     public void CheckPremiumPopup()
     {
-        if (canProceedToNextLevel)
-            return;
+        //if (canProceedToNextLevel)
+        //    return;
 
         if (noAdsPopup)
             noAdsPopup.SetActive(!GameConstants.GetNoAdsStatus);
@@ -279,6 +286,18 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
     {
         if (noAdsPopup)
             noAdsPopup.SetActive(false);
+    }
+
+    public void ShowNoAdsButton()
+    {
+        if (noAdsPopupButton)
+            noAdsPopupButton.SetActive(!GameConstants.GetNoAdsStatus);
+    }
+
+    public void HideNoAdsButton()
+    {
+        if (noAdsPopupButton)
+            noAdsPopupButton.SetActive(false);
     }
 
 }

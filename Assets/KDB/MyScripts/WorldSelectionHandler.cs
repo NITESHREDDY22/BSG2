@@ -186,14 +186,14 @@ public class WorldSelectionHandler : MonoBehaviour
     public static int worldSelected = 0;
     public void SelectWorld(Transform _tr)
     {
-        if(InappManager.Instance)
-        {
-            if(!InappManager.Instance.canProceedToNextLevel)
-            {
-                InappManager.Instance.CheckPremiumPopup();
-                return;
-            }
-        }
+        //if(InappManager.Instance)
+        //{
+        //    if(!InappManager.Instance.canProceedToNextLevel)
+        //    {
+        //        InappManager.Instance.CheckPremiumPopup();
+        //        return;
+        //    }
+        //}
         if (totalLevels[_tr.GetSiblingIndex()] > 0)
         {
             SoundManager.PlaySFX("Click2");

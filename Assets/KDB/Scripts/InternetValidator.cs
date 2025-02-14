@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Windows;
 
 public class InternetValidator : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class InternetValidator : MonoBehaviour
     public Action<bool> OnInterNetCheck;
     private string cachedLevel;
     public int mandatoryInternetToPlayFromLevel = 40;
+
     private void Awake()
     {
         Instance= this;
@@ -49,16 +51,13 @@ public class InternetValidator : MonoBehaviour
         StartCoroutine(CheckInternet(timer, (result) =>
         {
             isInterNetConnected = result;
+            OnInterNetCheck?.Invoke(result);
             callBack?.Invoke(result);
+
             if (isInterNetConnected)
             {
                 CheckInterNetConnectivity(pingInterval);
-            }
-            else
-            {
-                Debug.Log("Show error popup");
-            }
-            OnInterNetCheck?.Invoke(result);
+            }        
             GameConstants.InternetConnected = isInterNetConnected;
         }));
     }
@@ -108,20 +107,20 @@ public class InternetValidator : MonoBehaviour
             {
                 try
                 {
-                    callBack?.Invoke(true);
                     if (!triggerEvent)
                     {
                         if (FirebaseEvents.instance != null)
                         {
-                            FirebaseEvents.instance.LogFirebaseEvent("Inetnet Connectivity", "Connected succesfully ");
+                            FirebaseEvents.instance.LogFirebaseEvent("Internet_Connectivity", "Connected_succesfully ");
                         }
                         triggerEvent = true;
                     }
+                    callBack?.Invoke(true);
 
                 }
                 catch (Exception e)
                 {
-
+                    callBack?.Invoke(false);
                 }
             }
             else
@@ -139,37 +138,61 @@ public class InternetValidator : MonoBehaviour
     {
         try
         {
-            if (hasFocus )//&& adManager.CheckMandatoryInterNet)
+            if (hasFocus )
             {
-                CheckInterNetConnectivity(0, (callback) =>
+                CheckNow();
+
+                void CheckNow()
                 {
-                    OnInterNetCheck?.Invoke(callback);                    
-                });
+                    CheckInterNetConnectivity(0, (callback) =>
+                    {
+                        OnInterNetCheck?.Invoke(callback);
+                        if(callback==false)
+                        {
+                            CheckNowWithDelay();
+                        }
+                    }); 
+                }
+
+                void CheckNowWithDelay()
+                {
+                    CheckInterNetConnectivity(2, (callback) =>
+                    {
+                        OnInterNetCheck?.Invoke(callback);
+                    });
+                }
+
             }
         }
         catch (Exception e)
         { }
 
     }
-
+    int count = 0;
     void EventForInternetCheck(bool status)
     {
         
-        if (status == cacheInternetStatus)
+        if (status == cacheInternetStatus && count>0)
             return;
-
-        string currentLevel = string.Concat(WorldSelectionHandler.worldSelected, Global.CurrentLeveltoPlay);
-        Debug.LogError("Current Level " + currentLevel);
-         
-
+     
         SendEvent();
 
         void SendEvent()
         {
-            if (FirebaseEvents.instance)
+            if (FirebaseEvents.instance!=null)
             {
-                string connectString = status ? "Inetnet Connected at" : "Inetnet DisConnected at";
-                FirebaseEvents.instance.LogFirebaseEvent(connectString, "WORLD : " + WorldSelectionHandler.worldSelected, "LEVEL : " + Global.CurrentLeveltoPlay);
+                string connectString = status ? "InternetConnectedAt_" : "InternetDisConnectedAt_";
+                string levelString= "W_" + WorldSelectionHandler.worldSelected+"_L_" + Global.CurrentLeveltoPlay;
+                string targetString = string.Concat(connectString, levelString);
+                targetString= targetString.Replace(" ", "");
+                Debug.LogError(" targetString" + targetString);
+                FirebaseEvents.instance.LogFirebaseEvent(targetString, "Status");
+                if (count < 1)
+                {
+                    count++;
+                }
+                //Debug.LogError("connectString " + connectString+ " WORLD : " + WorldSelectionHandler.worldSelected+ " LEVEL : " + Global.CurrentLeveltoPlay);
+
             }
         }
         cacheInternetStatus = status;

@@ -118,6 +118,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public int adIntervalLevelCheck = 30;
     public static bool onlyOnce=false;
     public static Action<GameConfig> OnConfigLoaded;
+    [SerializeField]private int gapBetweenAds=2;
+    [SerializeField]private int gapBetweenAdsSecondary=3;
+    public static Action OnIngameAdClosed;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -197,7 +200,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.World3ReqStars = config.World3ReqStars;
                     Global.World4ReqStars = config.World4ReqStars;
                     Global.World5ReqStars = config.World5ReqStars;
-                    enableBanner = Global.isBannerEnabled;                   
+                    enableBanner = Global.isBannerEnabled;
+                    gapBetweenAds = config.FIRST_LVLS_SET_AD_GAP;
+                    gapBetweenAdsSecondary = config.SECOND_LVLS_SET_AD_GAP;
+
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
@@ -309,7 +315,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
 
     #region ADS REGION
-
+    private bool canShowAd=true;
     void Initialize()
     {
 
@@ -559,6 +565,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         try
         {
+            if (!canShowAd)
+                return;
 
             adMobNetworkHandler.ShowInterstitialAd(AdType.Interstital, ShowLevelPlayLaunchInterStital);
             void ShowLevelPlayLaunchInterStital(bool flag)
@@ -614,14 +622,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
     }
 
-    public void ShowCommonInterstitial()
-    {
-       
-
+    public void ShowCommonInterstitial(Action<bool> callBack=null)
+    {      
         Debug.Log("Increase Interstitial Counter");
         try
         {
-            ShowInterstitial();           
+            ShowInterstitial(callBack);           
         }
         catch (Exception exp)
         {
@@ -659,12 +665,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowGameFailInterstitial()
     {
-        counter+=GetCounter;
+        counter++;
        // Debug.Log("Increase Interstitial Counter"+counter + " Get "+GetCounter);
         try
         {
 
-            if (counter >= GOFAdInterval)
+            if (counter >= GetCounter)
             {
                 ShowInterstitial((result) =>
                 {
@@ -713,12 +719,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public void ShowGameWinInterstitial()
     {
         //counter2++;
-        counter2 += GetCounter;
+        counter2++;
         //Debug.Log("Increase Interstitial Counter" + counter2 + " Get " + GetCounter);
 
         try
         {
-            if (counter2 >= GOWAdInterval)
+            if (counter2 >= GetCounter)
             {
                     ShowInterstitial((result) =>
                     {
@@ -762,18 +768,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
         }
     }
-
     
     int GetCounter
     {
         get
         {
             int WorldNumber = GameConstants.getLastWorldUnlocked;      
-            return ((WorldNumber > 0) || (WorldNumber < 1 && GameConstants.getLastUnlcokedLevel > (adIntervalLevelCheck-1))) ? 2 : 1;
+            return ((WorldNumber > 0) || (WorldNumber < 1 && GameConstants.getLastUnlcokedLevel > (adIntervalLevelCheck-1))) ? gapBetweenAds : gapBetweenAdsSecondary;
         }
     }
-
-    
 
     public bool LaunchInterstitialState()
     {
@@ -923,6 +926,35 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
 
         }
+    }
+
+    public void FireBaseActions(string gameEnum, string currentWorld, string currentLevel)
+    {
+        try
+        {
+            if (FirebaseEvents.instance != null)
+            {
+                FirebaseEvents.instance.LogFirebaseEvent(gameEnum, currentWorld, currentLevel);
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
+    public void DelayOnShowAds()
+    {
+        StopCoroutine(DelayShowAds());
+        StartCoroutine(DelayShowAds());
+    }
+
+    IEnumerator DelayShowAds()
+    {
+        canShowAd = false;
+        yield return new WaitForSeconds(60);
+        canShowAd = true;
+
     }
     #endregion
 

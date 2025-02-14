@@ -7,29 +7,18 @@ public class DailyLoginHandler : MonoBehaviour
 {
     // Start is called before the first frame update
     private readonly string FirstTimeLogin = "FirstTimeLogin";
-    private readonly string ImpressionKey = "AdImpressionsOnDay ";
-    private readonly string ClicksKey = "AdClicksOnDay ";
+    private readonly string ImpressionKey = "AdImpressionsOnDay_";
+    private readonly string ClicksKey = "AdClicksOnDay_";
 
     void Start()
     {
         if (string.IsNullOrEmpty(PlayerPrefs.GetString(FirstTimeLogin, string.Empty)))
         {
-            PlayerPrefs.SetString(FirstTimeLogin, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));        
-        }        
-    }
-
-    private void OnEnable()
-    {
-        AdMobNetworkHandler.OnAdClickedCallBack += OnAdClickedCallBack;
-        AdMobNetworkHandler.OnAdImpressionCallBack += OnAdImpressionCallBack;
-        LevelPlayNetworkHandler.OnAdClickedCallBack += OnAdClickedCallBack;
-    }
-
-    private void OnDisable()
-    {
-        AdMobNetworkHandler.OnAdClickedCallBack -= OnAdClickedCallBack;
-        AdMobNetworkHandler.OnAdImpressionCallBack -= OnAdImpressionCallBack;
-        LevelPlayNetworkHandler.OnAdClickedCallBack -= OnAdClickedCallBack;
+            string ts = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss");
+            PlayerPrefs.SetString(FirstTimeLogin,ts);        
+        }
+       //Debug.LogError("Day " +GetCurrentDay());
+       // SendEvent(ImpressionKey, "asdf", "asdf");
     }
 
     int GetCurrentDay()
@@ -38,8 +27,8 @@ public class DailyLoginHandler : MonoBehaviour
         DateTime currentTime = DateTime.UtcNow;       
         string cachedTime= PlayerPrefs.GetString(FirstTimeLogin);
 
-       // Debug.LogError("currentTime : " + currentTime);
-       // Debug.LogError("cachedTime : " + cachedTime );       
+        Debug.LogError("currentTime : " + currentTime);
+        Debug.LogError("cachedTime : " + cachedTime );       
 
         DateTime parsedDateTime;
         bool success = DateTime.TryParseExact(
@@ -65,12 +54,12 @@ public class DailyLoginHandler : MonoBehaviour
 
     }
 
-    private void OnAdClickedCallBack(string arg1, string arg2)
+    public void OnAdClickedCallBack(string arg1, string arg2)
     {
         SendEvent(ClicksKey, arg1, arg2);
     }
 
-    private void OnAdImpressionCallBack(string arg1, string arg2)
+    public void OnAdImpressionCallBack(string arg1, string arg2)
     {
         SendEvent(ImpressionKey, arg1, arg2);
     }
@@ -84,7 +73,7 @@ public class DailyLoginHandler : MonoBehaviour
 
         dayCount++;
         string key=string.Concat(eventKey,dayCount);
-
+        key = key.Replace(" ", "");
         if (FirebaseEvents.instance != null)
         {
             FirebaseEvents.instance.LogFirebaseEvent(key, adtype, newtorktype);

@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
 
     private DateTime SessionStart, SessionEnd;
 
+    private readonly string LevelSkippedKey = "Level_param_Skipped";
+    private readonly string LevelExtraBallKey = "Level_param_ExtraBall";
+
     void Start()
     {
 
@@ -182,7 +185,15 @@ public class GameManager : MonoBehaviour
         {
             currentAdDisplayTime = Time.time;
             if ((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > AdManager._instance.levelReloadAdDuration)
-                AdManager._instance.ShowCommonInterstitial();
+            {
+                AdManager._instance.ShowCommonInterstitial((result)=>
+                    { 
+                        if(result)
+                        {
+                            AdManager._instance.DelayOnShowAds();
+                        }
+                });
+            }
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -197,16 +208,8 @@ public class GameManager : MonoBehaviour
                 CheckNoInterNetPopup();
                 return;
             }
-        }
+        }       
 
-        if (InappManager.Instance)
-        {
-            if (!InappManager.Instance.canProceedToNextLevel)
-            {
-                CheckPreimumPopUP();
-                return;
-            }
-        }
         currentAdDisplayTime = Time.time;
         //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
         if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue)
@@ -400,11 +403,18 @@ public class GameManager : MonoBehaviour
             slingShot.birdThrown += SlingShotBirdThrown;
         }
         InternetValidator.Instance.OnInterNetCheck += CheckNoInterNetPopup;
+        AdManager.OnIngameAdClosed += ShowNoAdsButton;
     }
 
     private void OnDisable()
     {
         InternetValidator.Instance.OnInterNetCheck -= CheckNoInterNetPopup;
+        if(InappManager.Instance)
+        {
+            InappManager.Instance.HideNoAdsButton();
+        }
+        AdManager.OnIngameAdClosed -= ShowNoAdsButton;
+
     }
 
     public void Update()
@@ -533,7 +543,9 @@ public class GameManager : MonoBehaviour
 
                                         if (AdManager._instance)
                                         {
-                                            AdManager._instance.FireBaseActions(GameEnum.RewardAdForExtraBall, WorldSelectionHandler.worldNumb, Global.CurrentLeveltoPlay);
+                                            string levelNum = "W" + WorldSelectionHandler.worldNumb + "_L" + Global.CurrentLeveltoPlay;
+                                            string targetKey = LevelExtraBallKey.Replace("param", levelNum);
+                                            AdManager._instance.FireBaseActions(targetKey,"ExtraBall","success");
                                         }
                                     }
                                     catch (Exception e)
@@ -558,7 +570,9 @@ public class GameManager : MonoBehaviour
 
                                     if(AdManager._instance)
                                     {
-                                        AdManager._instance.FireBaseActions(GameEnum.UserSkippedLevel, WorldSelectionHandler.worldNumb, Global.CurrentLeveltoPlay);
+                                        string levelNum = "W" + WorldSelectionHandler.worldNumb + "_L" + Global.CurrentLeveltoPlay;
+                                        string targetKey = LevelSkippedKey.Replace("param", levelNum);
+                                        AdManager._instance.FireBaseActions(targetKey, "skiplevel", "success");
                                     }
                                 }
                                 catch (Exception e)
@@ -1393,6 +1407,7 @@ public class GameManager : MonoBehaviour
             //AdManager._instance.ShowGameWinInterstitial();
             CallAdInPigScript();
 
+           
             // GOTeleHook();
 
             //Firebase.Analytics.FirebaseAnalytics.LogEvent(WorldSelectionHandler.worldSelected + " " + Global.CurrentLeveltoPlay + "- Finish ");
@@ -1580,6 +1595,16 @@ public class GameManager : MonoBehaviour
        Invoke("DelayShowLevelCompleteAd", 1.75f);
     }
 
+    public void ShowNoAdsButton()
+    {
+        if (InappManager.Instance && (gameOverPanel.activeSelf))
+        {
+            if (Global.CurrentLeveltoPlay > 0 && (Global.CurrentLeveltoPlay % (InappManager.Instance.PremiumPopUpIteration - 1) == 0))
+            {
+                InappManager.Instance.ShowNoAdsButton();
+            }
+        }
+    }
     public delegate void coinsUpdated();
     public static event coinsUpdated coinsUpdatedEvent;
     public static void AddCoins()

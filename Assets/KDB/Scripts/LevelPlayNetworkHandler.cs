@@ -49,13 +49,14 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
     private Dictionary<AdType, AdItem> keyValuePairs = new Dictionary<AdType, AdItem>();
 
-    public static Action<string, string> OnAdClickedCallBack = null;
+    [SerializeField] DailyLoginHandler dailyLoginHandler;
 
-    private float timeSinceGameLoaded;
+
+    private DateTime timeSinceGameLoaded;
 
     private void Start()
     {
-        timeSinceGameLoaded = Time.time;
+        timeSinceGameLoaded = DateTime.UtcNow;
     }
 
     public void Initialize()
@@ -122,6 +123,11 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         {
             item = adItem;
         }
+
+        if (GameConstants.GetNoAdsStatus)
+            return;
+
+
         if (item == null || string.IsNullOrEmpty(item.AdID) || item.isAdRequested)
             return;
         //Debug.Log("Asdf Level RequestLaunchInterstitial 2222");
@@ -176,6 +182,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
                                 RequestInterstitial(adType);
                             }
                             FireBaseActions(adType == AdType.Launch ? AdContent.LevelPlayLaunchShown : AdContent.levelPlayInterstitalshown, AdMode.Shown, SuccessStatus.Success);
+                            AdManager.OnIngameAdClosed?.Invoke();
                         });
 
                     };
@@ -220,6 +227,9 @@ public class LevelPlayNetworkHandler : MonoBehaviour
             item = adItem;
 
         }
+
+        if (GameConstants.GetNoAdsStatus)
+            return;
         //Debug.Log("Asdf Level ShowInterstitialAd 22222");
 
         if (item != null && item.Interstitial!= null && item.Interstitial.IsAdReady())
@@ -253,6 +263,9 @@ public class LevelPlayNetworkHandler : MonoBehaviour
         {
             item = adItem;
         }
+
+      
+
         if (item == null || string.IsNullOrEmpty(item.AdID) || item.isAdRequested)
             return;
 
@@ -428,16 +441,23 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
     void OnAdClicked(AdType adType)
     {
-        if (adType == AdType.Interstital)
+        try
         {
-            FireBaseActions(AdContent.levelPlayInterstitialClicked, AdMode.Clicked, SuccessStatus.Success);
+            if (adType == AdType.Interstital)
+            {
+                FireBaseActions(AdContent.levelPlayInterstitialClicked, AdMode.Clicked, SuccessStatus.Success);
+            }
+            if (adType == AdType.Reward)
+            {
+                FireBaseActions(AdContent.levelPlayRewardClicked, AdMode.Clicked, SuccessStatus.Success);
+            }
+            //OnAdClickedCallBack?.Invoke(adType.ToString(),NetworkType.LevelPlay.ToString());
+            dailyLoginHandler.OnAdClickedCallBack(adType.ToString(), NetworkType.LevelPlay.ToString());
         }
-        if (adType == AdType.Reward)
+        catch (Exception ex)
         {
-            FireBaseActions(AdContent.levelPlayRewardClicked, AdMode.Clicked, SuccessStatus.Success);
-        }
-        OnAdClickedCallBack?.Invoke(adType.ToString(),NetworkType.LevelPlay.ToString());
 
+        }
     }
 
     void RequestWithDelay(float timer, Action callback)
@@ -461,8 +481,7 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
             if (adMode == AdMode.Shown)
             {
-                float calculatedDuration = Time.time - timeSinceGameLoaded;
-                int mins = Mathf.FloorToInt(calculatedDuration / 60f);
+                double mins = (DateTime.UtcNow - timeSinceGameLoaded).TotalMinutes;
 
 
                 if (FirebaseEvents.instance != null)
