@@ -774,7 +774,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         get
         {
             int WorldNumber = GameConstants.getLastWorldUnlocked;      
-            return ((WorldNumber > 0) || (WorldNumber < 1 && GameConstants.getLastUnlcokedLevel > (adIntervalLevelCheck-1))) ? gapBetweenAds : gapBetweenAdsSecondary;
+            return ((WorldNumber > 0) || (WorldNumber < 1 && GameConstants.getLastUnlcokedLevel > (adIntervalLevelCheck-1))) ? gapBetweenAdsSecondary : gapBetweenAds;
         }
     }
 
