@@ -36,7 +36,7 @@ public static class GameConstants
 
             case ItemType.Noads:
                 PlayerPrefs.SetString(NoAdsKey, NoAdsPurchased);
-                Coins += 10000;
+                Coins += 5000;
                 break;
         }
     }
