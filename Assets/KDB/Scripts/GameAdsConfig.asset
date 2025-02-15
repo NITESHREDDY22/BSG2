@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f47ab9e055b5a47aaa0aa239947b35, type: 3}
+  m_Name: GameAdsConfig
+  m_EditorClassIdentifier: 
+  AdConfigContainer:
+  - NetworkType: 0
+    AppKey: ca-app-pub-3411062052281263~5705120266
+    adConfigs:
+    - AdType: 0
+      AdUnitId: ca-app-pub-3411062052281263/3169444505
+      ActiveStatus: 0
+    - AdType: 1
+      AdUnitId: ca-app-pub-3411062052281263/3692188687
+      ActiveStatus: 0
+    - AdType: 2
+      AdUnitId: ca-app-pub-3411062052281263/8038627800
+      ActiveStatus: 0
+    - AdType: 4
+      AdUnitId: ca-app-pub-3411062052281263/5294228744
+      ActiveStatus: 0
+    - AdType: 5
+      AdUnitId: ca-app-pub-3411062052281263/2087800960
+      ActiveStatus: 0
+  - NetworkType: 1
+    AppKey: 1ab7561b5
+    adConfigs:
+    - AdType: 0
+      AdUnitId: 68ozdvrgw2w8rw44
+      ActiveStatus: 0
+    - AdType: 1
+      AdUnitId: z8axy0332hnr585z
+      ActiveStatus: 1
+    - AdType: 2
+      AdUnitId: hgncqhneupu7bppt
+      ActiveStatus: 0

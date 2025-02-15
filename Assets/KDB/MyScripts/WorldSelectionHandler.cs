@@ -24,6 +24,7 @@ public class WorldSelectionHandler : MonoBehaviour
     {
        // GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
     }
+   
     void starsupdate()
     {
         Global.TotalStarsAchivedWorld1 = TotalStarsforworld(0);
@@ -185,6 +186,14 @@ public class WorldSelectionHandler : MonoBehaviour
     public static int worldSelected = 0;
     public void SelectWorld(Transform _tr)
     {
+        //if(InappManager.Instance)
+        //{
+        //    if(!InappManager.Instance.canProceedToNextLevel)
+        //    {
+        //        InappManager.Instance.CheckPremiumPopup();
+        //        return;
+        //    }
+        //}
         if (totalLevels[_tr.GetSiblingIndex()] > 0)
         {
             SoundManager.PlaySFX("Click2");

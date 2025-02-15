@@ -6,7 +6,8 @@ public class RadialProgress : MonoBehaviour {
 	float currentValue;
 	public float speed;
 	
-	void Update() {
+	void Update() 
+	{
 		if (this.gameObject.activeInHierarchy)
 		{
 			if (currentValue < 100)

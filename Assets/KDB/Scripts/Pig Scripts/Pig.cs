@@ -316,6 +316,7 @@ public class Pig : MonoBehaviour
         {
             if (AdManager._instance != null)
             {
+                InternetValidator.Instance.CheckNoInterNetPopup();
                 AdManager._instance.ShowGameWinInterstitial();
                 //AdManager._instance.ShowFBInterstitial();
             }

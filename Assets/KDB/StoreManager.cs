@@ -150,7 +150,7 @@ public class StoreManager : MonoBehaviour
             }
         }
     }
-
+       
     public void dostorecoinsupdate()
     {
         CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
