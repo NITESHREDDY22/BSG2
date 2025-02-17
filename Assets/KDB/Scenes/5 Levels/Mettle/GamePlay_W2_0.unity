@@ -57901,6 +57901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spike (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1299099069296790, guid: 1a9a19baa24716443a604aec422dd7e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4280126276985400, guid: 1a9a19baa24716443a604aec422dd7e3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -85725,6 +85729,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1967009063}
     m_Modifications:
+    - target: {fileID: 1299099069296790, guid: 1a9a19baa24716443a604aec422dd7e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4280126276985400, guid: 1a9a19baa24716443a604aec422dd7e3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -85784,6 +85792,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 569970821}
     m_Modifications:
+    - target: {fileID: 1003247226971508, guid: 1a9a19baa24716443a604aec422dd7e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4280126276985400, guid: 1a9a19baa24716443a604aec422dd7e3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -101596,6 +101608,10 @@ PrefabInstance:
     - target: {fileID: 1212133637107698, guid: 2c976ba95ec6a974d81d5445059c0d31, type: 3}
       propertyPath: m_Name
       value: LaserBottleset1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837645310657860, guid: 2c976ba95ec6a974d81d5445059c0d31, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4106200730688238, guid: 2c976ba95ec6a974d81d5445059c0d31, type: 3}
       propertyPath: m_RootOrder
