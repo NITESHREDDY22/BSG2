@@ -62,6 +62,17 @@ public static class GameConstants
         return ((WorldNumber > 0) || (WorldNumber < 1 && (targetLevelNumber-1)<=getLastUnlcokedLevel)) ? true : false;        
     }
 
+    public static bool targetLevelReached(int worldNumber, int demoEndLevelNumber)
+    {
+        if (demoEndLevelNumber < 0 || worldNumber<0)
+            return true;
+
+        if (!getWorldUnlockedStatus(worldNumber))
+            return true;
+       
+        return (getLastUnlcokedLevelFromWorld(worldNumber)<(demoEndLevelNumber)) ? true : false;
+    }
+
     public static int getLastUnlcokedLevel
     {
         get
@@ -79,6 +90,21 @@ public static class GameConstants
             int index = unlockedWorlds.FindLastIndex(x => x == true);
             return index < 0 ? 0 : index;
         }
+    }
+
+    public static bool getWorldUnlockedStatus(int worldNumber)
+    {
+        
+        List<bool> unlockedWorlds = PlayerPrefsX.GetBoolArray("_unlockedWorlds", false, WorldSelectionHandler.totalLevels.Length).ToList();           
+        return unlockedWorlds[worldNumber];        
+    }
+
+    public static int getLastUnlcokedLevelFromWorld(int worldNumber)
+    {
+        
+        List<bool> ULevels = PlayerPrefsX.GetBoolArray("_unlockedlevels" + worldNumber, false, WorldSelectionHandler.totalLevels[getLastWorldUnlocked]).ToList();
+        return ULevels.FindLastIndex(x => x == true);
+        
     }
 
 }

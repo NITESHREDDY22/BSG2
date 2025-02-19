@@ -82,6 +82,15 @@ public class LevelSelectionHandler : MonoBehaviour {
 
     public void SelectLevel(Transform _tr)
     {
+        if (InappManager.Instance)
+        {
+            bool flag = InappManager.Instance.canProceedToNextLevelCheck(WorldSelectionHandler.worldSelected, _tr.GetSiblingIndex()-1);
+            if (!flag)
+            {
+                InappManager.Instance.CheckPremiumPopup();
+                return;
+            }
+        }
         AdManager._instance.ShowLoadingPanel();
         SoundManager.PlaySFX("Click2");
         Global.CurrentLeveltoPlay = _tr.GetSiblingIndex();

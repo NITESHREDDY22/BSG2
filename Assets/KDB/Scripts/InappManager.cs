@@ -4,6 +4,8 @@ using UnityEngine.Purchasing;
 using System;
 using UnityEngine.Purchasing.Extension;
 using Unity.Services.Core;
+using UnityEngine.Windows;
+using System.Linq;
 
 
 
@@ -51,9 +53,13 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
     public GameObject noAdsPopup;
 
     public GameObject noAdsPopupButton;
-
+    public TMPro.TextMeshProUGUI IAPpremiumText;
 
     public int PremiumPopUpIteration;
+
+    private int DemoEndWorldNumber =-1;
+    private int DemoEndLevelNumber =-1;
+
     #endregion   
 
     public static InappManager Instance
@@ -91,7 +97,17 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
 
     private void OnConfigLoaded(GameConfig config)
     {
-        PremiumPopUpIteration =  config.PremiumPopUpInterval;       
+        PremiumPopUpIteration =  config.PremiumPopUpInterval;
+        string premiumKey = config.Fullversion;
+        if (!string.IsNullOrEmpty(premiumKey))
+        {
+            string[] subStr = premiumKey.Split('_');
+            int[] numbers = subStr[0].Where(char.IsDigit)
+                            .Select(c => int.Parse(c.ToString()))
+                            .ToArray();
+            DemoEndWorldNumber = numbers[0];
+            DemoEndLevelNumber = int.Parse(subStr[1]);
+        }
     }
 
     async void Start()
@@ -269,15 +285,36 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
     }
 
 
-    //public bool canProceedToNextLevel => (GameConstants.GetNoAdsStatus ||
-    //    (!GameConstants.GetNoAdsStatus &&  !GameConstants.targetLevelReached(PremiumPopUpIteration)));
+    public bool canProceedToNextLevel => (GameConstants.GetNoAdsStatus ||
+        (!GameConstants.GetNoAdsStatus &&  !GameConstants.targetLevelReached(PremiumPopUpIteration)));
 
-   
-    public void CheckPremiumPopup()
+   public bool canProceedToNextLevelCheck(int worldNumber,int levelNumber)
+    {
+        if(GameConstants.GetNoAdsStatus)
+        {
+            return true;
+        }
+
+        if (worldNumber < DemoEndWorldNumber)
+            return true;
+
+        if (levelNumber < (DemoEndLevelNumber-1))
+            return true;
+
+        bool status = GameConstants.targetLevelReached(worldNumber, DemoEndLevelNumber);
+        return status;
+    }
+
+    public void CheckPremiumPopup(bool fromButton=false)
     {
         //if (canProceedToNextLevel)
         //    return;
+        IAPpremiumText.text = "Demo levels completed \n Purchase full version to continue";
 
+        if (fromButton)
+        {
+            IAPpremiumText.text = "Get 5,000 coins";
+        }
         if (noAdsPopup)
             noAdsPopup.SetActive(!GameConstants.GetNoAdsStatus);
     }

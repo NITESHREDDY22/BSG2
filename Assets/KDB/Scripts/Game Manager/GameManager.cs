@@ -208,7 +208,17 @@ public class GameManager : MonoBehaviour
                 CheckNoInterNetPopup();
                 return;
             }
-        }       
+        }
+
+        if (InappManager.Instance)
+        {
+            bool flag = InappManager.Instance.canProceedToNextLevelCheck(WorldSelectionHandler.worldSelected, Global.CurrentLeveltoPlay);
+            if(!flag)
+            {
+                InappManager.Instance.CheckPremiumPopup();
+                return;
+            }
+        }
 
         currentAdDisplayTime = Time.time;
         //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
@@ -545,6 +555,7 @@ public class GameManager : MonoBehaviour
                                         {
                                             string levelNum = "W" + WorldSelectionHandler.worldNumb + "_L" + Global.CurrentLeveltoPlay;
                                             string targetKey = LevelExtraBallKey.Replace("param", levelNum);
+                                            targetKey = targetKey.Replace(" ", "");
                                             AdManager._instance.FireBaseActions(targetKey,"ExtraBall","success");
                                         }
                                     }
@@ -572,6 +583,7 @@ public class GameManager : MonoBehaviour
                                     {
                                         string levelNum = "W" + WorldSelectionHandler.worldNumb + "_L" + Global.CurrentLeveltoPlay;
                                         string targetKey = LevelSkippedKey.Replace("param", levelNum);
+                                        targetKey = targetKey.Replace(" ", "");
                                         AdManager._instance.FireBaseActions(targetKey, "skiplevel", "success");
                                     }
                                 }
@@ -1599,7 +1611,7 @@ public class GameManager : MonoBehaviour
     {
         if (InappManager.Instance && (gameOverPanel.activeSelf))
         {
-            if (Global.CurrentLeveltoPlay > 0 && (Global.CurrentLeveltoPlay % (InappManager.Instance.PremiumPopUpIteration - 1) == 0))
+            //if (Global.CurrentLeveltoPlay > 0 && (Global.CurrentLeveltoPlay % (InappManager.Instance.PremiumPopUpIteration - 1) == 0))
             {
                 InappManager.Instance.ShowNoAdsButton();
             }

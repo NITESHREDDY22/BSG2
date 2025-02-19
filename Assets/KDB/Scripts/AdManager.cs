@@ -666,7 +666,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public void ShowGameFailInterstitial()
     {
         counter++;
-       // Debug.Log("Increase Interstitial Counter"+counter + " Get "+GetCounter);
+        //Debug.Log("Increase Interstitial Counter "+counter + " Get "+GetCounter);
         try
         {
 
@@ -720,7 +720,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         //counter2++;
         counter2++;
-        //Debug.Log("Increase Interstitial Counter" + counter2 + " Get " + GetCounter);
+        //Debug.Log("Increase Interstitial Counter---" + counter2 + " Get " + GetCounter);
 
         try
         {
@@ -774,7 +774,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         get
         {
             int WorldNumber = GameConstants.getLastWorldUnlocked;      
-            return ((WorldNumber > 0) || (WorldNumber < 1 && GameConstants.getLastUnlcokedLevel > (adIntervalLevelCheck-1))) ? gapBetweenAdsSecondary : gapBetweenAds;
+            return ((WorldNumber < 1 && GameConstants.getLastUnlcokedLevel < (adIntervalLevelCheck))) ? gapBetweenAds: gapBetweenAdsSecondary;
         }
     }
 

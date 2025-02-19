@@ -31,4 +31,6 @@ public class GameConfig {
     public int PremiumPopUpInterval=3;
     public int FIRST_LVLS_SET_AD_GAP=2;
     public int SECOND_LVLS_SET_AD_GAP = 3;
+    public string Fullversion = "W1_10";
+
 }
