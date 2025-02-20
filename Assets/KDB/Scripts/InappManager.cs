@@ -296,12 +296,12 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
         }
 
         if (worldNumber < DemoEndWorldNumber)
-            return true;
+            return true;      
 
-        if (levelNumber < (DemoEndLevelNumber-1))
-            return true;
+        if (worldNumber > DemoEndWorldNumber)
+            return false;
 
-        bool status = GameConstants.targetLevelReached(worldNumber, DemoEndLevelNumber);
+        bool status = GameConstants.targetLevelReached(worldNumber, DemoEndLevelNumber, levelNumber);
         return status;
     }
 

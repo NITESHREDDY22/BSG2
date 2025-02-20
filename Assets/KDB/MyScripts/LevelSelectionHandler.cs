@@ -84,7 +84,7 @@ public class LevelSelectionHandler : MonoBehaviour {
     {
         if (InappManager.Instance)
         {
-            bool flag = InappManager.Instance.canProceedToNextLevelCheck(WorldSelectionHandler.worldSelected, _tr.GetSiblingIndex()-1);
+            bool flag = InappManager.Instance.canProceedToNextLevelCheck(WorldSelectionHandler.worldSelected, _tr.GetSiblingIndex());
             if (!flag)
             {
                 InappManager.Instance.CheckPremiumPopup();
