@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Assets.SimpleLocalization;
 public class splashtoMenu : MonoBehaviour {
 
     public Image progressslider;
@@ -40,10 +41,14 @@ public class splashtoMenu : MonoBehaviour {
                 progress += Time.deltaTime;
 
 
-            if (progress < 3) loadingText.text = "loading assets...";
-            else if (progress > 3 && progress < 6) loadingText.text = "loading player data...";
-            else if (progress > 6 && progress < 9) loadingText.text = "loading scene...";
-            else if (progress > 9) loadingText.text = "starting ...";
+            if (progress < 3) 
+                loadingText.text = LocalizationManager.Localize("loading assets...");
+            else if (progress > 3 && progress < 6)
+                loadingText.text = LocalizationManager.Localize("loading player data…");
+            else if (progress > 6 && progress < 9)
+                loadingText.text = LocalizationManager.Localize("loading scene...");
+            else if (progress > 9)
+                loadingText.text = LocalizationManager.Localize("starting…");
 
             yield return new WaitForSeconds(Time.deltaTime);
         }

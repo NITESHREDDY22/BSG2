@@ -309,11 +309,11 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
     {
         //if (canProceedToNextLevel)
         //    return;
-        IAPpremiumText.text = "Demo levels completed \n Purchase full version to continue";
+        //IAPpremiumText.text = "Demo levels completed \n Purchase full version to continue";
 
         if (fromButton)
         {
-            IAPpremiumText.text = "Get 5,000 coins";
+          //  IAPpremiumText.text = "Get 5,000 coins";
         }
         if (noAdsPopup)
             noAdsPopup.SetActive(!GameConstants.GetNoAdsStatus);

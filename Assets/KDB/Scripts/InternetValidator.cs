@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Networking;
 using UnityEngine.Windows;
 
@@ -22,6 +24,21 @@ public class InternetValidator : MonoBehaviour
     {
         Instance= this;
         CheckInterNetConnectivity();
+
+#if UNITY_EDITOR
+       
+        //PlayerPrefsX.SetBoolArray("_unlockedlevels" + worldNumb, unlockedLevels);
+        //for (int i = 0; i < WorldSelectionHandler.totalLevels.Length; i++)
+        //{          
+        //    for (int j = 0;j< WorldSelectionHandler.totalLevels[i];j++)
+        //    {
+        //        WorldSelectionHandler.worldSelected = i;
+        //        LevelSelectionHandler.UnlockLevel(j);
+        //        LevelSelectionHandler.SetStarsOfLevel(j, i, 3);
+        //    }      
+        //    Debug.LogError("World Number " + i);
+        //}        
+#endif
     }
 
     private void OnEnable()
