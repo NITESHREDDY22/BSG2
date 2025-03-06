@@ -4112,6 +4112,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.10839691
       objectReference: {fileID: 0}
+    - target: {fileID: 199607896783367270, guid: b485cdf117819de42a0c5a8d35d9abc8,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28315,6 +28320,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2006212529}
     m_Modifications:
+    - target: {fileID: 1359631400364226, guid: 11ea0485f3254ac4ca62cfe354a13095, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114040103022980414, guid: 11ea0485f3254ac4ca62cfe354a13095,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -28325,6 +28334,12 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1927991299}
+    - target: {fileID: 114622011399266766, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 57d1116d993d407449b944500a30b68e,
+        type: 3}
     - target: {fileID: 114838941292339784, guid: 11ea0485f3254ac4ca62cfe354a13095,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -28418,6 +28433,48 @@ PrefabInstance:
     - target: {fileID: 224925623642121712, guid: 11ea0485f3254ac4ca62cfe354a13095,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058526781734994433, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a70dd9fe00ba4384788b4409d22e582f,
+        type: 2}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2837119294131022949, guid: a70dd9fe00ba4384788b4409d22e582f,
+        type: 2}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406952168271509073, guid: 11ea0485f3254ac4ca62cfe354a13095,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -36701,7 +36758,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1671911353
   m_SortingOrder: 5
@@ -37820,6 +37877,11 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1671911353
       objectReference: {fileID: 0}
+    - target: {fileID: 199273840029746090, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 199622501077141480, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
         type: 3}
       propertyPath: m_SortingLayer
@@ -37834,6 +37896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: -1671911353
+      objectReference: {fileID: 0}
+    - target: {fileID: 199622501077141480, guid: 4961a16ba01e09547be3e1c9d16d5ad0,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114187966190455476, guid: 4961a16ba01e09547be3e1c9d16d5ad0, type: 3}
