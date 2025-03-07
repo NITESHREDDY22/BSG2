@@ -14,7 +14,7 @@ namespace Assets.SimpleLocalization
 		{
 			LocalizationManager.Read();
            SystemLanguage T = Application.systemLanguage;            
-           //SystemLanguage T = SystemLanguage.Spanish;
+           //T = SystemLanguage.Spanish;
             switch (T)
 			{
 				case SystemLanguage.German:

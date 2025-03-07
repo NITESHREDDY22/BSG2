@@ -160,7 +160,9 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("Connection Lost!", "Connection Lost");
                 Dictionary["English"].TryAdd("Unable to load the game.", "Unable to load the game.");
                 Dictionary["English"].TryAdd("Please check your internet connection.", "Please check your internet connection.");
-        
+                Dictionary["English"].TryAdd("Try again", "Try again");
+
+
 
                 //ARABIC LANGUAGE
 
@@ -223,6 +225,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("Connection Lost!", "فقد الاتصال!");
                 Dictionary["Arabic"].TryAdd("Unable to load the game.", "غير قادر على تحميل اللعبة.");
                 Dictionary["Arabic"].TryAdd("Please check your internet connection.", "يرجى التحقق من اتصالك بالإنترنت.");
+                Dictionary["Arabic"].TryAdd("Try again", "حاول ثانية");
 
 
                 //SPANISH LANGUAGE
@@ -285,6 +288,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("Connection Lost!", "¡Conexión Perdida!");
                 Dictionary["Spanish"].TryAdd("Unable to load the game.", "No se puede cargar el juego.");
                 Dictionary["Spanish"].TryAdd("Please check your internet connection.", "Por favor, revisa tu conexión a internet.");
+                Dictionary["Spanish"].TryAdd("Try again", "intentar otra vez");
 
 
                 //GERMAN LANGUAGE
@@ -347,6 +351,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("Connection Lost!", "Verbindung verloren!");
                 Dictionary["German"].TryAdd("Unable to load the game.", "Spiel kann nicht geladen werden.");
                 Dictionary["German"].TryAdd("Please check your internet connection.", "Bitte überprüfe deine Internetverbindung.");
+                Dictionary["German"].TryAdd("Try again", "versuchen Sie es erneut");
 
                 //PORTUGUESE LANGUAGE
 
@@ -408,6 +413,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Portuguese"].TryAdd("Connection Lost!", "Conexão Perdida!");
                 Dictionary["Portuguese"].TryAdd("Unable to load the game.", "Incapaz de carregar o jogo.");
                 Dictionary["Portuguese"].TryAdd("Please check your internet connection.", "Por favor, verifique sua conexão com a internet.");
+                Dictionary["Portuguese"].TryAdd("Try again", "tente novamente");
 
 
                 //POLISH LANGUAGE
@@ -470,6 +476,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Polish"].TryAdd("Connection Lost!", "Utracono połączenie!");
                 Dictionary["Polish"].TryAdd("Unable to load the game.", "Nie można załadować gry.");
                 Dictionary["Polish"].TryAdd("Please check your internet connection.", "Proszę sprawdź swoje połączenie internetowe.");
+                Dictionary["Polish"].TryAdd("Try again", "spróbuj ponownie");
 
 
                 //FRENCH LANGUAGE
@@ -532,6 +539,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("Connection Lost!", "Connexion perdue!");
                 Dictionary["French"].TryAdd("Unable to load the game.", "Impossible de charger le jeu.");
                 Dictionary["French"].TryAdd("Please check your internet connection.", "Veuillez vérifier votre connexion Internet.");
+                Dictionary["French"].TryAdd("Try again", "essayer à nouveau");
 
 
                 //DUTCH LANGUAGE
@@ -594,6 +602,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("Connection Lost!", "Verbinding Verloren!");
                 Dictionary["Dutch"].TryAdd("Unable to load the game.", "Kan het spel niet laden.");
                 Dictionary["Dutch"].TryAdd("Please check your internet connection.", "Controleer je internetverbinding.");
+                Dictionary["Dutch"].TryAdd("Try again", "probeer het opnieuw");
 
 
                 //TURKISH LANGUAGE
@@ -656,6 +665,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Turkish"].TryAdd("Connection Lost!", "Bağlantı Kaybedildi!");
                 Dictionary["Turkish"].TryAdd("Unable to load the game.", "Oyunu yükleyemiyor.");
                 Dictionary["Turkish"].TryAdd("Please check your internet connection.", "Lütfen internet bağlantınızı kontrol edin.");
+                Dictionary["Turkish"].TryAdd("Try again", "tekrar deneyin");
 
 
 
@@ -719,6 +729,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Italian"].TryAdd("Connection Lost!", "Connessione persa!");
                 Dictionary["Italian"].TryAdd("Unable to load the game.", "Impossibile caricare il gioco.");
                 Dictionary["Italian"].TryAdd("Please check your internet connection.", "Si prega di controllare la connessione a Internet.");
+                Dictionary["Italian"].TryAdd("Try again", "riprova");
 
 
                 //RUSSIAN LANGUAGE
@@ -781,6 +792,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Russian"].TryAdd("Connection Lost!", "Соединение потеряно!");
                 Dictionary["Russian"].TryAdd("Unable to load the game.", "Не удалось загрузить игру.");
                 Dictionary["Russian"].TryAdd("Please check your internet connection.", "Пожалуйста, проверьте ваше интернет-соединение.");
+                Dictionary["Russian"].TryAdd("Try again", "Попробуйте еще раз");
 
 
                 //JAPANESE LANGUAGE
@@ -844,6 +856,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("Connection Lost!", "接続が失われました！");
                 Dictionary["Japanese"].TryAdd("Unable to load the game.", "ゲームを読み込めません。");
                 Dictionary["Japanese"].TryAdd("Please check your internet connection.", "インターネット接続を確認してください。");
+                Dictionary["Japanese"].TryAdd("Try again", "もう一度やり直してください");
 
 
                 //CHINESE LANGUAGE
@@ -906,6 +919,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("Connection Lost!", "连接丢失！");
                 Dictionary["Chinese"].TryAdd("Unable to load the game.", "无法加载游戏。");
                 Dictionary["Chinese"].TryAdd("Please check your internet connection.", "请检查您的互联网连接。");
+                Dictionary["Chinese"].TryAdd("Try again", "再试一次");
 
 
 

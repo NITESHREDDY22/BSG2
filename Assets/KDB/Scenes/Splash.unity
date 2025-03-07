@@ -4163,6 +4163,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6378412702573322825, guid: cd7fc749ff035144e86cb35ecd190472,
+        type: 3}
+      propertyPath: m_fontSizeMax
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6378412702573322825, guid: cd7fc749ff035144e86cb35ecd190472,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8929743425986841545, guid: cd7fc749ff035144e86cb35ecd190472,
         type: 3}
       propertyPath: m_Pivot.x
