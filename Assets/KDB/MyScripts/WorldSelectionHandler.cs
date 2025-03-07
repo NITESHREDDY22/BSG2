@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.SimpleLocalization;
+using Newtonsoft.Json.Linq;
 
 public class WorldSelectionHandler : MonoBehaviour
 {
@@ -109,25 +110,25 @@ public class WorldSelectionHandler : MonoBehaviour
 
             if (i == 1)
             {
-                string txtLabel = LocalizationManager.Localize("Worldlock_popupClue1");
+                string txtLabel = LocalizationManager.Localize("Achieve _ stars in forest world to unlock this world");
                 string[] splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
                 Wobj.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = splitString[0] + " " + (Global.World2ReqStars - Global.TotalStarsAchivedWorld1) + " " + splitString[1];
             }
             else if (i == 2)
             {
-                string txtLabel = LocalizationManager.Localize("Worldlock_popupClue2");
+                string txtLabel = LocalizationManager.Localize("Achieve _ stars in ancient world to unlock this world");
                 string[] splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
                 Wobj.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = splitString[0] + " " + (Global.World3ReqStars - Global.TotalStarsAchivedWorld2) + " " + splitString[1];
             }
             else if (i == 3)
             {
-                string txtLabel = LocalizationManager.Localize("Worldlock_popupClue3");
+                string txtLabel = LocalizationManager.Localize("Achieve _ stars in mettle world to unlock this world");
                 string[] splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
                 Wobj.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = splitString[0] + " " + (Global.World4ReqStars - Global.TotalStarsAchivedWorld3) + " " + splitString[1];
             }
             else if (i == 4)
             {
-                string txtLabel = LocalizationManager.Localize("Worldlock_popupClue4");
+                string txtLabel = LocalizationManager.Localize("Achieve _ stars in desert world to unlock this world");
                 string[] splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
                 Wobj.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = splitString[0] + " " + (Global.World5ReqStars - Global.TotalStarsAchivedWorld4) + " " + splitString[1];
             }
@@ -136,6 +137,7 @@ public class WorldSelectionHandler : MonoBehaviour
     }
     List<GameObject> btns;
 
+    string[] array = new string[] { "Forest", "Ancient", "Mettle", "Desert", "Snowy" };
     public void ConfigLvlButtons()
     {
         for (int i = 0; i < btns.Count; i++)
@@ -145,7 +147,7 @@ public class WorldSelectionHandler : MonoBehaviour
                 btns[i].transform.GetChild(1).gameObject.SetActive(false);
                 btns[i].transform.GetChild(3).gameObject.SetActive(true);
                 btns[i].transform.GetChild(4).gameObject.SetActive(true);
-                btns[i].transform.GetChild(3).transform.Find("WorldName").GetComponent<Text>().text = LocalizationManager.Localize("WorldsPanel_name"+i); //WorldsPanel_name0//btns[i].name;
+                btns[i].transform.GetChild(3).transform.Find("WorldName").GetComponent<Text>().text = LocalizationManager.Localize(array[i]); //WorldsPanel_name0//btns[i].name;
                 if (i == 0)
                 {
                     btns[i].transform.GetChild(3).GetChild(1).transform.Find("StarsLabel").GetComponent<Text>().text = Global.TotalStarsAchivedWorld1 + "/" + (totalLevels[i] * 3);

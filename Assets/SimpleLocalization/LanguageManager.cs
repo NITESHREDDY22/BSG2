@@ -13,7 +13,7 @@ namespace Assets.SimpleLocalization
 		public void Awake()
 		{
 			LocalizationManager.Read();
-            SystemLanguage T = Application.systemLanguage;
+           SystemLanguage T = Application.systemLanguage;            
            //SystemLanguage T = SystemLanguage.Spanish;
             switch (T)
 			{
@@ -57,6 +57,7 @@ namespace Assets.SimpleLocalization
 					LocalizationManager.Language = "English";
 					break;
 			}
+            
         }
 
 		public void SetLocalization(string localization)
