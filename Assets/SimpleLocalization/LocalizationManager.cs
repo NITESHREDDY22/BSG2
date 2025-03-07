@@ -146,10 +146,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("premium without ads", "premium without ads");
                 Dictionary["English"].TryAdd("100% Add free", "100% Add free");
                 Dictionary["English"].TryAdd("skip video", "skip video");
-                Dictionary["English"].TryAdd("loading assets...", "loading assets...");
-                Dictionary["English"].TryAdd("loading player data…", "loading player data…");
-                Dictionary["English"].TryAdd("loading scene...", "loading scene...");
-                Dictionary["English"].TryAdd("starting…", "starting…");
+                Dictionary["English"].TryAdd("loading assets", "loading assets...");
+                Dictionary["English"].TryAdd("loading player data", "loading player data...");
+                Dictionary["English"].TryAdd("loading scene", "loading scene...");
+                Dictionary["English"].TryAdd("starting", "starting...");
                 Dictionary["English"].TryAdd("PLAY", "PLAY");
                 Dictionary["English"].TryAdd("SHOP", "SHOP");
                 Dictionary["English"].TryAdd("RATE US", "RATE US");
@@ -211,10 +211,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("premium without ads", "بريميوم بدون اعلانات");
                 Dictionary["Arabic"].TryAdd("100% Add free", "100٪ إضافة مجانية");
                 Dictionary["Arabic"].TryAdd("skip video", "تخطي الفيديو");
-                Dictionary["Arabic"].TryAdd("loading assets...", "تحميل الأصول...");
-                Dictionary["Arabic"].TryAdd("loading player data…", "تحميل بيانات المشغل...");
-                Dictionary["Arabic"].TryAdd("loading scene...", "مشهد التحميل ...");
-                Dictionary["Arabic"].TryAdd("starting…", "بدء...");
+                Dictionary["Arabic"].TryAdd("loading assets", "تحميل الأصول...");
+                Dictionary["Arabic"].TryAdd("loading player data", "تحميل بيانات المشغل...");
+                Dictionary["Arabic"].TryAdd("loading scene", "مشهد التحميل ...");
+                Dictionary["Arabic"].TryAdd("starting", "بدء...");
                 Dictionary["Arabic"].TryAdd("PLAY", "لعب");
                 Dictionary["Arabic"].TryAdd("SHOP", "دكان");
                 Dictionary["Arabic"].TryAdd("RATE US", "قيمنا");
@@ -227,6 +227,8 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("Please check your internet connection.", "يرجى التحقق من اتصالك بالإنترنت.");
                 Dictionary["Arabic"].TryAdd("Try again", "حاول ثانية");
 
+
+                
 
                 //SPANISH LANGUAGE
 
@@ -274,10 +276,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("premium without ads", "Premium sin anuncios");
                 Dictionary["Spanish"].TryAdd("100% Add free", "100% sin anuncios");
                 Dictionary["Spanish"].TryAdd("skip video", "saltar video");
-                Dictionary["Spanish"].TryAdd("loading assets...", "cargando recursos...");
-                Dictionary["Spanish"].TryAdd("loading player data…", "cargando datos del jugador...");
-                Dictionary["Spanish"].TryAdd("loading scene...", "cargando escena...");
-                Dictionary["Spanish"].TryAdd("starting…", "iniciando...");
+                Dictionary["Spanish"].TryAdd("loading assets", "cargando recursos...");
+                Dictionary["Spanish"].TryAdd("loading player data", "cargando datos del jugador...");
+                Dictionary["Spanish"].TryAdd("loading scene", "cargando escena...");
+                Dictionary["Spanish"].TryAdd("starting", "iniciando...");
                 Dictionary["Spanish"].TryAdd("PLAY", "JUGAR");
                 Dictionary["Spanish"].TryAdd("SHOP", "TIENDA");
                 Dictionary["Spanish"].TryAdd("RATE US", "CALIFÍCANOS");
@@ -337,10 +339,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("premium without ads", "Premium ohne Werbung");
                 Dictionary["German"].TryAdd("100% Add free", "100% werbefrei");
                 Dictionary["German"].TryAdd("skip video", "Video überspringen");
-                Dictionary["German"].TryAdd("loading assets...", "Ressourcen laden...");
-                Dictionary["German"].TryAdd("loading player data…", "Spielerdaten laden...");
-                Dictionary["German"].TryAdd("loading scene...", "Szene laden...");
-                Dictionary["German"].TryAdd("starting…", "Starten...");
+                Dictionary["German"].TryAdd("loading assets", "Ressourcen laden...");
+                Dictionary["German"].TryAdd("loading player data", "Spielerdaten laden...");
+                Dictionary["German"].TryAdd("loading scene", "Szene laden...");
+                Dictionary["German"].TryAdd("starting", "Starten...");
                 Dictionary["German"].TryAdd("PLAY", "SPIELEN");
                 Dictionary["German"].TryAdd("SHOP", "GESCHÄFT");
                 Dictionary["German"].TryAdd("RATE US", "BEWERTEN SIE UNS");
@@ -399,10 +401,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Portuguese"].TryAdd("premium without ads", "premium sem anúncios");
                 Dictionary["Portuguese"].TryAdd("100% Add free", "100% sem anúncios");
                 Dictionary["Portuguese"].TryAdd("skip video", "pular vídeo");
-                Dictionary["Portuguese"].TryAdd("loading assets...", "carregando recursos...");
-                Dictionary["Portuguese"].TryAdd("loading player data…", "carregando dados do jogador...");
-                Dictionary["Portuguese"].TryAdd("loading scene...", "carregando cena...");
-                Dictionary["Portuguese"].TryAdd("starting…", "iniciando...");
+                Dictionary["Portuguese"].TryAdd("loading assets", "carregando recursos...");
+                Dictionary["Portuguese"].TryAdd("loading player data", "carregando dados do jogador...");
+                Dictionary["Portuguese"].TryAdd("loading scene", "carregando cena...");
+                Dictionary["Portuguese"].TryAdd("starting", "iniciando...");
                 Dictionary["Portuguese"].TryAdd("PLAY", "JOGAR");
                 Dictionary["Portuguese"].TryAdd("SHOP", "LOJA");
                 Dictionary["Portuguese"].TryAdd("RATE US", "AVALIE-NOS");
@@ -462,10 +464,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Polish"].TryAdd("premium without ads", "premium bez reklam");
                 Dictionary["Polish"].TryAdd("100% Add free", "100% bez reklam");
                 Dictionary["Polish"].TryAdd("skip video", "pomiń wideo");
-                Dictionary["Polish"].TryAdd("loading assets...", "ładowanie zasobów...");
-                Dictionary["Polish"].TryAdd("loading player data…", "ładowanie danych gracza...");
-                Dictionary["Polish"].TryAdd("loading scene...", "ładowanie sceny...");
-                Dictionary["Polish"].TryAdd("starting…", "rozpoczynanie...");
+                Dictionary["Polish"].TryAdd("loading assets", "ładowanie zasobów...");
+                Dictionary["Polish"].TryAdd("loading player data", "ładowanie danych gracza...");
+                Dictionary["Polish"].TryAdd("loading scene", "ładowanie sceny...");
+                Dictionary["Polish"].TryAdd("starting", "rozpoczynanie...");
                 Dictionary["Polish"].TryAdd("PLAY", "GRAJ");
                 Dictionary["Polish"].TryAdd("SHOP", "SKLEP");
                 Dictionary["Polish"].TryAdd("RATE US", "OCEN NAS");
@@ -525,10 +527,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("premium without ads", "premium sans annonces");
                 Dictionary["French"].TryAdd("100% Add free", "100% sans annonces");
                 Dictionary["French"].TryAdd("skip video", "passer la vidéo");
-                Dictionary["French"].TryAdd("loading assets...", "chargement des ressources...");
-                Dictionary["French"].TryAdd("loading player data…", "chargement des données du joueur...");
-                Dictionary["French"].TryAdd("loading scene...", "chargement de la scène...");
-                Dictionary["French"].TryAdd("starting…", "démarrage...");
+                Dictionary["French"].TryAdd("loading assets", "chargement des ressources...");
+                Dictionary["French"].TryAdd("loading player data", "chargement des données du joueur...");
+                Dictionary["French"].TryAdd("loading scene", "chargement de la scène...");
+                Dictionary["French"].TryAdd("starting", "démarrage...");
                 Dictionary["French"].TryAdd("PLAY", "JOUER");
                 Dictionary["French"].TryAdd("SHOP", "BOUTIQUE");
                 Dictionary["French"].TryAdd("RATE US", "ÉVALUEZ-NOUS");
@@ -588,10 +590,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("premium without ads", "premium zonder advertenties");
                 Dictionary["Dutch"].TryAdd("100% Add free", "100% advertentievrij");
                 Dictionary["Dutch"].TryAdd("skip video", "video overslaan");
-                Dictionary["Dutch"].TryAdd("loading assets...", "middelen laden...");
-                Dictionary["Dutch"].TryAdd("loading player data…", "spelergegevens laden...");
-                Dictionary["Dutch"].TryAdd("loading scene...", "scène laden...");
-                Dictionary["Dutch"].TryAdd("starting…", "starten...");
+                Dictionary["Dutch"].TryAdd("loading assets", "middelen laden...");
+                Dictionary["Dutch"].TryAdd("loading player data", "spelergegevens laden...");
+                Dictionary["Dutch"].TryAdd("loading scene", "scène laden...");
+                Dictionary["Dutch"].TryAdd("starting", "starten...");
                 Dictionary["Dutch"].TryAdd("PLAY", "SPELEN");
                 Dictionary["Dutch"].TryAdd("SHOP", "WINKEL");
                 Dictionary["Dutch"].TryAdd("RATE US", "BEOORDEEL ONS");
@@ -651,10 +653,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Turkish"].TryAdd("premium without ads", "reklamsız premium");
                 Dictionary["Turkish"].TryAdd("100% Add free", "100% reklamsız");
                 Dictionary["Turkish"].TryAdd("skip video", "videoyu geç");
-                Dictionary["Turkish"].TryAdd("loading assets...", "varlıklar yükleniyor...");
-                Dictionary["Turkish"].TryAdd("loading player data…", "oyuncu verileri yükleniyor...");
-                Dictionary["Turkish"].TryAdd("loading scene...", "sahne yükleniyor...");
-                Dictionary["Turkish"].TryAdd("starting…", "başlıyor...");
+                Dictionary["Turkish"].TryAdd("loading assets", "varlıklar yükleniyor...");
+                Dictionary["Turkish"].TryAdd("loading player data", "oyuncu verileri yükleniyor...");
+                Dictionary["Turkish"].TryAdd("loading scene", "sahne yükleniyor...");
+                Dictionary["Turkish"].TryAdd("starting", "başlıyor...");
                 Dictionary["Turkish"].TryAdd("PLAY", "OYNAMAK");
                 Dictionary["Turkish"].TryAdd("SHOP", "DÜKKAN");
                 Dictionary["Turkish"].TryAdd("RATE US", "BİZİ OYLA");
@@ -715,10 +717,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Italian"].TryAdd("premium without ads", "premium senza annunci");
                 Dictionary["Italian"].TryAdd("100% Add free", "100% senza annunci");
                 Dictionary["Italian"].TryAdd("skip video", "salta video");
-                Dictionary["Italian"].TryAdd("loading assets...", "caricamento risorse...");
-                Dictionary["Italian"].TryAdd("loading player data…", "caricamento dati giocatore...");
-                Dictionary["Italian"].TryAdd("loading scene...", "caricamento scena...");
-                Dictionary["Italian"].TryAdd("starting…", "avvio...");
+                Dictionary["Italian"].TryAdd("loading assets", "caricamento risorse...");
+                Dictionary["Italian"].TryAdd("loading player data", "caricamento dati giocatore...");
+                Dictionary["Italian"].TryAdd("loading scene", "caricamento scena...");
+                Dictionary["Italian"].TryAdd("starting", "avvio...");
                 Dictionary["Italian"].TryAdd("PLAY", "GIOCARE");
                 Dictionary["Italian"].TryAdd("SHOP", "NEGOZIO");
                 Dictionary["Italian"].TryAdd("RATE US", "VALUTACI");
@@ -778,10 +780,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Russian"].TryAdd("premium without ads", "премиум без рекламы");
                 Dictionary["Russian"].TryAdd("100% Add free", "100% без рекламы");
                 Dictionary["Russian"].TryAdd("skip video", "пропустить видео");
-                Dictionary["Russian"].TryAdd("loading assets...", "загрузка ресурсов...");
-                Dictionary["Russian"].TryAdd("loading player data…", "загрузка данных игрока...");
-                Dictionary["Russian"].TryAdd("loading scene...", "загрузка сцены...");
-                Dictionary["Russian"].TryAdd("starting…", "запуск...");
+                Dictionary["Russian"].TryAdd("loading assets", "загрузка ресурсов...");
+                Dictionary["Russian"].TryAdd("loading player data", "загрузка данных игрока...");
+                Dictionary["Russian"].TryAdd("loading scene", "загрузка сцены...");
+                Dictionary["Russian"].TryAdd("starting", "запуск...");
                 Dictionary["Russian"].TryAdd("PLAY", "ИГРАТЬ");
                 Dictionary["Russian"].TryAdd("SHOP", "МАГАЗИН");
                 Dictionary["Russian"].TryAdd("RATE US", "ОЦЕНИТЕ НАС");
@@ -842,10 +844,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("premium without ads", "広告なしのプレミアム");
                 Dictionary["Japanese"].TryAdd("100% Add free", "100% 広告なし");
                 Dictionary["Japanese"].TryAdd("skip video", "ビデオをスキップ");
-                Dictionary["Japanese"].TryAdd("loading assets...", "アセットの読み込み中...");
-                Dictionary["Japanese"].TryAdd("loading player data…", "プレイヤーデータの読み込み中...");
-                Dictionary["Japanese"].TryAdd("loading scene...", "シーンの読み込み中...");
-                Dictionary["Japanese"].TryAdd("starting…", "開始...");
+                Dictionary["Japanese"].TryAdd("loading assets", "アセットの読み込み中...");
+                Dictionary["Japanese"].TryAdd("loading player data", "プレイヤーデータの読み込み中...");
+                Dictionary["Japanese"].TryAdd("loading scene", "シーンの読み込み中...");
+                Dictionary["Japanese"].TryAdd("starting", "開始...");
                 Dictionary["Japanese"].TryAdd("PLAY", "プレイ");
                 Dictionary["Japanese"].TryAdd("SHOP", "ショップ");
                 Dictionary["Japanese"].TryAdd("RATE US", "評価する");
@@ -905,10 +907,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("premium without ads", "无广告高级版");
                 Dictionary["Chinese"].TryAdd("100% Add free", "100%无广告");
                 Dictionary["Chinese"].TryAdd("skip video", "跳过视频");
-                Dictionary["Chinese"].TryAdd("loading assets...", "加载资源...");
-                Dictionary["Chinese"].TryAdd("loading player data…", "加载玩家数据...");
-                Dictionary["Chinese"].TryAdd("loading scene...", "加载场景...");
-                Dictionary["Chinese"].TryAdd("starting…", "开始...");
+                Dictionary["Chinese"].TryAdd("loading assets", "加载资源...");
+                Dictionary["Chinese"].TryAdd("loading player data", "加载玩家数据...");
+                Dictionary["Chinese"].TryAdd("loading scene", "加载场景...");
+                Dictionary["Chinese"].TryAdd("starting", "开始...");
                 Dictionary["Chinese"].TryAdd("PLAY", "玩");
                 Dictionary["Chinese"].TryAdd("SHOP", "商店");
                 Dictionary["Chinese"].TryAdd("RATE US", "评价我们");

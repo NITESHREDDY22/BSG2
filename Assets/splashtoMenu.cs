@@ -13,7 +13,8 @@ public class splashtoMenu : MonoBehaviour {
     public bool editorTest = false;
     void Start()
     {
-     //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
+        loadingText.text = LocalizationManager.Localize("loading assets");
         StartCoroutine(fadAction_(0.1f));
     }
     IEnumerator fadAction_(float t)
@@ -42,13 +43,13 @@ public class splashtoMenu : MonoBehaviour {
 
 
             if (progress < 3) 
-                loadingText.text = LocalizationManager.Localize("loading assets...");
+                loadingText.text = LocalizationManager.Localize("loading assets");
             else if (progress > 3 && progress < 6)
-                loadingText.text = LocalizationManager.Localize("loading player data…");
+                loadingText.text = LocalizationManager.Localize("loading player data");
             else if (progress > 6 && progress < 9)
-                loadingText.text = LocalizationManager.Localize("loading scene...");
+                loadingText.text = LocalizationManager.Localize("loading scene");
             else if (progress > 9)
-                loadingText.text = LocalizationManager.Localize("starting…");
+                loadingText.text = LocalizationManager.Localize("starting");
 
             yield return new WaitForSeconds(Time.deltaTime);
         }
