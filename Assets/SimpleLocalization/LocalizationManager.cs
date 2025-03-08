@@ -124,7 +124,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("Exit.ConfirmText", "ARE YOU SURE..?");
                 Dictionary["English"].TryAdd("HidePanel.Text", "Loading...");
                 Dictionary["English"].TryAdd("StorePanel.text", "StorePanel");
-                Dictionary["English"].TryAdd("Select", "Select");
+                Dictionary["English"].TryAdd("SelectString", "SelectString");
                 Dictionary["English"].TryAdd("SpinWheel.text", "Spin wheel");
                 Dictionary["English"].TryAdd("Spin", "Spin");
                 Dictionary["English"].TryAdd("Watchvideo.Text", "WATCH VIDEO\r\n TO SPIN");
@@ -188,7 +188,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("Exit.ConfirmText", "هل أنت متأكد..؟");
                 Dictionary["Arabic"].TryAdd("HidePanel.Text", "تحميل...");
                 Dictionary["Arabic"].TryAdd("StorePanel.text", "لوحة التخزين");
-                Dictionary["Arabic"].TryAdd("Select", "اختار");
+                Dictionary["Arabic"].TryAdd("SelectString", "اختار");
                 Dictionary["Arabic"].TryAdd("SpinWheel.text", "عجلة الدوران");
                 Dictionary["Arabic"].TryAdd("Spin", "ردن");
                 Dictionary["Arabic"].TryAdd("Watchvideo.Text" , " شاهد الفيديو للدوران");
@@ -254,7 +254,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("Exit.ConfirmText", "¿ESTÁS SEGURO..?");
                 Dictionary["Spanish"].TryAdd("HidePanel.Text", "Cargando...");
                 Dictionary["Spanish"].TryAdd("StorePanel.text", "Panel de la tienda");
-                Dictionary["Spanish"].TryAdd("Select", "Seleccionar");
+                Dictionary["Spanish"].TryAdd("SelectString", "Seleccionar");
                 Dictionary["Spanish"].TryAdd("SpinWheel.text", "Girar rueda");
                 Dictionary["Spanish"].TryAdd("Spin", "Girar");
                 Dictionary["Spanish"].TryAdd("Watchvideo.Text", "VER VIDEO PARA GIRAR");
@@ -317,7 +317,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("Exit.ConfirmText", "BIST DU SICHER..?");
                 Dictionary["German"].TryAdd("HidePanel.Text", "Laden...");
                 Dictionary["German"].TryAdd("StorePanel.text", "Speicherpanel");
-                Dictionary["German"].TryAdd("Select", "Auswählen");
+                Dictionary["German"].TryAdd("SelectString", "Auswählen");
                 Dictionary["German"].TryAdd("SpinWheel.text", "Rad drehen");
                 Dictionary["German"].TryAdd("Spin", "Drehen");
                 Dictionary["German"].TryAdd("Watchvideo.Text", "VIDEO ANSEHEN ZUM DREHEN");
@@ -379,7 +379,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Portuguese"].TryAdd("Exit.ConfirmText", "VOCÊ TEM CERTEZA..?");
                 Dictionary["Portuguese"].TryAdd("HidePanel.Text", "Carregando...");
                 Dictionary["Portuguese"].TryAdd("StorePanel.text", "Painel da loja");
-                Dictionary["Portuguese"].TryAdd("Select", "Selecionar");
+                Dictionary["Portuguese"].TryAdd("SelectString", "Selecionar");
                 Dictionary["Portuguese"].TryAdd("SpinWheel.text", "Girar roda");
                 Dictionary["Portuguese"].TryAdd("Spin", "Girar");
                 Dictionary["Portuguese"].TryAdd("Watchvideo.Text", "ASSISTIR VÍDEO PARA GIRAR");
@@ -442,7 +442,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Polish"].TryAdd("Exit.ConfirmText", "CZY JESTEŚ PEWIEN..?");
                 Dictionary["Polish"].TryAdd("HidePanel.Text", "Ładowanie...");
                 Dictionary["Polish"].TryAdd("StorePanel.text", "Panel sklepu");
-                Dictionary["Polish"].TryAdd("Select", "Wybierz");
+                Dictionary["Polish"].TryAdd("SelectString", "Wybierz");
                 Dictionary["Polish"].TryAdd("SpinWheel.text", "Kręć kołem");
                 Dictionary["Polish"].TryAdd("Spin", "Kręć");
                 Dictionary["Polish"].TryAdd("Watchvideo.Text", "OGLĄDAJ WIDEO, ABY KRĘCIĆ");
@@ -505,7 +505,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("Exit.ConfirmText", "ÊTES-VOUS SÛR..?");
                 Dictionary["French"].TryAdd("HidePanel.Text", "Chargement...");
                 Dictionary["French"].TryAdd("StorePanel.text", "Panneau de la boutique");
-                Dictionary["French"].TryAdd("Select", "Sélectionner");
+                Dictionary["French"].TryAdd("SelectString", "Sélectionner");
                 Dictionary["French"].TryAdd("SpinWheel.text", "Tourner la roue");
                 Dictionary["French"].TryAdd("Spin", "Tourner");
                 Dictionary["French"].TryAdd("Watchvideo.Text", "REGARDER LA VIDÉO POUR TOURNER");
@@ -535,7 +535,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("SHOP", "BOUTIQUE");
                 Dictionary["French"].TryAdd("RATE US", "ÉVALUEZ-NOUS");
                 Dictionary["French"].TryAdd("SELECTED", "SÉLECTIONNÉ");
-                Dictionary["French"].TryAdd("OK", "OK");
+                Dictionary["French"].TryAdd("OK", "D'ACCORD");
                 Dictionary["French"].TryAdd("Go Premium without Ads", "Passez à Premium sans annonces");
                 Dictionary["French"].TryAdd("Demo levels completed Purchase full version to continue", "Niveaux de démonstration complétés, achetez la version complète pour continuer");
                 Dictionary["French"].TryAdd("Connection Lost!", "Connexion perdue!");
@@ -568,7 +568,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("Exit.ConfirmText", "WEET JE HET ZEKER..?");
                 Dictionary["Dutch"].TryAdd("HidePanel.Text", "Laden...");
                 Dictionary["Dutch"].TryAdd("StorePanel.text", "Winkelpaneel");
-                Dictionary["Dutch"].TryAdd("Select", "Selecteren");
+                Dictionary["Dutch"].TryAdd("SelectString", "Selecteren");
                 Dictionary["Dutch"].TryAdd("SpinWheel.text", "Wiel draaien");
                 Dictionary["Dutch"].TryAdd("Spin", "Draaien");
                 Dictionary["Dutch"].TryAdd("Watchvideo.Text", "BEKIJK VIDEO OM TE DRAAIEN");
@@ -631,7 +631,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Turkish"].TryAdd("Exit.ConfirmText", "EMİN MİSİN..?");
                 Dictionary["Turkish"].TryAdd("HidePanel.Text", "Yükleniyor...");
                 Dictionary["Turkish"].TryAdd("StorePanel.text", "Mağaza Paneli");
-                Dictionary["Turkish"].TryAdd("Select", "Seç");
+                Dictionary["Turkish"].TryAdd("SelectString", "Seç");
                 Dictionary["Turkish"].TryAdd("SpinWheel.text", "Çarkı döndür");
                 Dictionary["Turkish"].TryAdd("Spin", "Döndür");
                 Dictionary["Turkish"].TryAdd("Watchvideo.Text", "DÖNDÜRMEK İÇİN VİDEO İZLE");
@@ -695,7 +695,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Italian"].TryAdd("Exit.ConfirmText", "SEI SICURO..?");
                 Dictionary["Italian"].TryAdd("HidePanel.Text", "Caricamento...");
                 Dictionary["Italian"].TryAdd("StorePanel.text", "Pannello del negozio");
-                Dictionary["Italian"].TryAdd("Select", "Selezionare");
+                Dictionary["Italian"].TryAdd("SelectString", "Selezionare");
                 Dictionary["Italian"].TryAdd("SpinWheel.text", "Gira la ruota");
                 Dictionary["Italian"].TryAdd("Spin", "Gira");
                 Dictionary["Italian"].TryAdd("Watchvideo.Text", "GUARDA IL VIDEO PER GIRARE");
@@ -758,7 +758,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Russian"].TryAdd("Exit.ConfirmText", "ВЫ УВЕРЕНЫ..?");
                 Dictionary["Russian"].TryAdd("HidePanel.Text", "Загрузка...");
                 Dictionary["Russian"].TryAdd("StorePanel.text", "Панель магазина");
-                Dictionary["Russian"].TryAdd("Select", "Выбрать");
+                Dictionary["Russian"].TryAdd("SelectString", "Выбрать");
                 Dictionary["Russian"].TryAdd("SpinWheel.text", "Крутить колесо");
                 Dictionary["Russian"].TryAdd("Spin", "Крутить");
                 Dictionary["Russian"].TryAdd("Watchvideo.Text", "СМОТРЕТЬ ВИДЕО ЧТОБЫ КРУТИТЬ");
@@ -822,7 +822,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("Exit.ConfirmText", "本当に..?");
                 Dictionary["Japanese"].TryAdd("HidePanel.Text", "読み込み中...");
                 Dictionary["Japanese"].TryAdd("StorePanel.text", "ストアパネル");
-                Dictionary["Japanese"].TryAdd("Select", "選択");
+                Dictionary["Japanese"].TryAdd("SelectString", "選択");
                 Dictionary["Japanese"].TryAdd("SpinWheel.text", "ホイールを回す");
                 Dictionary["Japanese"].TryAdd("Spin", "回す");
                 Dictionary["Japanese"].TryAdd("Watchvideo.Text", "回すためにビデオを見る");
@@ -885,7 +885,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("Exit.ConfirmText", "你确定吗..?");
                 Dictionary["Chinese"].TryAdd("HidePanel.Text", "加载中...");
                 Dictionary["Chinese"].TryAdd("StorePanel.text", "商店面板");
-                Dictionary["Chinese"].TryAdd("Select", "选择");
+                Dictionary["Chinese"].TryAdd("SelectString", "选择");
                 Dictionary["Chinese"].TryAdd("SpinWheel.text", "旋转轮盘");
                 Dictionary["Chinese"].TryAdd("Spin", "旋转");
                 Dictionary["Chinese"].TryAdd("Watchvideo.Text", "观看视频以旋转");

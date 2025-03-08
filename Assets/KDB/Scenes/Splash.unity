@@ -1450,7 +1450,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Loading assets...
+  m_Text: 
 --- !u!222 &637603976
 CanvasRenderer:
   m_ObjectHideFlags: 0

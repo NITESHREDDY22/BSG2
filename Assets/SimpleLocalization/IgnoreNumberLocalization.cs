@@ -36,6 +36,7 @@ namespace Assets.SimpleLocalization
 
         private void DelayCall()
         {
+            return;
             CancelInvoke(nameof(Localize));
             Invoke(nameof(Localize),0.25f);
 

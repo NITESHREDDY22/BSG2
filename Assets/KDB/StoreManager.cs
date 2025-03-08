@@ -32,6 +32,10 @@ public class StoreManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        string selectedString = LocalizationManager.Localize("SELECTED");
+        string selectString = LocalizationManager.Localize("SelectString");
+
         storeobjs = new List<GameObject>();
         bottleobjs = new List<GameObject>();
 
@@ -66,7 +70,7 @@ public class StoreManager : MonoBehaviour
             }
             else if (PlayerPrefs.GetInt("Ball_Stat_" + i, 0) == 1)
             { 
-                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = LocalizationManager.Localize("Select.text");
+                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = selectString;
                 g.transform.GetChild(1).gameObject.SetActive(false);
                 g.transform.GetChild(3).GetComponent<Image>().sprite = SelectBG;
                 //g.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleDefault, scaleDefault);
@@ -75,8 +79,8 @@ public class StoreManager : MonoBehaviour
             }
             else if (PlayerPrefs.GetInt("Ball_Stat_" + i, 0) == 2)
             {
-                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "Selected";
-                g.transform.GetChild(1).gameObject.SetActive(true);
+                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = selectedString;
+                    g.transform.GetChild(1).gameObject.SetActive(true);
                 g.transform.GetChild(3).GetComponent<Image>().sprite = SelectedBG;
                 //g.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleSelected, scaleSelected);
                 Balls[i].myStat = StoreObjectStatus.Selected;
@@ -101,16 +105,16 @@ public class StoreManager : MonoBehaviour
             }
             else if (PlayerPrefs.GetInt("Bottle_Stat_" + i, 0) == 1)
             {
-                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = LocalizationManager.Localize("Select.text");
-                g.transform.GetChild(1).gameObject.SetActive(false);
+                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = LocalizationManager.Localize("SelectString");
+                    g.transform.GetChild(1).gameObject.SetActive(false);
                 g.transform.GetChild(3).GetComponent<Image>().sprite = SelectBG;
                 //g.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleDefault2, scaleDefault2);
                 Bottles[i].myStatBottle = BottleStoreobjstatus.Select_bottle;
             }
             else if (PlayerPrefs.GetInt("Bottle_Stat_" + i, 0) == 2)
             {
-                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "Selected";
-                g.transform.GetChild(1).gameObject.SetActive(true);
+                g.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = LocalizationManager.Localize("SELECTED");
+                    g.transform.GetChild(1).gameObject.SetActive(true);
                 g.transform.GetChild(3).GetComponent<Image>().sprite = SelectedBG;
                 // g.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleSelected2, scaleSelected2);
                 Bottles[i].myStatBottle = BottleStoreobjstatus.Selected_bottle;
@@ -157,22 +161,26 @@ public class StoreManager : MonoBehaviour
     }
     public void UpdateStoreObjects(int index)
     {
+        string selectedString= LocalizationManager.Localize("SELECTED");
+        string selectString = LocalizationManager.Localize("SelectString");
+
 
         for (int i = 0; i < storeobjs.Count; i++)
         {
             if (Balls[i].myStat == StoreObjectStatus.Selected)
             {
-                storeobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "Selected";
+                storeobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = selectedString;
                 storeobjs[i].transform.GetChild(3).GetComponent<Image>().sprite = SelectedBG;
                 storeobjs[i].transform.GetChild(1).gameObject.SetActive(true);
                 //storeobjs[i].transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleSelected, scaleSelected);
+                if(FirebaseEvents.instance)
                 FirebaseEvents.instance.LogFirebaseEvent("Ball_" + i + "selected");
             }
             else
             {
                 if (Balls[i].myStat == StoreObjectStatus.Select)
                 {
-                    storeobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = LocalizationManager.Localize("Select.text");
+                    storeobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = selectString;
                     storeobjs[i].transform.GetChild(3).GetComponent<Image>().sprite = SelectBG;
                     storeobjs[i].transform.GetChild(1).gameObject.SetActive(false);
                     //storeobjs[i].transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleDefault, scaleDefault);
@@ -184,11 +192,14 @@ public class StoreManager : MonoBehaviour
     public void UpdateBottleStoreObjects(int index)
     {
 
+        string selectedString = LocalizationManager.Localize("SELECTED");
+        string selectString = LocalizationManager.Localize("SelectString");
+
         for (int i = 0; i < bottleobjs.Count; i++)
         {
             if (Bottles[i].myStatBottle == BottleStoreobjstatus.Selected_bottle)
             {
-                bottleobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "Selected";
+                bottleobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = selectedString;
                 bottleobjs[i].transform.GetChild(3).GetComponent<Image>().sprite = SelectedBG;
                 bottleobjs[i].transform.GetChild(1).gameObject.SetActive(true);
                 // bottleobjs[i].transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleSelected2, scaleSelected2);
@@ -199,7 +210,7 @@ public class StoreManager : MonoBehaviour
             {
                 if (Bottles[i].myStatBottle == BottleStoreobjstatus.Select_bottle)
                 {
-                 bottleobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = LocalizationManager.Localize("Select.text");
+                 bottleobjs[i].transform.GetChild(3).GetChild(0).GetComponent<Text>().text = selectString;
                     bottleobjs[i].transform.GetChild(3).GetComponent<Image>().sprite = SelectBG;
                     bottleobjs[i].transform.GetChild(1).gameObject.SetActive(false);
                     //bottleobjs[i].transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector2(scaleDefault2, scaleDefault2);
