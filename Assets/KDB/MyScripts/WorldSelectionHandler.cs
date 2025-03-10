@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Assets.SimpleLocalization;
 using Newtonsoft.Json.Linq;
+using TMPro;
 
 public class WorldSelectionHandler : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class WorldSelectionHandler : MonoBehaviour
     public static int[] totalLevels = new int[] { 80, 30, 50, 20, 20 };
     public static int worldNumb = 0;
 
-    public Text[] worldname_levelspanel;
+    public TextMeshProUGUI[] worldname_levelspanel;
 
     public int[] worldStars;
     public GameObject spinPopUP;
@@ -147,7 +148,7 @@ public class WorldSelectionHandler : MonoBehaviour
                 btns[i].transform.GetChild(1).gameObject.SetActive(false);
                 btns[i].transform.GetChild(3).gameObject.SetActive(true);
                 btns[i].transform.GetChild(4).gameObject.SetActive(true);
-                btns[i].transform.GetChild(3).transform.Find("WorldName").GetComponent<Text>().text = LocalizationManager.Localize(array[i]); //WorldsPanel_name0//btns[i].name;
+                btns[i].transform.GetChild(3).transform.Find("WorldName").GetComponent<TextMeshProUGUI>().text = LocalizationManager.Localize(array[i]); //WorldsPanel_name0//btns[i].name;
                 if (i == 0)
                 {
                     btns[i].transform.GetChild(3).GetChild(1).transform.Find("StarsLabel").GetComponent<Text>().text = Global.TotalStarsAchivedWorld1 + "/" + (totalLevels[i] * 3);
@@ -199,7 +200,8 @@ public class WorldSelectionHandler : MonoBehaviour
         if (totalLevels[_tr.GetSiblingIndex()] > 0)
         {
             SoundManager.PlaySFX("Click2");
-            worldname_levelspanel[_tr.GetSiblingIndex()].GetComponent<LocalizedText>().doupdatetext("WorldsPanel_name" + _tr.GetSiblingIndex());
+            worldname_levelspanel[_tr.GetSiblingIndex()].GetComponent<LocalizedTextmeshPro>().LocalizationKey = array[_tr.GetSiblingIndex()];//;"WorldsPanel_name" + _tr.GetSiblingIndex();
+            worldname_levelspanel[_tr.GetSiblingIndex()].GetComponent<LocalizedTextmeshPro>().Localize();
             UIPagesHandler._Instance.ShowPage(1 + _tr.GetSiblingIndex());
             worldSelected = _tr.GetSiblingIndex();
         }

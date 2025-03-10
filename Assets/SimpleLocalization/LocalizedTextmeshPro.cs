@@ -23,7 +23,7 @@ namespace Assets.SimpleLocalization
             LocalizationManager.LocalizationChanged -= Localize;
         }
 
-        private void Localize()
+        public void Localize()
         {           
             if(GetComponent<TextMeshProUGUI>())
             GetComponent<TextMeshProUGUI>().text = LocalizationManager.Localize(LocalizationKey);
