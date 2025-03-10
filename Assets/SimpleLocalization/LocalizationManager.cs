@@ -25,7 +25,7 @@ namespace Assets.SimpleLocalization
         public static string Language
         {
             get { return _language; }
-            set { _language = Application.platform == RuntimePlatform.WebGLPlayer ? "English" : value; LocalizationChanged(); }
+            set { _language = value; LocalizationChanged(); }
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Assets.SimpleLocalization
                 AddLanguageKeys("Turkish");
                 AddLanguageKeys("Russian");
 
-
+                #region ENGLISH
                 Dictionary["English"].TryAdd("Knockdown", "Knockdown");
                 Dictionary["English"].TryAdd("Bottles", "Bottles");
                 Dictionary["English"].TryAdd("Play", "Play");
@@ -161,10 +161,12 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("Unable to load the game.", "Unable to load the game.");
                 Dictionary["English"].TryAdd("Please check your internet connection.", "Please check your internet connection.");
                 Dictionary["English"].TryAdd("Try again", "Try again");
+                Dictionary["English"].TryAdd("Noenoughcoins", "No enough coins");
+                Dictionary["English"].TryAdd("Continue game?", "Continue game?");             
+                Dictionary["English"].TryAdd("Need Extra Ball?", "Need Extra Ball?");
+                #endregion
 
-
-
-                //ARABIC LANGUAGE
+                #region  ARABIC LANGUAGE
 
                 Dictionary["Arabic"].TryAdd("Knockdown", "ضربه قاضيه");
                 Dictionary["Arabic"].TryAdd("Bottles", "زجاجات");
@@ -179,9 +181,9 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("FailPanel.Text", "فشل المستوى");
                 Dictionary["Arabic"].TryAdd("TutorialText", "لا تضرب هذه الزجاجة");
                 Dictionary["Arabic"].TryAdd("PausePanel.Text", " توقف");
-                Dictionary["Arabic"].TryAdd("Achieve _ stars in forest world to unlock this world ", " احصل على _ نجوم في عالم الغابة لفتح هذا العالم");
-                Dictionary["Arabic"].TryAdd("Achieve _ stars in ancient world to unlock this world ", "احصل على _ نجوم في العالم القديم لفتح هذا العالم");
-                Dictionary["Arabic"].TryAdd("Achieve _ stars in mettle world to unlock this world  ", "احصل على _ نجوم في عالم الشجاعة لفتح هذا العالم");
+                Dictionary["Arabic"].TryAdd("Achieve _ stars in forest world to unlock this world", " احصل على _ نجوم في عالم الغابة لفتح هذا العالم");
+                Dictionary["Arabic"].TryAdd("Achieve _ stars in ancient world to unlock this world", "احصل على _ نجوم في العالم القديم لفتح هذا العالم");
+                Dictionary["Arabic"].TryAdd("Achieve _ stars in mettle world to unlock this world", "احصل على _ نجوم في عالم الشجاعة لفتح هذا العالم");
                 Dictionary["Arabic"].TryAdd("Achieve _ stars in desert world to unlock this world", " احصل على _ نجوم في عالم الصحراء لفتح هذا العالم");
                 Dictionary["Arabic"].TryAdd("Achieve _ stars in snow world to unlock this world", " احصل على _ نجوم في عالم الثلج لفتح هذا العالم");
                 Dictionary["Arabic"].TryAdd("Exit.Title", "مخرج");
@@ -226,11 +228,12 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("Unable to load the game.", "غير قادر على تحميل اللعبة.");
                 Dictionary["Arabic"].TryAdd("Please check your internet connection.", "يرجى التحقق من اتصالك بالإنترنت.");
                 Dictionary["Arabic"].TryAdd("Try again", "حاول ثانية");
+                Dictionary["Arabic"].TryAdd("Noenoughcoins", "لا يوجد عملات كافية");
+                Dictionary["Arabic"].TryAdd("Continue game?", "هل تريد متابعة اللعبة؟");
+                Dictionary["Arabic"].TryAdd("Need Extra Ball?", "هل تحتاج إلى كرة إضافية؟");
+                #endregion
 
-
-                
-
-                //SPANISH LANGUAGE
+                #region SPANISH LANGUAGE
 
                 Dictionary["Spanish"].TryAdd("Knockdown", "Derribar");
                 Dictionary["Spanish"].TryAdd("Bottles", "Botellas");
@@ -291,9 +294,13 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("Unable to load the game.", "No se puede cargar el juego.");
                 Dictionary["Spanish"].TryAdd("Please check your internet connection.", "Por favor, revisa tu conexión a internet.");
                 Dictionary["Spanish"].TryAdd("Try again", "intentar otra vez");
+                Dictionary["Spanish"].TryAdd("Noenoughcoins", "No hay suficientes monedas");
+                Dictionary["Spanish"].TryAdd("Continue game?", "¿Continuar el juego?");
+                Dictionary["Spanish"].TryAdd("Need Extra Ball?", "¿Necesitas bola extra?");
 
+                #endregion
 
-                //GERMAN LANGUAGE
+                #region GERMAN LANGUAGE
 
                 Dictionary["German"].TryAdd("Knockdown", "Abbruch");
                 Dictionary["German"].TryAdd("Bottles", "Flaschen");
@@ -354,134 +361,12 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("Unable to load the game.", "Spiel kann nicht geladen werden.");
                 Dictionary["German"].TryAdd("Please check your internet connection.", "Bitte überprüfe deine Internetverbindung.");
                 Dictionary["German"].TryAdd("Try again", "versuchen Sie es erneut");
+                Dictionary["German"].TryAdd("Noenoughcoins", "Nicht genügend Münzen");
+                Dictionary["German"].TryAdd("Continue game?", "Spiel fortsetzen?");
+                Dictionary["German"].TryAdd("Need Extra Ball?", "Benötigen Sie zusätzlichen Ball?");
+                #endregion
 
-                //PORTUGUESE LANGUAGE
-
-                Dictionary["Portuguese"].TryAdd("Knockdown", "Derrubar");
-                Dictionary["Portuguese"].TryAdd("Bottles", "Garrafas");
-                Dictionary["Portuguese"].TryAdd("Play", "Jogar");
-                Dictionary["Portuguese"].TryAdd("Select world", "Selecionar mundo");
-                Dictionary["Portuguese"].TryAdd("Forest", "Floresta");
-                Dictionary["Portuguese"].TryAdd("Ancient", "Antigo");
-                Dictionary["Portuguese"].TryAdd("Mettle", "Coragem");
-                Dictionary["Portuguese"].TryAdd("Desert", "Deserto");
-                Dictionary["Portuguese"].TryAdd("Snowy", "Nevado");
-                Dictionary["Portuguese"].TryAdd("WinPanel.Text", "Nível Completado");
-                Dictionary["Portuguese"].TryAdd("FailPanel.Text", "Nível Falhou");
-                Dictionary["Portuguese"].TryAdd("TutorialText", "Não bata nesta garrafa");
-                Dictionary["Portuguese"].TryAdd("PausePanel.Text", "Pausa");
-                Dictionary["Portuguese"].TryAdd("Achieve _ stars in forest world to unlock this world", "Alcançar _ estrelas no mundo da floresta para desbloquear este mundo");
-                Dictionary["Portuguese"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Alcançar _ estrelas no mundo antigo para desbloquear este mundo");
-                Dictionary["Portuguese"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Alcançar _ estrelas no mundo da coragem para desbloquear este mundo");
-                Dictionary["Portuguese"].TryAdd("Achieve _ stars in desert world to unlock this world", "Alcançar _ estrelas no mundo do deserto para desbloquear este mundo");
-                Dictionary["Portuguese"].TryAdd("Achieve _ stars in snow world to unlock this world", "Alcançar _ estrelas no mundo da neve para desbloquear este mundo");
-                Dictionary["Portuguese"].TryAdd("Exit.Title", "Sair");
-                Dictionary["Portuguese"].TryAdd("Exit.ConfirmText", "VOCÊ TEM CERTEZA..?");
-                Dictionary["Portuguese"].TryAdd("HidePanel.Text", "Carregando...");
-                Dictionary["Portuguese"].TryAdd("StorePanel.text", "Painel da loja");
-                Dictionary["Portuguese"].TryAdd("SelectString", "Selecionar");
-                Dictionary["Portuguese"].TryAdd("SpinWheel.text", "Girar roda");
-                Dictionary["Portuguese"].TryAdd("Spin", "Girar");
-                Dictionary["Portuguese"].TryAdd("Watchvideo.Text", "ASSISTIR VÍDEO PARA GIRAR");
-                Dictionary["Portuguese"].TryAdd("Nospin.text", "Sem giros grátis disponíveis! Tente amanhã");
-                Dictionary["Portuguese"].TryAdd("GetCoins", "Obter 1000 moedas");
-                Dictionary["Portuguese"].TryAdd("Menu", "Menu");
-                Dictionary["Portuguese"].TryAdd("New game", "Novo jogo");
-                Dictionary["Portuguese"].TryAdd("Continue", "Continuar");
-                Dictionary["Portuguese"].TryAdd("Settings", "Configurações");
-                Dictionary["Portuguese"].TryAdd("Write a review", "Escrever uma resenha");
-                Dictionary["Portuguese"].TryAdd("Difficulty", "Dificuldade");
-                Dictionary["Portuguese"].TryAdd("Easy", "Fácil");
-                Dictionary["Portuguese"].TryAdd("Medium", "Médio");
-                Dictionary["Portuguese"].TryAdd("Hard", "Difícil");
-                Dictionary["Portuguese"].TryAdd("Effects volume", "Volume dos efeitos");
-                Dictionary["Portuguese"].TryAdd("Music volume", "Volume da música");
-                Dictionary["Portuguese"].TryAdd("Play time: {0:N1} h.", "Tempo de jogo: {0:N1} h.");
-                Dictionary["Portuguese"].TryAdd("SKIP", "PULAR");
-                Dictionary["Portuguese"].TryAdd("premium without ads", "premium sem anúncios");
-                Dictionary["Portuguese"].TryAdd("100% Add free", "100% sem anúncios");
-                Dictionary["Portuguese"].TryAdd("skip video", "pular vídeo");
-                Dictionary["Portuguese"].TryAdd("loading assets", "carregando recursos...");
-                Dictionary["Portuguese"].TryAdd("loading player data", "carregando dados do jogador...");
-                Dictionary["Portuguese"].TryAdd("loading scene", "carregando cena...");
-                Dictionary["Portuguese"].TryAdd("starting", "iniciando...");
-                Dictionary["Portuguese"].TryAdd("PLAY", "JOGAR");
-                Dictionary["Portuguese"].TryAdd("SHOP", "LOJA");
-                Dictionary["Portuguese"].TryAdd("RATE US", "AVALIE-NOS");
-                Dictionary["Portuguese"].TryAdd("SELECTED", "SELECIONADO");
-                Dictionary["Portuguese"].TryAdd("OK", "OK");
-                Dictionary["Portuguese"].TryAdd("Go Premium without Ads", "Torne-se Premium sem anúncios");
-                Dictionary["Portuguese"].TryAdd("Demo levels completed Purchase full version to continue", "Níveis de demonstração concluídos, compre a versão completa para continuar");
-                Dictionary["Portuguese"].TryAdd("Connection Lost!", "Conexão Perdida!");
-                Dictionary["Portuguese"].TryAdd("Unable to load the game.", "Incapaz de carregar o jogo.");
-                Dictionary["Portuguese"].TryAdd("Please check your internet connection.", "Por favor, verifique sua conexão com a internet.");
-                Dictionary["Portuguese"].TryAdd("Try again", "tente novamente");
-
-
-                //POLISH LANGUAGE
-
-                Dictionary["Polish"].TryAdd("Knockdown", "Obalić");
-                Dictionary["Polish"].TryAdd("Bottles", "Butelki");
-                Dictionary["Polish"].TryAdd("Play", "Graj");
-                Dictionary["Polish"].TryAdd("Select world", "Wybierz świat");
-                Dictionary["Polish"].TryAdd("Forest", "Las");
-                Dictionary["Polish"].TryAdd("Ancient", "Starożytny");
-                Dictionary["Polish"].TryAdd("Mettle", "Hart ducha");
-                Dictionary["Polish"].TryAdd("Desert", "Pustynia");
-                Dictionary["Polish"].TryAdd("Snowy", "Zaśnieżony");
-                Dictionary["Polish"].TryAdd("WinPanel.Text", "Poziom ukończony");
-                Dictionary["Polish"].TryAdd("FailPanel.Text", "Poziom nieudany");
-                Dictionary["Polish"].TryAdd("TutorialText", "Nie uderzaj tej butelki");
-                Dictionary["Polish"].TryAdd("PausePanel.Text", "Pauza");
-                Dictionary["Polish"].TryAdd("Achieve _ stars in forest world to unlock this world", "Zdobyj _ gwiazdek w świecie lasu, aby odblokować ten świat");
-                Dictionary["Polish"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Zdobyj _ gwiazdek w starożytnym świecie, aby odblokować ten świat");
-                Dictionary["Polish"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Zdobyj _ gwiazdek w świecie hartu ducha, aby odblokować ten świat");
-                Dictionary["Polish"].TryAdd("Achieve _ stars in desert world to unlock this world", "Zdobyj _ gwiazdek w świecie pustyni, aby odblokować ten świat");
-                Dictionary["Polish"].TryAdd("Achieve _ stars in snow world to unlock this world", "Zdobyj _ gwiazdek w zaśnieżonym świecie, aby odblokować ten świat");
-                Dictionary["Polish"].TryAdd("Exit.Title", "Wyjście");
-                Dictionary["Polish"].TryAdd("Exit.ConfirmText", "CZY JESTEŚ PEWIEN..?");
-                Dictionary["Polish"].TryAdd("HidePanel.Text", "Ładowanie...");
-                Dictionary["Polish"].TryAdd("StorePanel.text", "Panel sklepu");
-                Dictionary["Polish"].TryAdd("SelectString", "Wybierz");
-                Dictionary["Polish"].TryAdd("SpinWheel.text", "Kręć kołem");
-                Dictionary["Polish"].TryAdd("Spin", "Kręć");
-                Dictionary["Polish"].TryAdd("Watchvideo.Text", "OGLĄDAJ WIDEO, ABY KRĘCIĆ");
-                Dictionary["Polish"].TryAdd("Nospin.text", "Brak darmowych obrotów! Spróbuj jutro");
-                Dictionary["Polish"].TryAdd("GetCoins", "Zdobądź 1000 monet");
-                Dictionary["Polish"].TryAdd("Menu", "Menu");
-                Dictionary["Polish"].TryAdd("New game", "Nowa gra");
-                Dictionary["Polish"].TryAdd("Continue", "Kontynuuj");
-                Dictionary["Polish"].TryAdd("Settings", "Ustawienia");
-                Dictionary["Polish"].TryAdd("Write a review", "Napisz recenzję");
-                Dictionary["Polish"].TryAdd("Difficulty", "Trudność");
-                Dictionary["Polish"].TryAdd("Easy", "Łatwy");
-                Dictionary["Polish"].TryAdd("Medium", "Średni");
-                Dictionary["Polish"].TryAdd("Hard", "Trudny");
-                Dictionary["Polish"].TryAdd("Effects volume", "Głośność efektów");
-                Dictionary["Polish"].TryAdd("Music volume", "Głośność muzyki");
-                Dictionary["Polish"].TryAdd("Play time: {0:N1} h.", "Czas gry: {0:N1} h.");
-                Dictionary["Polish"].TryAdd("SKIP", "POMIŃ");
-                Dictionary["Polish"].TryAdd("premium without ads", "premium bez reklam");
-                Dictionary["Polish"].TryAdd("100% Add free", "100% bez reklam");
-                Dictionary["Polish"].TryAdd("skip video", "pomiń wideo");
-                Dictionary["Polish"].TryAdd("loading assets", "ładowanie zasobów...");
-                Dictionary["Polish"].TryAdd("loading player data", "ładowanie danych gracza...");
-                Dictionary["Polish"].TryAdd("loading scene", "ładowanie sceny...");
-                Dictionary["Polish"].TryAdd("starting", "rozpoczynanie...");
-                Dictionary["Polish"].TryAdd("PLAY", "GRAJ");
-                Dictionary["Polish"].TryAdd("SHOP", "SKLEP");
-                Dictionary["Polish"].TryAdd("RATE US", "OCEN NAS");
-                Dictionary["Polish"].TryAdd("SELECTED", "WYBRANY");
-                Dictionary["Polish"].TryAdd("OK", "OK");
-                Dictionary["Polish"].TryAdd("Go Premium without Ads", "Przejdź na Premium bez reklam");
-                Dictionary["Polish"].TryAdd("Demo levels completed Purchase full version to continue", "Poziomy demonstracyjne ukończone Kup pełną wersję, aby kontynuować");
-                Dictionary["Polish"].TryAdd("Connection Lost!", "Utracono połączenie!");
-                Dictionary["Polish"].TryAdd("Unable to load the game.", "Nie można załadować gry.");
-                Dictionary["Polish"].TryAdd("Please check your internet connection.", "Proszę sprawdź swoje połączenie internetowe.");
-                Dictionary["Polish"].TryAdd("Try again", "spróbuj ponownie");
-
-
-                //FRENCH LANGUAGE
+                #region FRENCH LANGUAGE
 
                 Dictionary["French"].TryAdd("Knockdown", "Renverser");
                 Dictionary["French"].TryAdd("Bottles", "Bouteilles");
@@ -542,9 +427,12 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("Unable to load the game.", "Impossible de charger le jeu.");
                 Dictionary["French"].TryAdd("Please check your internet connection.", "Veuillez vérifier votre connexion Internet.");
                 Dictionary["French"].TryAdd("Try again", "essayer à nouveau");
+                Dictionary["French"].TryAdd("Noenoughcoins", "Pas assez de pièces");
+                Dictionary["French"].TryAdd("Continue game?", "Continuer le jeu ?");
+                Dictionary["French"].TryAdd("Need Extra Ball?", "Besoin d'une balle supplémentaire ?");
+                #endregion
 
-
-                //DUTCH LANGUAGE
+                #region  DUTCH LANGUAGE
 
                 Dictionary["Dutch"].TryAdd("Knockdown", "Neerslag");
                 Dictionary["Dutch"].TryAdd("Bottles", "Flessen");
@@ -605,199 +493,79 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("Unable to load the game.", "Kan het spel niet laden.");
                 Dictionary["Dutch"].TryAdd("Please check your internet connection.", "Controleer je internetverbinding.");
                 Dictionary["Dutch"].TryAdd("Try again", "probeer het opnieuw");
+                Dictionary["Dutch"].TryAdd("Noenoughcoins", "Niet genoeg munten");
+                Dictionary["Dutch"].TryAdd("Continue game?", "Doorgaan met spel?");
+                Dictionary["Dutch"].TryAdd("Need Extra Ball?", "Extra bal nodig?");
 
+                #endregion
 
-                //TURKISH LANGUAGE
+                #region POLISH LANGUAGE
 
-                Dictionary["Turkish"].TryAdd("Knockdown", "Yıkılmak");
-                Dictionary["Turkish"].TryAdd("Bottles", "Şişeler");
-                Dictionary["Turkish"].TryAdd("Play", "Oynamak");
-                Dictionary["Turkish"].TryAdd("Select world", "Dünyayı seç");
-                Dictionary["Turkish"].TryAdd("Forest", "Orman");
-                Dictionary["Turkish"].TryAdd("Ancient", "Antik");
-                Dictionary["Turkish"].TryAdd("Mettle", "Cesaret");
-                Dictionary["Turkish"].TryAdd("Desert", "Çöl");
-                Dictionary["Turkish"].TryAdd("Snowy", "Karlı");
-                Dictionary["Turkish"].TryAdd("WinPanel.Text", "Seviye Geçildi");
-                Dictionary["Turkish"].TryAdd("FailPanel.Text", "Seviye Başarısız");
-                Dictionary["Turkish"].TryAdd("TutorialText", "Bu şişeye vurma");
-                Dictionary["Turkish"].TryAdd("PausePanel.Text", "Duraklat");
-                Dictionary["Turkish"].TryAdd("Achieve _ stars in forest world to unlock this world", "Bu dünyayı açmak için orman dünyasında _ yıldız elde et");
-                Dictionary["Turkish"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Bu dünyayı açmak için antik dünyada _ yıldız elde et");
-                Dictionary["Turkish"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Bu dünyayı açmak için cesaret dünyasında _ yıldız elde et");
-                Dictionary["Turkish"].TryAdd("Achieve _ stars in desert world to unlock this world", "Bu dünyayı açmak için çöl dünyasında _ yıldız elde et");
-                Dictionary["Turkish"].TryAdd("Achieve _ stars in snow world to unlock this world", "Bu dünyayı açmak için karlı dünyada _ yıldız elde et");
-                Dictionary["Turkish"].TryAdd("Exit.Title", "Çıkış");
-                Dictionary["Turkish"].TryAdd("Exit.ConfirmText", "EMİN MİSİN..?");
-                Dictionary["Turkish"].TryAdd("HidePanel.Text", "Yükleniyor...");
-                Dictionary["Turkish"].TryAdd("StorePanel.text", "Mağaza Paneli");
-                Dictionary["Turkish"].TryAdd("SelectString", "Seç");
-                Dictionary["Turkish"].TryAdd("SpinWheel.text", "Çarkı döndür");
-                Dictionary["Turkish"].TryAdd("Spin", "Döndür");
-                Dictionary["Turkish"].TryAdd("Watchvideo.Text", "DÖNDÜRMEK İÇİN VİDEO İZLE");
-                Dictionary["Turkish"].TryAdd("Nospin.text", "Ücretsiz dönüş yok! Yarın tekrar deneyin");
-                Dictionary["Turkish"].TryAdd("GetCoins", "1000 jeton al");
-                Dictionary["Turkish"].TryAdd("Menu", "Menü");
-                Dictionary["Turkish"].TryAdd("New game", "Yeni oyun");
-                Dictionary["Turkish"].TryAdd("Continue", "Devam et");
-                Dictionary["Turkish"].TryAdd("Settings", "Ayarlar");
-                Dictionary["Turkish"].TryAdd("Write a review", "İnceleme yaz");
-                Dictionary["Turkish"].TryAdd("Difficulty", "Zorluk");
-                Dictionary["Turkish"].TryAdd("Easy", "Kolay");
-                Dictionary["Turkish"].TryAdd("Medium", "Orta");
-                Dictionary["Turkish"].TryAdd("Hard", "Zor");
-                Dictionary["Turkish"].TryAdd("Effects volume", "Efekt sesi");
-                Dictionary["Turkish"].TryAdd("Music volume", "Müzik sesi");
-                Dictionary["Turkish"].TryAdd("Play time: {0:N1} h.", "Oynama süresi: {0:N1} sa.");
-                Dictionary["Turkish"].TryAdd("SKIP", "GEÇ");
-                Dictionary["Turkish"].TryAdd("premium without ads", "reklamsız premium");
-                Dictionary["Turkish"].TryAdd("100% Add free", "100% reklamsız");
-                Dictionary["Turkish"].TryAdd("skip video", "videoyu geç");
-                Dictionary["Turkish"].TryAdd("loading assets", "varlıklar yükleniyor...");
-                Dictionary["Turkish"].TryAdd("loading player data", "oyuncu verileri yükleniyor...");
-                Dictionary["Turkish"].TryAdd("loading scene", "sahne yükleniyor...");
-                Dictionary["Turkish"].TryAdd("starting", "başlıyor...");
-                Dictionary["Turkish"].TryAdd("PLAY", "OYNAMAK");
-                Dictionary["Turkish"].TryAdd("SHOP", "DÜKKAN");
-                Dictionary["Turkish"].TryAdd("RATE US", "BİZİ OYLA");
-                Dictionary["Turkish"].TryAdd("SELECTED", "SEÇİLDİ");
-                Dictionary["Turkish"].TryAdd("OK", "TAMAM");
-                Dictionary["Turkish"].TryAdd("Go Premium without Ads", "Reklamsız Premium'a geç");
-                Dictionary["Turkish"].TryAdd("Demo levels completed Purchase full version to continue", "Demo seviyeleri tamamlandı, devam etmek için tam sürümü satın alın");
-                Dictionary["Turkish"].TryAdd("Connection Lost!", "Bağlantı Kaybedildi!");
-                Dictionary["Turkish"].TryAdd("Unable to load the game.", "Oyunu yükleyemiyor.");
-                Dictionary["Turkish"].TryAdd("Please check your internet connection.", "Lütfen internet bağlantınızı kontrol edin.");
-                Dictionary["Turkish"].TryAdd("Try again", "tekrar deneyin");
+                Dictionary["Polish"].TryAdd("Knockdown", "Obalić");
+                Dictionary["Polish"].TryAdd("Bottles", "Butelki");
+                Dictionary["Polish"].TryAdd("Play", "Graj");
+                Dictionary["Polish"].TryAdd("Select world", "Wybierz świat");
+                Dictionary["Polish"].TryAdd("Forest", "Las");
+                Dictionary["Polish"].TryAdd("Ancient", "Starożytny");
+                Dictionary["Polish"].TryAdd("Mettle", "Hart ducha");
+                Dictionary["Polish"].TryAdd("Desert", "Pustynia");
+                Dictionary["Polish"].TryAdd("Snowy", "Zaśnieżony");
+                Dictionary["Polish"].TryAdd("WinPanel.Text", "Poziom ukończony");
+                Dictionary["Polish"].TryAdd("FailPanel.Text", "Poziom nieudany");
+                Dictionary["Polish"].TryAdd("TutorialText", "Nie uderzaj tej butelki");
+                Dictionary["Polish"].TryAdd("PausePanel.Text", "Pauza");
+                Dictionary["Polish"].TryAdd("Achieve _ stars in forest world to unlock this world", "Zdobyj _ gwiazdek w świecie lasu, aby odblokować ten świat");
+                Dictionary["Polish"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Zdobyj _ gwiazdek w starożytnym świecie, aby odblokować ten świat");
+                Dictionary["Polish"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Zdobyj _ gwiazdek w świecie hartu ducha, aby odblokować ten świat");
+                Dictionary["Polish"].TryAdd("Achieve _ stars in desert world to unlock this world", "Zdobyj _ gwiazdek w świecie pustyni, aby odblokować ten świat");
+                Dictionary["Polish"].TryAdd("Achieve _ stars in snow world to unlock this world", "Zdobyj _ gwiazdek w zaśnieżonym świecie, aby odblokować ten świat");
+                Dictionary["Polish"].TryAdd("Exit.Title", "Wyjście");
+                Dictionary["Polish"].TryAdd("Exit.ConfirmText", "CZY JESTEŚ PEWIEN..?");
+                Dictionary["Polish"].TryAdd("HidePanel.Text", "Ładowanie...");
+                Dictionary["Polish"].TryAdd("StorePanel.text", "Panel sklepu");
+                Dictionary["Polish"].TryAdd("SelectString", "Wybierz");
+                Dictionary["Polish"].TryAdd("SpinWheel.text", "Kręć kołem");
+                Dictionary["Polish"].TryAdd("Spin", "Kręć");
+                Dictionary["Polish"].TryAdd("Watchvideo.Text", "OGLĄDAJ WIDEO, ABY KRĘCIĆ");
+                Dictionary["Polish"].TryAdd("Nospin.text", "Brak darmowych obrotów! Spróbuj jutro");
+                Dictionary["Polish"].TryAdd("GetCoins", "Zdobądź 1000 monet");
+                Dictionary["Polish"].TryAdd("Menu", "Menu");
+                Dictionary["Polish"].TryAdd("New game", "Nowa gra");
+                Dictionary["Polish"].TryAdd("Continue", "Kontynuuj");
+                Dictionary["Polish"].TryAdd("Settings", "Ustawienia");
+                Dictionary["Polish"].TryAdd("Write a review", "Napisz recenzję");
+                Dictionary["Polish"].TryAdd("Difficulty", "Trudność");
+                Dictionary["Polish"].TryAdd("Easy", "Łatwy");
+                Dictionary["Polish"].TryAdd("Medium", "Średni");
+                Dictionary["Polish"].TryAdd("Hard", "Trudny");
+                Dictionary["Polish"].TryAdd("Effects volume", "Głośność efektów");
+                Dictionary["Polish"].TryAdd("Music volume", "Głośność muzyki");
+                Dictionary["Polish"].TryAdd("Play time: {0:N1} h.", "Czas gry: {0:N1} h.");
+                Dictionary["Polish"].TryAdd("SKIP", "POMIŃ");
+                Dictionary["Polish"].TryAdd("premium without ads", "premium bez reklam");
+                Dictionary["Polish"].TryAdd("100% Add free", "100% bez reklam");
+                Dictionary["Polish"].TryAdd("skip video", "pomiń wideo");
+                Dictionary["Polish"].TryAdd("loading assets", "ładowanie zasobów...");
+                Dictionary["Polish"].TryAdd("loading player data", "ładowanie danych gracza...");
+                Dictionary["Polish"].TryAdd("loading scene", "ładowanie sceny...");
+                Dictionary["Polish"].TryAdd("starting", "rozpoczynanie...");
+                Dictionary["Polish"].TryAdd("PLAY", "GRAJ");
+                Dictionary["Polish"].TryAdd("SHOP", "SKLEP");
+                Dictionary["Polish"].TryAdd("RATE US", "OCEN NAS");
+                Dictionary["Polish"].TryAdd("SELECTED", "WYBRANY");
+                Dictionary["Polish"].TryAdd("OK", "OK");
+                Dictionary["Polish"].TryAdd("Go Premium without Ads", "Przejdź na Premium bez reklam");
+                Dictionary["Polish"].TryAdd("Demo levels completed Purchase full version to continue", "Poziomy demonstracyjne ukończone Kup pełną wersję, aby kontynuować");
+                Dictionary["Polish"].TryAdd("Connection Lost!", "Utracono połączenie!");
+                Dictionary["Polish"].TryAdd("Unable to load the game.", "Nie można załadować gry.");
+                Dictionary["Polish"].TryAdd("Please check your internet connection.", "Proszę sprawdź swoje połączenie internetowe.");
+                Dictionary["Polish"].TryAdd("Try again", "spróbuj ponownie");
+                Dictionary["Polish"].TryAdd("Noenoughcoins", "Za mało monet");
+                Dictionary["Polish"].TryAdd("Continue game?", "Kontynuować grę?");
+                Dictionary["Polish"].TryAdd("Need Extra Ball?", "Potrzebujesz dodatkowej piłki?");
+                #endregion
 
-
-
-                //ITALIAN LANGUAGE
-
-                Dictionary["Italian"].TryAdd("Knockdown", "Abbattimento");
-                Dictionary["Italian"].TryAdd("Bottles", "Bottiglie");
-                Dictionary["Italian"].TryAdd("Play", "Giocare");
-                Dictionary["Italian"].TryAdd("Select world", "Seleziona il mondo");
-                Dictionary["Italian"].TryAdd("Forest", "Foresta");
-                Dictionary["Italian"].TryAdd("Ancient", "Antico");
-                Dictionary["Italian"].TryAdd("Mettle", "Coraggio");
-                Dictionary["Italian"].TryAdd("Desert", "Deserto");
-                Dictionary["Italian"].TryAdd("Snowy", "Nevoso");
-                Dictionary["Italian"].TryAdd("WinPanel.Text", "Livello Superato");
-                Dictionary["Italian"].TryAdd("FailPanel.Text", "Livello Fallito");
-                Dictionary["Italian"].TryAdd("TutorialText", "Non colpire questa bottiglia");
-                Dictionary["Italian"].TryAdd("PausePanel.Text", "Pausa");
-                Dictionary["Italian"].TryAdd("Achieve _ stars in forest world to unlock this world", "Raggiungi _ stelle nel mondo della foresta per sbloccare questo mondo");
-                Dictionary["Italian"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Raggiungi _ stelle nel mondo antico per sbloccare questo mondo");
-                Dictionary["Italian"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Raggiungi _ stelle nel mondo del coraggio per sbloccare questo mondo");
-                Dictionary["Italian"].TryAdd("Achieve _ stars in desert world to unlock this world", "Raggiungi _ stelle nel mondo del deserto per sbloccare questo mondo");
-                Dictionary["Italian"].TryAdd("Achieve _ stars in snow world to unlock this world", "Raggiungi _ stelle nel mondo nevoso per sbloccare questo mondo");
-                Dictionary["Italian"].TryAdd("Exit.Title", "Uscita");
-                Dictionary["Italian"].TryAdd("Exit.ConfirmText", "SEI SICURO..?");
-                Dictionary["Italian"].TryAdd("HidePanel.Text", "Caricamento...");
-                Dictionary["Italian"].TryAdd("StorePanel.text", "Pannello del negozio");
-                Dictionary["Italian"].TryAdd("SelectString", "Selezionare");
-                Dictionary["Italian"].TryAdd("SpinWheel.text", "Gira la ruota");
-                Dictionary["Italian"].TryAdd("Spin", "Gira");
-                Dictionary["Italian"].TryAdd("Watchvideo.Text", "GUARDA IL VIDEO PER GIRARE");
-                Dictionary["Italian"].TryAdd("Nospin.text", "Nessun giro gratuito disponibile! Prova domani");
-                Dictionary["Italian"].TryAdd("GetCoins", "Ottieni 1000 monete");
-                Dictionary["Italian"].TryAdd("Menu", "Menu");
-                Dictionary["Italian"].TryAdd("New game", "Nuovo gioco");
-                Dictionary["Italian"].TryAdd("Continue", "Continua");
-                Dictionary["Italian"].TryAdd("Settings", "Impostazioni");
-                Dictionary["Italian"].TryAdd("Write a review", "Scrivi una recensione");
-                Dictionary["Italian"].TryAdd("Difficulty", "Difficoltà");
-                Dictionary["Italian"].TryAdd("Easy", "Facile");
-                Dictionary["Italian"].TryAdd("Medium", "Medio");
-                Dictionary["Italian"].TryAdd("Hard", "Difficile");
-                Dictionary["Italian"].TryAdd("Effects volume", "Volume effetti");
-                Dictionary["Italian"].TryAdd("Music volume", "Volume della musica");
-                Dictionary["Italian"].TryAdd("Play time: {0:N1} h.", "Tempo di gioco: {0:N1} h.");
-                Dictionary["Italian"].TryAdd("SKIP", "SALTA");
-                Dictionary["Italian"].TryAdd("premium without ads", "premium senza annunci");
-                Dictionary["Italian"].TryAdd("100% Add free", "100% senza annunci");
-                Dictionary["Italian"].TryAdd("skip video", "salta video");
-                Dictionary["Italian"].TryAdd("loading assets", "caricamento risorse...");
-                Dictionary["Italian"].TryAdd("loading player data", "caricamento dati giocatore...");
-                Dictionary["Italian"].TryAdd("loading scene", "caricamento scena...");
-                Dictionary["Italian"].TryAdd("starting", "avvio...");
-                Dictionary["Italian"].TryAdd("PLAY", "GIOCARE");
-                Dictionary["Italian"].TryAdd("SHOP", "NEGOZIO");
-                Dictionary["Italian"].TryAdd("RATE US", "VALUTACI");
-                Dictionary["Italian"].TryAdd("SELECTED", "SELEZIONATO");
-                Dictionary["Italian"].TryAdd("OK", "OK");
-                Dictionary["Italian"].TryAdd("Go Premium without Ads", "Passa a Premium senza annunci");
-                Dictionary["Italian"].TryAdd("Demo levels completed Purchase full version to continue", "Livelli dimostrativi completati Acquista la versione completa per continuare");
-                Dictionary["Italian"].TryAdd("Connection Lost!", "Connessione persa!");
-                Dictionary["Italian"].TryAdd("Unable to load the game.", "Impossibile caricare il gioco.");
-                Dictionary["Italian"].TryAdd("Please check your internet connection.", "Si prega di controllare la connessione a Internet.");
-                Dictionary["Italian"].TryAdd("Try again", "riprova");
-
-
-                //RUSSIAN LANGUAGE
-
-                Dictionary["Russian"].TryAdd("Knockdown", "Нокаут");
-                Dictionary["Russian"].TryAdd("Bottles", "Бутылки");
-                Dictionary["Russian"].TryAdd("Play", "Играть");
-                Dictionary["Russian"].TryAdd("Select world", "Выбрать мир");
-                Dictionary["Russian"].TryAdd("Forest", "Лес");
-                Dictionary["Russian"].TryAdd("Ancient", "Древний");
-                Dictionary["Russian"].TryAdd("Mettle", "Мужество");
-                Dictionary["Russian"].TryAdd("Desert", "Пустыня");
-                Dictionary["Russian"].TryAdd("Snowy", "Снежный");
-                Dictionary["Russian"].TryAdd("WinPanel.Text", "Уровень пройден");
-                Dictionary["Russian"].TryAdd("FailPanel.Text", "Уровень не пройден");
-                Dictionary["Russian"].TryAdd("TutorialText", "Не бейте эту бутылку");
-                Dictionary["Russian"].TryAdd("PausePanel.Text", "Пауза");
-                Dictionary["Russian"].TryAdd("Achieve _ stars in forest world to unlock this world", "Достигните _ звёзд в лесном мире, чтобы разблокировать этот мир");
-                Dictionary["Russian"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Достигните _ звёзд в древнем мире, чтобы разблокировать этот мир");
-                Dictionary["Russian"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Достигните _ звёзд в мире мужества, чтобы разблокировать этот мир");
-                Dictionary["Russian"].TryAdd("Achieve _ stars in desert world to unlock this world", "Достигните _ звёзд в пустынном мире, чтобы разблокировать этот мир");
-                Dictionary["Russian"].TryAdd("Achieve _ stars in snow world to unlock this world", "Достигните _ звёзд в снежном мире, чтобы разблокировать этот мир");
-                Dictionary["Russian"].TryAdd("Exit.Title", "Выход");
-                Dictionary["Russian"].TryAdd("Exit.ConfirmText", "ВЫ УВЕРЕНЫ..?");
-                Dictionary["Russian"].TryAdd("HidePanel.Text", "Загрузка...");
-                Dictionary["Russian"].TryAdd("StorePanel.text", "Панель магазина");
-                Dictionary["Russian"].TryAdd("SelectString", "Выбрать");
-                Dictionary["Russian"].TryAdd("SpinWheel.text", "Крутить колесо");
-                Dictionary["Russian"].TryAdd("Spin", "Крутить");
-                Dictionary["Russian"].TryAdd("Watchvideo.Text", "СМОТРЕТЬ ВИДЕО ЧТОБЫ КРУТИТЬ");
-                Dictionary["Russian"].TryAdd("Nospin.text", "Бесплатных вращений нет! Попробуйте завтра");
-                Dictionary["Russian"].TryAdd("GetCoins", "Получить 1000 монет");
-                Dictionary["Russian"].TryAdd("Menu", "Меню");
-                Dictionary["Russian"].TryAdd("New game", "Новая игра");
-                Dictionary["Russian"].TryAdd("Continue", "Продолжить");
-                Dictionary["Russian"].TryAdd("Settings", "Настройки");
-                Dictionary["Russian"].TryAdd("Write a review", "Написать отзыв");
-                Dictionary["Russian"].TryAdd("Difficulty", "Сложность");
-                Dictionary["Russian"].TryAdd("Easy", "Легко");
-                Dictionary["Russian"].TryAdd("Medium", "Средне");
-                Dictionary["Russian"].TryAdd("Hard", "Трудно");
-                Dictionary["Russian"].TryAdd("Effects volume", "Громкость эффектов");
-                Dictionary["Russian"].TryAdd("Music volume", "Громкость музыки");
-                Dictionary["Russian"].TryAdd("Play time: {0:N1} h.", "Время игры: {0:N1} ч.");
-                Dictionary["Russian"].TryAdd("SKIP", "ПРОПУСТИТЬ");
-                Dictionary["Russian"].TryAdd("premium without ads", "премиум без рекламы");
-                Dictionary["Russian"].TryAdd("100% Add free", "100% без рекламы");
-                Dictionary["Russian"].TryAdd("skip video", "пропустить видео");
-                Dictionary["Russian"].TryAdd("loading assets", "загрузка ресурсов...");
-                Dictionary["Russian"].TryAdd("loading player data", "загрузка данных игрока...");
-                Dictionary["Russian"].TryAdd("loading scene", "загрузка сцены...");
-                Dictionary["Russian"].TryAdd("starting", "запуск...");
-                Dictionary["Russian"].TryAdd("PLAY", "ИГРАТЬ");
-                Dictionary["Russian"].TryAdd("SHOP", "МАГАЗИН");
-                Dictionary["Russian"].TryAdd("RATE US", "ОЦЕНИТЕ НАС");
-                Dictionary["Russian"].TryAdd("SELECTED", "ВЫБРАНО");
-                Dictionary["Russian"].TryAdd("OK", "ОК");
-                Dictionary["Russian"].TryAdd("Go Premium without Ads", "Перейдите на Премиум без рекламы");
-                Dictionary["Russian"].TryAdd("Demo levels completed Purchase full version to continue", "Демо-уровни завершены Купите полную версию чтобы продолжить");
-                Dictionary["Russian"].TryAdd("Connection Lost!", "Соединение потеряно!");
-                Dictionary["Russian"].TryAdd("Unable to load the game.", "Не удалось загрузить игру.");
-                Dictionary["Russian"].TryAdd("Please check your internet connection.", "Пожалуйста, проверьте ваше интернет-соединение.");
-                Dictionary["Russian"].TryAdd("Try again", "Попробуйте еще раз");
-
-
-                //JAPANESE LANGUAGE
+                #region JAPANESE LANGUAGE
 
 
                 Dictionary["Japanese"].TryAdd("Knockdown", "ノックダウン");
@@ -859,9 +627,12 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("Unable to load the game.", "ゲームを読み込めません。");
                 Dictionary["Japanese"].TryAdd("Please check your internet connection.", "インターネット接続を確認してください。");
                 Dictionary["Japanese"].TryAdd("Try again", "もう一度やり直してください");
+                Dictionary["Japanese"].TryAdd("Noenoughcoins", "コインが足りません");
+                Dictionary["Japanese"].TryAdd("Continue game?", "ゲームを続けますか?");
+                Dictionary["Japanese"].TryAdd("Need Extra Ball?", "追加のボールが必要ですか?");
+                #endregion
 
-
-                //CHINESE LANGUAGE
+                #region CHINESE LANGUAGE
 
                 Dictionary["Chinese"].TryAdd("Knockdown", "击倒");
                 Dictionary["Chinese"].TryAdd("Bottles", "瓶子");
@@ -922,6 +693,278 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("Unable to load the game.", "无法加载游戏。");
                 Dictionary["Chinese"].TryAdd("Please check your internet connection.", "请检查您的互联网连接。");
                 Dictionary["Chinese"].TryAdd("Try again", "再试一次");
+                Dictionary["Chinese"].TryAdd("Noenoughcoins", "沒有足夠的硬幣");
+                Dictionary["Chinese"].TryAdd("Continue game?", "繼續遊戲嗎？");
+                Dictionary["Chinese"].TryAdd("Need Extra Ball?", "需要額外的球嗎？");
+                #endregion
+
+                #region ITALIAN LANGUAGE
+
+                Dictionary["Italian"].TryAdd("Knockdown", "Abbattimento");
+                Dictionary["Italian"].TryAdd("Bottles", "Bottiglie");
+                Dictionary["Italian"].TryAdd("Play", "Giocare");
+                Dictionary["Italian"].TryAdd("Select world", "Seleziona il mondo");
+                Dictionary["Italian"].TryAdd("Forest", "Foresta");
+                Dictionary["Italian"].TryAdd("Ancient", "Antico");
+                Dictionary["Italian"].TryAdd("Mettle", "Coraggio");
+                Dictionary["Italian"].TryAdd("Desert", "Deserto");
+                Dictionary["Italian"].TryAdd("Snowy", "Nevoso");
+                Dictionary["Italian"].TryAdd("WinPanel.Text", "Livello Superato");
+                Dictionary["Italian"].TryAdd("FailPanel.Text", "Livello Fallito");
+                Dictionary["Italian"].TryAdd("TutorialText", "Non colpire questa bottiglia");
+                Dictionary["Italian"].TryAdd("PausePanel.Text", "Pausa");
+                Dictionary["Italian"].TryAdd("Achieve _ stars in forest world to unlock this world", "Raggiungi _ stelle nel mondo della foresta per sbloccare questo mondo");
+                Dictionary["Italian"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Raggiungi _ stelle nel mondo antico per sbloccare questo mondo");
+                Dictionary["Italian"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Raggiungi _ stelle nel mondo del coraggio per sbloccare questo mondo");
+                Dictionary["Italian"].TryAdd("Achieve _ stars in desert world to unlock this world", "Raggiungi _ stelle nel mondo del deserto per sbloccare questo mondo");
+                Dictionary["Italian"].TryAdd("Achieve _ stars in snow world to unlock this world", "Raggiungi _ stelle nel mondo nevoso per sbloccare questo mondo");
+                Dictionary["Italian"].TryAdd("Exit.Title", "Uscita");
+                Dictionary["Italian"].TryAdd("Exit.ConfirmText", "SEI SICURO..?");
+                Dictionary["Italian"].TryAdd("HidePanel.Text", "Caricamento...");
+                Dictionary["Italian"].TryAdd("StorePanel.text", "Pannello del negozio");
+                Dictionary["Italian"].TryAdd("SelectString", "Selezionare");
+                Dictionary["Italian"].TryAdd("SpinWheel.text", "Gira la ruota");
+                Dictionary["Italian"].TryAdd("Spin", "Gira");
+                Dictionary["Italian"].TryAdd("Watchvideo.Text", "GUARDA IL VIDEO PER GIRARE");
+                Dictionary["Italian"].TryAdd("Nospin.text", "Nessun giro gratuito disponibile! Prova domani");
+                Dictionary["Italian"].TryAdd("GetCoins", "Ottieni 1000 monete");
+                Dictionary["Italian"].TryAdd("Menu", "Menu");
+                Dictionary["Italian"].TryAdd("New game", "Nuovo gioco");
+                Dictionary["Italian"].TryAdd("Continue", "Continua");
+                Dictionary["Italian"].TryAdd("Settings", "Impostazioni");
+                Dictionary["Italian"].TryAdd("Write a review", "Scrivi una recensione");
+                Dictionary["Italian"].TryAdd("Difficulty", "Difficoltà");
+                Dictionary["Italian"].TryAdd("Easy", "Facile");
+                Dictionary["Italian"].TryAdd("Medium", "Medio");
+                Dictionary["Italian"].TryAdd("Hard", "Difficile");
+                Dictionary["Italian"].TryAdd("Effects volume", "Volume effetti");
+                Dictionary["Italian"].TryAdd("Music volume", "Volume della musica");
+                Dictionary["Italian"].TryAdd("Play time: {0:N1} h.", "Tempo di gioco: {0:N1} h.");
+                Dictionary["Italian"].TryAdd("SKIP", "SALTA");
+                Dictionary["Italian"].TryAdd("premium without ads", "premium senza annunci");
+                Dictionary["Italian"].TryAdd("100% Add free", "100% senza annunci");
+                Dictionary["Italian"].TryAdd("skip video", "salta video");
+                Dictionary["Italian"].TryAdd("loading assets", "caricamento risorse...");
+                Dictionary["Italian"].TryAdd("loading player data", "caricamento dati giocatore...");
+                Dictionary["Italian"].TryAdd("loading scene", "caricamento scena...");
+                Dictionary["Italian"].TryAdd("starting", "avvio...");
+                Dictionary["Italian"].TryAdd("PLAY", "GIOCARE");
+                Dictionary["Italian"].TryAdd("SHOP", "NEGOZIO");
+                Dictionary["Italian"].TryAdd("RATE US", "VALUTACI");
+                Dictionary["Italian"].TryAdd("SELECTED", "SELEZIONATO");
+                Dictionary["Italian"].TryAdd("OK", "OK");
+                Dictionary["Italian"].TryAdd("Go Premium without Ads", "Passa a Premium senza annunci");
+                Dictionary["Italian"].TryAdd("Demo levels completed Purchase full version to continue", "Livelli dimostrativi completati Acquista la versione completa per continuare");
+                Dictionary["Italian"].TryAdd("Connection Lost!", "Connessione persa!");
+                Dictionary["Italian"].TryAdd("Unable to load the game.", "Impossibile caricare il gioco.");
+                Dictionary["Italian"].TryAdd("Please check your internet connection.", "Si prega di controllare la connessione a Internet.");
+                Dictionary["Italian"].TryAdd("Try again", "riprova");
+                Dictionary["Italian"].TryAdd("Noenoughcoins", "Non ci sono abbastanza monete");
+                Dictionary["Italian"].TryAdd("Continue game?", "Continuare il gioco?");
+                Dictionary["Italian"].TryAdd("Need Extra Ball?", "Hai bisogno di una palla extra?");
+                #endregion
+
+                #region PORTUGUESE LANGUAGE
+
+                Dictionary["Portuguese"].TryAdd("Knockdown", "Derrubar");
+                Dictionary["Portuguese"].TryAdd("Bottles", "Garrafas");
+                Dictionary["Portuguese"].TryAdd("Play", "Jogar");
+                Dictionary["Portuguese"].TryAdd("Select world", "Selecionar mundo");
+                Dictionary["Portuguese"].TryAdd("Forest", "Floresta");
+                Dictionary["Portuguese"].TryAdd("Ancient", "Antigo");
+                Dictionary["Portuguese"].TryAdd("Mettle", "Coragem");
+                Dictionary["Portuguese"].TryAdd("Desert", "Deserto");
+                Dictionary["Portuguese"].TryAdd("Snowy", "Nevado");
+                Dictionary["Portuguese"].TryAdd("WinPanel.Text", "Nível Completado");
+                Dictionary["Portuguese"].TryAdd("FailPanel.Text", "Nível Falhou");
+                Dictionary["Portuguese"].TryAdd("TutorialText", "Não bata nesta garrafa");
+                Dictionary["Portuguese"].TryAdd("PausePanel.Text", "Pausa");
+                Dictionary["Portuguese"].TryAdd("Achieve _ stars in forest world to unlock this world", "Alcançar _ estrelas no mundo da floresta para desbloquear este mundo");
+                Dictionary["Portuguese"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Alcançar _ estrelas no mundo antigo para desbloquear este mundo");
+                Dictionary["Portuguese"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Alcançar _ estrelas no mundo da coragem para desbloquear este mundo");
+                Dictionary["Portuguese"].TryAdd("Achieve _ stars in desert world to unlock this world", "Alcançar _ estrelas no mundo do deserto para desbloquear este mundo");
+                Dictionary["Portuguese"].TryAdd("Achieve _ stars in snow world to unlock this world", "Alcançar _ estrelas no mundo da neve para desbloquear este mundo");
+                Dictionary["Portuguese"].TryAdd("Exit.Title", "Sair");
+                Dictionary["Portuguese"].TryAdd("Exit.ConfirmText", "VOCÊ TEM CERTEZA..?");
+                Dictionary["Portuguese"].TryAdd("HidePanel.Text", "Carregando...");
+                Dictionary["Portuguese"].TryAdd("StorePanel.text", "Painel da loja");
+                Dictionary["Portuguese"].TryAdd("SelectString", "Selecionar");
+                Dictionary["Portuguese"].TryAdd("SpinWheel.text", "Girar roda");
+                Dictionary["Portuguese"].TryAdd("Spin", "Girar");
+                Dictionary["Portuguese"].TryAdd("Watchvideo.Text", "ASSISTIR VÍDEO PARA GIRAR");
+                Dictionary["Portuguese"].TryAdd("Nospin.text", "Sem giros grátis disponíveis! Tente amanhã");
+                Dictionary["Portuguese"].TryAdd("GetCoins", "Obter 1000 moedas");
+                Dictionary["Portuguese"].TryAdd("Menu", "Menu");
+                Dictionary["Portuguese"].TryAdd("New game", "Novo jogo");
+                Dictionary["Portuguese"].TryAdd("Continue", "Continuar");
+                Dictionary["Portuguese"].TryAdd("Settings", "Configurações");
+                Dictionary["Portuguese"].TryAdd("Write a review", "Escrever uma resenha");
+                Dictionary["Portuguese"].TryAdd("Difficulty", "Dificuldade");
+                Dictionary["Portuguese"].TryAdd("Easy", "Fácil");
+                Dictionary["Portuguese"].TryAdd("Medium", "Médio");
+                Dictionary["Portuguese"].TryAdd("Hard", "Difícil");
+                Dictionary["Portuguese"].TryAdd("Effects volume", "Volume dos efeitos");
+                Dictionary["Portuguese"].TryAdd("Music volume", "Volume da música");
+                Dictionary["Portuguese"].TryAdd("Play time: {0:N1} h.", "Tempo de jogo: {0:N1} h.");
+                Dictionary["Portuguese"].TryAdd("SKIP", "PULAR");
+                Dictionary["Portuguese"].TryAdd("premium without ads", "premium sem anúncios");
+                Dictionary["Portuguese"].TryAdd("100% Add free", "100% sem anúncios");
+                Dictionary["Portuguese"].TryAdd("skip video", "pular vídeo");
+                Dictionary["Portuguese"].TryAdd("loading assets", "carregando recursos...");
+                Dictionary["Portuguese"].TryAdd("loading player data", "carregando dados do jogador...");
+                Dictionary["Portuguese"].TryAdd("loading scene", "carregando cena...");
+                Dictionary["Portuguese"].TryAdd("starting", "iniciando...");
+                Dictionary["Portuguese"].TryAdd("PLAY", "JOGAR");
+                Dictionary["Portuguese"].TryAdd("SHOP", "LOJA");
+                Dictionary["Portuguese"].TryAdd("RATE US", "AVALIE-NOS");
+                Dictionary["Portuguese"].TryAdd("SELECTED", "SELECIONADO");
+                Dictionary["Portuguese"].TryAdd("OK", "OK");
+                Dictionary["Portuguese"].TryAdd("Go Premium without Ads", "Torne-se Premium sem anúncios");
+                Dictionary["Portuguese"].TryAdd("Demo levels completed Purchase full version to continue", "Níveis de demonstração concluídos, compre a versão completa para continuar");
+                Dictionary["Portuguese"].TryAdd("Connection Lost!", "Conexão Perdida!");
+                Dictionary["Portuguese"].TryAdd("Unable to load the game.", "Incapaz de carregar o jogo.");
+                Dictionary["Portuguese"].TryAdd("Please check your internet connection.", "Por favor, verifique sua conexão com a internet.");
+                Dictionary["Portuguese"].TryAdd("Try again", "tente novamente");
+                Dictionary["Portuguese"].TryAdd("Noenoughcoins", "Não há moedas suficientes");
+                Dictionary["Portuguese"].TryAdd("Continue game?", "Continuer le jeu ?");
+                Dictionary["Portuguese"].TryAdd("Need Extra Ball?", "Besoin d'une balle supplémentaire ?");
+                Dictionary["Portuguese"].TryAdd("Continue game?", "Continuar o jogo?");
+                Dictionary["Portuguese"].TryAdd("Need Extra Ball?", "Precisa de bola extra?");
+                #endregion
+
+                #region TURKISH LANGUAGE
+
+                Dictionary["Turkish"].TryAdd("Knockdown", "Yıkılmak");
+                Dictionary["Turkish"].TryAdd("Bottles", "Şişeler");
+                Dictionary["Turkish"].TryAdd("Play", "Oynamak");
+                Dictionary["Turkish"].TryAdd("Select world", "Dünyayı seç");
+                Dictionary["Turkish"].TryAdd("Forest", "Orman");
+                Dictionary["Turkish"].TryAdd("Ancient", "Antik");
+                Dictionary["Turkish"].TryAdd("Mettle", "Cesaret");
+                Dictionary["Turkish"].TryAdd("Desert", "Çöl");
+                Dictionary["Turkish"].TryAdd("Snowy", "Karlı");
+                Dictionary["Turkish"].TryAdd("WinPanel.Text", "Seviye Geçildi");
+                Dictionary["Turkish"].TryAdd("FailPanel.Text", "Seviye Başarısız");
+                Dictionary["Turkish"].TryAdd("TutorialText", "Bu şişeye vurma");
+                Dictionary["Turkish"].TryAdd("PausePanel.Text", "Duraklat");
+                Dictionary["Turkish"].TryAdd("Achieve _ stars in forest world to unlock this world", "Bu dünyayı açmak için orman dünyasında _ yıldız elde et");
+                Dictionary["Turkish"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Bu dünyayı açmak için antik dünyada _ yıldız elde et");
+                Dictionary["Turkish"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Bu dünyayı açmak için cesaret dünyasında _ yıldız elde et");
+                Dictionary["Turkish"].TryAdd("Achieve _ stars in desert world to unlock this world", "Bu dünyayı açmak için çöl dünyasında _ yıldız elde et");
+                Dictionary["Turkish"].TryAdd("Achieve _ stars in snow world to unlock this world", "Bu dünyayı açmak için karlı dünyada _ yıldız elde et");
+                Dictionary["Turkish"].TryAdd("Exit.Title", "Çıkış");
+                Dictionary["Turkish"].TryAdd("Exit.ConfirmText", "EMİN MİSİN..?");
+                Dictionary["Turkish"].TryAdd("HidePanel.Text", "Yükleniyor...");
+                Dictionary["Turkish"].TryAdd("StorePanel.text", "Mağaza Paneli");
+                Dictionary["Turkish"].TryAdd("SelectString", "Seç");
+                Dictionary["Turkish"].TryAdd("SpinWheel.text", "Çarkı döndür");
+                Dictionary["Turkish"].TryAdd("Spin", "Döndür");
+                Dictionary["Turkish"].TryAdd("Watchvideo.Text", "DÖNDÜRMEK İÇİN VİDEO İZLE");
+                Dictionary["Turkish"].TryAdd("Nospin.text", "Ücretsiz dönüş yok! Yarın tekrar deneyin");
+                Dictionary["Turkish"].TryAdd("GetCoins", "1000 jeton al");
+                Dictionary["Turkish"].TryAdd("Menu", "Menü");
+                Dictionary["Turkish"].TryAdd("New game", "Yeni oyun");
+                Dictionary["Turkish"].TryAdd("Continue", "Devam et");
+                Dictionary["Turkish"].TryAdd("Settings", "Ayarlar");
+                Dictionary["Turkish"].TryAdd("Write a review", "İnceleme yaz");
+                Dictionary["Turkish"].TryAdd("Difficulty", "Zorluk");
+                Dictionary["Turkish"].TryAdd("Easy", "Kolay");
+                Dictionary["Turkish"].TryAdd("Medium", "Orta");
+                Dictionary["Turkish"].TryAdd("Hard", "Zor");
+                Dictionary["Turkish"].TryAdd("Effects volume", "Efekt sesi");
+                Dictionary["Turkish"].TryAdd("Music volume", "Müzik sesi");
+                Dictionary["Turkish"].TryAdd("Play time: {0:N1} h.", "Oynama süresi: {0:N1} sa.");
+                Dictionary["Turkish"].TryAdd("SKIP", "GEÇ");
+                Dictionary["Turkish"].TryAdd("premium without ads", "reklamsız premium");
+                Dictionary["Turkish"].TryAdd("100% Add free", "100% reklamsız");
+                Dictionary["Turkish"].TryAdd("skip video", "videoyu geç");
+                Dictionary["Turkish"].TryAdd("loading assets", "varlıklar yükleniyor...");
+                Dictionary["Turkish"].TryAdd("loading player data", "oyuncu verileri yükleniyor...");
+                Dictionary["Turkish"].TryAdd("loading scene", "sahne yükleniyor...");
+                Dictionary["Turkish"].TryAdd("starting", "başlıyor...");
+                Dictionary["Turkish"].TryAdd("PLAY", "OYNAMAK");
+                Dictionary["Turkish"].TryAdd("SHOP", "DÜKKAN");
+                Dictionary["Turkish"].TryAdd("RATE US", "BİZİ OYLA");
+                Dictionary["Turkish"].TryAdd("SELECTED", "SEÇİLDİ");
+                Dictionary["Turkish"].TryAdd("OK", "TAMAM");
+                Dictionary["Turkish"].TryAdd("Go Premium without Ads", "Reklamsız Premium'a geç");
+                Dictionary["Turkish"].TryAdd("Demo levels completed Purchase full version to continue", "Demo seviyeleri tamamlandı, devam etmek için tam sürümü satın alın");
+                Dictionary["Turkish"].TryAdd("Connection Lost!", "Bağlantı Kaybedildi!");
+                Dictionary["Turkish"].TryAdd("Unable to load the game.", "Oyunu yükleyemiyor.");
+                Dictionary["Turkish"].TryAdd("Please check your internet connection.", "Lütfen internet bağlantınızı kontrol edin.");
+                Dictionary["Turkish"].TryAdd("Try again", "tekrar deneyin");
+                Dictionary["Turkish"].TryAdd("Noenoughcoins", "Yeterli para yok");
+                Dictionary["Turkish"].TryAdd("Continue game?", "Oyuna devam edilsin mi?");
+                Dictionary["Turkish"].TryAdd("Need Extra Ball?", "Ekstra Topa mı ihtiyacınız var?");
+
+                #endregion
+
+                #region RUSSIAN LANGUAGE
+
+                Dictionary["Russian"].TryAdd("Knockdown", "Нокаут");
+                Dictionary["Russian"].TryAdd("Bottles", "Бутылки");
+                Dictionary["Russian"].TryAdd("Play", "Играть");
+                Dictionary["Russian"].TryAdd("Select world", "Выбрать мир");
+                Dictionary["Russian"].TryAdd("Forest", "Лес");
+                Dictionary["Russian"].TryAdd("Ancient", "Древний");
+                Dictionary["Russian"].TryAdd("Mettle", "Мужество");
+                Dictionary["Russian"].TryAdd("Desert", "Пустыня");
+                Dictionary["Russian"].TryAdd("Snowy", "Снежный");
+                Dictionary["Russian"].TryAdd("WinPanel.Text", "Уровень пройден");
+                Dictionary["Russian"].TryAdd("FailPanel.Text", "Уровень не пройден");
+                Dictionary["Russian"].TryAdd("TutorialText", "Не бейте эту бутылку");
+                Dictionary["Russian"].TryAdd("PausePanel.Text", "Пауза");
+                Dictionary["Russian"].TryAdd("Achieve _ stars in forest world to unlock this world", "Достигните _ звёзд в лесном мире, чтобы разблокировать этот мир");
+                Dictionary["Russian"].TryAdd("Achieve _ stars in ancient world to unlock this world", "Достигните _ звёзд в древнем мире, чтобы разблокировать этот мир");
+                Dictionary["Russian"].TryAdd("Achieve _ stars in mettle world to unlock this world", "Достигните _ звёзд в мире мужества, чтобы разблокировать этот мир");
+                Dictionary["Russian"].TryAdd("Achieve _ stars in desert world to unlock this world", "Достигните _ звёзд в пустынном мире, чтобы разблокировать этот мир");
+                Dictionary["Russian"].TryAdd("Achieve _ stars in snow world to unlock this world", "Достигните _ звёзд в снежном мире, чтобы разблокировать этот мир");
+                Dictionary["Russian"].TryAdd("Exit.Title", "Выход");
+                Dictionary["Russian"].TryAdd("Exit.ConfirmText", "ВЫ УВЕРЕНЫ..?");
+                Dictionary["Russian"].TryAdd("HidePanel.Text", "Загрузка...");
+                Dictionary["Russian"].TryAdd("StorePanel.text", "Панель магазина");
+                Dictionary["Russian"].TryAdd("SelectString", "Выбрать");
+                Dictionary["Russian"].TryAdd("SpinWheel.text", "Крутить колесо");
+                Dictionary["Russian"].TryAdd("Spin", "Крутить");
+                Dictionary["Russian"].TryAdd("Watchvideo.Text", "СМОТРЕТЬ ВИДЕО ЧТОБЫ КРУТИТЬ");
+                Dictionary["Russian"].TryAdd("Nospin.text", "Бесплатных вращений нет! Попробуйте завтра");
+                Dictionary["Russian"].TryAdd("GetCoins", "Получить 1000 монет");
+                Dictionary["Russian"].TryAdd("Menu", "Меню");
+                Dictionary["Russian"].TryAdd("New game", "Новая игра");
+                Dictionary["Russian"].TryAdd("Continue", "Продолжить");
+                Dictionary["Russian"].TryAdd("Settings", "Настройки");
+                Dictionary["Russian"].TryAdd("Write a review", "Написать отзыв");
+                Dictionary["Russian"].TryAdd("Difficulty", "Сложность");
+                Dictionary["Russian"].TryAdd("Easy", "Легко");
+                Dictionary["Russian"].TryAdd("Medium", "Средне");
+                Dictionary["Russian"].TryAdd("Hard", "Трудно");
+                Dictionary["Russian"].TryAdd("Effects volume", "Громкость эффектов");
+                Dictionary["Russian"].TryAdd("Music volume", "Громкость музыки");
+                Dictionary["Russian"].TryAdd("Play time: {0:N1} h.", "Время игры: {0:N1} ч.");
+                Dictionary["Russian"].TryAdd("SKIP", "ПРОПУСТИТЬ");
+                Dictionary["Russian"].TryAdd("premium without ads", "премиум без рекламы");
+                Dictionary["Russian"].TryAdd("100% Add free", "100% без рекламы");
+                Dictionary["Russian"].TryAdd("skip video", "пропустить видео");
+                Dictionary["Russian"].TryAdd("loading assets", "загрузка ресурсов...");
+                Dictionary["Russian"].TryAdd("loading player data", "загрузка данных игрока...");
+                Dictionary["Russian"].TryAdd("loading scene", "загрузка сцены...");
+                Dictionary["Russian"].TryAdd("starting", "запуск...");
+                Dictionary["Russian"].TryAdd("PLAY", "ИГРАТЬ");
+                Dictionary["Russian"].TryAdd("SHOP", "МАГАЗИН");
+                Dictionary["Russian"].TryAdd("RATE US", "ОЦЕНИТЕ НАС");
+                Dictionary["Russian"].TryAdd("SELECTED", "ВЫБРАНО");
+                Dictionary["Russian"].TryAdd("OK", "ОК");
+                Dictionary["Russian"].TryAdd("Go Premium without Ads", "Перейдите на Премиум без рекламы");
+                Dictionary["Russian"].TryAdd("Demo levels completed Purchase full version to continue", "Демо-уровни завершены Купите полную версию чтобы продолжить");
+                Dictionary["Russian"].TryAdd("Connection Lost!", "Соединение потеряно!");
+                Dictionary["Russian"].TryAdd("Unable to load the game.", "Не удалось загрузить игру.");
+                Dictionary["Russian"].TryAdd("Please check your internet connection.", "Пожалуйста, проверьте ваше интернет-соединение.");
+                Dictionary["Russian"].TryAdd("Try again", "Попробуйте еще раз");
+                Dictionary["Russian"].TryAdd("Noenoughcoins", "Недостаточно монет");
+                Dictionary["Russian"].TryAdd("Continue game?", "Продолжить игру?");
+                Dictionary["Russian"].TryAdd("Need Extra Ball?", "Нужен дополнительный мяч?");
+                #endregion
+
 
 
 
@@ -976,15 +1019,17 @@ namespace Assets.SimpleLocalization
                
                 if (Dictionary.Count == 0)
                 {
-                  //  Read();
+                    Read();
                 }
 
                 //if (!Dictionary.ContainsKey(Language)) throw new KeyNotFoundException("Language not found: " + Language);
-                if (!Dictionary.ContainsKey(Language)) Language = "English";
+                if (!Dictionary.ContainsKey(Language))
+                    Language = "English";
 
                 //if (!Dictionary[Language].ContainsKey(localizationKey)) throw new KeyNotFoundException("Translation not found: " + localizationKey);
 
-                if (Language == "English") return Dictionary[Language][localizationKey];
+                if (Language == "English")
+                    return Dictionary[Language][localizationKey];
 
                 var missed = !Dictionary[Language].ContainsKey(localizationKey) || string.IsNullOrEmpty(Dictionary[Language][localizationKey]);
 

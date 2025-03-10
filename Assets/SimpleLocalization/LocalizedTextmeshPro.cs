@@ -12,19 +12,20 @@ namespace Assets.SimpleLocalization
     {
         public string LocalizationKey;
 
-        public void Start()
+        public void OnEnable()
         {
             Localize();
             LocalizationManager.LocalizationChanged += Localize;
         }
 
-        public void OnDestroy()
+        public void OnDisable()
         {
             LocalizationManager.LocalizationChanged -= Localize;
         }
 
         private void Localize()
         {           
+            if(GetComponent<TextMeshProUGUI>())
             GetComponent<TextMeshProUGUI>().text = LocalizationManager.Localize(LocalizationKey);
         }
     }

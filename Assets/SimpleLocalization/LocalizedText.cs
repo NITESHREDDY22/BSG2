@@ -11,7 +11,7 @@ namespace Assets.SimpleLocalization
     {
         public string LocalizationKey;
         Text t;
-        public void Start()
+        public void OnEnable()
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Assets.SimpleLocalization
             }
         }
 
-        public void OnDestroy()
+        public void OnDisable()
         {
             try
             {
@@ -138,8 +138,7 @@ namespace Assets.SimpleLocalization
             try
             {
                 LocalizationKey = t;
-                LocalizationManager.LocalizationChanged -= Localize;
-                Start();
+                Localize();
             }
             catch (Exception exp)
             {

@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Collections;
 using static UnityEngine.Networking.UnityWebRequest;
+using TMPro;
+using Assets.SimpleLocalization;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,8 +39,8 @@ public class GameManager : MonoBehaviour
     public Text levelNo;
     public Text levelNoFail;
 
-    [HideInInspector]
-    public Text rewardtext;
+    //[HideInInspector]
+    public TextMeshProUGUI rewardtext;
     //[HideInInspector]
     public GameState gameState;
 
@@ -129,7 +131,7 @@ public class GameManager : MonoBehaviour
                                                 { "LEVEL", Global.retryCount },
 
                                          });
-        rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<Text>();
+        rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
     }
 
 
@@ -231,6 +233,10 @@ public class GameManager : MonoBehaviour
             if (rewardtext)
             {
                 rewardtext.text = "Continue game?";
+                if (rewardtext.GetComponent<LocalizedTextmeshPro>())
+                {
+                    rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey=rewardtext.text;
+                }
             }
             rewardCanvas.SetActive(true);
         }
@@ -1270,6 +1276,10 @@ public class GameManager : MonoBehaviour
                     if (rewardtext)
                     {
                         rewardtext.text = "Need Extra Ball?";
+                        if (rewardtext.GetComponent<LocalizedTextmeshPro>())
+                        {
+                            rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = rewardtext.text;
+                        }
                     }
                     rewardUsed = true;
 
