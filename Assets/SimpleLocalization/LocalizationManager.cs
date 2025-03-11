@@ -162,8 +162,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("Please check your internet connection.", "Please check your internet connection.");
                 Dictionary["English"].TryAdd("Try again", "Try again");
                 Dictionary["English"].TryAdd("Noenoughcoins", "No enough coins");
-                Dictionary["English"].TryAdd("Continue game?", "Continue game?");             
-                Dictionary["English"].TryAdd("Need Extra Ball?", "Need Extra Ball?");
+                Dictionary["English"].TryAdd("Continuegame", "Continue game?");             
+                Dictionary["English"].TryAdd("NeedExtraBall", "Need Extra Ball?");
+                Dictionary["English"].TryAdd("Watchvideo", "Watch video");
+
                 #endregion
 
                 #region  ARABIC LANGUAGE
@@ -229,8 +231,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("Please check your internet connection.", "يرجى التحقق من اتصالك بالإنترنت.");
                 Dictionary["Arabic"].TryAdd("Try again", "حاول ثانية");
                 Dictionary["Arabic"].TryAdd("Noenoughcoins", "لا يوجد عملات كافية");
-                Dictionary["Arabic"].TryAdd("Continue game?", "هل تريد متابعة اللعبة؟");
-                Dictionary["Arabic"].TryAdd("Need Extra Ball?", "هل تحتاج إلى كرة إضافية؟");
+                Dictionary["Arabic"].TryAdd("Continuegame", "هل تريد متابعة اللعبة؟");
+                Dictionary["Arabic"].TryAdd("NeedExtraBall", "هل تحتاج إلى كرة إضافية؟");
+                Dictionary["Arabic"].TryAdd("Watchvideo", "شاهد الفيديو");
+
                 #endregion
 
                 #region SPANISH LANGUAGE
@@ -295,8 +299,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("Please check your internet connection.", "Por favor, revisa tu conexión a internet.");
                 Dictionary["Spanish"].TryAdd("Try again", "intentar otra vez");
                 Dictionary["Spanish"].TryAdd("Noenoughcoins", "No hay suficientes monedas");
-                Dictionary["Spanish"].TryAdd("Continue game?", "¿Continuar el juego?");
-                Dictionary["Spanish"].TryAdd("Need Extra Ball?", "¿Necesitas bola extra?");
+                Dictionary["Spanish"].TryAdd("Continuegame", "¿Continuar el juego?");
+                Dictionary["Spanish"].TryAdd("NeedExtraBall", "¿Necesitas bola extra?");
+                Dictionary["Spanish"].TryAdd("Watchvideo", "Ver vídeo");
+
 
                 #endregion
 
@@ -362,8 +368,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("Please check your internet connection.", "Bitte überprüfe deine Internetverbindung.");
                 Dictionary["German"].TryAdd("Try again", "versuchen Sie es erneut");
                 Dictionary["German"].TryAdd("Noenoughcoins", "Nicht genügend Münzen");
-                Dictionary["German"].TryAdd("Continue game?", "Spiel fortsetzen?");
-                Dictionary["German"].TryAdd("Need Extra Ball?", "Benötigen Sie zusätzlichen Ball?");
+                Dictionary["German"].TryAdd("Continuegame", "Spiel fortsetzen?");
+                Dictionary["German"].TryAdd("NeedExtraBall", "Benötigen Sie zusätzlichen Ball?");
+                Dictionary["German"].TryAdd("Watchvideo", "Video ansehen");
+
                 #endregion
 
                 #region FRENCH LANGUAGE
@@ -428,8 +436,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("Please check your internet connection.", "Veuillez vérifier votre connexion Internet.");
                 Dictionary["French"].TryAdd("Try again", "essayer à nouveau");
                 Dictionary["French"].TryAdd("Noenoughcoins", "Pas assez de pièces");
-                Dictionary["French"].TryAdd("Continue game?", "Continuer le jeu ?");
-                Dictionary["French"].TryAdd("Need Extra Ball?", "Besoin d'une balle supplémentaire ?");
+                Dictionary["French"].TryAdd("Continuegame", "Continuer le jeu ?");
+                Dictionary["French"].TryAdd("NeedExtraBall", "Besoin d'une balle supplémentaire ?");
+                Dictionary["French"].TryAdd("Watchvideo", "Regarder la vidéo");
+
                 #endregion
 
                 #region  DUTCH LANGUAGE
@@ -494,8 +504,9 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("Please check your internet connection.", "Controleer je internetverbinding.");
                 Dictionary["Dutch"].TryAdd("Try again", "probeer het opnieuw");
                 Dictionary["Dutch"].TryAdd("Noenoughcoins", "Niet genoeg munten");
-                Dictionary["Dutch"].TryAdd("Continue game?", "Doorgaan met spel?");
-                Dictionary["Dutch"].TryAdd("Need Extra Ball?", "Extra bal nodig?");
+                Dictionary["Dutch"].TryAdd("Continuegame", "Doorgaan met spel?");
+                Dictionary["Dutch"].TryAdd("NeedExtraBall", "Extra bal nodig?");
+                Dictionary["Dutch"].TryAdd("Watchvideo", "Bekijk video");
 
                 #endregion
 
@@ -561,8 +572,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Polish"].TryAdd("Please check your internet connection.", "Proszę sprawdź swoje połączenie internetowe.");
                 Dictionary["Polish"].TryAdd("Try again", "spróbuj ponownie");
                 Dictionary["Polish"].TryAdd("Noenoughcoins", "Za mało monet");
-                Dictionary["Polish"].TryAdd("Continue game?", "Kontynuować grę?");
-                Dictionary["Polish"].TryAdd("Need Extra Ball?", "Potrzebujesz dodatkowej piłki?");
+                Dictionary["Polish"].TryAdd("Continuegame", "Kontynuować grę?");
+                Dictionary["Polish"].TryAdd("NeedExtraBall", "Potrzebujesz dodatkowej piłki?");
+                Dictionary["Polish"].TryAdd("Watchvideo", "Obejrzyj wideo");
+
                 #endregion
 
                 #region JAPANESE LANGUAGE
@@ -628,8 +641,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("Please check your internet connection.", "インターネット接続を確認してください。");
                 Dictionary["Japanese"].TryAdd("Try again", "もう一度やり直してください");
                 Dictionary["Japanese"].TryAdd("Noenoughcoins", "コインが足りません");
-                Dictionary["Japanese"].TryAdd("Continue game?", "ゲームを続けますか?");
-                Dictionary["Japanese"].TryAdd("Need Extra Ball?", "追加のボールが必要ですか?");
+                Dictionary["Japanese"].TryAdd("Continuegame", "ゲームを続けますか?");
+                Dictionary["Japanese"].TryAdd("NeedExtraBall", "追加のボールが必要ですか?");
+                Dictionary["Japanese"].TryAdd("Watchvideo", "ビデオを見る");
+
                 #endregion
 
                 #region CHINESE LANGUAGE
@@ -694,8 +709,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("Please check your internet connection.", "请检查您的互联网连接。");
                 Dictionary["Chinese"].TryAdd("Try again", "再试一次");
                 Dictionary["Chinese"].TryAdd("Noenoughcoins", "沒有足夠的硬幣");
-                Dictionary["Chinese"].TryAdd("Continue game?", "繼續遊戲嗎？");
-                Dictionary["Chinese"].TryAdd("Need Extra Ball?", "需要額外的球嗎？");
+                Dictionary["Chinese"].TryAdd("Continuegame", "繼續遊戲嗎？");
+                Dictionary["Chinese"].TryAdd("NeedExtraBall", "需要額外的球嗎？");
+                Dictionary["Chinese"].TryAdd("Watchvideo", "觀看影片");
+
                 #endregion
 
                 #region ITALIAN LANGUAGE
@@ -760,8 +777,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Italian"].TryAdd("Please check your internet connection.", "Si prega di controllare la connessione a Internet.");
                 Dictionary["Italian"].TryAdd("Try again", "riprova");
                 Dictionary["Italian"].TryAdd("Noenoughcoins", "Non ci sono abbastanza monete");
-                Dictionary["Italian"].TryAdd("Continue game?", "Continuare il gioco?");
-                Dictionary["Italian"].TryAdd("Need Extra Ball?", "Hai bisogno di una palla extra?");
+                Dictionary["Italian"].TryAdd("Continuegame", "Continuare il gioco?");
+                Dictionary["Italian"].TryAdd("NeedExtraBall", "Hai bisogno di una palla extra?");
+                Dictionary["Italian"].TryAdd("Watchvideo", "Guarda il video");
+
                 #endregion
 
                 #region PORTUGUESE LANGUAGE
@@ -825,11 +844,12 @@ namespace Assets.SimpleLocalization
                 Dictionary["Portuguese"].TryAdd("Unable to load the game.", "Incapaz de carregar o jogo.");
                 Dictionary["Portuguese"].TryAdd("Please check your internet connection.", "Por favor, verifique sua conexão com a internet.");
                 Dictionary["Portuguese"].TryAdd("Try again", "tente novamente");
-                Dictionary["Portuguese"].TryAdd("Noenoughcoins", "Não há moedas suficientes");
-                Dictionary["Portuguese"].TryAdd("Continue game?", "Continuer le jeu ?");
-                Dictionary["Portuguese"].TryAdd("Need Extra Ball?", "Besoin d'une balle supplémentaire ?");
-                Dictionary["Portuguese"].TryAdd("Continue game?", "Continuar o jogo?");
-                Dictionary["Portuguese"].TryAdd("Need Extra Ball?", "Precisa de bola extra?");
+                Dictionary["Portuguese"].TryAdd("Noenoughcoins", "Não há moedas suficientes");              
+                Dictionary["Portuguese"].TryAdd("Continuegame", "Continuar o jogo?");
+                Dictionary["Portuguese"].TryAdd("NeedExtraBall", "Precisa de bola extra?");
+                Dictionary["Portuguese"].TryAdd("Watchvideo", "Assista ao vídeo");
+
+
                 #endregion
 
                 #region TURKISH LANGUAGE
@@ -894,8 +914,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Turkish"].TryAdd("Please check your internet connection.", "Lütfen internet bağlantınızı kontrol edin.");
                 Dictionary["Turkish"].TryAdd("Try again", "tekrar deneyin");
                 Dictionary["Turkish"].TryAdd("Noenoughcoins", "Yeterli para yok");
-                Dictionary["Turkish"].TryAdd("Continue game?", "Oyuna devam edilsin mi?");
-                Dictionary["Turkish"].TryAdd("Need Extra Ball?", "Ekstra Topa mı ihtiyacınız var?");
+                Dictionary["Turkish"].TryAdd("Continuegame", "Oyuna devam edilsin mi?");
+                Dictionary["Turkish"].TryAdd("NeedExtraBall", "Ekstra Topa mı ihtiyacınız var?");
+                Dictionary["Turkish"].TryAdd("Watchvideo", "Videoyu izle");
+
 
                 #endregion
 
@@ -961,8 +983,10 @@ namespace Assets.SimpleLocalization
                 Dictionary["Russian"].TryAdd("Please check your internet connection.", "Пожалуйста, проверьте ваше интернет-соединение.");
                 Dictionary["Russian"].TryAdd("Try again", "Попробуйте еще раз");
                 Dictionary["Russian"].TryAdd("Noenoughcoins", "Недостаточно монет");
-                Dictionary["Russian"].TryAdd("Continue game?", "Продолжить игру?");
-                Dictionary["Russian"].TryAdd("Need Extra Ball?", "Нужен дополнительный мяч?");
+                Dictionary["Russian"].TryAdd("Continuegame", "Продолжить игру?");
+                Dictionary["Russian"].TryAdd("NeedExtraBall", "Нужен дополнительный мяч?");
+                Dictionary["Russian"].TryAdd("Watchvideo", "Посмотреть видео");
+
                 #endregion
 
 

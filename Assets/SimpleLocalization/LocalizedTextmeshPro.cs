@@ -24,9 +24,12 @@ namespace Assets.SimpleLocalization
         }
 
         public void Localize()
-        {           
-            if(GetComponent<TextMeshProUGUI>())
-            GetComponent<TextMeshProUGUI>().text = LocalizationManager.Localize(LocalizationKey);
+        {
+            if (GetComponent<TextMeshProUGUI>())
+            {             
+                string textToBeAssigned= LocalizationManager.Localize(LocalizationKey); ;
+                GetComponent<TextMeshProUGUI>().text = textToBeAssigned;
+            }
         }
     }
 }

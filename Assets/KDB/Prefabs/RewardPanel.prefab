@@ -516,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224514222297406194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d8f90302d11514383267357d9210df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalizationKey: Watchvideo.Text
+  LocalizationKey: Watchvideo
 --- !u!1 &1514106275194630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,7 +1824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Need Extra Ball ?
+  m_text: Continue game?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 38eb6bdd30e10134d99f57bc255e06cb, type: 2}
   m_sharedMaterial: {fileID: -3432755112287206947, guid: 38eb6bdd30e10134d99f57bc255e06cb,
@@ -1906,4 +1906,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d8f90302d11514383267357d9210df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalizationKey: 
+  LocalizationKey: Continuegame

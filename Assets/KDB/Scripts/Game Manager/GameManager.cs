@@ -223,26 +223,37 @@ public class GameManager : MonoBehaviour
         }
 
         currentAdDisplayTime = Time.time;
-        //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
-        if (((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > Global.backFillAdGapToContinue)
-            && (AdManager._instance.adMobNetworkHandler!=null && 
-                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
-                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd()))
-            {
+        //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManage
+        //r._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
+        bool condition1= currentAdDisplayTime - AdManager._instance.lastAdDisplayTime > Global.backFillAdGapToContinue;
+        bool condition2 = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
+
+#if UNITY_EDITOR
+        condition1 = condition2 = true;
+#endif
+        if (condition1 && condition2)
+        {
             AdManager._instance.rewardTypeToUnlock = RewardType.continuegame;
+            rewardCanvas.SetActive(true);
+            if (rewardtext == null)
+            {
+                rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            }
             if (rewardtext)
             {
                 rewardtext.text = "Continue game?";
+
                 if (rewardtext.GetComponent<LocalizedTextmeshPro>())
                 {
-                    rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey=rewardtext.text;
+                    rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = "Continuegame";
+                    rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.25f);
                 }
             }
-            rewardCanvas.SetActive(true);
         }
         else
         {
-            Debug.Log("IXD " + WorldSelectionHandler.worldSelected+"_"+ Global.CurrentLeveltoPlay);
+            Debug.Log("IXD " + WorldSelectionHandler.worldSelected + "_" + Global.CurrentLeveltoPlay);
             donextlevelcall();
         }
     }
@@ -1273,18 +1284,23 @@ public class GameManager : MonoBehaviour
                 if (!rewardCanvas.activeSelf && (Global.target - Global.count) <= 2 && !rewardUsed)
                 {
                     ingamePausePanel.SetActive(false);
-                    if (rewardtext)
-                    {
-                        rewardtext.text = "Need Extra Ball?";
-                        if (rewardtext.GetComponent<LocalizedTextmeshPro>())
-                        {
-                            rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = rewardtext.text;
-                        }
-                    }
+                    //if (rewardtext)
+                    //{
+                    //    rewardtext.text = "Need Extra Ball?";
+                    //    Debug.LogError("Exists in reward text Need Extra Ball");
+                    //    if (rewardtext.GetComponent<LocalizedTextmeshPro>())
+                    //    {
+                    //        Debug.LogError("Exists in reward text Need Extra Ball 1111");
+
+                    //        rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = "NeedExtraBall";
+                    //        rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.25f);
+                    //    }
+                    //}
                     rewardUsed = true;
 
                     //AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                     //rewardCanvas.SetActive(true);
+
 
                     if ((AdManager._instance.adMobNetworkHandler!=null &&
                         AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null &&
@@ -1295,6 +1311,21 @@ public class GameManager : MonoBehaviour
                     {
                         AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                         rewardCanvas.SetActive(true);
+
+                        if (rewardtext == null)
+                        {
+                            rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+                        }
+                        if (rewardtext)
+                        {
+                            rewardtext.text = "Need Extra Ball?";
+
+                            if (rewardtext.GetComponent<LocalizedTextmeshPro>())
+                            {
+                                rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = "NeedExtraBall";
+                                rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.25f);
+                            }
+                        }
                     }
                     else 
                     {
