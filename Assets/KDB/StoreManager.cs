@@ -360,9 +360,9 @@ public class StoreManager : MonoBehaviour
     }
     public void CancelReward()
     {
-        GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
         RewardPanel.SetActive(false);
         FirebaseEvents.instance.LogFirebaseEvent("StoreRewardPopupClosed");
+        //GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
     }
 
     public void watchRewardAd()
