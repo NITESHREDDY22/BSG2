@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
                 if (rewardtext.GetComponent<LocalizedTextmeshPro>())
                 {
                     rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = "Continuegame";
-                    rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.25f);
+                    rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.01f);
                 }
             }
         }
@@ -1323,7 +1323,7 @@ public class GameManager : MonoBehaviour
                             if (rewardtext.GetComponent<LocalizedTextmeshPro>())
                             {
                                 rewardtext.GetComponent<LocalizedTextmeshPro>().LocalizationKey = "NeedExtraBall";
-                                rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.25f);
+                                rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.01f);
                             }
                         }
                     }
