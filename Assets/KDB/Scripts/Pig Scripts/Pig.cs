@@ -250,7 +250,8 @@ public class Pig : MonoBehaviour
                         }
                         //AdManager._instance.ShowGameWinInterstitial();
                         Invoke("DelayShowLevelCompleteAd", 1.75f);
-                        gameMngr.CallAdInPigScript();
+                        gameMngr.CallAdInPigScript();                       
+
                         //Uncomment for coin animation
                         //GameObject.FindObjectOfType<GameManager>().StartCoroutine(GameObject.FindObjectOfType<GameManager>().ShowCoinsAnimation());
                     }

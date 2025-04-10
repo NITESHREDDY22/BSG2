@@ -336,7 +336,7 @@ public class Bird : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log(" trigger exits " + collision.tag);
+        //Debug.Log(" trigger exits " + collision.tag);
         if (collision.CompareTag("Brick") && FindObjectOfType<SlingShot>()._ballType == SlingShot.BallType.magic)
         {
             magicTrail.time = 0;

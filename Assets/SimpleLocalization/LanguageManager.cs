@@ -13,8 +13,10 @@ namespace Assets.SimpleLocalization
 		public void Awake()
 		{
 			LocalizationManager.Read();
-           SystemLanguage T = Application.systemLanguage;            
-           //T = SystemLanguage.German;
+           SystemLanguage T = Application.systemLanguage;
+#if UNITY_EDITOR
+            T = SystemLanguage.German;
+#endif
             switch (T)
 			{
 				case SystemLanguage.German:
@@ -36,10 +38,13 @@ namespace Assets.SimpleLocalization
                     LocalizationManager.Language = "Italian";
                     break;
                 case SystemLanguage.Chinese:
-                    LocalizationManager.Language = "Chinese";
+                    //LocalizationManager.Language = "Chinese";
+                    LocalizationManager.Language = "English";
+
                     break;
                 case SystemLanguage.Japanese:
-                    LocalizationManager.Language = "Japanese";
+                    //LocalizationManager.Language = "Japanese";
+                    LocalizationManager.Language = "English";
                     break;
                 case SystemLanguage.Polish:
                     LocalizationManager.Language = "Polish";
