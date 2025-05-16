@@ -6,6 +6,7 @@ using UnityEngine.Purchasing.Extension;
 using Unity.Services.Core;
 using UnityEngine.Windows;
 using System.Linq;
+using Assets.SimpleLocalization;
 
 
 
@@ -290,16 +291,17 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
 
    public bool canProceedToNextLevelCheck(int worldNumber,int levelNumber)
     {
-        if(GameConstants.GetNoAdsStatus)
+
+        if (GameConstants.GetNoAdsStatus)
         {
             return true;
         }
 
         if (worldNumber < DemoEndWorldNumber)
-            return true;      
+            return true;
 
-       // if (worldNumber > DemoEndWorldNumber)
-       //     return false;
+        // if (worldNumber > DemoEndWorldNumber)
+        //     return false;
 
         bool status = GameConstants.targetLevelReached(worldNumber, DemoEndLevelNumber, levelNumber);
         return status;
@@ -309,12 +311,18 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
     {
         //if (canProceedToNextLevel)
         //    return;
-        //IAPpremiumText.text = "Demo levels completed \n Purchase full version to continue";
-
-        if (fromButton)
+        IAPpremiumText.text = "Demolevelscompleted";     
+        if(fromButton)
         {
-          //  IAPpremiumText.text = "Get 5,000 coins";
+            IAPpremiumText.text = "Get 5,000 coins";
         }
+        if(IAPpremiumText.GetComponent<LocalizedTextmeshPro>())
+        {
+            IAPpremiumText.GetComponent<LocalizedTextmeshPro>().SetStringKey(IAPpremiumText.text);
+            IAPpremiumText.GetComponent<LocalizedTextmeshPro>().Localize();
+
+        }
+
         if (noAdsPopup)
             noAdsPopup.SetActive(!GameConstants.GetNoAdsStatus);
     }

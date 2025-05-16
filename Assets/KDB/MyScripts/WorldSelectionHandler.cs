@@ -24,7 +24,9 @@ public class WorldSelectionHandler : MonoBehaviour
     public GameObject spinPopUP;
     void Start()
     {
-       // GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
+        // GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
+        if (AdManager._instance)
+            AdManager._instance.ShowbannerAd();
     }
    
     void starsupdate()

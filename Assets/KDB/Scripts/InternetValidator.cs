@@ -43,7 +43,7 @@ public class InternetValidator : MonoBehaviour
 
     private void OnEnable()
     {
-        OnInterNetCheck += EventForInternetCheck;
+        //OnInterNetCheck += EventForInternetCheck;
         AdManager.OnConfigLoaded += OnConfigLoaded;
     }
 
@@ -51,10 +51,8 @@ public class InternetValidator : MonoBehaviour
 
     private void OnDisable()
     {
-        OnInterNetCheck -= EventForInternetCheck;
+        //OnInterNetCheck -= EventForInternetCheck;
         AdManager.OnConfigLoaded -= OnConfigLoaded;
-
-
     }
 
     private void OnConfigLoaded(GameConfig config)
@@ -188,7 +186,6 @@ public class InternetValidator : MonoBehaviour
     int count = 0;
     void EventForInternetCheck(bool status)
     {
-        
         if (status == cacheInternetStatus && count>0)
             return;
      

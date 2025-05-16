@@ -36,7 +36,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public int GOWAdInterval =0;
     public float ReplayAdInterval = 60f;
     
-    public bool enableBanner;
+    public bool enableBanner=true;
     public bool enableGreedy;
 
   
@@ -66,6 +66,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [Header("Store Panel")]
     public GameObject StorePanel;
     public StoreManager storeManager;
+
+    public GameObject LoadingPanelForBanner;
+    public Image loadingFillBar;
+
 
 
 
@@ -121,6 +125,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField]private int gapBetweenAds=2;
     [SerializeField]private int gapBetweenAdsSecondary=3;
     public static Action OnIngameAdClosed;
+    private bool isLaunchInterstitialEnabled = true;
+    private bool isAppOpednAdEnabled = true;
+    private bool isLoadingInTransit = false;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -170,6 +177,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
         }
         Initialize();
+        StartCoroutine(InitializeAdNetworks());
+        lastAdDisplayTime = Time.time;
+        AppStateEventNotifier.AppStateChanged += OnAppStateChanged;
+
     }
 
     private IEnumerator Start()
@@ -203,7 +214,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     enableBanner = Global.isBannerEnabled;
                     gapBetweenAds = config.FIRST_LVLS_SET_AD_GAP;
                     gapBetweenAdsSecondary = config.SECOND_LVLS_SET_AD_GAP;
-
+                    isLaunchInterstitialEnabled = config.isLaunchInterstitialEnabled;
+                    isAppOpednAdEnabled = config.isAppOpednAdEnabled;
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
@@ -262,8 +274,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         try
         {
 
-            StartCoroutine(InitializeAdNetworks());
-            lastAdDisplayTime = Time.time;
+          
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         }catch(Exception e)
         {
@@ -273,13 +284,64 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     }
   
 
-    public void ShowLoadingPanel()
+    public void ShowLoadingPanel(bool showBannerAdFlag=false)
     {
         LoadingPanel.SetActive(true);
     }
     public void HideLoadingPanel()
     {
         LoadingPanel.SetActive(false);
+    }
+
+    Coroutine cacheBannerAd;
+    public void ShowLoadingForBanner(float timer,bool canCheckLastAdDisplay=false)
+    {
+        loadingFillBar.fillAmount = 0;
+        LoadingPanelForBanner.SetActive(true);
+        Time.timeScale = 1;
+        if(cacheBannerAd!=null)
+        {
+            StopCoroutine(cacheBannerAd);
+        }
+        cacheBannerAd= StartCoroutine(handleBannerAdLoading(timer, ()=>
+        {
+            if (canCheckLastAdDisplay)
+            {
+                currentAdDisplayTime = Time.time;
+                if ((currentAdDisplayTime - lastAdDisplayTime) > Global.backFillAdGapToContinue)
+                {
+                    ShowAppOpenAd();
+                }
+            }
+            else
+            {
+                ShowAppOpenAd();
+            }
+        }));
+       
+    }
+
+    IEnumerator handleBannerAdLoading(float timerTarget,Action callback)
+    {
+        float timer = 0;
+        float lerpValue = 0;
+        float targetTimer = timerTarget-0.15f;
+        yield return new WaitForSeconds(0.15f);
+        callback?.Invoke();
+        while (timer < targetTimer)
+        {
+            timer+= Time.deltaTime;
+            lerpValue = timer / targetTimer;
+            loadingFillBar.fillAmount=lerpValue;           
+            yield return null;
+        }
+        HideLoadingForBanner();
+    }
+
+    public void HideLoadingForBanner()
+    {
+        LoadingPanelForBanner.SetActive(false);
+        isLoadingInTransit = false;
     }
 
     public void ShowStorePanel()
@@ -319,6 +381,16 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     void Initialize()
     {
 
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if (adMobConfig != null)
+        {
+            adMobNetworkHandler.SetAdConfig(adMobConfig);
+            adMobNetworkHandler.Init();
+            adMobNetworkHandler.rewardedInterStitialrequestcallBack += CheckSecondaryInterstitialStatus;
+            adMobNetworkHandler.rewardedrequestcallBack += CheckSecondaryRewardAdStatus;
+
+        }
+
         AdConfig levelPlayConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.LevelPlay);
         if (levelPlayConfig != null)
         {
@@ -326,39 +398,40 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             levelPlayNetworkHandler.SetAdConfig(levelPlayConfig);       
         }
 
-        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
-        if (adMobConfig != null)
-        {
-            adMobNetworkHandler.SetAdConfig(adMobConfig);
-            adMobNetworkHandler.Init();
-            adMobNetworkHandler.rewardedInterStitialrequestcallBack += CheckSecondaryInterstitialStatus;
-        }
+       
 
     }
     IEnumerator InitializeAdNetworks()
     {
         yield return null;
-        IronSource.Agent.validateIntegration();
-        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
-        // SDK init
-        Debug.Log("unity-script: LevelPlay SDK initialization");
-        LevelPlay.Init(appKey, null);     
-
-        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+       
 
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             // This callback is called once the MobileAds SDK is initialized.
             isAdMobInitialized = true;
             adMobNetworkHandler.Initialize(isAdMobInitialized);
-            if (Global.isIntersitialsEnabled)
+            if (isAppOpednAdEnabled)
+            {
+                RequestAppOpenAd();
+            }
+
+            if (isLaunchInterstitialEnabled)
             {
                 RequestLaunchInterstitial();
             }
 
         });
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
+
+        IronSource.Agent.validateIntegration();
+        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+        // SDK init
+        Debug.Log("unity-script: LevelPlay SDK initialization");
+        LevelPlay.Init(appKey, null);
+
+        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
     }
 
     void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
@@ -452,8 +525,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 {
                    RequestInterstitial();
                 }
-
-                
+                if (enableBanner)
+                {
+                    RequestBannerAd();
+                }
                 //Debug.Log("lastAdDisplayTime " + lastAdDisplayTime);
             }
         }
@@ -861,6 +936,53 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             LoadSecondaryInterstitialAd();
         }        
     }
+
+
+    private void LoadSecondaryInterstitialAd()
+    {
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if (adMobConfig != null)
+        {
+            AdUnitConfig adUnitConfig = adMobConfig.adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
+            if (adUnitConfig != null && !string.IsNullOrEmpty(adUnitConfig.AdUnitId) && adUnitConfig.ActiveStatus == ActiveStatus.Active)
+            {
+                //Debug.Log("admob LoadSecondaryInterstitialAd requested");
+                adMobNetworkHandler.SetInterStitalId(adUnitConfig.AdUnitId);
+                //Remove once request ad with delay added.
+                adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
+                adMobNetworkHandler.rewardedInterStitialrequestcallBack = null;
+
+            }
+        }
+    }
+
+    public void CheckSecondaryRewardAdStatus(bool result)
+    {
+        if (!result)
+        {
+            LoadSecondaryRewardAd();
+        }
+    }
+
+    private void LoadSecondaryRewardAd()
+    {
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if (adMobConfig != null)
+        {
+            AdUnitConfig adUnitConfig = adMobConfig.adConfigs.Find(x => x.AdType == AdType.SecondaryReward);
+            if (adUnitConfig != null && !string.IsNullOrEmpty(adUnitConfig.AdUnitId) && adUnitConfig.ActiveStatus == ActiveStatus.Active)
+            {
+                Debug.Log("admob LoadSecondaryRewardAd requested");
+                adMobNetworkHandler.SetRewardId(adUnitConfig.AdUnitId);
+                //Remove once request ad with delay added.
+                RequestRewardBasedVideo(AdType.Reward);
+                Debug.Log("admob LoadSecondaryRewardAd requested  000");
+
+                adMobNetworkHandler.rewardedrequestcallBack = null;
+            }
+        }
+    }
+
     public void ShowRewardedInterstitial(Action<bool> callback,AdType adType)
     {
         adMobNetworkHandler.ShowRewardInterstitial((result) =>
@@ -878,24 +1000,72 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }, adType);
     }
 
-    private void LoadSecondaryInterstitialAd()
+    public void RequestBannerAd()
     {
-        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
-        if(adMobConfig != null)
+        adMobNetworkHandler.RequestBannerView();
+    }
+
+    public void ShowbannerAd()
+    {
+        adMobNetworkHandler.ShowBannerAd();
+    }
+    public void HidebannerAd()
+    {
+        adMobNetworkHandler.HideBannerView();
+    }
+
+    public void RequestAppOpenAd()
+    {
+        adMobNetworkHandler.RequestAppOpenAd((adAvailable)=>
         {
-            AdUnitConfig adUnitConfig = adMobConfig.adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
-            if (adUnitConfig!=null && !string.IsNullOrEmpty(adUnitConfig.AdUnitId) && adUnitConfig.ActiveStatus==ActiveStatus.Active)
+            if (adAvailable)
             {
-                //Debug.Log("admob LoadSecondaryInterstitialAd requested");
-                adMobNetworkHandler.SetInterStitalId(adUnitConfig.AdUnitId);               
+                ShowAppOpenAd();
             }
+        });
+    }
+
+    public void ShowAppOpenAd()
+    {
+        adMobNetworkHandler.ShowAppOpenAd(
+                    (x) =>
+                    {
+                        lastAdDisplayTime = Time.time;
+                    }
+                );
+    }
+
+    private void OnAppStateChanged(AppState state)
+    {
+        //Debug.Log("App State changed to : " + state);
+        // if the app is Foregrounded and the ad is available, show it.
+        if (state==AppState.Foreground &&  adMobNetworkHandler.IsAdAvailable)
+        {
+            if (SceneManager.GetActiveScene().name.Contains("Splash"))
+            {                
+                ShowAppOpenAd();
+            }
+            else
+            {
+                ShowLoadingForBanner(2);
+            }
+        }
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if(focus)
+        {
+           
         }
     }
 
     public void OnDestroy()
     {
       adMobNetworkHandler.rewardedInterStitialrequestcallBack -= CheckSecondaryInterstitialStatus;
+        adMobNetworkHandler.rewardedrequestcallBack -= CheckSecondaryRewardAdStatus;
 
+        AppStateEventNotifier.AppStateChanged -= OnAppStateChanged;
     }
 
     public void FireBaseActions(AdContent adContent, AdMode adMode, SuccessStatus status)
@@ -1295,36 +1465,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     }
     */
 
-    public void showbanner()
-    {
-        /*
-        if (enableBanner)
-        {
-            if (bannerView != null)
-            {
-                try
-                {
-                    bannerView.Show();
-                }
-                catch (Exception e)
-                { }
-            }
-        }
-        */
-    }
-    public void hidebanner()
-    {
-        /*
-        if(bannerView!=null){
-            try
-            {
-                bannerView.Hide();
-            }
-            catch (Exception e)
-            { }
-        }
-        */
-    }
 
     public void showbannerExit()
     {

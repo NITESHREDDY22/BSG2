@@ -5490,6 +5490,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
       propertyPath: bombSkin
       value: 
       objectReference: {fileID: 21300000, guid: c341d3c7bd825384ba6c2b64d958925d,
@@ -6188,6 +6194,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.020441325
       objectReference: {fileID: 0}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
       propertyPath: bombSkin
@@ -17190,6 +17202,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.020441325
       objectReference: {fileID: 0}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
       propertyPath: bombSkin
@@ -36290,7 +36308,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 897c2d6c884404448bea2f8fb89f2521, type: 3}
-  m_Color: {r: 0.96981126, g: 0.9057671, b: 0.9057671, a: 1}
+  m_Color: {r: 0.5411765, g: 0.5411765, b: 0.5411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -62944,6 +62962,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
       propertyPath: bombSkin
       value: 
       objectReference: {fileID: 21300000, guid: c341d3c7bd825384ba6c2b64d958925d,
@@ -66186,6 +66210,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.020441325
       objectReference: {fileID: 0}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
       propertyPath: oldLine

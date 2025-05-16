@@ -6,6 +6,9 @@ public class NeedExtralPanelButton : MonoBehaviour {
 
     // Use this for initialization
     public static bool AlreadyShown=false;
+    private const string skipLevelKey = "SKIP_LEVEL";
+    private const string extraballLevelKey = "EXTRABALL_LEVEL";
+
     private void OnEnable()
     {
         AlreadyShown = false;

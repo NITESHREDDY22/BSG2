@@ -32,5 +32,7 @@ public class GameConfig {
     public int FIRST_LVLS_SET_AD_GAP=2;
     public int SECOND_LVLS_SET_AD_GAP = 3;
     public string Fullversion = "W1_50";
+    public bool isLaunchInterstitialEnabled = true;
+    public bool isAppOpednAdEnabled=true;
 
 }

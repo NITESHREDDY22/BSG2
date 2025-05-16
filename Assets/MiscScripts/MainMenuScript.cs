@@ -57,20 +57,28 @@ public class MainMenuScript : MonoBehaviour
                 //
             }
         }
-        */
-        
+        */        
     }
     private void OnEnable()
     {
         if (AdManager._instance)
         {
             checkIntenetConnection();
-            InternetValidator.Instance.OnInterNetCheck += checkIntenetConnection;           
-        }     
+            if (InternetValidator.Instance)
+                InternetValidator.Instance.OnInterNetCheck += checkIntenetConnection;           
+        }
+        Invoke(nameof(HideBannerAd),1);
     }
 
+
+    void HideBannerAd()
+    {
+        if (AdManager._instance)
+            AdManager._instance.HidebannerAd();
+    }
     private void OnDisable()
     {
+        if(InternetValidator.Instance)
        InternetValidator.Instance.OnInterNetCheck -= checkIntenetConnection;
     }
 

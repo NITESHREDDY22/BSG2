@@ -8,11 +8,14 @@ public class BuyIAP : MonoBehaviour
 {
     [SerializeField] ItemType currentItem;
     [SerializeField] TextMeshProUGUI priceText;
+    [SerializeField] Text priceText1;
+
     [SerializeField] Button purchaseButton,cancelButton;
 
     private void OnEnable()
     {
         priceText.SetText(InappManager.Instance.GetProductCurrency(currentItem));
+        priceText1.text = InappManager.Instance.GetProductCurrency(currentItem);
         cancelButton.onClick.RemoveAllListeners();
         cancelButton.onClick.AddListener(() => ClosePopup());
 

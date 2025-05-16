@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class LevelSelectionHandler : MonoBehaviour {
 
     public static bool[] unlockedLevels;
@@ -79,7 +80,7 @@ public class LevelSelectionHandler : MonoBehaviour {
         }
         return unlocked;
     }
-
+    float delayTimer = 4;
     public void SelectLevel(Transform _tr)
     {
         if (InappManager.Instance)
@@ -91,13 +92,16 @@ public class LevelSelectionHandler : MonoBehaviour {
                 return;
             }
         }
-        AdManager._instance.ShowLoadingPanel();
         SoundManager.PlaySFX("Click2");
+        AdManager._instance.ShowLoadingPanel(true);
         Global.CurrentLeveltoPlay = _tr.GetSiblingIndex();
         SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString() + "_" + (int)(Global.CurrentLeveltoPlay / 5));
+       
+        
         //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString()+"_"+(int)(Global.CurrentLeveltoPlay/10));
         //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString());
     }
+
 
     public static void UnlockLevel(int level)
     {

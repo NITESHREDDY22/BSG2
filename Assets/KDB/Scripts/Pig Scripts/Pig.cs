@@ -252,6 +252,14 @@ public class Pig : MonoBehaviour
                         Invoke("DelayShowLevelCompleteAd", 1.75f);
                         gameMngr.CallAdInPigScript();                       
 
+                        if(SingularEvents.instance!=null)
+                        {
+                            SingularEvents.instance.SendLevelCompleteEvent(WorldSelectionHandler.worldSelected, Global.CurrentLeveltoPlay);
+                            SingularEvents.instance.SendAchieventmentEvent();
+                        }
+
+                        if (AdManager._instance)
+                            AdManager._instance.HidebannerAd();
                         //Uncomment for coin animation
                         //GameObject.FindObjectOfType<GameManager>().StartCoroutine(GameObject.FindObjectOfType<GameManager>().ShowCoinsAnimation());
                     }

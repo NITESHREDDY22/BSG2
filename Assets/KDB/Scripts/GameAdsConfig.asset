@@ -26,10 +26,19 @@ MonoBehaviour:
       AdUnitId: ca-app-pub-3411062052281263/8038627800
       ActiveStatus: 0
     - AdType: 4
-      AdUnitId: ca-app-pub-3411062052281263/5294228744
+      AdUnitId: ca-app-pub-3411062052281263~5705120266
       ActiveStatus: 0
     - AdType: 5
       AdUnitId: ca-app-pub-3411062052281263/2087800960
+      ActiveStatus: 0
+    - AdType: 6
+      AdUnitId: ca-app-pub-3411062052281263/7601829325
+      ActiveStatus: 0
+    - AdType: 7
+      AdUnitId: ca-app-pub-3411062052281263/4441266716
+      ActiveStatus: 0
+    - AdType: 8
+      AdUnitId: ca-app-pub-3411062052281263/4806664572
       ActiveStatus: 0
   - NetworkType: 1
     AppKey: 1ab7561b5

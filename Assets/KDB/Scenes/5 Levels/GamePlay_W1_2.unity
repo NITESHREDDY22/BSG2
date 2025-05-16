@@ -899,7 +899,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.6000001, y: 7.0433865}
+    oldSize: {x: 2.6, y: 7.04}
     newSize: {x: 2.6, y: 7.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2350,6 +2350,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.020441325
       objectReference: {fileID: 0}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
       propertyPath: oldLine
@@ -9942,7 +9948,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.6000001, y: 7.0433865}
+    oldSize: {x: 2.6, y: 7.04}
     newSize: {x: 2.6, y: 7.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -36341,6 +36347,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
       propertyPath: bombSkin
       value: 
       objectReference: {fileID: 21300000, guid: c341d3c7bd825384ba6c2b64d958925d,
@@ -43831,7 +43843,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.7539062, y: 7.049999}
+    oldSize: {x: 2.75, y: 7.05}
     newSize: {x: 2.75, y: 7.05}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -45273,6 +45285,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
       propertyPath: bombSkin
       value: 
       objectReference: {fileID: 21300000, guid: c341d3c7bd825384ba6c2b64d958925d,
@@ -45460,7 +45478,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 897c2d6c884404448bea2f8fb89f2521, type: 3}
-  m_Color: {r: 0.96862745, g: 0.90588236, b: 0.90588236, a: 1}
+  m_Color: {r: 0.5411765, g: 0.5411765, b: 0.5411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -55823,7 +55841,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.6000001, y: 7.0433865}
+    oldSize: {x: 2.6, y: 7.04}
     newSize: {x: 1.1, y: 2.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -57287,6 +57305,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
       propertyPath: bombSkin
       value: 
       objectReference: {fileID: 21300000, guid: c341d3c7bd825384ba6c2b64d958925d,
@@ -58293,6 +58317,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.020441325
       objectReference: {fileID: 0}
+    - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
+        type: 3}
+      propertyPath: _dot
+      value: 
+      objectReference: {fileID: 1054758051701478, guid: 8075db20454cb9c4d9aa889fbd0d0a76,
+        type: 3}
     - target: {fileID: 114322818795106316, guid: 4d4a35a3372e9434e839aa58baf055a9,
         type: 3}
       propertyPath: oldLine

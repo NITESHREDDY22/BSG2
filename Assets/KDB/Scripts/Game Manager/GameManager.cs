@@ -63,12 +63,13 @@ public class GameManager : MonoBehaviour
 
     private DateTime SessionStart, SessionEnd;
 
-    private readonly string LevelSkippedKey = "Level_param_Skipped";
-    private readonly string LevelExtraBallKey = "Level_param_ExtraBall";
+    private readonly string LevelSkippedKey = "SKIP_LEVEL_param";// "Level_param_Skipped";
+    private readonly string LevelExtraBallKey = "EXTRABALL_LEVEL_param";//"Level_param_ExtraBall";
+    private readonly string ingameRetryKey = "INGAME_RETRY_param";//"Level_param_ExtraBall";
+    private readonly string levelFailRetryKey = "FAILED_POPUP_RETRY_param";//"Level_param_ExtraBall";
 
     void Start()
     {
-
         Instance = this;
         Debug.Log("Start World " + WorldSelectionHandler.worldNumb + "Level" + Global.CurrentLeveltoPlay);
         startTime = Time.time;
@@ -132,8 +133,22 @@ public class GameManager : MonoBehaviour
 
                                          });
         rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-    }
 
+        bool condition2 = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
+
+        if(!condition2)
+        {
+            AdManager._instance.adMobNetworkHandler.rewardedInterStitialrequestcallBack?.Invoke(false);
+            AdManager._instance.RequestInterstitial();
+        }
+
+        if(AdManager._instance)
+        {
+            AdManager._instance.ShowbannerAd();
+        }
+       
+    }
 
     public void pause()
     {
@@ -175,29 +190,48 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
-        AdManager._instance.ShowLoadingPanel();
-        Global.tutorialDisplaye = true;
-        Global.noOfTries = Global.noOfTries + 1;
-        //ClickSound.Play ();
-        if (!SoundManager.IsMuted())
+        AdManager._instance.ShowLoadingPanel();       
+        LoadLevel();
+        
+
+        void LoadLevel()
         {
-            SoundsHandler.Instance.PlaySource2Clip(4, 0);
-        }
-        if (!gameOverPanel.activeInHierarchy && !gameFailed.activeInHierarchy)
-        {
-            currentAdDisplayTime = Time.time;
-            if ((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > AdManager._instance.levelReloadAdDuration)
+            Global.tutorialDisplaye = true;
+            Global.noOfTries = Global.noOfTries + 1;
+            //ClickSound.Play ();
+            if (!SoundManager.IsMuted())
             {
-                AdManager._instance.ShowCommonInterstitial((result)=>
-                    { 
-                        if(result)
-                        {
-                            AdManager._instance.DelayOnShowAds();
-                        }
-                });
+                SoundsHandler.Instance.PlaySource2Clip(4, 0);
             }
+            if (!gameOverPanel.activeInHierarchy && !gameFailed.activeInHierarchy)
+            {
+                currentAdDisplayTime = Time.time;
+                if ((currentAdDisplayTime - AdManager._instance.lastAdDisplayTime) > AdManager._instance.levelReloadAdDuration)
+                {
+                    AdManager._instance.ShowCommonInterstitial((result) =>
+                        {
+                            if (result)
+                            {
+                                AdManager._instance.DelayOnShowAds();
+                            }
+                        });
+                }
+            }
+
+            if (AdManager._instance)
+            {
+                string levelNum = "W" + WorldSelectionHandler.worldNumb + "_L" + Global.CurrentLeveltoPlay;
+
+                string targetKey = ingameRetryKey.Replace("param", levelNum);
+                if (gameFailed.activeSelf)
+                {
+                    targetKey = levelFailRetryKey.Replace("param", levelNum);
+                }
+                targetKey = targetKey.Replace(" ", "");
+                AdManager._instance.FireBaseActions(targetKey, "retry", "success");
+            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     float currentAdDisplayTime;
@@ -250,7 +284,7 @@ public class GameManager : MonoBehaviour
                     rewardtext.GetComponent<LocalizedTextmeshPro>().Invoke("Localize", 0.01f);
                 }
             }
-        }
+        }        
         else
         {
             Debug.Log("IXD " + WorldSelectionHandler.worldSelected + "_" + Global.CurrentLeveltoPlay);
@@ -261,22 +295,27 @@ public class GameManager : MonoBehaviour
     public void donextlevelcall()
     {
         AdManager._instance.ShowLoadingPanel();
-        SessionStart = DateTime.UtcNow;
-        //ClickSound.Play();
-        Global.noOfTries = 0;
-        if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
-        {
-            Global.CurrentLeveltoPlay += 1;
-        }
-        else
-        {
-            WorldSelectionHandler.worldSelected += 1;
-            Global.CurrentLeveltoPlay = 0;
-        }
-        SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString() + "_" + (int)(Global.CurrentLeveltoPlay / 5));
-        //SceneManager.LoadScene("GamePlay_New_5");
-        //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString());
+        LoadLevel();
+        
 
+        void LoadLevel()
+        {
+            SessionStart = DateTime.UtcNow;
+            //ClickSound.Play();
+            Global.noOfTries = 0;
+            if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
+            {
+                Global.CurrentLeveltoPlay += 1;
+            }
+            else
+            {
+                WorldSelectionHandler.worldSelected += 1;
+                Global.CurrentLeveltoPlay = 0;
+            }
+            SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString() + "_" + (int)(Global.CurrentLeveltoPlay / 5));
+            //SceneManager.LoadScene("GamePlay_New_5");
+            //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString());
+        }
     }
     public void GoBack()
     {
@@ -466,15 +505,15 @@ public class GameManager : MonoBehaviour
             if (gameOverPanel.activeSelf)
             {
                 slingShot.SetSlingshotLinerenderersActive(false);
-                AdManager._instance.hidebanner();
+                //AdManager._instance.hidebanner();
             }
             if (gameFailed.activeSelf)
             {
-                AdManager._instance.hidebanner();
+                //AdManager._instance.hidebanner();
             }
             if (!gameOverPanel.activeSelf && !gameFailed.activeSelf && Global.CurrentLeveltoPlay >= 4 && AdManager._instance.enableBanner)
             {
-                AdManager._instance.showbanner();
+                //AdManager._instance.showbanner();
             }
 
 
@@ -1038,6 +1077,17 @@ public class GameManager : MonoBehaviour
                                                 { "LEVEL", Global.retryCount },
 
                                          });
+
+                Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelFail_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+
+                if (AdManager._instance)
+                    AdManager._instance.HidebannerAd();
+
+
+                //if (SingularEvents.instance != null)
+                //{
+                //    SingularEvents.instance.SendLevelFailEvent(WorldSelectionHandler.worldSelected.ToString(), Global.CurrentLeveltoPlay.ToString());
+                //}
             }
         }
         catch (Exception exp)
