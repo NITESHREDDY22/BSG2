@@ -35,5 +35,5 @@ public class GameConfig {
     public bool showLaunchAd = true;
     public bool isAppOpednAdEnabled=true;
     public int InterstitialAdGap = 60;
-    public int bannerAdShowLevelFrom = 3;
+    public int showBannerFrom = 4;
 }

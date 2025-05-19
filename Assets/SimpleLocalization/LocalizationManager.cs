@@ -156,7 +156,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("SELECTED", "SELECTED");
                 Dictionary["English"].TryAdd("OK", "OK");
                 Dictionary["English"].TryAdd("Go Premium without Ads", "Go Premium without Ads");
-                Dictionary["English"].TryAdd("Demo levels completed Purchase full version to continue", "Demo levels completed Purchase full version to continue");
+                Dictionary["English"].TryAdd("Demolevelscompleted", "Demo levels completed \r\nPurchase full version to continue");
                 Dictionary["English"].TryAdd("Connection Lost!", "Connection Lost");
                 Dictionary["English"].TryAdd("Unable to load the game.", "Unable to load the game.");
                 Dictionary["English"].TryAdd("Please check your internet connection.", "Please check your internet connection.");
@@ -165,6 +165,8 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("Continuegame", "Continue game?");             
                 Dictionary["English"].TryAdd("NeedExtraBall", "Need Extra Ball?");
                 Dictionary["English"].TryAdd("Watchvideo", "Watch video");
+                Dictionary["English"].TryAdd("Get 5,000 coins", "Get 5,000 coins");
+
 
                 #endregion
 
@@ -225,7 +227,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("SELECTED", "المحدد");
                 Dictionary["Arabic"].TryAdd("OK", "موافق");
                 Dictionary["Arabic"].TryAdd("Go Premium without Ads ", "احصل على النسخة المميزة بدون إعلانات");
-                Dictionary["Arabic"].TryAdd("Demo levels completed Purchase full version to continue", "تم إكمال مستويات العرض، اشترِ النسخة الكاملة للمتابعة");
+                Dictionary["Arabic"].TryAdd("Demolevelscompleted", "تم إكمال المستويات التجريبية \r\nشراء النسخة الكاملة للاستمرار");
                 Dictionary["Arabic"].TryAdd("Connection Lost!", "فقد الاتصال!");
                 Dictionary["Arabic"].TryAdd("Unable to load the game.", "غير قادر على تحميل اللعبة.");
                 Dictionary["Arabic"].TryAdd("Please check your internet connection.", "يرجى التحقق من اتصالك بالإنترنت.");
@@ -234,6 +236,8 @@ namespace Assets.SimpleLocalization
                 Dictionary["Arabic"].TryAdd("Continuegame", "هل تريد متابعة اللعبة؟");
                 Dictionary["Arabic"].TryAdd("NeedExtraBall", "هل تحتاج إلى كرة إضافية؟");
                 Dictionary["Arabic"].TryAdd("Watchvideo", "شاهد الفيديو");
+                Dictionary["Arabic"].TryAdd("Get 5,000 coins", "احصل على 5000 قطعة");
+
 
                 #endregion
 
@@ -293,7 +297,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("SELECTED", "SELECCIONADO");
                 Dictionary["Spanish"].TryAdd("OK", "OK");
                 Dictionary["Spanish"].TryAdd("Go Premium without Ads", "Hazte Premium sin anuncios");
-                Dictionary["Spanish"].TryAdd("Demo levels completed Purchase full version to continue", "Niveles de demostración completados, compra la versión completa para continuar");
+                Dictionary["Spanish"].TryAdd("Demolevelscompleted", "Niveles de demostración completados \r\nCompra la versión completa para continuar");
                 Dictionary["Spanish"].TryAdd("Connection Lost!", "¡Conexión Perdida!");
                 Dictionary["Spanish"].TryAdd("Unable to load the game.", "No se puede cargar el juego.");
                 Dictionary["Spanish"].TryAdd("Please check your internet connection.", "Por favor, revisa tu conexión a internet.");
@@ -302,6 +306,8 @@ namespace Assets.SimpleLocalization
                 Dictionary["Spanish"].TryAdd("Continuegame", "¿Continuar el juego?");
                 Dictionary["Spanish"].TryAdd("NeedExtraBall", "¿Necesitas bola extra?");
                 Dictionary["Spanish"].TryAdd("Watchvideo", "Ver vídeo");
+                Dictionary["Spanish"].TryAdd("Get 5,000 coins", "Consigue 5.000 monedas");
+
 
 
                 #endregion
@@ -362,7 +368,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("SELECTED", "AUSGEWÄHLT");
                 Dictionary["German"].TryAdd("OK", "OK");
                 Dictionary["German"].TryAdd("Go Premium without Ads", "Werde Premium ohne Werbung");
-                Dictionary["German"].TryAdd("Demo levels completed Purchase full version to continue", "Demo-Level abgeschlossen, kaufen Sie die Vollversion, um fortzufahren");
+                Dictionary["German"].TryAdd("Demolevelscompleted", "Demo-Level abgeschlossen \r\nKaufen Sie die Vollversion, um fortzufahren");
                 Dictionary["German"].TryAdd("Connection Lost!", "Verbindung verloren!");
                 Dictionary["German"].TryAdd("Unable to load the game.", "Spiel kann nicht geladen werden.");
                 Dictionary["German"].TryAdd("Please check your internet connection.", "Bitte überprüfe deine Internetverbindung.");
@@ -371,6 +377,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["German"].TryAdd("Continuegame", "Spiel fortsetzen?");
                 Dictionary["German"].TryAdd("NeedExtraBall", "Benötigen Sie zusätzlichen Ball?");
                 Dictionary["German"].TryAdd("Watchvideo", "Video ansehen");
+                Dictionary["German"].TryAdd("Get 5,000 coins", "Erhalte 5.000 Münzen");
 
                 #endregion
 
@@ -430,7 +437,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("SELECTED", "SÉLECTIONNÉ");
                 Dictionary["French"].TryAdd("OK", "D'ACCORD");
                 Dictionary["French"].TryAdd("Go Premium without Ads", "Passez à Premium sans annonces");
-                Dictionary["French"].TryAdd("Demo levels completed Purchase full version to continue", "Niveaux de démonstration complétés, achetez la version complète pour continuer");
+                Dictionary["French"].TryAdd("Demolevelscompleted", "Niveaux de démonstration terminés \r\nAchetez la version complète pour continuer");
                 Dictionary["French"].TryAdd("Connection Lost!", "Connexion perdue!");
                 Dictionary["French"].TryAdd("Unable to load the game.", "Impossible de charger le jeu.");
                 Dictionary["French"].TryAdd("Please check your internet connection.", "Veuillez vérifier votre connexion Internet.");
@@ -439,6 +446,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["French"].TryAdd("Continuegame", "Continuer le jeu ?");
                 Dictionary["French"].TryAdd("NeedExtraBall", "Besoin d'une balle supplémentaire ?");
                 Dictionary["French"].TryAdd("Watchvideo", "Regarder la vidéo");
+                Dictionary["French"].TryAdd("Get 5,000 coins", "Obtenez 5 000 pièces");
 
                 #endregion
 
@@ -498,7 +506,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("SELECTED", "GESELECTEERD");
                 Dictionary["Dutch"].TryAdd("OK", "OK");
                 Dictionary["Dutch"].TryAdd("Go Premium without Ads", "Word Premium zonder advertenties");
-                Dictionary["Dutch"].TryAdd("Demo levels completed Purchase full version to continue", "Demolevels voltooid Koop de volledige versie om door te gaan");
+                Dictionary["Dutch"].TryAdd("Demolevelscompleted", "Demo-levels voltooid \r\nKoop de volledige versie om verder te gaan");
                 Dictionary["Dutch"].TryAdd("Connection Lost!", "Verbinding Verloren!");
                 Dictionary["Dutch"].TryAdd("Unable to load the game.", "Kan het spel niet laden.");
                 Dictionary["Dutch"].TryAdd("Please check your internet connection.", "Controleer je internetverbinding.");
@@ -507,6 +515,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Dutch"].TryAdd("Continuegame", "Doorgaan met spel?");
                 Dictionary["Dutch"].TryAdd("NeedExtraBall", "Extra bal nodig?");
                 Dictionary["Dutch"].TryAdd("Watchvideo", "Bekijk video");
+                Dictionary["Dutch"].TryAdd("Get 5,000 coins", "Ontvang 5.000 munten");
 
                 #endregion
 
@@ -566,7 +575,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Polish"].TryAdd("SELECTED", "WYBRANY");
                 Dictionary["Polish"].TryAdd("OK", "OK");
                 Dictionary["Polish"].TryAdd("Go Premium without Ads", "Przejdź na Premium bez reklam");
-                Dictionary["Polish"].TryAdd("Demo levels completed Purchase full version to continue", "Poziomy demonstracyjne ukończone Kup pełną wersję, aby kontynuować");
+                Dictionary["Polish"].TryAdd("Demolevelscompleted", "Poziomy demonstracyjne ukończone \r\nKup pełną wersję, aby kontynuować");
                 Dictionary["Polish"].TryAdd("Connection Lost!", "Utracono połączenie!");
                 Dictionary["Polish"].TryAdd("Unable to load the game.", "Nie można załadować gry.");
                 Dictionary["Polish"].TryAdd("Please check your internet connection.", "Proszę sprawdź swoje połączenie internetowe.");
@@ -575,6 +584,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Polish"].TryAdd("Continuegame", "Kontynuować grę?");
                 Dictionary["Polish"].TryAdd("NeedExtraBall", "Potrzebujesz dodatkowej piłki?");
                 Dictionary["Polish"].TryAdd("Watchvideo", "Obejrzyj wideo");
+                Dictionary["Polish"].TryAdd("Get 5,000 coins", "Zdobądź 5000 monet");
 
                 #endregion
 
@@ -635,7 +645,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("SELECTED", "選択された");
                 Dictionary["Japanese"].TryAdd("OK", "OK");
                 Dictionary["Japanese"].TryAdd("Go Premium without Ads", "広告なしのプレミアムに移行");
-                Dictionary["Japanese"].TryAdd("Demo levels completed Purchase full version to continue", "デモレベルが完了しました 続行するには完全版を購入してください");
+                Dictionary["Japanese"].TryAdd("Demolevelscompleted", "デモレベルをクリアしました \r\nフルバージョンを購入して続行してください");
                 Dictionary["Japanese"].TryAdd("Connection Lost!", "接続が失われました！");
                 Dictionary["Japanese"].TryAdd("Unable to load the game.", "ゲームを読み込めません。");
                 Dictionary["Japanese"].TryAdd("Please check your internet connection.", "インターネット接続を確認してください。");
@@ -644,6 +654,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Japanese"].TryAdd("Continuegame", "ゲームを続けますか?");
                 Dictionary["Japanese"].TryAdd("NeedExtraBall", "追加のボールが必要ですか?");
                 Dictionary["Japanese"].TryAdd("Watchvideo", "ビデオを見る");
+                Dictionary["Japanese"].TryAdd("Get 5,000 coins", "5,000コインを獲得");
 
                 #endregion
 
@@ -703,7 +714,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("SELECTED", "选择");
                 Dictionary["Chinese"].TryAdd("OK", "好");
                 Dictionary["Chinese"].TryAdd("Go Premium without Ads", "无广告高级版");
-                Dictionary["Chinese"].TryAdd("Demo levels completed Purchase full version to continue", "演示关卡完成 购买完整版以继续");
+                Dictionary["Chinese"].TryAdd("Demolevelscompleted", "演示级别已完成\r\n请购买完整版以继续");
                 Dictionary["Chinese"].TryAdd("Connection Lost!", "连接丢失！");
                 Dictionary["Chinese"].TryAdd("Unable to load the game.", "无法加载游戏。");
                 Dictionary["Chinese"].TryAdd("Please check your internet connection.", "请检查您的互联网连接。");
@@ -712,6 +723,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Chinese"].TryAdd("Continuegame", "繼續遊戲嗎？");
                 Dictionary["Chinese"].TryAdd("NeedExtraBall", "需要額外的球嗎？");
                 Dictionary["Chinese"].TryAdd("Watchvideo", "觀看影片");
+                Dictionary["Chinese"].TryAdd("Get 5,000 coins", "获得 5,000 枚硬币");
 
                 #endregion
 
@@ -771,7 +783,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Italian"].TryAdd("SELECTED", "SELEZIONATO");
                 Dictionary["Italian"].TryAdd("OK", "OK");
                 Dictionary["Italian"].TryAdd("Go Premium without Ads", "Passa a Premium senza annunci");
-                Dictionary["Italian"].TryAdd("Demo levels completed Purchase full version to continue", "Livelli dimostrativi completati Acquista la versione completa per continuare");
+                Dictionary["Italian"].TryAdd("Demolevelscompleted", "Livelli demo completati \r\nAcquista la versione completa per continuare");
                 Dictionary["Italian"].TryAdd("Connection Lost!", "Connessione persa!");
                 Dictionary["Italian"].TryAdd("Unable to load the game.", "Impossibile caricare il gioco.");
                 Dictionary["Italian"].TryAdd("Please check your internet connection.", "Si prega di controllare la connessione a Internet.");
@@ -780,6 +792,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Italian"].TryAdd("Continuegame", "Continuare il gioco?");
                 Dictionary["Italian"].TryAdd("NeedExtraBall", "Hai bisogno di una palla extra?");
                 Dictionary["Italian"].TryAdd("Watchvideo", "Guarda il video");
+                Dictionary["Italian"].TryAdd("Get 5,000 coins", "Ottieni 5.000 monete");
 
                 #endregion
 
@@ -839,7 +852,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Portuguese"].TryAdd("SELECTED", "SELECIONADO");
                 Dictionary["Portuguese"].TryAdd("OK", "OK");
                 Dictionary["Portuguese"].TryAdd("Go Premium without Ads", "Torne-se Premium sem anúncios");
-                Dictionary["Portuguese"].TryAdd("Demo levels completed Purchase full version to continue", "Níveis de demonstração concluídos, compre a versão completa para continuar");
+                Dictionary["Portuguese"].TryAdd("Demolevelscompleted", "Níveis de demonstração concluídos \r\nCompre a versão completa para continuar");
                 Dictionary["Portuguese"].TryAdd("Connection Lost!", "Conexão Perdida!");
                 Dictionary["Portuguese"].TryAdd("Unable to load the game.", "Incapaz de carregar o jogo.");
                 Dictionary["Portuguese"].TryAdd("Please check your internet connection.", "Por favor, verifique sua conexão com a internet.");
@@ -848,6 +861,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Portuguese"].TryAdd("Continuegame", "Continuar o jogo?");
                 Dictionary["Portuguese"].TryAdd("NeedExtraBall", "Precisa de bola extra?");
                 Dictionary["Portuguese"].TryAdd("Watchvideo", "Assista ao vídeo");
+                Dictionary["Portuguese"].TryAdd("Get 5,000 coins", "Ganhe 5.000 moedas");
 
 
                 #endregion
@@ -908,7 +922,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Turkish"].TryAdd("SELECTED", "SEÇİLDİ");
                 Dictionary["Turkish"].TryAdd("OK", "TAMAM");
                 Dictionary["Turkish"].TryAdd("Go Premium without Ads", "Reklamsız Premium'a geç");
-                Dictionary["Turkish"].TryAdd("Demo levels completed Purchase full version to continue", "Demo seviyeleri tamamlandı, devam etmek için tam sürümü satın alın");
+                Dictionary["Turkish"].TryAdd("Demolevelscompleted", "Demo seviyeleri tamamlandı \r\nDevam etmek için tam sürümü satın alın");
                 Dictionary["Turkish"].TryAdd("Connection Lost!", "Bağlantı Kaybedildi!");
                 Dictionary["Turkish"].TryAdd("Unable to load the game.", "Oyunu yükleyemiyor.");
                 Dictionary["Turkish"].TryAdd("Please check your internet connection.", "Lütfen internet bağlantınızı kontrol edin.");
@@ -917,6 +931,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Turkish"].TryAdd("Continuegame", "Oyuna devam edilsin mi?");
                 Dictionary["Turkish"].TryAdd("NeedExtraBall", "Ekstra Topa mı ihtiyacınız var?");
                 Dictionary["Turkish"].TryAdd("Watchvideo", "Videoyu izle");
+                Dictionary["Turkish"].TryAdd("Get 5,000 coins", "5.000 jeton al");
 
 
                 #endregion
@@ -977,7 +992,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["Russian"].TryAdd("SELECTED", "ВЫБРАНО");
                 Dictionary["Russian"].TryAdd("OK", "ОК");
                 Dictionary["Russian"].TryAdd("Go Premium without Ads", "Перейдите на Премиум без рекламы");
-                Dictionary["Russian"].TryAdd("Demo levels completed Purchase full version to continue", "Демо-уровни завершены Купите полную версию чтобы продолжить");
+                Dictionary["Russian"].TryAdd("Demolevelscompleted", "Демонстрационные уровни завершены \r\nКупите полную версию, чтобы продолжить");
                 Dictionary["Russian"].TryAdd("Connection Lost!", "Соединение потеряно!");
                 Dictionary["Russian"].TryAdd("Unable to load the game.", "Не удалось загрузить игру.");
                 Dictionary["Russian"].TryAdd("Please check your internet connection.", "Пожалуйста, проверьте ваше интернет-соединение.");
@@ -986,11 +1001,9 @@ namespace Assets.SimpleLocalization
                 Dictionary["Russian"].TryAdd("Continuegame", "Продолжить игру?");
                 Dictionary["Russian"].TryAdd("NeedExtraBall", "Нужен дополнительный мяч?");
                 Dictionary["Russian"].TryAdd("Watchvideo", "Посмотреть видео");
+                Dictionary["Russian"].TryAdd("Get 5,000 coins", "Получите 5000 монет");
 
                 #endregion
-
-
-
 
 
                 AutoLanguage();

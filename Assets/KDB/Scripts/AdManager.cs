@@ -223,7 +223,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     isLaunchInterstitialEnabled = config.showLaunchAd;
                     isAppOpednAdEnabled = config.isAppOpednAdEnabled;
                     Global.InterstitialAdGap = config.InterstitialAdGap;
-                    bannerAdShowLevelFrom = config.bannerAdShowLevelFrom;
+                    bannerAdShowLevelFrom = config.showBannerFrom;
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
