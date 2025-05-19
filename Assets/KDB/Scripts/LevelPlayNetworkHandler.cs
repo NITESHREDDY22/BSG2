@@ -1,4 +1,4 @@
-using com.unity3d.mediation;
+//using com.unity3d.mediation;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +10,7 @@ using GoogleMobileAds.Common;
 
 public class LevelPlayNetworkHandler : MonoBehaviour
 {
+    /*
     public LevelPlayInterstitialAd levelPlayInterstitial, levelPlayLaunchInterstitial;
     public LevelPlayRewardedAd levelPlayrewardBasedVideo;
 
@@ -512,4 +513,5 @@ public class LevelPlayNetworkHandler : MonoBehaviour
 
         }
     } 
+    */
 }

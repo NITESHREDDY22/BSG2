@@ -89,6 +89,9 @@ public enum AdContent
     AdmobBannerLoadFailed,
     AdmobAppopenAdLoadFailed,
 
+    AdmobAppopenSplashShown,
+    AdmobAppopenAppForeGroundShown
+
 }
 
 public enum AdMode

@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     private readonly string LevelExtraBallKey = "EXTRABALL_LEVEL_param";//"Level_param_ExtraBall";
     private readonly string ingameRetryKey = "INGAME_RETRY_param";//"Level_param_ExtraBall";
     private readonly string levelFailRetryKey = "FAILED_POPUP_RETRY_param";//"Level_param_ExtraBall";
-
+    private bool isStageChanged;
+    private bool isTutorialCompleted;
     void Start()
     {
         Instance = this;
@@ -96,7 +97,7 @@ public class GameManager : MonoBehaviour
                 //{
                 //    AdManager._instance.RequestInterstitial();
                 //}
-            if (Global.isRewaredAdsEnabled)
+            if (Global.isRewaredAdsEnabled && AdManager._instance)
             {
                 AdManager._instance.RequestRewardBasedVideo(AdType.Reward);
                 AdManager._instance.RequestRewardBasedVideo(AdType.RewardContinue);
@@ -110,14 +111,14 @@ public class GameManager : MonoBehaviour
         SkipLevelBtn.SetActive(false);
         //if (Global.noOfTries>= Global.retryCount &&((AdManager._instance.rewardBasedVideo.IsLoaded() || (AdManager._instance.unityRewardReady && AdManager._instance.enableUnityAds))))
 
-        if (Global.noOfTries >= Global.retryCount && 
+        if (Global.noOfTries >= Global.retryCount &&  AdManager._instance &&
             ((AdManager._instance.adMobNetworkHandler!=null && 
             AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null && 
-            AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
-            ||
-            (AdManager._instance.levelPlayNetworkHandler!=null &&
-            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
-            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())))
+            AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())))
+           // ||
+           // (AdManager._instance.levelPlayNetworkHandler!=null &&
+           // AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
+           // AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())))
         {
             SkipLevelBtn.SetActive(true);
         }
@@ -134,10 +135,10 @@ public class GameManager : MonoBehaviour
                                          });
         rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
-        bool condition2 = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
+        bool condition2 = AdManager._instance && AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
                 AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
 
-        if(!condition2)
+        if(!condition2 && AdManager._instance)
         {
             AdManager._instance.adMobNetworkHandler.rewardedInterStitialrequestcallBack?.Invoke(false);
             AdManager._instance.RequestInterstitial();
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour
         {
             AdManager._instance.ShowbannerAd();
         }
-       
+        Time.timeScale = 1;
     }
 
     public void pause()
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
     {
         //gamePausePanel.SetActive(true);
         tutorAnim.SetActive(false);
+        isTutorialCompleted = true;
         AnimateBirdToSlingshot();
         // Debug.LogError("TUTORIAL " + slingShot.slingShootState);
     }
@@ -365,9 +367,11 @@ public class GameManager : MonoBehaviour
                 Destroy(LevelsParent.GetChild(i).gameObject);
             }
         }
+        isTutorialCompleted = true;
         if (WorldSelectionHandler.worldSelected == 0 && Global.CurrentLeveltoPlay == 0)
         {
             tutorAnim.SetActive(true);
+            isTutorialCompleted = false;
         }
         /*for (int i = 0; i < LevelsParent.childCount; i++)
         {
@@ -383,13 +387,14 @@ public class GameManager : MonoBehaviour
 
         }*/
         //cameraAccess
+
         if (cameraFollow == null)
         {
             cameraFollow = FindObjectOfType<CameraFollow>();
         }
         else
         {
-            return;
+           return;
         }
         //SlingAccess
         if (slingShot == null)
@@ -445,9 +450,16 @@ public class GameManager : MonoBehaviour
         Global.target = pigs.Count;
         Global.birdCount = 0;
         Global.TotalbirdCount = birds.Count;
+       
+
         gameState = GameState.Start;
     }
 
+
+    public void SetTutorialComplete()
+    {
+        isTutorialCompleted = true;
+    }
     //public int[] leveltarget;
     GameObject[] FindObsWithTag(string tag)
     {
@@ -468,23 +480,35 @@ public class GameManager : MonoBehaviour
         {
             slingShot.birdThrown += SlingShotBirdThrown;
         }
+        if(InternetValidator.Instance)
         InternetValidator.Instance.OnInterNetCheck += CheckNoInterNetPopup;
         AdManager.OnIngameAdClosed += ShowNoAdsButton;
+        MultiSetHandler.OnSetChanged+=setChanged;
+    }
+
+    private void setChanged()
+    {
+       isStageChanged = true;
     }
 
     private void OnDisable()
     {
-        InternetValidator.Instance.OnInterNetCheck -= CheckNoInterNetPopup;
+        if (InternetValidator.Instance)
+            InternetValidator.Instance.OnInterNetCheck -= CheckNoInterNetPopup;
         if(InappManager.Instance)
         {
             InappManager.Instance.HideNoAdsButton();
         }
         AdManager.OnIngameAdClosed -= ShowNoAdsButton;
+        MultiSetHandler.OnSetChanged -= setChanged;
+
 
     }
 
     public void Update()
     {
+        if (!isTutorialCompleted)
+            return;
         try
         {
             if (Global.count >= Global.target && gameOverPanel.activeSelf)
@@ -769,8 +793,7 @@ public class GameManager : MonoBehaviour
                 gameState = GameState.BirdMovingToSlingshot;
                 ball.GetComponent<SpriteRenderer>().enabled = true;
                 //ballCreationEffect.Play();
-                ball.transform.positionTo(Vector2.Distance(ball.transform.position / 10,
-                    slingShot.birdWaitPosition.position) / 10,
+                ball.transform.positionTo(1f,//Vector2.Distance(ball.transform.position / 10,  slingShot.birdWaitPosition.position) / 10,
                     slingShot.birdWaitPosition.position).
                 setOnCompleteHandler((x) =>
                 {
@@ -796,12 +819,14 @@ public class GameManager : MonoBehaviour
                      }*/
                 });
             }
-            float duration = Vector2.Distance(Camera.main.transform.position, cameraFollow.startingPosition) / 10f;
+            float duration = 1f;// Vector2.Distance(Camera.main.transform.position, cameraFollow.startingPosition) / 10f;
             if (duration == 0.0f)
                 duration = 0.1f;
             Camera.main.transform.positionTo(duration,
                 cameraFollow.startingPosition).
             setOnCompleteHandler((x) => {
+                cameraFollow.SetOffsetValue();
+                //Debug.LogError("Ball reset");
                 //nothing
             });
         }
@@ -928,11 +953,12 @@ public class GameManager : MonoBehaviour
         return pigs.All(x => x == null);
     }
     bool flag = true;
+    public bool isCameraTransition;
     public void resetFlag()
     {
         flag = true;
     }
-    private void AnimateCameraToStartPosition()
+    public void AnimateCameraToStartPosition()
     {
         try
         {
@@ -961,11 +987,17 @@ public class GameManager : MonoBehaviour
                     Global.isBottleCollission = false;
                     Invoke("checkBottleCollision", 3f);
                 }
-
+                if (isStageChanged)
+                {
+                    duration = 0.5f;
+                    isStageChanged = false;
+                }
+                isCameraTransition = true;
                 Camera.main.transform.positionTo(duration,
                     cameraFollow.startingPosition).
                 setOnCompleteHandler((x) =>
                 {
+                    //Debug.LogError("Camera set to positin");
                     cameraFollow.isFollowing = false;
                     if (AllPigsAreDestroyed())
                     {
@@ -997,8 +1029,11 @@ public class GameManager : MonoBehaviour
                         AnimateBirdToSlingshot();
                         Debug.Log("From animate camera to START POSITION*****************    " + slingShot.slingShootState);
                         ShowBallsCount();
+                        MultiSetHandler.OnBotlleAnimation?.Invoke();
                     }
                     StartCoroutine(CheckBottlsRemaining());
+                    isCameraTransition = false;
+
                 });
                 slingShot._ballType = SlingShot.BallType.normal;
                 slingShot.ChangeDisplayBallSkin();
@@ -1037,6 +1072,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ForceMoveCamera()
+    {
+        Camera.main.transform.positionTo(0.5f,
+                     cameraFollow.startingPosition).
+                 setOnCompleteHandler((x) =>
+                 {
+                 
+                 });
+    }
     public void OnGameFail()
     {
         try
@@ -1354,10 +1398,10 @@ public class GameManager : MonoBehaviour
 
                     if ((AdManager._instance.adMobNetworkHandler!=null &&
                         AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null &&
-                        AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd()) 
-                        || (AdManager._instance.levelPlayNetworkHandler!=null &&
-                            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
-                            AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady()))
+                        AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())) 
+                        //|| (AdManager._instance.levelPlayNetworkHandler!=null &&
+                        //    AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo!=null &&
+                        //    AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady()))
                     {
                         AdManager._instance.rewardTypeToUnlock = RewardType.extraball;
                         rewardCanvas.SetActive(true);

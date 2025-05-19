@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-using com.unity3d.mediation;
+//using com.unity3d.mediation;
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
 using UnityEngine.Assertions.Must;
@@ -16,6 +16,7 @@ using UnityEngine.Networking;
 using GoogleMobileAds.Common;
 using System.Net.Http.Headers;
 using System.Linq;
+using System.Net.NetworkInformation;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -68,6 +69,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public StoreManager storeManager;
 
     public GameObject LoadingPanelForBanner;
+    public GameObject DummyLoadingPanelForBanner;
+
     public Image loadingFillBar;
 
 
@@ -128,6 +131,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     private bool isLaunchInterstitialEnabled = true;
     private bool isAppOpednAdEnabled = true;
     private bool isLoadingInTransit = false;
+    private int bannerAdShowLevelFrom = 3;
+    private DateTime lastAdShownDateTime;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -179,6 +184,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         Initialize();
         StartCoroutine(InitializeAdNetworks());
         lastAdDisplayTime = Time.time;
+        lastAdShownDateTime = DateTime.UtcNow;
         AppStateEventNotifier.AppStateChanged += OnAppStateChanged;
 
     }
@@ -214,8 +220,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     enableBanner = Global.isBannerEnabled;
                     gapBetweenAds = config.FIRST_LVLS_SET_AD_GAP;
                     gapBetweenAdsSecondary = config.SECOND_LVLS_SET_AD_GAP;
-                    isLaunchInterstitialEnabled = config.isLaunchInterstitialEnabled;
+                    isLaunchInterstitialEnabled = config.showLaunchAd;
                     isAppOpednAdEnabled = config.isAppOpednAdEnabled;
+                    Global.InterstitialAdGap = config.InterstitialAdGap;
+                    bannerAdShowLevelFrom = config.bannerAdShowLevelFrom;
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
@@ -307,8 +315,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
             if (canCheckLastAdDisplay)
             {
-                currentAdDisplayTime = Time.time;
-                if ((currentAdDisplayTime - lastAdDisplayTime) > Global.backFillAdGapToContinue)
+                //currentAdDisplayTime = Time.time;
+              
+                if (adDelayMet())
                 {
                     ShowAppOpenAd();
                 }
@@ -395,7 +404,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         if (levelPlayConfig != null)
         {
             appKey=levelPlayConfig.AppKey;
-            levelPlayNetworkHandler.SetAdConfig(levelPlayConfig);       
+            //levelPlayNetworkHandler.SetAdConfig(levelPlayConfig);       
         }
 
        
@@ -424,16 +433,17 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         });
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
 
-        IronSource.Agent.validateIntegration();
-        Debug.Log("unity-script: unity version" + IronSource.unityVersion());
+        // IronSource.Agent.validateIntegration();
+        // Debug.Log("unity-script: unity version" + IronSource.unityVersion());
         // SDK init
         Debug.Log("unity-script: LevelPlay SDK initialization");
-        LevelPlay.Init(appKey, null);
+        // LevelPlay.Init(appKey, null);
 
-        LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+        //LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+        //LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
     }
 
+    /*
     void SdkInitializationCompletedEvent(LevelPlayConfiguration config)
     {
         Debug.Log("unity-script: I got SdkInitializationCompletedEvent with config: " + config);
@@ -445,7 +455,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         Debug.Log("unity-script: I got SdkInitializationFailedEvent with error: " + error);
     }
-
+    */
     public void RequestLaunchInterstitial()
     {
         /*
@@ -495,7 +505,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //Debug.Log("Asdf RequestLaunchInterstitial 0000");
 
         adMobNetworkHandler.RequestInterstitial(AdType.Launch);
-        levelPlayNetworkHandler.RequestInterstitial(AdType.Launch);
+        // levelPlayNetworkHandler.RequestInterstitial(AdType.Launch);
     }
     public void ShowLaunchInterstitial()
     {
@@ -508,17 +518,18 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                
                 if (!flag)
                 {                   
-                    levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
-                    {
-                        if(result)
-                        {
-                            lastAdDisplayTime = Time.time;
-                        }
-                    });
+                    //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
+                    //{
+                    //    if(result)
+                    //    {
+                    //        lastAdDisplayTime = Time.time;
+                    //    }
+                    //});
                 }
                 else
                 {
                     lastAdDisplayTime = Time.time;
+                    lastAdShownDateTime = DateTime.UtcNow;
                 }
 
                 if (Global.isIntersitialsEnabled)
@@ -633,9 +644,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         */
 
         adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
-        levelPlayNetworkHandler.RequestInterstitial(AdType.Interstital);
+        // levelPlayNetworkHandler.RequestInterstitial(AdType.Interstital);
     }
-    
+
     public void ShowInterstitial(Action<bool> callBack=null)
     {
         try
@@ -648,19 +659,21 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             {
                 if (!flag)
                 {
-                    levelPlayNetworkHandler.ShowInterstitialAd(AdType.Interstital, (result)=>
-                    {
-                        callBack?.Invoke(result);
-                        if(result)
-                        {
-                            lastAdDisplayTime = Time.time;
-                        }
-                    });
+                    //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Interstital, (result)=>
+                    //{
+                    //    callBack?.Invoke(result);
+                    //    if(result)
+                    //    {
+                    //        lastAdDisplayTime = Time.time;
+                    //    }
+                    //});
                 }
                 else
                 {
                     callBack?.Invoke(true);
                     lastAdDisplayTime = Time.time;
+                    lastAdShownDateTime = DateTime.UtcNow;
+
                 }
             }    
         }
@@ -740,18 +753,18 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowGameFailInterstitial()
     {
-        counter++;
+        //counter++;
         //Debug.Log("Increase Interstitial Counter "+counter + " Get "+GetCounter);
         try
         {
 
-            if (counter >= GetCounter)
+            if (adDelayMet())
             {
                 ShowInterstitial((result) =>
                 {
                     if(result)
                     {
-                        counter = 0;
+                        //counter = 0;
                     }
                 });
                 
@@ -794,18 +807,18 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public void ShowGameWinInterstitial()
     {
         //counter2++;
-        counter2++;
+        //counter2++;
         //Debug.Log("Increase Interstitial Counter---" + counter2 + " Get " + GetCounter);
 
         try
         {
-            if (counter2 >= GetCounter)
+            if (adDelayMet())
             {
                     ShowInterstitial((result) =>
                     {
                         if (result)
                         {
-                            counter2 = 0;
+                            //counter2 = 0;
                         }
                     });                
             }          
@@ -855,8 +868,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public bool LaunchInterstitialState()
     {
-        return((adMobNetworkHandler !=null && adMobNetworkHandler.adMobLaunchInterstitial != null && adMobNetworkHandler != null && adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
-            || (levelPlayNetworkHandler.levelPlayLaunchInterstitial != null && levelPlayNetworkHandler.levelPlayLaunchInterstitial.IsAdReady()));
+        return ((adMobNetworkHandler != null &&
+            adMobNetworkHandler.adMobLaunchInterstitial != null && adMobNetworkHandler != null && adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd()));
+            //|| (levelPlayNetworkHandler.levelPlayLaunchInterstitial != null && levelPlayNetworkHandler.levelPlayLaunchInterstitial.IsAdReady()));
     }
 
     public void ShowRewardedVideo(Action<bool> callBack,AdType adType=AdType.Reward)
@@ -875,27 +889,28 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             {
                 if (!flag)
                 {
-                    levelPlayNetworkHandler.ShowRewardBasedVideo((result) =>
-                    {
-                        callBack?.Invoke(result);
-                        if(result)
-                        {
-                            lastAdDisplayTime = Time.time;
+                    //levelPlayNetworkHandler.ShowRewardBasedVideo((result) =>
+                    //{
+                    //    callBack?.Invoke(result);
+                    //    if(result)
+                    //    {
+                    //        lastAdDisplayTime = Time.time;
 
-                            MobileAdsEventExecutor.ExecuteInUpdate(() =>
-                            {
-                                if (adType == AdType.Reward)
-                                {
-                                    FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Shown, SuccessStatus.Success);
-                                }
-                            });
+                    //        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+                    //        {
+                    //            if (adType == AdType.Reward)
+                    //            {
+                    //                FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Shown, SuccessStatus.Success);
+                    //            }
+                    //        });
                             
-                        }
-                    });
+                    //    }
+                    //});
                 }
                 else
                 {
                     lastAdDisplayTime = Time.time;
+
                     callBack?.Invoke(true);
                     MobileAdsEventExecutor.ExecuteInUpdate(() =>
                     {
@@ -904,7 +919,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                             FireBaseActions(AdContent.AdMobRewardShown, AdMode.Shown, SuccessStatus.Success);
                         }                        
                     });
-                   
+                    lastAdShownDateTime = DateTime.UtcNow;
+
                 }
             }
         }
@@ -918,8 +934,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public void RequestRewardBasedVideo(AdType adType=AdType.Reward)
     {
         //Debug.Log("Asdf RequestRewardBasedVideo..");       
-        adMobNetworkHandler.RequestRewardBasedVideo(adType);      
-        levelPlayNetworkHandler.RequestRewardBasedVideo(adType);   
+        adMobNetworkHandler.RequestRewardBasedVideo(adType);
+        //levelPlayNetworkHandler.RequestRewardBasedVideo(adType);   
 
     }
     int count = 0;
@@ -996,6 +1012,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 {
                     FireBaseActions(AdContent.AdMobRewardedInterstitialShown, AdMode.Shown, SuccessStatus.Success);
                 }
+                lastAdShownDateTime = DateTime.UtcNow;
+
             }
         }, adType);
     }
@@ -1007,7 +1025,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowbannerAd()
     {
-        adMobNetworkHandler.ShowBannerAd();
+        int currentLevel = GameConstants.getLastUnlcokedLevel;
+        if (currentLevel > (bannerAdShowLevelFrom-1))
+        {
+            adMobNetworkHandler.ShowBannerAd();
+        }
     }
     public void HidebannerAd()
     {
@@ -1020,7 +1042,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
             if (adAvailable)
             {
-                ShowAppOpenAd();
+                if (SceneManager.GetActiveScene().name.Contains("Splash"))
+                {
+                    ShowAppOpenAd();
+                }
             }
         });
     }
@@ -1031,6 +1056,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     (x) =>
                     {
                         lastAdDisplayTime = Time.time;
+                        lastAdShownDateTime= DateTime.UtcNow;
+                        if (SceneManager.GetActiveScene().name.Contains("Splash"))
+                            FireBaseActions(AdContent.AdmobAppopenSplashShown, AdMode.Shown, SuccessStatus.Success);
+                        else
+                            FireBaseActions(AdContent.AdmobAppopenAppForeGroundShown, AdMode.Shown, SuccessStatus.Success);
+
+
                     }
                 );
     }
@@ -1039,6 +1071,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         //Debug.Log("App State changed to : " + state);
         // if the app is Foregrounded and the ad is available, show it.
+       
         if (state==AppState.Foreground &&  adMobNetworkHandler.IsAdAvailable)
         {
             if (SceneManager.GetActiveScene().name.Contains("Splash"))
@@ -1047,17 +1080,21 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
             else
             {
-                ShowLoadingForBanner(2);
+                ShowLoadingForBanner(2,true);
             }
-        }
+        }       
     }
 
-    private void OnApplicationFocus(bool focus)
+    public bool adDelayMet()
     {
-        if(focus)
+        double seconds = (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
+        //Debug.LogError("current " + DateTime.UtcNow + "Last " + lastAdShownDateTime + " backFillAdGapToContinue" + Global.backFillAdGapToContinue + "seconds " + seconds);
+
+        if (seconds > Global.InterstitialAdGap)
         {
-           
+            return true;
         }
+        return false;
     }
 
     public void OnDestroy()
@@ -1068,6 +1105,17 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         AppStateEventNotifier.AppStateChanged -= OnAppStateChanged;
     }
 
+    private bool wasPaused;
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        wasPaused = pauseStatus;
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        DummyLoadingPanelForBanner.SetActive(!hasFocus);
+    }
     public void FireBaseActions(AdContent adContent, AdMode adMode, SuccessStatus status)
     {
         try
@@ -1149,6 +1197,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //});
     }
 
+    /*
     public void HandleRewardBasedVideoClosed(LevelPlayAdInfo levelPlayAdInfo)
     {
         try
@@ -1179,6 +1228,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //    ///
         //});
     }
+    */
 
    
 
@@ -1221,7 +1271,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
 
    
-
+    /*
     public void HandleOnAdFailedToLoad(LevelPlayAdError levelPlayAdError)
     {
         //MobileAdsEventExecutor.ExecuteInUpdate(() =>
@@ -1284,7 +1334,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         catch (Exception e)
         { }
     }
-
+    */
    
     #region Init callback handlers
 

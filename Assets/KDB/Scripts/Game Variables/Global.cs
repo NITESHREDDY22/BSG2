@@ -43,4 +43,6 @@ public class Global : MonoBehaviour
     public static bool isIntersitialsEnabled = false;
     public static bool isRewaredAdsEnabled = false;
     public static bool isNativeAdsEnabled = false;
+    public static int InterstitialAdGap = 60;
+
 }

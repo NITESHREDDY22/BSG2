@@ -96,8 +96,8 @@ public class LevelSelectionHandler : MonoBehaviour {
         AdManager._instance.ShowLoadingPanel(true);
         Global.CurrentLeveltoPlay = _tr.GetSiblingIndex();
         SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString() + "_" + (int)(Global.CurrentLeveltoPlay / 5));
-       
-        
+        //SceneManager.LoadScene("GamePlay_W0_0_Exp");
+
         //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString()+"_"+(int)(Global.CurrentLeveltoPlay/10));
         //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString());
     }

@@ -193,6 +193,8 @@ public class Pig : MonoBehaviour
                     Global.count = Global.count + 1;
                     Global.isBottleCollission = true;
                     Global.botList.Add(gameObject);
+                    MultiSetHandler.OnBottlesBreak?.Invoke();
+
                     if (Global.count >= Global.target && !gameMngr.gameOverPanel.activeSelf)
                     {
                         gameMngr.gameState = GameState.Won;
@@ -260,6 +262,7 @@ public class Pig : MonoBehaviour
 
                         if (AdManager._instance)
                             AdManager._instance.HidebannerAd();
+
                         //Uncomment for coin animation
                         //GameObject.FindObjectOfType<GameManager>().StartCoroutine(GameObject.FindObjectOfType<GameManager>().ShowCoinsAnimation());
                     }

@@ -756,38 +756,44 @@ public class SlingShot : MonoBehaviour
     }
 
     [SerializeField] Transform slingbase;
-    float xOrigin = 0, yOrigin = 0;
+    public float xOrigin = 0, yOrigin = 0;
     public bool isLeftSide = true;
     void bendSlingShot()
     {
+       
+
         slingShootLineRenderer1.SetPosition(0, leftSlingShootOrigin.position);
         slingShootLineRenderer2.SetPosition(0, rightSlingShootOrigin.position);
         slingShootMiddleVector = new Vector3((leftSlingShootOrigin.position.x + rightSlingShootOrigin.position.x) / 2,
             (leftSlingShootOrigin.position.y + rightSlingShootOrigin.position.y) / 2, 0);
-
-        if(birdToThrow!=null){
+        
+        if(birdToThrow!=null)
+        {
         Vector2 newPos = Vector2.zero;
         Vector3 oldBirdToThrowPos = birdToThrow.transform.position;
         Vector3 oldLeftOrigin2 = leftOrgin2.position;
         newPos.x = birdToThrow.transform.position.x + ((birdToThrow.transform.position.x - leftOrgin2.position.x) /
             Vector2.Distance(birdToThrow.transform.position, leftOrgin2.position)) * 0.25f;
+            xOrigin = transform.position.x;
         //Debug.Log("BirdPosition.. " + birdToThrow.transform.position.x + "\n" + "leftOrigin2.. " + leftOrgin2.position.x + "\n");
-        //Debug.Log("sling line " + newPos.x+" origin "+xOrigin);
+        //Debug.Log("newPos.x " + newPos.x+" origin "+xOrigin);
 
 
-        if (newPos.x < (xOrigin - .1f))
-        {
-            slingbase.eulerAngles = new Vector3(0, 0, newPos.x * (isLeftSide ? -3 : 8));
-            birdToThrow.transform.position = oldBirdToThrowPos;
-            leftOrgin2.position = oldLeftOrigin2;
+            if (newPos.x < (xOrigin - .1f))
+            {
+                slingbase.eulerAngles = new Vector3(0, 0, (newPos.x-xOrigin) * (isLeftSide ? -8 : 8)*1.5f);
+                birdToThrow.transform.position = oldBirdToThrowPos;
+                leftOrgin2.position = oldLeftOrigin2;
+            }
+            else if (newPos.x > (xOrigin + .1f))
+            {
+                slingbase.eulerAngles = new Vector3(0, 0, (xOrigin-newPos.x) * (!isLeftSide ? -8 : 8)*1.5f);
+                birdToThrow.transform.position = oldBirdToThrowPos;
+                leftOrgin2.position = oldLeftOrigin2;
+            }
         }
-        else if (newPos.x > (xOrigin + .1f))
-        {
-            slingbase.eulerAngles = new Vector3(0, 0, newPos.x * (!isLeftSide ? -3 : 8));
-            birdToThrow.transform.position = oldBirdToThrowPos;
-            leftOrgin2.position = oldLeftOrigin2;
-        }
-        }
+        
+       
         // Debug.Log("minus  = " + (xOrigin - .1f) + "\n" + (xOrigin + .1f));
         once = false;
     }

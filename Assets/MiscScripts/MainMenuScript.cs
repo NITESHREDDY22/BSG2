@@ -67,7 +67,7 @@ public class MainMenuScript : MonoBehaviour
             if (InternetValidator.Instance)
                 InternetValidator.Instance.OnInterNetCheck += checkIntenetConnection;           
         }
-        Invoke(nameof(HideBannerAd),1);
+        Invoke(nameof(HideBannerAd),0.01f);
     }
 
 

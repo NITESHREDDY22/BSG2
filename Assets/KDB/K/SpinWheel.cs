@@ -75,7 +75,7 @@ public class SpinWheel : MonoBehaviour
                 FreeSpinBtn.SetActive(false);
                 if (DayofYear == oldDate)
                 {
-                    if (_adManager.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd() || _adManager.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
+                    if (_adManager.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd() )//|| _adManager.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
                     {
                         MakeWVAvaialable();
                     }
@@ -250,7 +250,7 @@ public class SpinWheel : MonoBehaviour
         MakeWVAvaialable();
 #else
      
-        if (_adManager.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd() || _adManager.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
+        if (_adManager.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())// || _adManager.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
         {
             MakeWVAvaialable();
         }
