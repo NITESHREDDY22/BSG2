@@ -13,7 +13,7 @@ public class SingularEvents : MonoBehaviour
     private readonly string levelCompleteString = "BSG2_LevelComplete_";
     private readonly string achievementsString = "BSG2_AchievedStars_";
 
-    private int[] starCount = new int[] { 50, 100, 150, 200, 250,300 };
+    private int[] starCount = new int[] { 50, 100, 150, 200, 250,300,400,500 };
     private int[] themesLevelsCount = new int[] { 80, 30, 50, 20, 20 };
     private int LevelNuberIteration = 15;
 
@@ -40,6 +40,21 @@ public class SingularEvents : MonoBehaviour
         //    StartCoroutine(waitStarsEvent(30*(i+1)));
         //}
     }
+
+    /*
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(60);
+        string eventKey = string.Concat(achievementsString, 400);
+        // Debug.LogError(eventKey);
+        SingularSDK.Event(eventKey);
+
+        yield return new WaitForSeconds(60);
+        eventKey = string.Concat(achievementsString, 500);
+        // Debug.LogError(eventKey);
+        SingularSDK.Event(eventKey);
+    }*/
+
     IEnumerator waitEvent(int i,int j)
     {
         yield return new WaitForSeconds(60* count);
