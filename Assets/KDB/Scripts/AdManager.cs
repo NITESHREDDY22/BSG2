@@ -133,6 +133,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     private bool isLoadingInTransit = false;
     private int bannerAdShowLevelFrom = 3;
     private DateTime lastAdShownDateTime;
+    public bool isLaunchAdShown;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -425,7 +426,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 RequestAppOpenAd();
             }
 
-            if (isLaunchInterstitialEnabled)
+            //if (isLaunchInterstitialEnabled)
             {
                 RequestLaunchInterstitial();
             }
@@ -515,7 +516,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
             void ShowLevelPlayLaunchInterStital(bool flag)
             {
-               
+                isLaunchAdShown = flag;
                 if (!flag)
                 {                   
                     //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
@@ -657,6 +658,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             adMobNetworkHandler.ShowInterstitialAd(AdType.Interstital, ShowLevelPlayLaunchInterStital);
             void ShowLevelPlayLaunchInterStital(bool flag)
             {
+
                 if (!flag)
                 {
                     //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Interstital, (result)=>
