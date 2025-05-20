@@ -1700,7 +1700,7 @@ public class GameManager : MonoBehaviour
         {
             if (AdManager._instance != null)
             {
-                if (!AdManager._instance.isLaunchAdShown)
+                if (!AdManager._instance.isLaunchAdShown && AdManager._instance.adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
                 {
                     AdManager._instance.ShowLaunchInterstitial();
                 }
