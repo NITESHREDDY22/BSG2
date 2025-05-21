@@ -329,7 +329,15 @@ public class Pig : MonoBehaviour
             if (AdManager._instance != null)
             {
                 InternetValidator.Instance.CheckNoInterNetPopup();
-                AdManager._instance.ShowGameWinInterstitial();
+                if (!AdManager._instance.isLaunchAdShown 
+                    && AdManager._instance.adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
+                {
+                    AdManager._instance.ShowLaunchInterstitial();
+                }
+                else
+                {
+                    AdManager._instance.ShowGameWinInterstitial();
+                }
                 //AdManager._instance.ShowFBInterstitial();
             }
         }

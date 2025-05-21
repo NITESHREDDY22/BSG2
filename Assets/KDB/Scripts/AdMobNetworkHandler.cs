@@ -275,11 +275,19 @@ public class AdMobNetworkHandler :MonoBehaviour
     public void SetRewardId()
     {
         this.adMobRewardBasedVideoId = GetAdUnitId(AdType.Reward); ;
+        
     }
 
     public void SetRewardId(string AdId)
     {
         this.adMobRewardBasedVideoId = AdId ;
+        if (!string.IsNullOrEmpty(adMobRewardBasedVideoId))
+        {
+            if (keyValuePairs.ContainsKey(AdType.Reward))
+            {
+                keyValuePairs[AdType.Reward].AdID = this.adMobRewardBasedVideoId;
+            }
+        }
     }
 
     public void SetRewardedInterstitalId()
@@ -544,7 +552,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                item.isAdRequested = false;
                                item.isAdReady = false;
                                //TODO : RequestAgain(adType);
-                               Debug.Log("asdf Admob Rewarded ad failed to load with error: " +loadError.GetMessage()+adType);
+                               Debug.Log("asdf Admob Rewarded ad failed to load with error: "+ item.AdID +" ..." + loadError.GetMessage()+adType);
                                FireBaseActions( AdContent.AdMobRewardLoadFailed, AdMode.Requested, SuccessStatus.Failed);
                                if (adType == AdType.Reward)
                                    this.rewardedrequestcallBack?.Invoke(false);
@@ -559,7 +567,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                item.isAdRequested = false;
                                item.isAdReady = false;
                                //TODO : RequestAgain(adType);
-                               Debug.Log("asdf Admob  Rewarded ad failed to load." + adType);
+                               Debug.Log("asdf Admob  Rewarded ad failed to load." + adType+ " ..." + item.AdID );
                                FireBaseActions( AdContent.AdMobRewardLoadFailed, AdMode.Requested, SuccessStatus.Failed);
                                if (adType == AdType.Reward)
                                    this.rewardedrequestcallBack?.Invoke(false);
