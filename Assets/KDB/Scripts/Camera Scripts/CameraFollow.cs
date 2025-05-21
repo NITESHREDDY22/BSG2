@@ -16,10 +16,9 @@ public class CameraFollow : MonoBehaviour
     void Awake()
     {
         startingPosition = transform.position;
-        float x = Mathf.Clamp(1f, 0f, positionOffset+12f);//Note: 1f,minCameraX, maxCameraX;
+        float x = Mathf.Clamp(0, 0f, positionOffset+12f);//Note: 1f,minCameraX, maxCameraX;
         transform.position = new Vector3(x, startingPosition.y, startingPosition.z);
     }
-
 
     void Update()
     {
@@ -38,7 +37,7 @@ public class CameraFollow : MonoBehaviour
                     {
                         var birdPosition = birdToFollow.position;
                         float x = Mathf.Clamp(birdPosition.x, positionOffset, startingPosition.x+12f);//Note: 1f,minCameraX, maxCameraX;
-                        transform.position =  new Vector3(x, startingPosition.y, startingPosition.z);
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(x, startingPosition.y, startingPosition.z),3*Time.deltaTime);
                     }
                     else
                     {
@@ -47,11 +46,18 @@ public class CameraFollow : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, startingPosition, 2f * Time.deltaTime);
+        }
     }
 
     public void ResetCameraTargetPosition(Vector3 pos)
     {
+        isFollowing = false;
         startingPosition.x = pos.x+5.28f;
+        positionOffset = startingPosition.x;
+
     }
     public void SetOffsetValue()
     {

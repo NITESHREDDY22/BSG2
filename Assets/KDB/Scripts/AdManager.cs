@@ -128,7 +128,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField]private int gapBetweenAds=2;
     [SerializeField]private int gapBetweenAdsSecondary=3;
     public static Action OnIngameAdClosed;
-    private bool isLaunchInterstitialEnabled = true;
+    public bool isLaunchInterstitialEnabled = true;
     private bool isAppOpednAdEnabled = true;
     private bool isLoadingInTransit = false;
     private int bannerAdShowLevelFrom = 3;
@@ -1116,6 +1116,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     void OnApplicationFocus(bool hasFocus)
     {
+    #if UNITY_EDITOR
+
+            return;
+    #endif
         DummyLoadingPanelForBanner.SetActive(!hasFocus);
     }
     public void FireBaseActions(AdContent adContent, AdMode adMode, SuccessStatus status)

@@ -822,13 +822,16 @@ public class GameManager : MonoBehaviour
             float duration = 1f;// Vector2.Distance(Camera.main.transform.position, cameraFollow.startingPosition) / 10f;
             if (duration == 0.0f)
                 duration = 0.1f;
+
+            /*
             Camera.main.transform.positionTo(duration,
                 cameraFollow.startingPosition).
             setOnCompleteHandler((x) => {
-                cameraFollow.SetOffsetValue();
+                //cameraFollow.SetOffsetValue();
                 //Debug.LogError("Ball reset");
                 //nothing
             });
+            */
         }
         catch (Exception exp)
         {
@@ -951,9 +954,10 @@ public class GameManager : MonoBehaviour
     private bool AllPigsAreDestroyed()
     {
         return pigs.All(x => x == null);
-    }
+    } 
     bool flag = true;
     public bool isCameraTransition;
+    private Coroutine coroutine;
     public void resetFlag()
     {
         flag = true;
@@ -966,6 +970,7 @@ public class GameManager : MonoBehaviour
             {
                 return;
             }
+            CancelInvoke("resetFlag");
             Invoke("resetFlag", 2f);
             flag = false;
             if (slingShot != null)
@@ -992,10 +997,23 @@ public class GameManager : MonoBehaviour
                     duration = 0.5f;
                     isStageChanged = false;
                 }
+
                 isCameraTransition = true;
-                Camera.main.transform.positionTo(duration,
-                    cameraFollow.startingPosition).
-                setOnCompleteHandler((x) =>
+
+                coroutine= StartCoroutine(translateCamera(duration, () =>
+                {
+                    OnAnimateToSling();
+                }));
+
+                //Camera.main.transform.positionTo(duration,
+                //    cameraFollow.startingPosition).
+                //setOnCompleteHandler((x) =>
+                //{
+                    
+
+                //});
+
+                void OnAnimateToSling()
                 {
                     //Debug.LogError("Camera set to positin");
                     cameraFollow.isFollowing = false;
@@ -1033,8 +1051,7 @@ public class GameManager : MonoBehaviour
                     }
                     StartCoroutine(CheckBottlsRemaining());
                     isCameraTransition = false;
-
-                });
+                }
                 slingShot._ballType = SlingShot.BallType.normal;
                 slingShot.ChangeDisplayBallSkin();
             }
@@ -1072,14 +1089,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator translateCamera(float duration, Action callBack)
+    {
+        //yield break;
+        Vector3 pos = Camera.main.transform.position;
+        Vector3 targetPos = cameraFollow.startingPosition;
+
+        float timer = 0;
+        float lerp = 0;
+        while(timer<duration)
+        {
+            timer+= Time.deltaTime;
+            lerp= timer/duration;
+           // Camera.main.transform.position=Vector3.Lerp(pos, cameraFollow.startingPosition, lerp);
+            yield return null;
+        }
+        //Camera.main.transform.position = cameraFollow.startingPosition;
+        callBack?.Invoke();
+    }
+
+
     public void ForceMoveCamera()
     {
-        Camera.main.transform.positionTo(0.5f,
-                     cameraFollow.startingPosition).
-                 setOnCompleteHandler((x) =>
-                 {
-                 
-                 });
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(translateCamera(0.5f, () =>
+        {
+            //OnAnimateToSling();
+        }));
+        //Camera.main.transform.positionTo(0.5f,
+        //             cameraFollow.startingPosition).
+        //         setOnCompleteHandler((x) =>
+        //         {
+
+        //         });
     }
     public void OnGameFail()
     {

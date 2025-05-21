@@ -62,7 +62,6 @@ public class MultiSetHandler : MonoBehaviour
             Vector3 slingshotballpos = slingShotBalls.transform.position;
             slingshotballpos.x = pos.x - 10;
             slingShotBalls.transform.position = slingshotballpos;
-            CameraFollow.ResetCameraTargetPosition(pos);
 
             for (int i = 0; i < allBottles.Count; i++)
             {
@@ -71,7 +70,7 @@ public class MultiSetHandler : MonoBehaviour
             }
             
             cacheCameraStartPostion = pos;
-            OnSetChanged?.Invoke();            
+           // OnSetChanged?.Invoke();            
             currentSet++;
             StartCoroutine(checkCameraPosition());
         }
@@ -80,10 +79,11 @@ public class MultiSetHandler : MonoBehaviour
     private IEnumerator checkCameraPosition()
     {
         yield return new WaitForSeconds(1);
+        CameraFollow.ResetCameraTargetPosition(cacheCameraStartPostion);
         if (cacheCameraStartPostion != CameraFollow.transform.position && !GameManager.Instance.isCameraTransition)
         {
             SetBottlesAnimation();
-            GameManager.Instance.ForceMoveCamera();
+            //GameManager.Instance.ForceMoveCamera();
             //cacheCameraStartPostion = Vector3.zero;
         }
         /*
