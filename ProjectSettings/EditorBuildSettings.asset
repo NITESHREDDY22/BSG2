@@ -16,6 +16,9 @@ EditorBuildSettings:
     guid: 7cd21c4562100f745a9c78fd86d8e194
   - enabled: 1
     path: Assets/KDB/Scenes/5 Levels/GamePlay_W0_0.unity
+    guid: 483a1b1825a81ab4a93d13ec0a3077fe
+  - enabled: 0
+    path: Assets/KDB/Scenes/5 Levels/GamePlay_W0_0_old.unity
     guid: 86e95eab33a653d4e8ecbf5732995a4e
   - enabled: 1
     path: Assets/KDB/Scenes/5 Levels/GamePlay_W0_1.unity
