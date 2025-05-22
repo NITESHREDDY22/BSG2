@@ -132,7 +132,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     private bool isAppOpednAdEnabled = true;
     private bool isLoadingInTransit = false;
     private int bannerAdShowLevelFrom = 3;
-    private DateTime lastAdShownDateTime;
+    public DateTime lastAdShownDateTime;
     public bool isLaunchAdShown;
     private void Awake()
     {
@@ -512,36 +512,32 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         
         try
-        {       
-            adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
-            void ShowLevelPlayLaunchInterStital(bool flag)
+        {
+            if (adDelayMet())
             {
-                isLaunchAdShown = flag;
-                if (!flag)
-                {                   
-                    //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
-                    //{
-                    //    if(result)
-                    //    {
-                    //        lastAdDisplayTime = Time.time;
-                    //    }
-                    //});
-                }
-                else
+                adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
+                void ShowLevelPlayLaunchInterStital(bool flag)
                 {
-                    lastAdDisplayTime = Time.time;
-                    lastAdShownDateTime = DateTime.UtcNow;
-                }
+                    isLaunchAdShown = flag;
+                    if (!flag)
+                    {
+                        //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
+                        //{
+                        //    if(result)
+                        //    {
+                        //        lastAdDisplayTime = Time.time;
+                        //    }
+                        //});
+                    }
+                    else
+                    {
+                        lastAdDisplayTime = Time.time;
+                        lastAdShownDateTime = DateTime.UtcNow;
+                    }
 
-                if (Global.isIntersitialsEnabled)
-                {
-                   RequestInterstitial();
+
+                    //Debug.Log("lastAdDisplayTime " + lastAdDisplayTime);
                 }
-                if (enableBanner)
-                {
-                    RequestBannerAd();
-                }
-                //Debug.Log("lastAdDisplayTime " + lastAdDisplayTime);
             }
         }
         catch (Exception exp)
@@ -717,7 +713,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         Debug.Log("Increase Interstitial Counter");
         try
         {
-            ShowInterstitial(callBack);           
+            if (adDelayMet())
+                ShowInterstitial(callBack);           
         }
         catch (Exception exp)
         {
@@ -1028,7 +1025,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public void ShowbannerAd()
     {
         int currentLevel = GameConstants.getLastUnlcokedLevel;
-        if (currentLevel > (bannerAdShowLevelFrom-1))
+        if (currentLevel > (bannerAdShowLevelFrom))
         {
             adMobNetworkHandler.ShowBannerAd();
         }
@@ -1048,6 +1045,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 {
                     ShowAppOpenAd();
                 }
+            }
+            if (Global.isIntersitialsEnabled)
+            {
+                RequestInterstitial();
+            }
+            if (enableBanner)
+            {
+                RequestBannerAd();
             }
         });
     }
@@ -1090,7 +1095,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public bool adDelayMet()
     {
         double seconds = (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
-        //Debug.LogError("current " + DateTime.UtcNow + "Last " + lastAdShownDateTime + " backFillAdGapToContinue" + Global.backFillAdGapToContinue + "seconds " + seconds);
+        Debug.LogError("current " + DateTime.UtcNow + "Last " + lastAdShownDateTime + " backFillAdGapToContinue" + Global.InterstitialAdGap + "seconds " + seconds);
 
         if (seconds > Global.InterstitialAdGap)
         {
