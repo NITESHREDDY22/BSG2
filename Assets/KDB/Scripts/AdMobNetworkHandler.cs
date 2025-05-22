@@ -878,7 +878,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
 
 
-
+    int count = 0;
     public void CreateBannerView()
     {
         AdItem item = null;
@@ -923,7 +923,11 @@ public class AdMobNetworkHandler :MonoBehaviour
                 FireBaseActions(AdContent.AdmobBannerLoadFailed, AdMode.Requested, SuccessStatus.Failed);
                 RequestWithDelay(adDelayTimer, () =>
                 {
-                    //TODO :   RequestBannerView();
+                    if (count == 0)
+                    {
+                        RequestBannerView();
+                        count = 1;
+                    }
                 });
             });
         };
