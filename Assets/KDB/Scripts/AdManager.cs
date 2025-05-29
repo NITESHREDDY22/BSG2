@@ -414,26 +414,29 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     IEnumerator InitializeAdNetworks()
     {
         yield return null;
-       
 
+        MobileAds.RaiseAdEventsOnUnityMainThread = true;
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             // This callback is called once the MobileAds SDK is initialized.
             isAdMobInitialized = true;
             adMobNetworkHandler.Initialize(isAdMobInitialized);
-            if (isAppOpednAdEnabled)
-            {
-                RequestAppOpenAd();
-            }
-
-            //if (isLaunchInterstitialEnabled)
-            {
-                RequestLaunchInterstitial();
-            }
+       
 
         });
-        MobileAds.RaiseAdEventsOnUnityMainThread = true;
 
+        yield return new WaitUntil(() => isAdMobInitialized);
+
+        yield return new WaitForSeconds(1);
+
+        if (isAppOpednAdEnabled)
+        {
+            RequestAppOpenAd();
+        }
+
+        yield return new WaitForSeconds(1);
+        RequestLaunchInterstitial();
+        
         // IronSource.Agent.validateIntegration();
         // Debug.Log("unity-script: unity version" + IronSource.unityVersion());
         // SDK init
@@ -1035,26 +1038,42 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         adMobNetworkHandler.HideBannerView();
     }
 
-    public void RequestAppOpenAd()
+    public IEnumerator RequestAppOpenAd()
     {
+        int result = 0;
+        yield return null;
         adMobNetworkHandler.RequestAppOpenAd((adAvailable)=>
         {
             if (adAvailable)
             {
-                if (SceneManager.GetActiveScene().name.Contains("Splash"))
-                {
-                    ShowAppOpenAd();
-                }
+                result = 2;
             }
+            else
+            {
+                result = 1;
+            }
+        });
+
+        yield return new WaitUntil(() => result != 0);
+
+            if (result==2 && SceneManager.GetActiveScene().name.Contains("Splash"))
+            {
+
+            yield return new WaitForSeconds(1);
+                ShowAppOpenAd();
+            }
+           
             if (Global.isIntersitialsEnabled)
             {
-                RequestInterstitial();
+             yield return new WaitForSeconds(1);
+             RequestInterstitial();
             }
             if (enableBanner)
             {
+                 yield return new WaitForSeconds(1);
                 RequestBannerAd();
+                //RequestBannerAd();
             }
-        });
     }
 
     public void ShowAppOpenAd()
@@ -1171,6 +1190,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         }
     }
+
+
 
     public void DelayOnShowAds()
     {

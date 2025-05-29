@@ -18,8 +18,10 @@ public class MoveUpandDown : MonoBehaviour {
     private Transform childTransf;
     // Use this for initialization
     void Start () {
+        if(childTransf != null) 
         posA = childTransf.localPosition;
-        posB = transfB.localPosition;
+        if (posB != null)
+            posB = transfB.localPosition;
         nextPosition = posB;
     }
 	
@@ -39,6 +41,8 @@ public class MoveUpandDown : MonoBehaviour {
     {
         try
         {
+
+            if(GetComponent<MoveUpandDown>())
             GetComponent<MoveUpandDown>().enabled = false;
         }
         catch (Exception e)
@@ -50,7 +54,8 @@ public class MoveUpandDown : MonoBehaviour {
     {
         try
         {
-            GetComponent<MoveUpandDown>().enabled = true;
+            if (GetComponent<MoveUpandDown>())
+                GetComponent<MoveUpandDown>().enabled = true;
         }
         catch (Exception e)
         {
@@ -59,9 +64,14 @@ public class MoveUpandDown : MonoBehaviour {
     }
     private void Move()
     {
-        childTransf.localPosition = Vector3.MoveTowards(childTransf.localPosition, nextPosition, speed * Time.deltaTime);
-        if (Vector3.Distance(childTransf.localPosition, nextPosition) <= 0.1) {
-            nextPosition = nextPosition != posA ? posA : posB;
+
+        if (childTransf)
+        {
+            childTransf.localPosition = Vector3.MoveTowards(childTransf.localPosition, nextPosition, speed * Time.deltaTime);
+            if (Vector3.Distance(childTransf.localPosition, nextPosition) <= 0.1)
+            {
+                nextPosition = nextPosition != posA ? posA : posB;
+            }
         }
     }
 
