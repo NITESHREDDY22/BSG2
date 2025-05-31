@@ -1151,7 +1151,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                 {
                                     MobileAdsEventExecutor.ExecuteInUpdate(() =>
                                     {
-                                        RequestAppOpenAd();
+                                        //RequestAppOpenAd();
                                     });
                                 };
                                 appOpenAd = ad;

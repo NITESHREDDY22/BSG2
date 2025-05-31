@@ -71,16 +71,29 @@ public class SingularEvents : MonoBehaviour
 
     public void SendLevelCompleteEvent(int worldNumber,int LevelNumber)
     {
-        string eventString = TargetLevelString(worldNumber, LevelNumber);
-        if (!string.IsNullOrEmpty(eventString))
+        if (!Global.isSingularEnabled)
+            return;
+        try
         {
-            SingularSDK.Event(eventString, "worldNumber", worldNumber, "LevelNumber", LevelNumber);
-            Debug.LogError(eventString);
+            string eventString = TargetLevelString(worldNumber, LevelNumber);
+            if (!string.IsNullOrEmpty(eventString))
+            {
+                SingularSDK.Event(eventString, "worldNumber", worldNumber, "LevelNumber", LevelNumber);
+                Debug.LogError(eventString);
+            }
+        }
+        catch
+        {
+
         }
     }
 
     public void SendAchieventmentEvent()
     {
+
+        if (!Global.isSingularEnabled)
+            return;
+
         try
         {
             int levelStars = 0;

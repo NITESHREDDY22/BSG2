@@ -98,7 +98,7 @@ public class MainMenuScript : MonoBehaviour
     {
         AdManager._instance.ShowExitInterstitial();
         ExitPanel.SetActive(true);
-        if (AdManager._instance.enableBanner)
+        if (Global.isBannerEnabled)
         {
             AdManager._instance.showbannerExit();
         }

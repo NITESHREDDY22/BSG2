@@ -535,7 +535,7 @@ public class GameManager : MonoBehaviour
             {
                 //AdManager._instance.hidebanner();
             }
-            if (!gameOverPanel.activeSelf && !gameFailed.activeSelf && Global.CurrentLeveltoPlay >= 4 && AdManager._instance.enableBanner)
+            if (!gameOverPanel.activeSelf && !gameFailed.activeSelf && Global.CurrentLeveltoPlay >= 4 && Global.isBannerEnabled)
             {
                 //AdManager._instance.showbanner();
             }

@@ -37,7 +37,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public int GOWAdInterval =0;
     public float ReplayAdInterval = 60f;
     
-    public bool enableBanner=true;
     public bool enableGreedy;
 
   
@@ -129,7 +128,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [SerializeField]private int gapBetweenAdsSecondary=3;
     public static Action OnIngameAdClosed;
     public bool isLaunchInterstitialEnabled = true;
-    private bool isAppOpednAdEnabled = true;
+
+
     private bool isLoadingInTransit = false;
     private int bannerAdShowLevelFrom = 3;
     public DateTime lastAdShownDateTime;
@@ -207,9 +207,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
                     config = JsonUtility.FromJson<GameConfig>(www.text);
                     Debug.LogWarning(www.text);
-                    Global.isBannerEnabled = config.isBannerEnabled;
-                    Global.isIntersitialsEnabled = config.isIntersitialsEnabled;
-                    Global.isRewaredAdsEnabled = config.isRewaredAdsEnabled;
                     //Global.isNativeAdsEnabled = config.isNativeAdsEnabled;
                     GOFAdInterval = config.GOFAdInterval;
                     GOWAdInterval = config.GOWAdInterval;
@@ -218,12 +215,16 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.World3ReqStars = config.World3ReqStars;
                     Global.World4ReqStars = config.World4ReqStars;
                     Global.World5ReqStars = config.World5ReqStars;
-                    enableBanner = Global.isBannerEnabled;
                     gapBetweenAds = config.FIRST_LVLS_SET_AD_GAP;
                     gapBetweenAdsSecondary = config.SECOND_LVLS_SET_AD_GAP;
                     isLaunchInterstitialEnabled = config.showLaunchAd;
-                    isAppOpednAdEnabled = config.isAppOpednAdEnabled;
+                    Global.isLaunchInterstitialEnabled = config.showLaunchAd;
                     Global.InterstitialAdGap = config.InterstitialAdGap;
+                    Global.isSingularEnabled = config.isSingularEnabled;
+                    Global.isBannerEnabled = config.isBannerEnabled;
+                    Global.isIntersitialsEnabled = config.isIntersitialsEnabled;
+                    Global.isRewaredAdsEnabled = config.isRewaredAdsEnabled;
+                    Global.isAppOpenAdEnabled = config.isAppOpednAdEnabled;
                     bannerAdShowLevelFrom = config.showBannerFrom;
                     OnConfigLoaded?.Invoke(config);
                 }
@@ -421,21 +422,36 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             // This callback is called once the MobileAds SDK is initialized.
             isAdMobInitialized = true;
             adMobNetworkHandler.Initialize(isAdMobInitialized);
-       
+
+            Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
+            foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
+            {
+                string className = keyValuePair.Key;
+                AdapterStatus status = keyValuePair.Value;
+                switch (status.InitializationState)
+                {
+                    case AdapterState.NotReady:
+                        // The adapter initialization did not complete.
+                        MonoBehaviour.print("Adapter: " + className + " not ready.");
+                        break;
+                    case AdapterState.Ready:
+                        // The adapter was successfully initialized.
+                        MonoBehaviour.print("Adapter: " + className + " is initialized.");
+                        break;
+                }
+            }
 
         });
+
+
 
         yield return new WaitUntil(() => isAdMobInitialized);
 
         yield return new WaitForSeconds(1);
+       
+        RequestAppOpenAd();        
 
-        if (isAppOpednAdEnabled)
-        {
-            RequestAppOpenAd();
-        }
-
-        yield return new WaitForSeconds(1);
-        RequestLaunchInterstitial();
+       
         
         // IronSource.Agent.validateIntegration();
         // Debug.Log("unity-script: unity version" + IronSource.unityVersion());
@@ -1022,11 +1038,20 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void RequestBannerAd()
     {
+        if (!Global.isBannerEnabled)
+        {
+            return;
+        }
+
         adMobNetworkHandler.RequestBannerView();
     }
 
     public void ShowbannerAd()
     {
+        if (!Global.isBannerEnabled)
+        {
+            return;
+        }
         int currentLevel = GameConstants.getLastUnlcokedLevel;
         if (currentLevel > (bannerAdShowLevelFrom))
         {
@@ -1042,62 +1067,82 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         int result = 0;
         yield return null;
-        adMobNetworkHandler.RequestAppOpenAd((adAvailable)=>
+        if (Global.isAppOpenAdEnabled)
         {
-            if (adAvailable)
+            adMobNetworkHandler.RequestAppOpenAd((adAvailable) =>
             {
-                result = 2;
-            }
-            else
-            {
-                result = 1;
-            }
-        });
+                if (adAvailable)
+                {
+                    result = 2;
+                }
+                else
+                {
+                    result = 1;
+                }
+            });
+        }
+        else
+        {
+            result = 1;
+        }
 
         yield return new WaitUntil(() => result != 0);
 
-            if (result==2 && SceneManager.GetActiveScene().name.Contains("Splash"))
-            {
+        if (result==2 && SceneManager.GetActiveScene().name.Contains("Splash"))
+        {
 
             yield return new WaitForSeconds(1);
-                ShowAppOpenAd();
-            }
-           
-            if (Global.isIntersitialsEnabled)
-            {
-             yield return new WaitForSeconds(1);
-             RequestInterstitial();
-            }
-            if (enableBanner)
-            {
-                 yield return new WaitForSeconds(1);
-                RequestBannerAd();
-                //RequestBannerAd();
-            }
+            ShowAppOpenAd();
+        }
+
+        if (Global.isLaunchInterstitialEnabled)
+        {
+            yield return new WaitForSeconds(1);
+            RequestLaunchInterstitial();
+        }
+        if (Global.isIntersitialsEnabled)
+        {
+            yield return new WaitForSeconds(1);
+            RequestInterstitial();
+        }
+        if (Global.isBannerEnabled)
+        {
+            yield return new WaitForSeconds(1);
+            RequestBannerAd();
+            //RequestBannerAd();
+        }
     }
 
     public void ShowAppOpenAd()
     {
+        if (!Global.isAppOpenAdEnabled)
+        {
+            return;
+        }
+
         adMobNetworkHandler.ShowAppOpenAd(
-                    (x) =>
-                    {
-                        lastAdDisplayTime = Time.time;
-                        lastAdShownDateTime= DateTime.UtcNow;
-                        if (SceneManager.GetActiveScene().name.Contains("Splash"))
-                            FireBaseActions(AdContent.AdmobAppopenSplashShown, AdMode.Shown, SuccessStatus.Success);
-                        else
-                            FireBaseActions(AdContent.AdmobAppopenAppForeGroundShown, AdMode.Shown, SuccessStatus.Success);
+                (x) =>
+                {
+                    lastAdDisplayTime = Time.time;
+                    lastAdShownDateTime= DateTime.UtcNow;
+                    if (SceneManager.GetActiveScene().name.Contains("Splash"))
+                        FireBaseActions(AdContent.AdmobAppopenSplashShown, AdMode.Shown, SuccessStatus.Success);
+                    else
+                        FireBaseActions(AdContent.AdmobAppopenAppForeGroundShown, AdMode.Shown, SuccessStatus.Success);
 
 
-                    }
-                );
+                }
+            );
     }
 
     private void OnAppStateChanged(AppState state)
     {
         //Debug.Log("App State changed to : " + state);
         // if the app is Foregrounded and the ad is available, show it.
-       
+        if (!Global.isAppOpenAdEnabled)
+        {
+            return;
+        }
         if (state==AppState.Foreground &&  adMobNetworkHandler.IsAdAvailable)
         {
             if (SceneManager.GetActiveScene().name.Contains("Splash"))
@@ -1140,9 +1185,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     void OnApplicationFocus(bool hasFocus)
     {
-    #if UNITY_EDITOR
 
+        if (!Global.isAppOpenAdEnabled)
+        {
             return;
+        }
+
+#if UNITY_EDITOR
+
+        return;
     #endif
         DummyLoadingPanelForBanner.SetActive(!hasFocus);
     }
