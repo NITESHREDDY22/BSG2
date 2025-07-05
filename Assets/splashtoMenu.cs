@@ -57,7 +57,7 @@ public class splashtoMenu : MonoBehaviour {
         {
             Debug.Log("IXD Ready");
             if(AdManager._instance!=null && AdManager._instance.isLaunchInterstitialEnabled)
-            AdManager._instance.ShowLaunchInterstitial();
+            AdManager._instance.ShowLaunchInterstitial(true);
 
             if (Application.internetReachability == NetworkReachability.NotReachable)
             {

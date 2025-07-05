@@ -134,7 +134,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
 
 
-    private int adDelayTimer = 60;
+    private int adDelayTimer = Global.adRetryTime;
 
     public class AdItem
     {
@@ -370,7 +370,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                 //BDebug.LogError("Interstitial ad failed to load with error: " + loadAdError.GetMessage()+adType);
                                 MobileAdsEventExecutor.ExecuteInUpdate(() =>
                                 {
-                                    //TODO : OnAdLoadFailed(adType);
+                                     OnAdLoadFailed(adType);
                                     FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchLoadFailed : AdContent.AdMobInterstitalLoadFailed,
                                         AdMode.Requested, SuccessStatus.Failed);
                                     //Debug.LogError("Asdf RequestLaunchInterstitial 44444");
@@ -387,7 +387,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                     FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchLoadFailed : AdContent.AdMobInterstitalLoadFailed, 
                                         AdMode.Requested, SuccessStatus.Failed);
                                     //Debug.LogError("Asdf RequestLaunchInterstitial 55555");
-                                    //TODO :  OnAdLoadFailed(adType);
+                                      OnAdLoadFailed(adType);
                                     Debug.LogError("RequestInterstitial ad. FAILED" +  adItem.AdID);
 
                                 });
@@ -505,7 +505,7 @@ public class AdMobNetworkHandler :MonoBehaviour
             RequestWithDelay(adDelayTimer, () =>
             {
                 // Debug.LogError("RequestWithDelay Interstitial ad cannot be shown.");
-                //RequestInterstitial(adType);
+                RequestInterstitial(adType);
             });
         }
 
@@ -561,7 +561,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                            {
                                item.isAdRequested = false;
                                item.isAdReady = false;
-                               //TODO : RequestAgain(adType);
+                               RequestAgain(adType);
                                Debug.LogError("asdf Admob Rewarded ad failed to load with error: "+ item.AdID +" ..." + loadError.GetMessage()+adType);
                               
 
@@ -578,7 +578,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                            {
                                item.isAdRequested = false;
                                item.isAdReady = false;
-                               //TODO : RequestAgain(adType);
+                                RequestAgain(adType);
                                Debug.LogError("asdf Admob  Rewarded ad failed to load." + adType+ " ..." + item.AdID );
                                FireBaseActions( AdContent.AdMobRewardLoadFailed, AdMode.Requested, SuccessStatus.Failed);
                                if (adType == AdType.Reward)
@@ -743,7 +743,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                RequestWithDelay(adDelayTimer, () =>
                                {
                                    //Debug.LogError("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
-                                   //TODO :  RequestRewardInterstitial(adType);
+                                     RequestRewardInterstitial(adType);
                                });
                                this.rewardedInterStitialrequestcallBack?.Invoke(false);
                                Debug.LogError("asdf Admob RequestRewardInterstitial ad failed to load with error: " + loadError.GetMessage() + adType);
@@ -761,7 +761,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                RequestWithDelay(adDelayTimer, () =>
                                {
                                    //Debug.LogError("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
-                                   //TODO :  RequestRewardInterstitial(adType);
+                                   RequestRewardInterstitial(adType);
                                });
                                this.rewardedInterStitialrequestcallBack?.Invoke(false);
                                 Debug.LogError("asdf Admob  RequestRewardInterstitial ad failed to load." + adType);
@@ -814,7 +814,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                                    RequestWithDelay(adDelayTimer, () =>
                                    {
                                        //Debug.LogError("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
-                                       //RequestRewardInterstitial(adType);
+                                       RequestRewardInterstitial(adType);
                                    });
                                    //TODO :FireBaseActions(adType == AdType.Reward ? AdContent.AdMobRewardShown : AdContent.AdMobContinueRewardShown, AdMode.Shown, SuccessStatus.Failed);
 
@@ -890,7 +890,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         RequestWithDelay(adDelayTimer, () =>
         {
             //Debug.LogError("RequestWithDelay RequestRewardBasedVideo ad cannot be shown.");
-            //RequestRewardBasedVideo(adType);
+            RequestRewardBasedVideo(adType);
         });
     }
 
@@ -942,11 +942,9 @@ public class AdMobNetworkHandler :MonoBehaviour
                 FireBaseActions(AdContent.AdmobBannerLoadFailed, AdMode.Requested, SuccessStatus.Failed);
                 RequestWithDelay(adDelayTimer, () =>
                 {
-                    if (count == 0)
-                    {
-                        RequestBannerView();
-                        count = 1;
-                    }
+                   
+                  RequestBannerView();
+                    
                 });
             });
         };
@@ -1045,7 +1043,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                 RequestWithDelay(adDelayTimer, () =>
                 {
                     // Debug.LogError("RequestWithDelay Interstitial ad cannot be shown.");
-                    //TODO :  RequestBannerView();
+                      RequestBannerView();
                 });
                 //TODO : FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchShown : AdContent.AdMobInterstitalShown, AdMode.Shown, SuccessStatus.Failed);
 

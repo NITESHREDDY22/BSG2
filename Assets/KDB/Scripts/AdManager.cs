@@ -17,6 +17,7 @@ using GoogleMobileAds.Common;
 using System.Net.Http.Headers;
 using System.Linq;
 using System.Net.NetworkInformation;
+using GoogleMobileAds.Api.Mediation.UnityAds;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -117,6 +118,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public AdMobNetworkHandler adMobNetworkHandler;
     public LevelPlayNetworkHandler levelPlayNetworkHandler;
+    public HybidNetworkHandler hybidNetworkHandler;
     public AdsConfig AdsConfiguration;
 
     [Space(10)]
@@ -134,6 +136,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     private int bannerAdShowLevelFrom = 3;
     public DateTime lastAdShownDateTime;
     public bool isLaunchAdShown;
+
+    private bool isHybidEnabled=false;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -183,7 +187,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
         }
         Initialize();
-        StartCoroutine(InitializeAdNetworks());
+       
         lastAdDisplayTime = Time.time;
         lastAdShownDateTime = DateTime.UtcNow;
         AppStateEventNotifier.AppStateChanged += OnAppStateChanged;
@@ -224,7 +228,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.isBannerEnabled = config.isBannerEnabled;
                     Global.isIntersitialsEnabled = config.isIntersitialsEnabled;
                     Global.isRewaredAdsEnabled = config.isRewaredAdsEnabled;
-                    Global.isAppOpenAdEnabled = config.isAppOpednAdEnabled;
+                    Global.isAppOpenAdEnabled = config.isAppOpenAdEnabled;
+                    Global.adRetryTime = config.adRetryTime;
                     bannerAdShowLevelFrom = config.showBannerFrom;
                     OnConfigLoaded?.Invoke(config);
                 }
@@ -281,6 +286,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             //AdSettings.AddTestDevice("07b03dd5-2c63-4b49-bb75-4c5ad7068bb6");
             //LoadFBInterstitial();
             yield return new WaitForSeconds(1f);
+           StartCoroutine(InitializeAdNetworks());
         try
         {
 
@@ -423,6 +429,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             isAdMobInitialized = true;
             adMobNetworkHandler.Initialize(isAdMobInitialized);
 
+            GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("gdpr.consent", true);
+            GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("privacy.consent", true);
+
             Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
             foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
             {
@@ -440,16 +449,24 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         break;
                 }
             }
-
+           
         });
 
+        try
+        {
+            if(isHybidEnabled)
+            hybidNetworkHandler.Initialize();
+        }
+        catch
+        {
 
+        }
 
         yield return new WaitUntil(() => isAdMobInitialized);
 
         yield return new WaitForSeconds(1);
        
-        RequestAppOpenAd();        
+        StartCoroutine(RequestAppOpenAd());        
 
        
         
@@ -526,13 +543,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         adMobNetworkHandler.RequestInterstitial(AdType.Launch);
         // levelPlayNetworkHandler.RequestInterstitial(AdType.Launch);
+        hybidNetworkHandler.RequestLaunchInterstitial();
+        
     }
-    public void ShowLaunchInterstitial()
+    public void ShowLaunchInterstitial(bool shownow=false)
     {
         
         try
         {
-            if (adDelayMet())
+            if (adDelayMet() || shownow)
             {
                 adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
                 void ShowLevelPlayLaunchInterStital(bool flag)
@@ -547,6 +566,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         //        lastAdDisplayTime = Time.time;
                         //    }
                         //});
+                        hybidNetworkHandler.ShowLaunchInterstitial((shown)=>
+                        {
+                            if(shown)
+                            {
+                                lastAdDisplayTime = Time.time;
+                                lastAdShownDateTime = DateTime.UtcNow;
+                            }
+                        });
+
                     }
                     else
                     {
@@ -661,6 +689,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
         // levelPlayNetworkHandler.RequestInterstitial(AdType.Interstital);
+        hybidNetworkHandler.RequestInterstitial();
     }
 
     public void ShowInterstitial(Action<bool> callBack=null)
@@ -684,6 +713,16 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     //        lastAdDisplayTime = Time.time;
                     //    }
                     //});
+
+                    hybidNetworkHandler.ShowInterstitial((shown)=>
+                    {
+                        if (shown)
+                        {
+                            lastAdDisplayTime = Time.time;
+                            lastAdShownDateTime = DateTime.UtcNow;
+                        }
+                       callBack?.Invoke(shown);
+                    });
                 }
                 else
                 {
@@ -921,9 +960,20 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     //                FireBaseActions(AdContent.levelPlayRewardShown, AdMode.Shown, SuccessStatus.Success);
                     //            }
                     //        });
-                            
+
                     //    }
                     //});
+
+                    hybidNetworkHandler.ShowRewardAd((shown) =>
+                    {
+                        if(shown)
+                        {
+                            lastAdDisplayTime = Time.time;
+                            lastAdShownDateTime = DateTime.UtcNow;
+                        }
+                        callBack?.Invoke(shown);
+
+                    });
                 }
                 else
                 {
@@ -953,7 +1003,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         //Debug.Log("Asdf RequestRewardBasedVideo..");       
         adMobNetworkHandler.RequestRewardBasedVideo(adType);
-        //levelPlayNetworkHandler.RequestRewardBasedVideo(adType);   
+        //levelPlayNetworkHandler.RequestRewardBasedVideo(adType);
+        hybidNetworkHandler.RequestRewardAd();
 
     }
     int count = 0;
@@ -1056,11 +1107,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         if (currentLevel > (bannerAdShowLevelFrom))
         {
             adMobNetworkHandler.ShowBannerAd();
+            hybidNetworkHandler.RequestBannerAd();
+
         }
     }
     public void HidebannerAd()
     {
         adMobNetworkHandler.HideBannerView();
+        hybidNetworkHandler.HideBanner();
     }
 
     public IEnumerator RequestAppOpenAd()
@@ -1088,7 +1142,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         yield return new WaitUntil(() => result != 0);
 
-        if (result==2 && SceneManager.GetActiveScene().name.Contains("Splash"))
+        if (Global.isAppOpenAdEnabled && result == 2 && SceneManager.GetActiveScene().name.Contains("Splash"))
         {
 
             yield return new WaitForSeconds(1);
@@ -1108,8 +1162,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         if (Global.isBannerEnabled)
         {
             yield return new WaitForSeconds(1);
-            RequestBannerAd();
-            //RequestBannerAd();
+            RequestBannerAd();          
         }
     }
 

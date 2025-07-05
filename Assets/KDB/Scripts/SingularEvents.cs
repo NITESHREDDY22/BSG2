@@ -39,6 +39,7 @@ public class SingularEvents : MonoBehaviour
         //{
         //    StartCoroutine(waitStarsEvent(30*(i+1)));
         //}
+
     }
 
     /*

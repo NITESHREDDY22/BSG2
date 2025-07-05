@@ -197,6 +197,7 @@ public class Pig : MonoBehaviour
 
                     if (Global.count >= Global.target && !gameMngr.gameOverPanel.activeSelf)
                     {
+
                         gameMngr.gameState = GameState.Won;
                         gameMngr.gameOverPanel.GetComponent<UIBase>().bottomElements.Delay = 2.75f;
                         gameMngr.gameOverPanel.SetActive(true);
@@ -250,11 +251,13 @@ public class Pig : MonoBehaviour
                             }
 
                         }
+
+                        //StartCoroutine( DelayShowLevelCompleteAd());
+
                         //AdManager._instance.ShowGameWinInterstitial();
-                        Invoke("DelayShowLevelCompleteAd", 1.75f);
                         gameMngr.CallAdInPigScript();                       
 
-                        if(SingularEvents.instance!=null)
+                        if (SingularEvents.instance!=null)
                         {
                             SingularEvents.instance.SendLevelCompleteEvent(WorldSelectionHandler.worldSelected, Global.CurrentLeveltoPlay);
                             SingularEvents.instance.SendAchieventmentEvent();
@@ -266,6 +269,7 @@ public class Pig : MonoBehaviour
                         //Uncomment for coin animation
                         //GameObject.FindObjectOfType<GameManager>().StartCoroutine(GameObject.FindObjectOfType<GameManager>().ShowCoinsAnimation());
                     }
+
                     if (null != _explodable)
                     {
                         try
@@ -322,22 +326,31 @@ public class Pig : MonoBehaviour
         }
     }
 
-    private void DelayShowLevelCompleteAd()
+    private IEnumerator DelayShowLevelCompleteAd()
     {
+        yield return new WaitForSeconds(1.75f);
         try
         {
+            Debug.LogError("admanager ...DelayShowLevelCompleteAd");
+
+
             if (AdManager._instance != null)
             {
-                InternetValidator.Instance.CheckNoInterNetPopup();
-                if (!AdManager._instance.isLaunchAdShown 
-                    && AdManager._instance.adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
+                Debug.LogError("admanager ...");
+                if (!AdManager._instance.isLaunchAdShown && AdManager._instance.adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
                 {
+                    Debug.LogError("admanager ...isLaunchAdShown");
+
                     AdManager._instance.ShowLaunchInterstitial();
                 }
                 else
                 {
+                    Debug.LogError("admanager ...isLaunchAdShown else");
+
                     AdManager._instance.ShowGameWinInterstitial();
                 }
+                InternetValidator.Instance.CheckNoInterNetPopup();
+
                 //AdManager._instance.ShowFBInterstitial();
             }
         }

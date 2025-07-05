@@ -30,10 +30,10 @@ public class Global : MonoBehaviour
     public static int TotalStarsAchivedWorld4 = 0;
     public static int TotalStarsAchivedWorld5 = 0;
 
-    public static int World2ReqStars = 50;
-    public static int World3ReqStars = 30;
-    public static int World4ReqStars = 20;
-    public static int World5ReqStars = 20;
+    public static int World2ReqStars = 150;
+    public static int World3ReqStars = 60;
+    public static int World4ReqStars = 120;
+    public static int World5ReqStars = 30;
 
     public static bool firstLoad = true;
 
@@ -44,9 +44,9 @@ public class Global : MonoBehaviour
     public static bool isRewaredAdsEnabled = false;
     public static bool isNativeAdsEnabled = false;
     public static int InterstitialAdGap = 60;
-    public static bool isSingularEnabled = true;
-    public static bool isAppOpenAdEnabled = true;
+    public static bool isSingularEnabled = false;
+    public static bool isAppOpenAdEnabled = false;
     public static bool isLaunchInterstitialEnabled = true;
-
+    public static int adRetryTime = 60;
 
 }

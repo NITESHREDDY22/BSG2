@@ -17,25 +17,27 @@ public class GameConfig {
     public int bannerLevel;
     public int backFillAdGap;
     public int backFillAdGapToContinue;
-    public bool isBannerEnabled;
-    public bool isIntersitialsEnabled;
-    public bool isRewaredAdsEnabled;
     public bool isNativeAdsEnabled;
     public int GOFAdInterval;
     public int GOWAdInterval;
-    public int World2ReqStars;
-    public int World3ReqStars;
-    public int World4ReqStars;
-    public int World5ReqStars;
+    public int World2ReqStars=150;
+    public int World3ReqStars=60;
+    public int World4ReqStars=120;
+    public int World5ReqStars=30;
     public int InternetMandtoryLevel=30;
     public int PremiumPopUpInterval=3;
     public int FIRST_LVLS_SET_AD_GAP=2;
     public int SECOND_LVLS_SET_AD_GAP = 3;
     public string Fullversion = "W1_50";
     public bool showLaunchAd = false;
-    public bool isAppOpednAdEnabled=false;
+    public bool isAppOpenAdEnabled = false;
     public bool isSingularEnabled = false;
 
     public int InterstitialAdGap = 60;
     public int showBannerFrom = 4;
+
+    public bool isBannerEnabled;
+    public bool isRewaredAdsEnabled;
+    public bool isIntersitialsEnabled;
+    public int adRetryTime = 60;
 }

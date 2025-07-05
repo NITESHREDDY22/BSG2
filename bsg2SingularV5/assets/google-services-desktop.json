@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "989416479395",
+    "project_id": "bstest-cf993",
+    "storage_bucket": "bstest-cf993.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989416479395:android:7b75cb70e31ddcf7ec3d16",
+        "android_client_info": {
+          "package_name": "com.knockdown.bottleshootgame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI100YDR3vTCcyqjAkS1SSs-aXniMe0HU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,7 @@
+name: Singular-v12.6.1-ae21f1f3.master
+env: release
+git_commit: ae21f1f3
+git_branch: master
+version_name: 12.6.1
+version_code:1
+build_date: Wed, 20 Nov 2024 16:11:28 +0530
