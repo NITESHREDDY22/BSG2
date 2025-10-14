@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class HybidNetworkHandler : MonoBehaviour
 {
     public HybidAdInterstitial hybidAdInterstitial;
@@ -159,3 +159,4 @@ public class HybidNetworkHandler : MonoBehaviour
         });
     }
 }
+*/

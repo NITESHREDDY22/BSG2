@@ -79,7 +79,7 @@ public class SingularEvents : MonoBehaviour
             string eventString = TargetLevelString(worldNumber, LevelNumber);
             if (!string.IsNullOrEmpty(eventString))
             {
-                SingularSDK.Event(eventString, "worldNumber", worldNumber, "LevelNumber", LevelNumber);
+                 SingularSDK.Event(eventString, "worldNumber", worldNumber, "LevelNumber", LevelNumber);
                 Debug.LogError(eventString);
             }
         }
@@ -121,7 +121,7 @@ public class SingularEvents : MonoBehaviour
                 {
                     string eventKey = string.Concat(achievementsString, starCount[indexValue]);
                     // Debug.LogError(eventKey);
-                    SingularSDK.Event(eventKey);
+                     SingularSDK.Event(eventKey);
                 }
                 //Debug.LogError(eventString);
             }

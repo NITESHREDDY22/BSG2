@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class HybidAdInterstitial : MonoBehaviour, IInterstitialListener
 {
     
@@ -108,3 +109,4 @@ public class HybidAdInterstitial : MonoBehaviour, IInterstitialListener
     }
    
 }
+*/

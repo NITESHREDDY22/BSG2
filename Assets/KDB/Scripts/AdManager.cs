@@ -118,7 +118,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public AdMobNetworkHandler adMobNetworkHandler;
     public LevelPlayNetworkHandler levelPlayNetworkHandler;
-    public HybidNetworkHandler hybidNetworkHandler;
+    //public HybidNetworkHandler hybidNetworkHandler;
     public AdsConfig AdsConfiguration;
 
     [Space(10)]
@@ -420,11 +420,19 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     }
     IEnumerator InitializeAdNetworks()
     {
+
+        Debug.Log("InitializeAdNetworks initialization");
+
         yield return null;
 
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
+        //MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        //{ 
+       
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
+            Debug.Log("InitializationStatus initialization");
+
             // This callback is called once the MobileAds SDK is initialized.
             isAdMobInitialized = true;
             adMobNetworkHandler.Initialize(isAdMobInitialized);
@@ -449,18 +457,22 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         break;
                 }
             }
-           
+
+            Debug.Log("InitializationStatus initialization 1111");
+
         });
 
         try
         {
-            if(isHybidEnabled)
-            hybidNetworkHandler.Initialize();
+          //  if(isHybidEnabled)
+          //  hybidNetworkHandler.Initialize();
         }
         catch
         {
 
         }
+       // });
+
 
         yield return new WaitUntil(() => isAdMobInitialized);
 
@@ -474,10 +486,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // Debug.Log("unity-script: unity version" + IronSource.unityVersion());
         // SDK init
         Debug.Log("unity-script: LevelPlay SDK initialization");
-        // LevelPlay.Init(appKey, null);
+            // LevelPlay.Init(appKey, null);
 
-        //LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-        //LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+            //LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
+            //LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
     }
 
     /*
@@ -543,7 +555,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         adMobNetworkHandler.RequestInterstitial(AdType.Launch);
         // levelPlayNetworkHandler.RequestInterstitial(AdType.Launch);
-        hybidNetworkHandler.RequestLaunchInterstitial();
+        //hybidNetworkHandler.RequestLaunchInterstitial();
         
     }
     public void ShowLaunchInterstitial(bool shownow=false)
@@ -566,14 +578,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         //        lastAdDisplayTime = Time.time;
                         //    }
                         //});
-                        hybidNetworkHandler.ShowLaunchInterstitial((shown)=>
-                        {
-                            if(shown)
-                            {
-                                lastAdDisplayTime = Time.time;
-                                lastAdShownDateTime = DateTime.UtcNow;
-                            }
-                        });
+                        //hybidNetworkHandler.ShowLaunchInterstitial((shown)=>
+                        //{
+                        //    if(shown)
+                        //    {
+                        //        lastAdDisplayTime = Time.time;
+                        //        lastAdShownDateTime = DateTime.UtcNow;
+                        //    }
+                        //});
 
                     }
                     else
@@ -689,7 +701,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
         // levelPlayNetworkHandler.RequestInterstitial(AdType.Interstital);
-        hybidNetworkHandler.RequestInterstitial();
+        //hybidNetworkHandler.RequestInterstitial();
     }
 
     public void ShowInterstitial(Action<bool> callBack=null)
@@ -714,15 +726,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     //    }
                     //});
 
-                    hybidNetworkHandler.ShowInterstitial((shown)=>
-                    {
-                        if (shown)
-                        {
-                            lastAdDisplayTime = Time.time;
-                            lastAdShownDateTime = DateTime.UtcNow;
-                        }
-                       callBack?.Invoke(shown);
-                    });
+                    //hybidNetworkHandler.ShowInterstitial((shown)=>
+                    //{
+                    //    if (shown)
+                    //    {
+                    //        lastAdDisplayTime = Time.time;
+                    //        lastAdShownDateTime = DateTime.UtcNow;
+                    //    }
+                    //   callBack?.Invoke(shown);
+                    //});
                 }
                 else
                 {
@@ -964,16 +976,16 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     //    }
                     //});
 
-                    hybidNetworkHandler.ShowRewardAd((shown) =>
-                    {
-                        if(shown)
-                        {
-                            lastAdDisplayTime = Time.time;
-                            lastAdShownDateTime = DateTime.UtcNow;
-                        }
-                        callBack?.Invoke(shown);
+                    //hybidNetworkHandler.ShowRewardAd((shown) =>
+                    //{
+                    //    if(shown)
+                    //    {
+                    //        lastAdDisplayTime = Time.time;
+                    //        lastAdShownDateTime = DateTime.UtcNow;
+                    //    }
+                    //    callBack?.Invoke(shown);
 
-                    });
+                    //});
                 }
                 else
                 {
@@ -1004,7 +1016,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //Debug.Log("Asdf RequestRewardBasedVideo..");       
         adMobNetworkHandler.RequestRewardBasedVideo(adType);
         //levelPlayNetworkHandler.RequestRewardBasedVideo(adType);
-        hybidNetworkHandler.RequestRewardAd();
+        //hybidNetworkHandler.RequestRewardAd();
 
     }
     int count = 0;
@@ -1107,14 +1119,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         if (currentLevel > (bannerAdShowLevelFrom))
         {
             adMobNetworkHandler.ShowBannerAd();
-            hybidNetworkHandler.RequestBannerAd();
+            //hybidNetworkHandler.RequestBannerAd();
 
         }
     }
     public void HidebannerAd()
     {
         adMobNetworkHandler.HideBannerView();
-        hybidNetworkHandler.HideBanner();
+        //hybidNetworkHandler.HideBanner();
     }
 
     public IEnumerator RequestAppOpenAd()

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3477,7 +3476,7 @@ MonoBehaviour:
   adManager: {fileID: 1163193292}
   isInterNetConnected: 0
   noInterNetPopup: {fileID: 176788097}
-  mandatoryInternetToPlayFromLevel: 30
+  mandatoryInternetToPlayFromLevel: 10
 --- !u!114 &1163193297
 MonoBehaviour:
   m_ObjectHideFlags: 0

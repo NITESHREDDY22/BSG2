@@ -69,6 +69,15 @@ public class GameManager : MonoBehaviour
     private readonly string levelFailRetryKey = "FAILED_POPUP_RETRY_param";//"Level_param_ExtraBall";
     private bool isStageChanged;
     private bool isTutorialCompleted;
+
+    private void OnDestroy()
+    {
+        if (AdManager._instance)
+        {
+            AdManager._instance.HidebannerAd();
+        }
+    }
+
     void Start()
     {
         Instance = this;
@@ -261,7 +270,7 @@ public class GameManager : MonoBehaviour
         currentAdDisplayTime = Time.time;
         //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManage
         //r._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
-        bool condition1= currentAdDisplayTime - AdManager._instance.lastAdDisplayTime > Global.backFillAdGapToContinue;
+        bool condition1 = currentAdDisplayTime - AdManager._instance.lastAdDisplayTime >  Global.backFillAdGapToContinue;
         bool condition2 = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
                 AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
 
@@ -892,6 +901,16 @@ public class GameManager : MonoBehaviour
         {
             AdManager._instance.rewardTypeToUnlock = RewardType.skiplevel;
 
+            if (InappManager.Instance)
+            {
+                bool flag = InappManager.Instance.canProceedToNextLevelCheck(WorldSelectionHandler.worldSelected, Global.CurrentLeveltoPlay+1);
+                if (!flag)
+                {
+                    InappManager.Instance.CheckPremiumPopup();
+                    return;
+                }
+            }
+
             AdManager._instance.ShowRewardedVideo(result =>
             {
                 // Debug.Log("asdf Reward status " + result);
@@ -915,10 +934,7 @@ public class GameManager : MonoBehaviour
             return birds[currentBirdIndex];
     }
 
-    void OnDestroy()
-    {
-        //AdManager._instance.hidebanner();
-    }
+   
     private bool Waited(float seconds)
     {
         timermax = seconds;
