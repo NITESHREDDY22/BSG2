@@ -405,7 +405,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             adMobNetworkHandler.Init();
             adMobNetworkHandler.rewardedInterStitialrequestcallBack += CheckSecondaryInterstitialStatus;
             adMobNetworkHandler.rewardedrequestcallBack += CheckSecondaryRewardAdStatus;
-
         }
 
         AdConfig levelPlayConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.LevelPlay);
@@ -459,6 +458,16 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             }
 
             Debug.Log("InitializationStatus initialization 1111");
+
+            /*
+            List<string> testDeviceIds = new List<string>();
+            testDeviceIds.Add("6FE696550ADF8FAAC961A42C626E43A7");
+            RequestConfiguration requestConfiguration = new RequestConfiguration
+            {
+                TestDeviceIds = testDeviceIds
+            };
+            MobileAds.SetRequestConfiguration(requestConfiguration);
+            */
 
         });
 
@@ -1006,9 +1015,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
         catch (Exception e)
         { }
-
-
-
     }
 
     public void RequestRewardBasedVideo(AdType adType=AdType.Reward)
@@ -1023,20 +1029,22 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public void RequestRewardedInterstitial(AdType adType)
     {
         adMobNetworkHandler.RequestRewardInterstitial(adType);
-       
     }
 
     public void CheckSecondaryInterstitialStatus(bool result)
-    {        
-        if (!result)
+    {
+        if (!result && !adMobNetworkHandler.isInterstitialLoaded )
         {
             LoadSecondaryInterstitialAd();
         }        
     }
 
-
+    private bool isSecondaryInterstialLoaded;
     private void LoadSecondaryInterstitialAd()
     {
+        if (isSecondaryInterstialLoaded)
+            return;
+
         AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
         if (adMobConfig != null)
         {
@@ -1046,9 +1054,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 //Debug.Log("admob LoadSecondaryInterstitialAd requested");
                 adMobNetworkHandler.SetInterStitalId(adUnitConfig.AdUnitId);
                 //Remove once request ad with delay added.
+                adMobNetworkHandler.StopPreviousCoroutine();
                 adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
                 adMobNetworkHandler.rewardedInterStitialrequestcallBack = null;
-
+                isSecondaryInterstialLoaded = true;
             }
         }
     }
@@ -1224,7 +1233,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public bool adDelayMet()
     {
         double seconds = (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
-        Debug.LogError("current " + DateTime.UtcNow + "Last " + lastAdShownDateTime + " backFillAdGapToContinue" + Global.InterstitialAdGap + "seconds " + seconds);
+       // Debug.LogError("current " + DateTime.UtcNow + "Last " + lastAdShownDateTime + " backFillAdGapToContinue" + Global.InterstitialAdGap + "seconds " + seconds);
 
         if (seconds > Global.InterstitialAdGap)
         {

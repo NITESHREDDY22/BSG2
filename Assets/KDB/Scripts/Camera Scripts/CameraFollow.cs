@@ -18,6 +18,11 @@ public class CameraFollow : MonoBehaviour
         startingPosition = transform.position;
         float x = Mathf.Clamp(0, 0f, positionOffset+12f);//Note: 1f,minCameraX, maxCameraX;
         transform.position = new Vector3(x, startingPosition.y, startingPosition.z);
+
+        if(GetComponent<Camera>() != null )
+        {
+            GetComponent<Camera>().orthographicSize=8.5f;
+        }
     }
 
     void Update()

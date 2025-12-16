@@ -144,13 +144,17 @@ public class GameManager : MonoBehaviour
                                          });
         rewardtext = rewardCanvas.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
-        bool condition2 = AdManager._instance && AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
-                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
+        bool condition2 = AdManager._instance && AdManager._instance.adMobNetworkHandler != null && 
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd(); 
 
-        if(!condition2 && AdManager._instance)
+        if(AdManager._instance &&
+            AdManager._instance.adMobNetworkHandler!=null &&
+            !AdManager._instance.adMobNetworkHandler.isInterstitialLoaded
+            && !condition2 )
         {
-            AdManager._instance.adMobNetworkHandler.rewardedInterStitialrequestcallBack?.Invoke(false);
-            AdManager._instance.RequestInterstitial();
+           // AdManager._instance.adMobNetworkHandler.rewardedInterStitialrequestcallBack?.Invoke(false);
+           // AdManager._instance.RequestInterstitial();
         }
 
         if(AdManager._instance)

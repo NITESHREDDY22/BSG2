@@ -141,7 +141,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 2.3.6
+  bundleVersion: 2.3.8
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -170,7 +170,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 138
+  AndroidBundleVersionCode: 143
   AndroidMinSdkVersion: 24
   AndroidTargetSdkVersion: 35
   AndroidPreferredInstallLocation: 1
@@ -263,7 +263,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 1
   useCustomGradleSettingsTemplate: 1
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 2
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -974,7 +974,7 @@ PlayerSettings:
     Collab: 0
     ErrorHub: 0
     Hub: 0
-    Purchasing: 1
+    Purchasing: 0
     UNet: 1
     Unity Ads: 1
   luminIcon:
@@ -996,11 +996,11 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: bb66995b-26c3-4e72-b4a3-9a6992b436e7
+  cloudProjectId: ee9d161f-7baa-4968-8a71-f2d08ede04b4
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: KnockDownBottles2
-  organizationId: bhaskar--2
+  projectName: BottleShootingGame2
+  organizationId: unity_lzfnqxr_0veqcq
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 1
   hmiLoadingImage: {fileID: 0}

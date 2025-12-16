@@ -107,14 +107,23 @@ public class InternetValidator : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
 
-        if (triggerEvent && Application.internetReachability != NetworkReachability.NotReachable)
+        if ( Application.internetReachability != NetworkReachability.NotReachable)
         {
             callBack?.Invoke(Application.internetReachability != NetworkReachability.NotReachable);
+
+            if (!triggerEvent && Application.internetReachability != NetworkReachability.NotReachable)
+            {
+                if (FirebaseEvents.instance != null)
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("Internet_Connectivity", "Connected_succesfully ");
+                }
+                triggerEvent = true;
+            }
             // Debug.Log("No Internet - Skipping HTTP Request");
             yield break;
         }
-
-        using (UnityWebRequest request = UnityWebRequest.Get("http://clients3.google.com/generate_204"))
+        /*
+        using (UnityWebRequest request = UnityWebRequest.Get("https://clients3.google.com/generate_204"))
         {
             request.timeout = 5;
             yield return request.SendWebRequest();
@@ -143,6 +152,7 @@ public class InternetValidator : MonoBehaviour
                 callBack?.Invoke(false);
             }
         }
+        */
 
     }
 
