@@ -1847,7 +1847,8 @@ public enum RewardType {
     skiplevel =3,
     None=5,
    store =6,
-   continuegame =7
+   continuegame =7,
+   retryLevel = 8
 }
 
 public enum GameEnum

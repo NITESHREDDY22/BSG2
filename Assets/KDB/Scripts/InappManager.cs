@@ -116,13 +116,14 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
         Debug.Log(" Initializing Unity Gaming Services...");
         // Initialize Unity Gaming Services (UGS)
         await UnityServices.InitializeAsync();
-        Debug.Log(" Unity Gaming Services Initialized Successfully!");
+        Debug.Log("IAP Unity Gaming Services Initialized Successfully!");
 
         InitializePurchasing();
     }
 
     private void InitializePurchasing()
     {
+        Debug.Log($"IAP InitializePurchasing isInitialized:{isInitialized}");
         if (isInitialized)
             return;
 
@@ -157,7 +158,7 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
 
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
-        Debug.LogError("In-App Purchasing successfully initialized");
+        Debug.LogError("IAP Purchasing successfully initialized");
         m_StoreController = controller;
         m_GooglePlayStoreExtensions = extensions.GetExtension<IGooglePlayStoreExtensions>();
 
@@ -175,7 +176,7 @@ public class InappManager : MonoBehaviour, IStoreListener, IStoreController, IDe
 
     public void OnInitializeFailed(InitializationFailureReason error)
     {
-        Debug.Log($"In-App Purchasing initialize failed: {error}");
+        Debug.Log($"IAP Purchasing initialize failed: {error}");
     }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)

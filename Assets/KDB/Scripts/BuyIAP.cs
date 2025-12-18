@@ -14,7 +14,7 @@ public class BuyIAP : MonoBehaviour
 
     private void OnEnable()
     {
-        priceText.SetText(InappManager.Instance.GetProductCurrency(currentItem));
+        if(priceText)priceText.SetText(InappManager.Instance.GetProductCurrency(currentItem));
         priceText1.text = InappManager.Instance.GetProductCurrency(currentItem);
         cancelButton.onClick.RemoveAllListeners();
         cancelButton.onClick.AddListener(() => ClosePopup());

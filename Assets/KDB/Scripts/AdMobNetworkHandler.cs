@@ -1,3 +1,4 @@
+using Firebase.Analytics;
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
 using System;
@@ -500,6 +501,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         {
             Debug.LogError("Asdf ShowInterstitialAd " + adType);
 
+            RegisterPaidEvent(item.Interstitial);
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {
                 item.Interstitial.Show();
@@ -507,7 +509,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                 item.isAdRequested = false;
                 callBack?.Invoke(true);
                 FireBaseActions(adType == AdType.Launch ? AdContent.AdMobLaunchShown : AdContent.AdMobInterstitalShown, AdMode.Shown, SuccessStatus.Success);
-
+                
             });
         }
         else
@@ -525,6 +527,70 @@ public class AdMobNetworkHandler :MonoBehaviour
 
         }
     }
+
+    public void RegisterPaidEvent(object ad)
+{
+    if (ad == null) return;
+
+    switch (ad)
+    {
+        case InterstitialAd interstitial:
+            interstitial.OnAdPaid -= (value) => { };
+            interstitial.OnAdPaid += (adValue) =>
+                HandlePaidEvent(adValue, interstitial.GetAdUnitID(), "interstitial");
+            break;
+
+        case RewardedAd rewarded:
+            rewarded.OnAdPaid -= (value) => { };
+            rewarded.OnAdPaid += (adValue) =>
+                HandlePaidEvent(adValue, rewarded.GetAdUnitID(), "rewarded");
+            break;
+
+        case BannerView banner:
+            banner.OnAdPaid -= (value) => { };
+            banner.OnAdPaid += (adValue) =>
+                HandlePaidEvent(adValue, banner.GetAdUnitID(), "banner");
+            break;
+
+        default:
+            Debug.LogError("RegisterPaidEvent: Unsupported ad type");
+            break;
+    }
+}
+
+private void HandlePaidEvent(
+    AdValue adValue,
+    string adUnitId,
+    string adFormat
+)
+{
+    double revenue = adValue.Value / 1_000_000.0;
+
+    Parameter[] parameters =
+    {
+        new Parameter("ad_platform", "AdMob"),
+        new Parameter("ad_source", "admob"),
+        new Parameter("ad_unit_name", adUnitId),
+        new Parameter("ad_format", adFormat),
+        new Parameter("currency", adValue.CurrencyCode),
+        new Parameter("value", revenue),
+        new Parameter("ad_value_precision", adValue.Precision.ToString())
+    };
+
+    FirebaseAnalytics.LogEvent("ad_revenue", parameters);
+
+    Debug.Log(
+        $"[AdRevenue]\n" +
+        $"Format: {adFormat}\n" +
+        $"Unit: {adUnitId}\n" +
+        $"Revenue: {revenue} {adValue.CurrencyCode}\n" +
+        $"Precision: {adValue.Precision}"
+    );
+}
+
+
+
+
 
 
     public void StopPreviousCoroutine()
@@ -769,6 +835,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         this.callBack = callBack;
         if (item!=null && item.RewardedAd!= null && item.RewardedAd.CanShowAd())
         {
+            RegisterPaidEvent(item.RewardedAd);
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {                
                 item.RewardedAd.Show((Reward reward) =>
@@ -777,6 +844,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                     {
                         Debug.LogError("asdf Admob  Rewarded ad granted a reward: "+adItem.AdID);
                         this.callBack?.Invoke(true);
+                        
                     }
                 });
             });
@@ -1195,11 +1263,13 @@ public class AdMobNetworkHandler :MonoBehaviour
         if (item.bannerView != null && item.isAdReady)
         {
             //Debug.LogError("Asdf ShowInterstitialAd 22222");
+            RegisterPaidEvent(item.bannerView);
 
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {
                 item.bannerView.Show();   
                 isShowBannerAdCalled = true;
+
             });
         }
         else
