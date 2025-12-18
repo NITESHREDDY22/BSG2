@@ -205,11 +205,34 @@ public class GameManager : MonoBehaviour
 
     public void Load()
     {
-        AdManager._instance.ShowLoadingPanel();       
+        //AdManager._instance.ShowLoadingPanel();       
         LoadLevel();
         
+    }
+    void LoadLevel()
+    {
+        Debug.Log($"coins:{GameManager.GetCoins()}");
+        if (GameManager.GetCoins() >= Global.coinsToReload)
+        {
+            Invoke(nameof(ReloadLevel), .8f);
+            GameManager.DeductCoins(Global.coinsToReload);
+            if (NotEnoughCoinsPopup.Instance)
+                NotEnoughCoinsPopup.Instance.ShowCoinDeduction(Vector2.zero, Global.coinsToReload);
+        }
+        else
+        {
+            NotEnoughCoinsPopup.Trigger();
+        }
+    }
 
-        void LoadLevel()
+    public void ReloadLevel()
+    {
+        Debug.Log("ReloadLevel");
+        AdManager._instance.ShowLoadingPanel();
+        Global.tutorialDisplaye = true;
+        Global.noOfTries = Global.noOfTries + 1;
+        //ClickSound.Play ();
+        if (!SoundManager.IsMuted())
         {
             Global.tutorialDisplaye = true;
             Global.noOfTries = Global.noOfTries + 1;
@@ -247,6 +270,19 @@ public class GameManager : MonoBehaviour
             }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+    public void ReloadLevelNoInterstitial()
+    {
+        Debug.Log("ReloadLevelNoInterstitial");
+        AdManager._instance.ShowLoadingPanel();
+        Global.tutorialDisplaye = true;
+        Global.noOfTries = Global.noOfTries + 1;
+        //ClickSound.Play ();
+        if (!SoundManager.IsMuted())
+        {
+            SoundsHandler.Instance.PlaySource2Clip(4, 0);
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     float currentAdDisplayTime;

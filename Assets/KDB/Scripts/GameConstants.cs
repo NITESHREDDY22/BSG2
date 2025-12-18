@@ -6,7 +6,8 @@ using UnityEngine;
 public enum ItemType
 {
     None,
-    Noads
+    Noads,
+    coin_pack1
 }
 
 public static class GameConstants 
@@ -37,6 +38,9 @@ public static class GameConstants
             case ItemType.Noads:
                 PlayerPrefs.SetString(NoAdsKey, NoAdsPurchased);
                 Coins += 5000;
+                break;
+            case ItemType.coin_pack1:
+                Coins += 10000;
                 break;
         }
     }
