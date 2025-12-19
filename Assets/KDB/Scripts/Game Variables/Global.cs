@@ -49,5 +49,5 @@ public class Global : MonoBehaviour
     public static bool isLaunchInterstitialEnabled = true;
     public static int adRetryTime = 60;
 
-    public static int coinsToReload = 1000;
+    public static int coinsToReload = 100;
 }

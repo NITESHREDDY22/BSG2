@@ -1984,11 +1984,20 @@ public class GameManager : MonoBehaviour
     {
         int coinsEarned = PlayerPrefs.GetInt("coins");
         GameManager.Instance.totalcoinsatWin.text = coinsEarned.ToString();
+
+        if (CoinFlyAnimator.Instance)
+        {
+            CoinFlyAnimator.Instance.Play(star0.GetComponent<RectTransform>(), totalcoinsatWin.transform.parent.GetComponent<RectTransform>(),gameOverPanel.transform, () =>
+            {
+                Debug.Log("ShowCoinsAnimation complete");
+            });
+        }   
         yield return new WaitForSeconds(2.0f);
         t = (t - s);
         coinsEarned = PlayerPrefs.GetInt("coins") + (t * 100);
 
         CoinsEffect.Play();
+        
         GameManager.Instance.totalcoinsatWin.text = coinsEarned.ToString();
 
         PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + (t * 100));
