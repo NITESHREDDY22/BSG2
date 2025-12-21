@@ -18,6 +18,9 @@ using System.Net.Http.Headers;
 using System.Linq;
 using System.Net.NetworkInformation;
 using GoogleMobileAds.Api.Mediation.UnityAds;
+using GoogleMobileAds.Mediation.AppLovin.Api;
+using GoogleMobileAds.Mediation.DTExchange.Api;
+using GoogleMobileAds.Mediation.IronSource.Api;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -204,13 +207,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             yield return www;
             try
             {
-                if (www.error == null )
+                if (www.error == null)
                 {
 
                     GameConfig config = new GameConfig();
 
                     config = JsonUtility.FromJson<GameConfig>(www.text);
-                    Debug.LogWarning(www.text);
+                    Debug.Log("config data" + www.text);
                     //Global.isNativeAdsEnabled = config.isNativeAdsEnabled;
                     GOFAdInterval = config.GOFAdInterval;
                     GOWAdInterval = config.GOWAdInterval;
@@ -231,6 +234,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.isAppOpenAdEnabled = config.isAppOpenAdEnabled;
                     Global.adRetryTime = config.adRetryTime;
                     bannerAdShowLevelFrom = config.showBannerFrom;
+                    Global.coinsToReload = config.coinsToReload;
+                    Global.defaultCoins = config.defaultCoins;
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
@@ -271,34 +276,42 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 }
             }
         }
-            //if (!Advertisement.isInitialized && Advertisement.isSupported)
-            //{
-            //    Advertisement.Initialize(androidGameID, testMode, this);
-            //}
-            /*//testsuite
-            MediationTestSuite.AdRequest = new AdRequest.Builder()
-                .AddTestDevice("2077ef9a63d2b398840261c8221a0c9b")
-                .Build();
-            */
+        //if (!Advertisement.isInitialized && Advertisement.isSupported)
+        //{
+        //    Advertisement.Initialize(androidGameID, testMode, this);
+        //}
+        /*//testsuite
+        MediationTestSuite.AdRequest = new AdRequest.Builder()
+            .AddTestDevice("2077ef9a63d2b398840261c8221a0c9b")
+            .Build();
+        */
 
-            //fb intialise
-            //AudienceNetworkAds.Initialize();
-            //AdSettings.AddTestDevice("07b03dd5-2c63-4b49-bb75-4c5ad7068bb6");
-            //LoadFBInterstitial();
-            yield return new WaitForSeconds(1f);
-           StartCoroutine(InitializeAdNetworks());
+        //fb intialise
+        //AudienceNetworkAds.Initialize();
+        //AdSettings.AddTestDevice("07b03dd5-2c63-4b49-bb75-4c5ad7068bb6");
+        //LoadFBInterstitial();
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(InitializeAdNetworks());
+        SetDefaultData();
         try
         {
 
-          
+
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
             //
         }
-
     }
-  
+
+    private static void SetDefaultData()
+    {
+        if (!PlayerPrefs.HasKey("coins"))
+        {
+            PlayerPrefs.SetInt("coins", Global.defaultCoins);
+        }
+    }
 
     public void ShowLoadingPanel(bool showBannerAdFlag=false)
     {
@@ -397,7 +410,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     private bool canShowAd=true;
     void Initialize()
     {
-
         AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
         if (adMobConfig != null)
         {
@@ -427,6 +439,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
         //MobileAdsEventExecutor.ExecuteInUpdate(() =>
         //{ 
+        DTExchange.SetGDPRConsent(true);
+        
+        // AppLovin
+        AppLovin.SetHasUserConsent(true);
+        
+        // IronSource
+        IronSource.SetConsent(true);
        
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {

@@ -50,4 +50,5 @@ public class Global : MonoBehaviour
     public static int adRetryTime = 60;
 
     public static int coinsToReload = 100;
+    public static int defaultCoins = 1000;
 }

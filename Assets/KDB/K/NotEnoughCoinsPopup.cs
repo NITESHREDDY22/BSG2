@@ -38,12 +38,16 @@ public class NotEnoughCoinsPopup : MonoBehaviour
         popupPanel.SetActive(true);
         ShowNotEnoughCoinsPopup();
         OnOpenCallback?.Invoke();
+        if (AdManager._instance)
+            AdManager._instance.HidebannerAd();
     }
 
     public void Close()
     {
         popupPanel.SetActive(false);
         OnCloseCallback?.Invoke();
+        if (AdManager._instance)
+            AdManager._instance.ShowbannerAd();
     }
     public bool IsActive()
     {

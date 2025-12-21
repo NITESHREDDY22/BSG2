@@ -40,4 +40,6 @@ public class GameConfig {
     public bool isRewaredAdsEnabled;
     public bool isIntersitialsEnabled;
     public int adRetryTime = 60;
+    public int coinsToReload = 100;
+    public int defaultCoins = 1000;
 }

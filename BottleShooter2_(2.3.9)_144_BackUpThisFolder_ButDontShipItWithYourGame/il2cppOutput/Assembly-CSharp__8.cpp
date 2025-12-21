@@ -1,0 +1,4086 @@
+﻿#include "pch-cpp.hpp"
+
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include <limits>
+
+
+
+struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
+struct IntPtrU5BU5D_tFD177F8C806A6921AD7150264CCC62FA00CAD832;
+struct StackTraceU5BU5D_t32FBCB20930EAF5BAE3F450FF75228E5450DA0DF;
+struct CancellationTokenSource_tAAE1E0033BCFC233801F8CB4CED5C852B350CB7B;
+struct Collider2D_t6A17BA7734600EF3F26588E9ED903617D5B8EB52;
+struct Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3;
+struct Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B;
+struct Delegate_t;
+struct DelegateData_t9B286B493293CD2D23A5B2B5EF0E5B1324C2B77E;
+struct GameObject_t76FEDD663AB33C991A9C9A23129337651094216F;
+struct IDictionary_t6D03155AF1FA9083817AA5B6AD7DEEACC26AB220;
+struct IEnumerator_t7B609C2FFA6EB5167D9C62A0C32A21DE2F666DAA;
+struct LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769;
+struct LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D;
+struct Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3;
+struct MethodInfo_t;
+struct MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71;
+struct NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A;
+struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C;
+struct ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1;
+struct RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C;
+struct Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF;
+struct SafeSerializationManager_tCBB85B95DFD1634237140CD892E82D06ECB3F5E6;
+struct SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42;
+struct String_t;
+struct Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1;
+struct Void_t4861ACF8F4594C3437BB48B6E56783494B843915;
+struct WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3;
+struct U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6;
+struct LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA;
+struct U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47;
+struct LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A;
+
+IL2CPP_EXTERN_C RuntimeClass* Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C String_t* _stringLiteral62446FB98EFD82CC316D8E9174301558FD8E8B7D;
+IL2CPP_EXTERN_C String_t* _stringLiteral9D5313975DA8153FF9A5262016CB413A4E84846E;
+IL2CPP_EXTERN_C const RuntimeMethod* GameObject_GetComponent_TisRenderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF_m026EB44DB6238F13E2AFBECF1FBBE924CB1B040A_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CHitTriggerU3Ed__36_System_Collections_IEnumerator_Reset_m704CD34646D7E64BCD8E20545445271832CC5A3A_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CHitTriggerU3Ed__43_System_Collections_IEnumerator_Reset_mABA173A224EA115F5CE30495F3A8E2C677A62AB0_RuntimeMethod_var;
+struct Delegate_t_marshaled_com;
+struct Delegate_t_marshaled_pinvoke;
+struct Exception_t_marshaled_com;
+struct Exception_t_marshaled_pinvoke;
+
+struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
+
+IL2CPP_EXTERN_C_BEGIN
+IL2CPP_EXTERN_C_END
+
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+struct U3CPrivateImplementationDetailsU3E_t0F5473E849A5A5185A9F4C5246F0C32816C49FCA  : public RuntimeObject
+{
+};
+struct String_t  : public RuntimeObject
+{
+	int32_t ____stringLength;
+	Il2CppChar ____firstChar;
+};
+struct ValueType_t6D9B272BD21782F0A9A14F2E41F85A50E97A986F  : public RuntimeObject
+{
+};
+struct ValueType_t6D9B272BD21782F0A9A14F2E41F85A50E97A986F_marshaled_pinvoke
+{
+};
+struct ValueType_t6D9B272BD21782F0A9A14F2E41F85A50E97A986F_marshaled_com
+{
+};
+struct YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D  : public RuntimeObject
+{
+};
+struct YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D_marshaled_pinvoke
+{
+};
+struct YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D_marshaled_com
+{
+};
+struct Boolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22 
+{
+	bool ___m_value;
+};
+struct Double_tE150EF3D1D43DEE85D533810AB4C742307EEDE5F 
+{
+	double ___m_value;
+};
+struct Int32_t680FF22E76F6EFAD4375103CBBFFA0421349384C 
+{
+	int32_t ___m_value;
+};
+struct IntPtr_t 
+{
+	void* ___m_value;
+};
+struct LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB 
+{
+	int32_t ___m_Mask;
+};
+struct Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 
+{
+	float ___x;
+	float ___y;
+	float ___z;
+	float ___w;
+};
+struct Single_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C 
+{
+	float ___m_value;
+};
+struct Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 
+{
+	float ___x;
+	float ___y;
+};
+struct Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 
+{
+	float ___x;
+	float ___y;
+	float ___z;
+};
+struct Void_t4861ACF8F4594C3437BB48B6E56783494B843915 
+{
+	union
+	{
+		struct
+		{
+		};
+		uint8_t Void_t4861ACF8F4594C3437BB48B6E56783494B843915__padding[1];
+	};
+};
+struct WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3  : public YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D
+{
+	float ___m_Seconds;
+};
+struct WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_marshaled_pinvoke : public YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D_marshaled_pinvoke
+{
+	float ___m_Seconds;
+};
+struct WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_marshaled_com : public YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D_marshaled_com
+{
+	float ___m_Seconds;
+};
+#pragma pack(push, tp, 1)
+struct __StaticArrayInitTypeSizeU3D20_tA394C0A7DC4F4F05D2190B09E23BDE8536718D72 
+{
+	union
+	{
+		struct
+		{
+			union
+			{
+			};
+		};
+		uint8_t __StaticArrayInitTypeSizeU3D20_tA394C0A7DC4F4F05D2190B09E23BDE8536718D72__padding[20];
+	};
+};
+#pragma pack(pop, tp)
+#pragma pack(push, tp, 1)
+struct __StaticArrayInitTypeSizeU3D24_t3464DA68B6CCAB9A0A43F94B3DB9AA7E7FDDB19A 
+{
+	union
+	{
+		struct
+		{
+			union
+			{
+			};
+		};
+		uint8_t __StaticArrayInitTypeSizeU3D24_t3464DA68B6CCAB9A0A43F94B3DB9AA7E7FDDB19A__padding[24];
+	};
+};
+#pragma pack(pop, tp)
+#pragma pack(push, tp, 1)
+struct __StaticArrayInitTypeSizeU3D32_tC3894D25C1E879699FE1C9BAB1BBF2787B405069 
+{
+	union
+	{
+		struct
+		{
+			union
+			{
+			};
+		};
+		uint8_t __StaticArrayInitTypeSizeU3D32_tC3894D25C1E879699FE1C9BAB1BBF2787B405069__padding[32];
+	};
+};
+#pragma pack(pop, tp)
+struct EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 
+{
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___m_ParticleSystem;
+};
+struct EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678_marshaled_pinvoke
+{
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___m_ParticleSystem;
+};
+struct EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678_marshaled_com
+{
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___m_ParticleSystem;
+};
+struct Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___m_Center;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___m_Extents;
+};
+struct Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B  : public YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D
+{
+	intptr_t ___m_Ptr;
+};
+struct Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B_marshaled_pinvoke : public YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D_marshaled_pinvoke
+{
+	intptr_t ___m_Ptr;
+};
+struct Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B_marshaled_com : public YieldInstruction_tFCE35FD0907950EFEE9BC2890AC664E41C53728D_marshaled_com
+{
+	intptr_t ___m_Ptr;
+};
+struct Delegate_t  : public RuntimeObject
+{
+	intptr_t ___method_ptr;
+	intptr_t ___invoke_impl;
+	RuntimeObject* ___m_target;
+	intptr_t ___method;
+	intptr_t ___delegate_trampoline;
+	intptr_t ___extra_arg;
+	intptr_t ___method_code;
+	intptr_t ___interp_method;
+	intptr_t ___interp_invoke_impl;
+	MethodInfo_t* ___method_info;
+	MethodInfo_t* ___original_method_info;
+	DelegateData_t9B286B493293CD2D23A5B2B5EF0E5B1324C2B77E* ___data;
+	bool ___method_is_virtual;
+};
+struct Delegate_t_marshaled_pinvoke
+{
+	intptr_t ___method_ptr;
+	intptr_t ___invoke_impl;
+	Il2CppIUnknown* ___m_target;
+	intptr_t ___method;
+	intptr_t ___delegate_trampoline;
+	intptr_t ___extra_arg;
+	intptr_t ___method_code;
+	intptr_t ___interp_method;
+	intptr_t ___interp_invoke_impl;
+	MethodInfo_t* ___method_info;
+	MethodInfo_t* ___original_method_info;
+	DelegateData_t9B286B493293CD2D23A5B2B5EF0E5B1324C2B77E* ___data;
+	int32_t ___method_is_virtual;
+};
+struct Delegate_t_marshaled_com
+{
+	intptr_t ___method_ptr;
+	intptr_t ___invoke_impl;
+	Il2CppIUnknown* ___m_target;
+	intptr_t ___method;
+	intptr_t ___delegate_trampoline;
+	intptr_t ___extra_arg;
+	intptr_t ___method_code;
+	intptr_t ___interp_method;
+	intptr_t ___interp_invoke_impl;
+	MethodInfo_t* ___method_info;
+	MethodInfo_t* ___original_method_info;
+	DelegateData_t9B286B493293CD2D23A5B2B5EF0E5B1324C2B77E* ___data;
+	int32_t ___method_is_virtual;
+};
+struct Exception_t  : public RuntimeObject
+{
+	String_t* ____className;
+	String_t* ____message;
+	RuntimeObject* ____data;
+	Exception_t* ____innerException;
+	String_t* ____helpURL;
+	RuntimeObject* ____stackTrace;
+	String_t* ____stackTraceString;
+	String_t* ____remoteStackTraceString;
+	int32_t ____remoteStackIndex;
+	RuntimeObject* ____dynamicMethods;
+	int32_t ____HResult;
+	String_t* ____source;
+	SafeSerializationManager_tCBB85B95DFD1634237140CD892E82D06ECB3F5E6* ____safeSerializationManager;
+	StackTraceU5BU5D_t32FBCB20930EAF5BAE3F450FF75228E5450DA0DF* ___captured_traces;
+	IntPtrU5BU5D_tFD177F8C806A6921AD7150264CCC62FA00CAD832* ___native_trace_ips;
+	int32_t ___caught_in_unmanaged;
+};
+struct Exception_t_marshaled_pinvoke
+{
+	char* ____className;
+	char* ____message;
+	RuntimeObject* ____data;
+	Exception_t_marshaled_pinvoke* ____innerException;
+	char* ____helpURL;
+	Il2CppIUnknown* ____stackTrace;
+	char* ____stackTraceString;
+	char* ____remoteStackTraceString;
+	int32_t ____remoteStackIndex;
+	Il2CppIUnknown* ____dynamicMethods;
+	int32_t ____HResult;
+	char* ____source;
+	SafeSerializationManager_tCBB85B95DFD1634237140CD892E82D06ECB3F5E6* ____safeSerializationManager;
+	StackTraceU5BU5D_t32FBCB20930EAF5BAE3F450FF75228E5450DA0DF* ___captured_traces;
+	Il2CppSafeArray* ___native_trace_ips;
+	int32_t ___caught_in_unmanaged;
+};
+struct Exception_t_marshaled_com
+{
+	Il2CppChar* ____className;
+	Il2CppChar* ____message;
+	RuntimeObject* ____data;
+	Exception_t_marshaled_com* ____innerException;
+	Il2CppChar* ____helpURL;
+	Il2CppIUnknown* ____stackTrace;
+	Il2CppChar* ____stackTraceString;
+	Il2CppChar* ____remoteStackTraceString;
+	int32_t ____remoteStackIndex;
+	Il2CppIUnknown* ____dynamicMethods;
+	int32_t ____HResult;
+	Il2CppChar* ____source;
+	SafeSerializationManager_tCBB85B95DFD1634237140CD892E82D06ECB3F5E6* ____safeSerializationManager;
+	StackTraceU5BU5D_t32FBCB20930EAF5BAE3F450FF75228E5450DA0DF* ___captured_traces;
+	Il2CppSafeArray* ___native_trace_ips;
+	int32_t ___caught_in_unmanaged;
+};
+struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C  : public RuntimeObject
+{
+	intptr_t ___m_CachedPtr;
+};
+struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_marshaled_pinvoke
+{
+	intptr_t ___m_CachedPtr;
+};
+struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_marshaled_com
+{
+	intptr_t ___m_CachedPtr;
+};
+struct RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA 
+{
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___m_Centroid;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___m_Point;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___m_Normal;
+	float ___m_Distance;
+	float ___m_Fraction;
+	int32_t ___m_Collider;
+};
+struct Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3  : public Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C
+{
+};
+struct GameObject_t76FEDD663AB33C991A9C9A23129337651094216F  : public Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C
+{
+};
+struct Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3  : public Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C
+{
+};
+struct MulticastDelegate_t  : public Delegate_t
+{
+	DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771* ___delegates;
+};
+struct MulticastDelegate_t_marshaled_pinvoke : public Delegate_t_marshaled_pinvoke
+{
+	Delegate_t_marshaled_pinvoke** ___delegates;
+};
+struct MulticastDelegate_t_marshaled_com : public Delegate_t_marshaled_com
+{
+	Delegate_t_marshaled_com** ___delegates;
+};
+struct SystemException_tCC48D868298F4C0705279823E34B00F4FBDB7295  : public Exception_t
+{
+};
+struct U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6  : public RuntimeObject
+{
+	int32_t ___U3CU3E1__state;
+	RuntimeObject* ___U3CU3E2__current;
+	LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* ___U3CU3E4__this;
+	RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___hit;
+	float ___triggerInterval;
+};
+struct U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47  : public RuntimeObject
+{
+	int32_t ___U3CU3E1__state;
+	RuntimeObject* ___U3CU3E2__current;
+	SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* ___U3CU3E4__this;
+	RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___hit;
+	float ___triggerInterval;
+};
+struct Behaviour_t01970CFBBA658497AE30F311C447DB0440BAB7FA  : public Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3
+{
+};
+struct NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A  : public SystemException_tCC48D868298F4C0705279823E34B00F4FBDB7295
+{
+};
+struct ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1  : public Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3
+{
+};
+struct Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF  : public Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3
+{
+};
+struct Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1  : public Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3
+{
+};
+struct LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA  : public MulticastDelegate_t
+{
+};
+struct LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A  : public MulticastDelegate_t
+{
+};
+struct Collider2D_t6A17BA7734600EF3F26588E9ED903617D5B8EB52  : public Behaviour_t01970CFBBA658497AE30F311C447DB0440BAB7FA
+{
+};
+struct LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D  : public Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF
+{
+};
+struct MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71  : public Behaviour_t01970CFBBA658497AE30F311C447DB0440BAB7FA
+{
+	CancellationTokenSource_tAAE1E0033BCFC233801F8CB4CED5C852B350CB7B* ___m_CancellationTokenSource;
+};
+struct LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___laserLineRendererArc;
+	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___laserLineRenderer;
+	int32_t ___laserArcSegments;
+	bool ___laserActive;
+	bool ___ignoreCollisions;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___targetGo;
+	float ___laserTexOffsetSpeed;
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___hitSparkParticleSystem;
+	float ___laserArcMaxYDown;
+	float ___laserArcMaxYUp;
+	float ___maxLaserRaycastDistance;
+	bool ___laserRotationEnabled;
+	bool ___lerpLaserRotation;
+	float ___turningRate;
+	float ___collisionTriggerInterval;
+	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___mask;
+	String_t* ___sortLayer;
+	int32_t ___sortOrder;
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* ___OnLaserHitTriggered;
+	bool ___useArc;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___gameObjectCached;
+	float ___laserAngle;
+	float ___laserTextureOffset;
+	float ___laserTextureXScale;
+	float ___startLaserTextureXScale;
+	int32_t ___startLaserSegmentLength;
+	bool ___waitingForTriggerTime;
+	EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 ___hitSparkEmission;
+};
+struct RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	float ___pickerInterval;
+	float ___radius;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___player;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___randomPointInCircle;
+};
+struct SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___laserStartPiece;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___laserMiddlePiece;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___laserEndPiece;
+	LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* ___laserLineRendererArc;
+	int32_t ___laserArcSegments;
+	RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C* ___laserOscillationPositionerScript;
+	bool ___oscillateLaser;
+	float ___maxLaserLength;
+	float ___oscillationSpeed;
+	bool ___laserActive;
+	bool ___ignoreCollisions;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___targetGo;
+	ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* ___hitSparkParticleSystem;
+	float ___laserArcMaxYDown;
+	float ___laserArcMaxYUp;
+	float ___maxLaserRaycastDistance;
+	bool ___laserRotationEnabled;
+	bool ___lerpLaserRotation;
+	float ___turningRate;
+	float ___collisionTriggerInterval;
+	LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___mask;
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* ___OnLaserHitTriggered;
+	bool ___useArc;
+	float ___oscillationThreshold;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___gameObjectCached;
+	float ___laserAngle;
+	float ___lerpYValue;
+	float ___startLaserLength;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___startGoPiece;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___middleGoPiece;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___endGoPiece;
+	float ___startSpriteWidth;
+	bool ___waitingForTriggerTime;
+	EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 ___hitSparkEmission;
+};
+struct U3CPrivateImplementationDetailsU3E_t0F5473E849A5A5185A9F4C5246F0C32816C49FCA_StaticFields
+{
+	__StaticArrayInitTypeSizeU3D32_tC3894D25C1E879699FE1C9BAB1BBF2787B405069 ___68F627154D58E93FF825E10D7F9A8299602F394659CDF863E47B06FDEBEA65D2;
+	__StaticArrayInitTypeSizeU3D20_tA394C0A7DC4F4F05D2190B09E23BDE8536718D72 ___76B1BA7557F4537258B70629B9A7A92A76B382A49F8C4D253ADC7E775B7867E4;
+	__StaticArrayInitTypeSizeU3D24_t3464DA68B6CCAB9A0A43F94B3DB9AA7E7FDDB19A ___AF76E7762AEAF5A53713523A197D2DC0DFEC510C189F273BE739D12F12C04F99;
+	__StaticArrayInitTypeSizeU3D20_tA394C0A7DC4F4F05D2190B09E23BDE8536718D72 ___E79C7E8A3CC9EF986D2360C52F934318414456A680C75DAEFD907AA357DB9911;
+};
+struct String_t_StaticFields
+{
+	String_t* ___Empty;
+};
+struct Boolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_StaticFields
+{
+	String_t* ___TrueString;
+	String_t* ___FalseString;
+};
+struct IntPtr_t_StaticFields
+{
+	intptr_t ___Zero;
+};
+struct Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974_StaticFields
+{
+	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___identityQuaternion;
+};
+struct Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_StaticFields
+{
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___zeroVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___oneVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___upVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___downVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___leftVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___rightVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___positiveInfinityVector;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___negativeInfinityVector;
+};
+struct Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_StaticFields
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___zeroVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___oneVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___upVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___downVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___leftVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___rightVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___forwardVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___backVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___positiveInfinityVector;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___negativeInfinityVector;
+};
+struct Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_StaticFields
+{
+	int32_t ___OffsetOfInstanceIDInCPlusPlusObject;
+};
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771  : public RuntimeArray
+{
+	ALIGN_FIELD (8) Delegate_t* m_Items[1];
+
+	inline Delegate_t* GetAt(il2cpp_array_size_t index) const
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items[index];
+	}
+	inline Delegate_t** GetAddressAt(il2cpp_array_size_t index)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items + index;
+	}
+	inline void SetAt(il2cpp_array_size_t index, Delegate_t* value)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		m_Items[index] = value;
+		Il2CppCodeGenWriteBarrier((void**)m_Items + index, (void*)value);
+	}
+	inline Delegate_t* GetAtUnchecked(il2cpp_array_size_t index) const
+	{
+		return m_Items[index];
+	}
+	inline Delegate_t** GetAddressAtUnchecked(il2cpp_array_size_t index)
+	{
+		return m_Items + index;
+	}
+	inline void SetAtUnchecked(il2cpp_array_size_t index, Delegate_t* value)
+	{
+		m_Items[index] = value;
+		Il2CppCodeGenWriteBarrier((void**)m_Items + index, (void*)value);
+	}
+};
+
+
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Object_Instantiate_TisRuntimeObject_m90A1E6C4C2B445D2E848DB75C772D1B95AAC046A_gshared (RuntimeObject* ___0_original, const RuntimeMethod* method) ;
+
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Delegate_t* Delegate_Combine_m1F725AEF318BE6F0426863490691A6F4606E7D00 (Delegate_t* ___0_a, Delegate_t* ___1_b, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Delegate_t* Delegate_Remove_m8B7DD5661308FA972E23CA1CC3FC9CEB355504E3 (Delegate_t* ___0_source, Delegate_t* ___1_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* Renderer_get_material_m5BA2A00816C4CC66580D4B2E409CF10718C15656 (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Material_get_mainTextureScale_mF28E905E1331B3F6AB145193026A1729E17BE7ED (Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_Distance_m2314DB9B8BD01157E013DF87BEA557375C7F9FF9_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5 (int32_t* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m9E3155FB84015C823606188F53B47CB44C444991 (String_t* ___0_str0, String_t* ___1_str1, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9 (RuntimeObject* ___0_message, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Renderer_set_sortingLayerName_mF335BAE30015B49C27FF3C063B033E44C237AC8A (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, String_t* ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Renderer_set_sortingOrder_m4C67F002AD68CA0D55D20D6B78CDED3DB24467DA (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, int32_t ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 ParticleSystem_get_emission_mD9402CE632A3607DA0B0486F9F58F7FB2B44CF08 (ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_x, Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___1_y, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65 (LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* __this, int32_t ___0_count, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* __this, float ___0_x, float ___1_y, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Material_set_mainTextureOffset_m87C139F275814719F9A10709C34E2132DFEB7A12 (Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865 (const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Subtraction_mE42023FF80067CB44A1D4A27EB7CF2B24CABB828_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Transform_get_rotation_m32AF40CA0D50C797DA639A696F8EAEC7524C179C (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Transform_get_forward_mFCFACF7165FDAB21E80E384C494DF278386CEE2F (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_AngleAxis_mF37022977B297E63AA70D69EA1C4C922FF22CC80 (float ___0_angle, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_axis, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 Quaternion_Slerp_m0A9969F500E7716EA4F6BC4E7D5464372D8E9E15 (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___0_a, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___1_b, float ___2_t, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_rotation_m61340DE74726CF0F9946743A727C4D444397331D (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_right_mFF573AFBBB2186E7AFA1BA7CA271A78DF67E4EA0_inline (const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Quaternion_op_Multiply_mE1EBA73F9173432B50F8F17CE8190C5A7986FB8C (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___0_rotation, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_point, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_v, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D (LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB ___0_mask, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_origin, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_direction, float ___2_distance, int32_t ___3_layerMask, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Transform_get_right_mC6DC057C23313802E2186A9E0DB760D795A758A4 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Collider2D_t6A17BA7734600EF3F26588E9ED903617D5B8EB52* RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD (RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserEndToTargetLocation_m0A3C1E617DBCC22C9FD52CDB9B4C2EE26F09DF0D (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hit, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* LineBasedLaser_HitTrigger_m5E25A19D194A9310A2B6965E9B18A20F7DE07ED0 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, float ___0_triggerInterval, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___1_hit, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812 (MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71* __this, RuntimeObject* ___0_routine, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserToDefaultLength_mCA3ABBF8390DF889ACBCA21271493CD70C895DE6 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__36__ctor_m402D691F11AF000DBAB8EE7951C86611E6003F24 (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8 (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, bool ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867 (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* __this, bool ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B (RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_Distance_mBACBB1609E1894D68F882D86A93519E311810C89_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_b, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_v, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1 (LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* __this, int32_t ___0_index, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_position, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Material_set_mainTextureScale_mABC2B4327CCDC6BB0E0EA72C6F29817400F56EF1 (Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* __this, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54 (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Mathf_Abs_mD945EDDEA0D62D21BFDBAB7B1C0F18DFF1CEC905_inline (int32_t ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserArcVertices_mD541E1F74241FE3B63FC522697641C22D1374397 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, float ___0_distancePoint, bool ___1_useHitPoint, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Time_get_time_m3A271BB1B20041144AC5B7863B71AB1F0150374B (const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Random_Range_m5236C99A7D8AE6AC9190592DC66016652A2D2494 (float ___0_minInclusive, float ___1_maxInclusive, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline (float ___0_value, float ___1_min, float ___2_max, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E (MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2 (RuntimeObject* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_inline (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WaitForSeconds__ctor_m579F95BADEDBAB4B3A7E302C6EE3995926EF2EFC (WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3* __this, float ___0_seconds, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NotSupportedException__ctor_m1398D0CDE19B36AA3DE9392879738C1EA2439CDF (NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_x, Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___1_y, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Transform_get_localPosition_mA9C86B990DF0685EA1061A120218993FDCC60A95 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline (float ___0_a, float ___1_b, float ___2_t, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_Lerp_m1A36103F7967F653A929556E26E6D052C298C00C_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_b, float ___2_t, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_InstantiateLaserPart_mFB2A7E55031E9B9710614D40B6F53C862693E283 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** ___0_laserComponent, GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___1_laserPart, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_parent_m9BD5E563B539DD5BEC342736B03F97B38A243234 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline (const RuntimeMethod* method) ;
+inline Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* GameObject_GetComponent_TisRenderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF_m026EB44DB6238F13E2AFBECF1FBBE924CB1B040A (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
+{
+	return ((  Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, const RuntimeMethod*))GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared)(__this, method);
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 Renderer_get_bounds_m390CF334730C3C34E45CE59F1D08C3B9F3109C7C (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Bounds_get_size_m0699A53A55A78B3201D7270D6F338DFA91B6FAD4_inline (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Transform_get_localScale_m804A002A53A645CDFCD15BB0F37209162720363F (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, float ___0_x, float ___1_y, float ___2_z, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_localScale_mBA79E811BAF6C47B80FF76414C12B47B3CD03633 (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_OscillateLaserParts_mB3DCB5AE256B73E75D6F5007B0AEC85F13B49A42 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, float ___0_currentLaserDistance, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserArcVertices_m298E7BA2444EC815707E6796209F0DA93A9EBF55 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, float ___0_distancePoint, bool ___1_useHitPoint, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserArcSegmentLength_mC1339499EAC1B4884A2995C166A4D9D79FD4170A (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SpriteBasedLaser_HitTrigger_m2E846591C69324A6C6166D6188BCF0387563DEA0 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, float ___0_triggerInterval, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___1_hit, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserBackToDefaults_m64361AD591536F3777888EBC1ED80AE1AE5B2EF5 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__43__ctor_m361BDB4E876302BF207C08D6A4F32AB4FC8CD600 (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, bool ___0_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_obj, const RuntimeMethod* method) ;
+inline GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___0_original, const RuntimeMethod* method)
+{
+	return ((  GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, const RuntimeMethod*))Object_Instantiate_TisRuntimeObject_m90A1E6C4C2B445D2E848DB75C772D1B95AAC046A_gshared)(___0_original, method);
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_set_localEulerAngles_m0458551662A1A51FDCA4C0417282B25D391661DF (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_inline (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline (float ___0_value, const RuntimeMethod* method) ;
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Multiply_m87BA7C578F96C8E49BB07088DAAC4649F83B0353_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, float ___1_d, const RuntimeMethod* method) ;
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// Method Definition Index: 33265
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_add_OnLaserHitTriggered_m861DB135A32F2AEFE2D7B52CF0805A69667ECC96 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* V_0 = NULL;
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* V_1 = NULL;
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* V_2 = NULL;
+	{
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_0 = __this->___OnLaserHitTriggered;
+		V_0 = L_0;
+	}
+
+IL_0007:
+	{
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_1 = V_0;
+		V_1 = L_1;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_2 = V_1;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_3 = ___0_value;
+		Delegate_t* L_4;
+		L_4 = Delegate_Combine_m1F725AEF318BE6F0426863490691A6F4606E7D00(L_2, L_3, NULL);
+		V_2 = ((LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*)CastclassSealed((RuntimeObject*)L_4, LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA_il2cpp_TypeInfo_var));
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA** L_5 = (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA**)(&__this->___OnLaserHitTriggered);
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_6 = V_2;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_7 = V_1;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_8;
+		L_8 = InterlockedCompareExchangeImpl<LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*>(L_5, L_6, L_7);
+		V_0 = L_8;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_9 = V_0;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_10 = V_1;
+		if ((!(((RuntimeObject*)(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*)L_9) == ((RuntimeObject*)(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*)L_10))))
+		{
+			goto IL_0007;
+		}
+	}
+	{
+		return;
+	}
+}
+// Method Definition Index: 33266
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_remove_OnLaserHitTriggered_mB4642FA428373D67837471742BA759B3143C81D1 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* V_0 = NULL;
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* V_1 = NULL;
+	LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* V_2 = NULL;
+	{
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_0 = __this->___OnLaserHitTriggered;
+		V_0 = L_0;
+	}
+
+IL_0007:
+	{
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_1 = V_0;
+		V_1 = L_1;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_2 = V_1;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_3 = ___0_value;
+		Delegate_t* L_4;
+		L_4 = Delegate_Remove_m8B7DD5661308FA972E23CA1CC3FC9CEB355504E3(L_2, L_3, NULL);
+		V_2 = ((LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*)CastclassSealed((RuntimeObject*)L_4, LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA_il2cpp_TypeInfo_var));
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA** L_5 = (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA**)(&__this->___OnLaserHitTriggered);
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_6 = V_2;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_7 = V_1;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_8;
+		L_8 = InterlockedCompareExchangeImpl<LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*>(L_5, L_6, L_7);
+		V_0 = L_8;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_9 = V_0;
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_10 = V_1;
+		if ((!(((RuntimeObject*)(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*)L_9) == ((RuntimeObject*)(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*)L_10))))
+		{
+			goto IL_0007;
+		}
+	}
+	{
+		return;
+	}
+}
+// Method Definition Index: 33267
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_Start_m21A3840BD654FB3C75ACD7AEA358B444CAB45EC4 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral62446FB98EFD82CC316D8E9174301558FD8E8B7D);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:153>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_0 = __this->___laserLineRenderer;
+		NullCheck(L_0);
+		Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* L_1;
+		L_1 = Renderer_get_material_m5BA2A00816C4CC66580D4B2E409CF10718C15656(L_0, NULL);
+		NullCheck(L_1);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_2;
+		L_2 = Material_get_mainTextureScale_mF28E905E1331B3F6AB145193026A1729E17BE7ED(L_1, NULL);
+		float L_3 = L_2.___x;
+		__this->___startLaserTextureXScale = L_3;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:154>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_4 = __this->___targetGo;
+		NullCheck(L_4);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_5;
+		L_5 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_4, NULL);
+		NullCheck(L_5);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_6;
+		L_6 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_5, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_7;
+		L_7 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_7);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_8;
+		L_8 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_7, NULL);
+		float L_9;
+		L_9 = Vector3_Distance_m2314DB9B8BD01157E013DF87BEA557375C7F9FF9_inline(L_6, L_8, NULL);
+		__this->___startLaserSegmentLength = il2cpp_codegen_cast_double_to_int<int32_t>(L_9);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:155>
+		int32_t* L_10 = (int32_t*)(&__this->___startLaserSegmentLength);
+		String_t* L_11;
+		L_11 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5(L_10, NULL);
+		String_t* L_12;
+		L_12 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteral62446FB98EFD82CC316D8E9174301558FD8E8B7D, L_11, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9(L_12, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:156>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_13 = __this->___laserLineRenderer;
+		String_t* L_14 = __this->___sortLayer;
+		NullCheck(L_13);
+		Renderer_set_sortingLayerName_mF335BAE30015B49C27FF3C063B033E44C237AC8A(L_13, L_14, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:157>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_15 = __this->___laserLineRenderer;
+		int32_t L_16 = __this->___sortOrder;
+		NullCheck(L_15);
+		Renderer_set_sortingOrder_m4C67F002AD68CA0D55D20D6B78CDED3DB24467DA(L_15, L_16, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:159>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_17 = __this->___laserLineRendererArc;
+		String_t* L_18 = __this->___sortLayer;
+		NullCheck(L_17);
+		Renderer_set_sortingLayerName_mF335BAE30015B49C27FF3C063B033E44C237AC8A(L_17, L_18, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:160>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_19 = __this->___laserLineRendererArc;
+		int32_t L_20 = __this->___sortOrder;
+		NullCheck(L_19);
+		Renderer_set_sortingOrder_m4C67F002AD68CA0D55D20D6B78CDED3DB24467DA(L_19, L_20, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:161>
+		return;
+	}
+}
+// Method Definition Index: 33268
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_Awake_m2F83C238F6B7CAD4C418488AAC458A1BFDF9C94C (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:165>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_0 = __this->___hitSparkParticleSystem;
+		NullCheck(L_0);
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 L_1;
+		L_1 = ParticleSystem_get_emission_mD9402CE632A3607DA0B0486F9F58F7FB2B44CF08(L_0, NULL);
+		__this->___hitSparkEmission = L_1;
+		Il2CppCodeGenWriteBarrier((void**)&(((&__this->___hitSparkEmission))->___m_ParticleSystem), (void*)NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:166>
+		return;
+	}
+}
+// Method Definition Index: 33269
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_OnEnable_m7383A29113E157EF4952CD5F1AFDEA4FD889B175 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:170>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0;
+		L_0 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
+		__this->___gameObjectCached = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___gameObjectCached), (void*)L_0);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:171>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_1 = __this->___laserLineRendererArc;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_2;
+		L_2 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_1, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_2)
+		{
+			goto IL_002b;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:171>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_3 = __this->___laserLineRendererArc;
+		int32_t L_4 = __this->___laserArcSegments;
+		NullCheck(L_3);
+		LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65(L_3, L_4, NULL);
+	}
+
+IL_002b:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:172>
+		return;
+	}
+}
+// Method Definition Index: 33270
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_Update_m276F8ED95AEC1EE650A9557DE86722172D841C00 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_1;
+	memset((&V_1), 0, sizeof(V_1));
+	float V_2 = 0.0f;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_3;
+	memset((&V_3), 0, sizeof(V_3));
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:182>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___gameObjectCached;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
+		{
+			goto IL_022f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:184>
+		bool L_2 = __this->___laserActive;
+		if (!L_2)
+		{
+			goto IL_022f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:187>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_3 = __this->___laserLineRenderer;
+		NullCheck(L_3);
+		Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* L_4;
+		L_4 = Renderer_get_material_m5BA2A00816C4CC66580D4B2E409CF10718C15656(L_3, NULL);
+		float L_5 = __this->___laserTextureOffset;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_6;
+		memset((&L_6), 0, sizeof(L_6));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_6), L_5, (0.0f), NULL);
+		NullCheck(L_4);
+		Material_set_mainTextureOffset_m87C139F275814719F9A10709C34E2132DFEB7A12(L_4, L_6, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:188>
+		float L_7 = __this->___laserTextureOffset;
+		float L_8;
+		L_8 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		float L_9 = __this->___laserTexOffsetSpeed;
+		__this->___laserTextureOffset = ((float)il2cpp_codegen_subtract(L_7, ((float)il2cpp_codegen_multiply(L_8, L_9))));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:191>
+		bool L_10 = __this->___laserRotationEnabled;
+		if (!L_10)
+		{
+			goto IL_01b0;
+		}
+	}
+	{
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_11 = __this->___targetGo;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_12;
+		L_12 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_11, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_12)
+		{
+			goto IL_01b0;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:194>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_13 = __this->___targetGo;
+		NullCheck(L_13);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_14;
+		L_14 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_13, NULL);
+		NullCheck(L_14);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_15;
+		L_15 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_14, NULL);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_16 = __this->___gameObjectCached;
+		NullCheck(L_16);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_17;
+		L_17 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_16, NULL);
+		NullCheck(L_17);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_18;
+		L_18 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_17, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_19;
+		L_19 = Vector3_op_Subtraction_mE42023FF80067CB44A1D4A27EB7CF2B24CABB828_inline(L_15, L_18, NULL);
+		V_1 = L_19;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:197>
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_20 = V_1;
+		float L_21 = L_20.___y;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_22 = V_1;
+		float L_23 = L_22.___x;
+		float L_24;
+		L_24 = atan2f(L_21, L_23);
+		__this->___laserAngle = L_24;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:198>
+		float L_25 = __this->___laserAngle;
+		if ((!(((float)L_25) < ((float)(0.0f)))))
+		{
+			goto IL_00cd;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:200>
+		float L_26 = __this->___laserAngle;
+		__this->___laserAngle = ((float)il2cpp_codegen_add((6.28318548f), L_26));
+	}
+
+IL_00cd:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:204>
+		float L_27 = __this->___laserAngle;
+		V_2 = ((float)il2cpp_codegen_multiply(L_27, (57.2957802f)));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:206>
+		bool L_28 = __this->___lerpLaserRotation;
+		if (!L_28)
+		{
+			goto IL_0165;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:208>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_29;
+		L_29 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_30;
+		L_30 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_30);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_31;
+		L_31 = Transform_get_rotation_m32AF40CA0D50C797DA639A696F8EAEC7524C179C(L_30, NULL);
+		float L_32 = V_2;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_33;
+		L_33 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_33);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_34;
+		L_34 = Transform_get_forward_mFCFACF7165FDAB21E80E384C494DF278386CEE2F(L_33, NULL);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_35;
+		L_35 = Quaternion_AngleAxis_mF37022977B297E63AA70D69EA1C4C922FF22CC80(L_32, L_34, NULL);
+		float L_36;
+		L_36 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		float L_37 = __this->___turningRate;
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_38;
+		L_38 = Quaternion_Slerp_m0A9969F500E7716EA4F6BC4E7D5464372D8E9E15(L_31, L_35, ((float)il2cpp_codegen_multiply(L_36, L_37)), NULL);
+		NullCheck(L_29);
+		Transform_set_rotation_m61340DE74726CF0F9946743A727C4D444397331D(L_29, L_38, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:211>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_39;
+		L_39 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_39);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_40;
+		L_40 = Transform_get_rotation_m32AF40CA0D50C797DA639A696F8EAEC7524C179C(L_39, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_41;
+		L_41 = Vector3_get_right_mFF573AFBBB2186E7AFA1BA7CA271A78DF67E4EA0_inline(NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_42;
+		L_42 = Quaternion_op_Multiply_mE1EBA73F9173432B50F8F17CE8190C5A7986FB8C(L_40, L_41, NULL);
+		V_3 = L_42;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:214>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_43;
+		L_43 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_43);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_44;
+		L_44 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_43, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_45;
+		L_45 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_44, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_46 = V_3;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_47;
+		L_47 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_46, NULL);
+		float L_48 = __this->___maxLaserRaycastDistance;
+		LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB L_49 = __this->___mask;
+		int32_t L_50;
+		L_50 = LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D(L_49, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_51;
+		L_51 = Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F(L_45, L_47, L_48, L_50, NULL);
+		V_0 = L_51;
+		goto IL_01e7;
+	}
+
+IL_0165:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:218>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_52;
+		L_52 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		float L_53 = V_2;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_54;
+		L_54 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_54);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_55;
+		L_55 = Transform_get_forward_mFCFACF7165FDAB21E80E384C494DF278386CEE2F(L_54, NULL);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_56;
+		L_56 = Quaternion_AngleAxis_mF37022977B297E63AA70D69EA1C4C922FF22CC80(L_53, L_55, NULL);
+		NullCheck(L_52);
+		Transform_set_rotation_m61340DE74726CF0F9946743A727C4D444397331D(L_52, L_56, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:221>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_57;
+		L_57 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_57);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_58;
+		L_58 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_57, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_59;
+		L_59 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_58, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_60 = V_1;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_61;
+		L_61 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_60, NULL);
+		float L_62 = __this->___maxLaserRaycastDistance;
+		LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB L_63 = __this->___mask;
+		int32_t L_64;
+		L_64 = LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D(L_63, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_65;
+		L_65 = Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F(L_59, L_61, L_62, L_64, NULL);
+		V_0 = L_65;
+		goto IL_01e7;
+	}
+
+IL_01b0:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:227>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_66;
+		L_66 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_66);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_67;
+		L_67 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_66, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_68;
+		L_68 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_67, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_69;
+		L_69 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_69);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_70;
+		L_70 = Transform_get_right_mC6DC057C23313802E2186A9E0DB760D795A758A4(L_69, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_71;
+		L_71 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_70, NULL);
+		float L_72 = __this->___maxLaserRaycastDistance;
+		LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB L_73 = __this->___mask;
+		int32_t L_74;
+		L_74 = LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D(L_73, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_75;
+		L_75 = Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F(L_68, L_71, L_72, L_74, NULL);
+		V_0 = L_75;
+	}
+
+IL_01e7:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:230>
+		bool L_76 = __this->___ignoreCollisions;
+		if (L_76)
+		{
+			goto IL_0229;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:232>
+		Collider2D_t6A17BA7734600EF3F26588E9ED903617D5B8EB52* L_77;
+		L_77 = RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD((&V_0), NULL);
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_78;
+		L_78 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_77, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_78)
+		{
+			goto IL_0222;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:234>
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_79 = V_0;
+		LineBasedLaser_SetLaserEndToTargetLocation_m0A3C1E617DBCC22C9FD52CDB9B4C2EE26F09DF0D(__this, L_79, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:235>
+		bool L_80 = __this->___waitingForTriggerTime;
+		if (L_80)
+		{
+			goto IL_022f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:235>
+		float L_81 = __this->___collisionTriggerInterval;
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_82 = V_0;
+		RuntimeObject* L_83;
+		L_83 = LineBasedLaser_HitTrigger_m5E25A19D194A9310A2B6965E9B18A20F7DE07ED0(__this, L_81, L_82, NULL);
+		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_84;
+		L_84 = MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812(__this, L_83, NULL);
+		return;
+	}
+
+IL_0222:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:240>
+		LineBasedLaser_SetLaserToDefaultLength_mCA3ABBF8390DF889ACBCA21271493CD70C895DE6(__this, NULL);
+		return;
+	}
+
+IL_0229:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:246>
+		LineBasedLaser_SetLaserToDefaultLength_mCA3ABBF8390DF889ACBCA21271493CD70C895DE6(__this, NULL);
+	}
+
+IL_022f:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:250>
+		return;
+	}
+}
+// Method Definition Index: 33271
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* LineBasedLaser_HitTrigger_m5E25A19D194A9310A2B6965E9B18A20F7DE07ED0 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, float ___0_triggerInterval, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___1_hit, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* L_0 = (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6*)il2cpp_codegen_object_new(U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6_il2cpp_TypeInfo_var);
+		U3CHitTriggerU3Ed__36__ctor_m402D691F11AF000DBAB8EE7951C86611E6003F24(L_0, 0, NULL);
+		U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* L_1 = L_0;
+		NullCheck(L_1);
+		L_1->___U3CU3E4__this = __this;
+		Il2CppCodeGenWriteBarrier((void**)(&L_1->___U3CU3E4__this), (void*)__this);
+		U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* L_2 = L_1;
+		float L_3 = ___0_triggerInterval;
+		NullCheck(L_2);
+		L_2->___triggerInterval = L_3;
+		U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* L_4 = L_2;
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_5 = ___1_hit;
+		NullCheck(L_4);
+		L_4->___hit = L_5;
+		return L_4;
+	}
+}
+// Method Definition Index: 33272
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserState_m9B21F05387793E7B214959896EB00B8F5FAB1C0B (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, bool ___0_enabledStatus, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:271>
+		bool L_0 = ___0_enabledStatus;
+		__this->___laserActive = L_0;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:272>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_1 = __this->___laserLineRenderer;
+		bool L_2 = ___0_enabledStatus;
+		NullCheck(L_1);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_1, L_2, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:273>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_3 = __this->___laserLineRendererArc;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_4;
+		L_4 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_3, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_4)
+		{
+			goto IL_002d;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:273>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_5 = __this->___laserLineRendererArc;
+		bool L_6 = ___0_enabledStatus;
+		NullCheck(L_5);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_5, L_6, NULL);
+	}
+
+IL_002d:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:274>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_7 = __this->___hitSparkParticleSystem;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_8;
+		L_8 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_7, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_8)
+		{
+			goto IL_0047;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:274>
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* L_9 = (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678*)(&__this->___hitSparkEmission);
+		bool L_10 = ___0_enabledStatus;
+		EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867(L_9, L_10, NULL);
+	}
+
+IL_0047:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:276>
+		return;
+	}
+}
+// Method Definition Index: 33273
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserEndToTargetLocation_m0A3C1E617DBCC22C9FD52CDB9B4C2EE26F09DF0D (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hit, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	float V_0 = 0.0f;
+	int32_t V_1 = 0;
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:286>
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_0;
+		L_0 = RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B((&___0_hit), NULL);
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_1 = __this->___laserLineRenderer;
+		NullCheck(L_1);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_2;
+		L_2 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_1, NULL);
+		NullCheck(L_2);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_3;
+		L_3 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_2, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_4;
+		L_4 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_3, NULL);
+		float L_5;
+		L_5 = Vector2_Distance_mBACBB1609E1894D68F882D86A93519E311810C89_inline(L_0, L_4, NULL);
+		V_0 = L_5;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:287>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_6 = __this->___laserLineRenderer;
+		float L_7 = V_0;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_8;
+		memset((&L_8), 0, sizeof(L_8));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_8), L_7, (0.0f), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_9;
+		L_9 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_8, NULL);
+		NullCheck(L_6);
+		LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1(L_6, 1, L_9, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:289>
+		float L_10 = __this->___startLaserTextureXScale;
+		float L_11 = V_0;
+		__this->___laserTextureXScale = ((float)il2cpp_codegen_multiply(L_10, L_11));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:292>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_12 = __this->___laserLineRenderer;
+		NullCheck(L_12);
+		Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* L_13;
+		L_13 = Renderer_get_material_m5BA2A00816C4CC66580D4B2E409CF10718C15656(L_12, NULL);
+		float L_14 = __this->___laserTextureXScale;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_15;
+		memset((&L_15), 0, sizeof(L_15));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_15), L_14, (1.0f), NULL);
+		NullCheck(L_13);
+		Material_set_mainTextureScale_mABC2B4327CCDC6BB0E0EA72C6F29817400F56EF1(L_13, L_15, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:294>
+		bool L_16 = __this->___useArc;
+		if (!L_16)
+		{
+			goto IL_00b2;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:296>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_17 = __this->___laserLineRendererArc;
+		NullCheck(L_17);
+		bool L_18;
+		L_18 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_17, NULL);
+		if (L_18)
+		{
+			goto IL_008d;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:296>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_19 = __this->___laserLineRendererArc;
+		NullCheck(L_19);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_19, (bool)1, NULL);
+	}
+
+IL_008d:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:298>
+		float L_20 = V_0;
+		int32_t L_21;
+		L_21 = Mathf_Abs_mD945EDDEA0D62D21BFDBAB7B1C0F18DFF1CEC905_inline(il2cpp_codegen_cast_double_to_int<int32_t>(L_20), NULL);
+		V_1 = L_21;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:299>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_22 = __this->___laserLineRendererArc;
+		int32_t L_23 = V_1;
+		NullCheck(L_22);
+		LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65(L_22, L_23, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:300>
+		int32_t L_24 = V_1;
+		__this->___laserArcSegments = L_24;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:303>
+		float L_25 = V_0;
+		LineBasedLaser_SetLaserArcVertices_mD541E1F74241FE3B63FC522697641C22D1374397(__this, L_25, (bool)1, NULL);
+		goto IL_00cb;
+	}
+
+IL_00b2:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:307>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_26 = __this->___laserLineRendererArc;
+		NullCheck(L_26);
+		bool L_27;
+		L_27 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_26, NULL);
+		if (!L_27)
+		{
+			goto IL_00cb;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:307>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_28 = __this->___laserLineRendererArc;
+		NullCheck(L_28);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_28, (bool)0, NULL);
+	}
+
+IL_00cb:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:311>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_29 = __this->___hitSparkParticleSystem;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_30;
+		L_30 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_29, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_30)
+		{
+			goto IL_0101;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:313>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_31 = __this->___hitSparkParticleSystem;
+		NullCheck(L_31);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_32;
+		L_32 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_31, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_33;
+		L_33 = RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B((&___0_hit), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_34;
+		L_34 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_33, NULL);
+		NullCheck(L_32);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_32, L_34, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:314>
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* L_35 = (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678*)(&__this->___hitSparkEmission);
+		EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867(L_35, (bool)1, NULL);
+	}
+
+IL_0101:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:316>
+		return;
+	}
+}
+// Method Definition Index: 33274
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserToDefaultLength_mCA3ABBF8390DF889ACBCA21271493CD70C895DE6 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:325>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_0 = __this->___laserLineRenderer;
+		int32_t L_1 = __this->___laserArcSegments;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_2;
+		memset((&L_2), 0, sizeof(L_2));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_2), ((float)L_1), (0.0f), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_3;
+		L_3 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_2, NULL);
+		NullCheck(L_0);
+		LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1(L_0, 1, L_3, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:328>
+		float L_4 = __this->___startLaserTextureXScale;
+		int32_t L_5 = __this->___laserArcSegments;
+		__this->___laserTextureXScale = ((float)il2cpp_codegen_multiply(L_4, ((float)L_5)));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:329>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_6 = __this->___laserLineRenderer;
+		NullCheck(L_6);
+		Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* L_7;
+		L_7 = Renderer_get_material_m5BA2A00816C4CC66580D4B2E409CF10718C15656(L_6, NULL);
+		float L_8 = __this->___laserTextureXScale;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_9;
+		memset((&L_9), 0, sizeof(L_9));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_9), L_8, (1.0f), NULL);
+		NullCheck(L_7);
+		Material_set_mainTextureScale_mABC2B4327CCDC6BB0E0EA72C6F29817400F56EF1(L_7, L_9, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:331>
+		bool L_10 = __this->___useArc;
+		if (!L_10)
+		{
+			goto IL_00a2;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:333>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_11 = __this->___laserLineRendererArc;
+		NullCheck(L_11);
+		bool L_12;
+		L_12 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_11, NULL);
+		if (L_12)
+		{
+			goto IL_0077;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:333>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_13 = __this->___laserLineRendererArc;
+		NullCheck(L_13);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_13, (bool)1, NULL);
+	}
+
+IL_0077:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:335>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_14 = __this->___laserLineRendererArc;
+		int32_t L_15 = __this->___startLaserSegmentLength;
+		NullCheck(L_14);
+		LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65(L_14, L_15, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:336>
+		int32_t L_16 = __this->___startLaserSegmentLength;
+		__this->___laserArcSegments = L_16;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:339>
+		LineBasedLaser_SetLaserArcVertices_mD541E1F74241FE3B63FC522697641C22D1374397(__this, (0.0f), (bool)0, NULL);
+		goto IL_00d8;
+	}
+
+IL_00a2:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:343>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_17 = __this->___laserLineRendererArc;
+		NullCheck(L_17);
+		bool L_18;
+		L_18 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_17, NULL);
+		if (!L_18)
+		{
+			goto IL_00bb;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:343>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_19 = __this->___laserLineRendererArc;
+		NullCheck(L_19);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_19, (bool)0, NULL);
+	}
+
+IL_00bb:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:346>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_20 = __this->___laserLineRendererArc;
+		int32_t L_21 = __this->___startLaserSegmentLength;
+		NullCheck(L_20);
+		LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65(L_20, L_21, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:347>
+		int32_t L_22 = __this->___startLaserSegmentLength;
+		__this->___laserArcSegments = L_22;
+	}
+
+IL_00d8:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:351>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_23 = __this->___hitSparkParticleSystem;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_24;
+		L_24 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_23, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_24)
+		{
+			goto IL_0123;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:353>
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* L_25 = (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678*)(&__this->___hitSparkEmission);
+		EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867(L_25, (bool)0, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:354>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_26 = __this->___hitSparkParticleSystem;
+		NullCheck(L_26);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_27;
+		L_27 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_26, NULL);
+		int32_t L_28 = __this->___laserArcSegments;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_29;
+		L_29 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_29);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_30;
+		L_30 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_29, NULL);
+		float L_31 = L_30.___y;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_32;
+		memset((&L_32), 0, sizeof(L_32));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_32), ((float)L_28), L_31, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_33;
+		L_33 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_32, NULL);
+		NullCheck(L_27);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_27, L_33, NULL);
+	}
+
+IL_0123:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:356>
+		return;
+	}
+}
+// Method Definition Index: 33275
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser_SetLaserArcVertices_mD541E1F74241FE3B63FC522697641C22D1374397 (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, float ___0_distancePoint, bool ___1_useHitPoint, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	float V_1 = 0.0f;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_2;
+	memset((&V_2), 0, sizeof(V_2));
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:366>
+		V_0 = 1;
+		goto IL_0088;
+	}
+
+IL_0007:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:368>
+		int32_t L_0 = V_0;
+		float L_1;
+		L_1 = Time_get_time_m3A271BB1B20041144AC5B7863B71AB1F0150374B(NULL);
+		float L_2;
+		L_2 = Random_Range_m5236C99A7D8AE6AC9190592DC66016652A2D2494((0.5f), (1.29999995f), NULL);
+		float L_3;
+		L_3 = sinf(((float)il2cpp_codegen_add(((float)L_0), ((float)il2cpp_codegen_multiply(L_1, L_2)))));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:369>
+		float L_4 = __this->___laserArcMaxYDown;
+		float L_5 = __this->___laserArcMaxYUp;
+		float L_6;
+		L_6 = Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline(L_3, L_4, L_5, NULL);
+		V_1 = L_6;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:370>
+		int32_t L_7 = V_0;
+		float L_8 = V_1;
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_2), ((float)il2cpp_codegen_multiply(((float)L_7), (1.20000005f))), L_8, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:372>
+		bool L_9 = ___1_useHitPoint;
+		if (!L_9)
+		{
+			goto IL_0072;
+		}
+	}
+	{
+		int32_t L_10 = V_0;
+		int32_t L_11 = __this->___laserArcSegments;
+		if ((!(((uint32_t)L_10) == ((uint32_t)((int32_t)il2cpp_codegen_subtract(L_11, 1))))))
+		{
+			goto IL_0072;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:374>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_12 = __this->___laserLineRendererArc;
+		int32_t L_13 = V_0;
+		float L_14 = ___0_distancePoint;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_15;
+		memset((&L_15), 0, sizeof(L_15));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_15), L_14, (0.0f), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_16;
+		L_16 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_15, NULL);
+		NullCheck(L_12);
+		LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1(L_12, L_13, L_16, NULL);
+		goto IL_0084;
+	}
+
+IL_0072:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:378>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_17 = __this->___laserLineRendererArc;
+		int32_t L_18 = V_0;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_19 = V_2;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_20;
+		L_20 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_19, NULL);
+		NullCheck(L_17);
+		LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1(L_17, L_18, L_20, NULL);
+	}
+
+IL_0084:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:366>
+		int32_t L_21 = V_0;
+		V_0 = ((int32_t)il2cpp_codegen_add(L_21, 1));
+	}
+
+IL_0088:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:366>
+		int32_t L_22 = V_0;
+		int32_t L_23 = __this->___laserArcSegments;
+		if ((((int32_t)L_22) < ((int32_t)L_23)))
+		{
+			goto IL_0007;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:381>
+		return;
+	}
+}
+// Method Definition Index: 33276
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LineBasedLaser__ctor_mBA9A84AEC742CDCDA7E524D876714F367523847C (LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9D5313975DA8153FF9A5262016CB413A4E84846E);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:22>
+		__this->___laserArcSegments = ((int32_t)20);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:42>
+		__this->___laserTexOffsetSpeed = (1.0f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:62>
+		__this->___maxLaserRaycastDistance = (20.0f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:77>
+		__this->___turningRate = (3.0f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:83>
+		__this->___collisionTriggerInterval = (0.25f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:93>
+		__this->___sortLayer = _stringLiteral9D5313975DA8153FF9A5262016CB413A4E84846E;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___sortLayer), (void*)_stringLiteral9D5313975DA8153FF9A5262016CB413A4E84846E);
+		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+void LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_Multicast(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	il2cpp_array_size_t length = __this->___delegates->max_length;
+	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates->GetAddressAtUnchecked(0));
+	for (il2cpp_array_size_t i = 0; i < length; i++)
+	{
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* currentDelegate = reinterpret_cast<LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA*>(delegatesToInvoke[i]);
+		typedef void (*FunctionPointerType) (RuntimeObject*, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+		((FunctionPointerType)currentDelegate->___invoke_impl)((Il2CppObject*)currentDelegate->___method_code, ___0_hitInfo, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method));
+	}
+}
+void LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_OpenInst(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr)(___0_hitInfo, method);
+}
+void LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_OpenStatic(LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr)(___0_hitInfo, method);
+}
+IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc)(RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA);
+	PInvokeFunc il2cppPInvokeFunc = reinterpret_cast<PInvokeFunc>(il2cpp_codegen_get_reverse_pinvoke_function_ptr(__this));
+	il2cppPInvokeFunc(___0_hitInfo);
+
+}
+// Method Definition Index: 33277
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LaserHitTriggerHandler__ctor_mE7E4476EEAE74AFC45D3B153ACC528E0A163E11A (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) 
+{
+	__this->___method_ptr = (intptr_t)il2cpp_codegen_get_method_pointer((RuntimeMethod*)___1_method);
+	__this->___method = ___1_method;
+	__this->___m_target = ___0_object;
+	Il2CppCodeGenWriteBarrier((void**)(&__this->___m_target), (void*)___0_object);
+	int parameterCount = il2cpp_codegen_method_parameter_count((RuntimeMethod*)___1_method);
+	__this->___method_code = (intptr_t)__this;
+	if (MethodIsStatic((RuntimeMethod*)___1_method))
+	{
+		bool isOpen = parameterCount == 1;
+		if (isOpen)
+			__this->___invoke_impl = (intptr_t)&LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_OpenStatic;
+		else
+			{
+				__this->___invoke_impl = __this->___method_ptr;
+				__this->___method_code = (intptr_t)__this->___m_target;
+			}
+	}
+	else
+	{
+		if (___0_object == NULL)
+			il2cpp_codegen_raise_exception(il2cpp_codegen_get_argument_exception(NULL, "Delegate to an instance method cannot have null 'this'."), NULL);
+		__this->___invoke_impl = __this->___method_ptr;
+		__this->___method_code = (intptr_t)__this->___m_target;
+	}
+	__this->___extra_arg = (intptr_t)&LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_Multicast;
+}
+// Method Definition Index: 33278
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90 (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_hitInfo, reinterpret_cast<RuntimeMethod*>(__this->___method));
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// Method Definition Index: 33279
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__36__ctor_m402D691F11AF000DBAB8EE7951C86611E6003F24 (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
+{
+	{
+		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
+		int32_t L_0 = ___0_U3CU3E1__state;
+		__this->___U3CU3E1__state = L_0;
+		return;
+	}
+}
+// Method Definition Index: 33280
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__36_System_IDisposable_Dispose_m66EF8BB041891D6AAAF31F345B8B037D7D150992 (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, const RuntimeMethod* method) 
+{
+	{
+		return;
+	}
+}
+// Method Definition Index: 33281
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CHitTriggerU3Ed__36_MoveNext_mC7D88728779ECFE9D94078257181E6D8DB82D830 (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* V_1 = NULL;
+	{
+		int32_t L_0 = __this->___U3CU3E1__state;
+		V_0 = L_0;
+		LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* L_1 = __this->___U3CU3E4__this;
+		V_1 = L_1;
+		int32_t L_2 = V_0;
+		if (!L_2)
+		{
+			goto IL_0017;
+		}
+	}
+	{
+		int32_t L_3 = V_0;
+		if ((((int32_t)L_3) == ((int32_t)1)))
+		{
+			goto IL_0058;
+		}
+	}
+	{
+		return (bool)0;
+	}
+
+IL_0017:
+	{
+		__this->___U3CU3E1__state = (-1);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:260>
+		LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* L_4 = V_1;
+		NullCheck(L_4);
+		L_4->___waitingForTriggerTime = (bool)1;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:261>
+		LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* L_5 = V_1;
+		NullCheck(L_5);
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_6 = L_5->___OnLaserHitTriggered;
+		if (!L_6)
+		{
+			goto IL_003e;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:261>
+		LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* L_7 = V_1;
+		NullCheck(L_7);
+		LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* L_8 = L_7->___OnLaserHitTriggered;
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_9 = __this->___hit;
+		NullCheck(L_8);
+		LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_inline(L_8, L_9, NULL);
+	}
+
+IL_003e:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:262>
+		float L_10 = __this->___triggerInterval;
+		WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3* L_11 = (WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3*)il2cpp_codegen_object_new(WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var);
+		WaitForSeconds__ctor_m579F95BADEDBAB4B3A7E302C6EE3995926EF2EFC(L_11, L_10, NULL);
+		__this->___U3CU3E2__current = L_11;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)L_11);
+		__this->___U3CU3E1__state = 1;
+		return (bool)1;
+	}
+
+IL_0058:
+	{
+		__this->___U3CU3E1__state = (-1);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:263>
+		LineBasedLaser_t346BED86167B35354BEAAFB0C065B898FB091769* L_12 = V_1;
+		NullCheck(L_12);
+		L_12->___waitingForTriggerTime = (bool)0;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/LineBasedLaser.cs:264>
+		return (bool)0;
+	}
+}
+// Method Definition Index: 33282
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CHitTriggerU3Ed__36_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m8D8FF2EDF94EDC7639E96E894A487839F8999DD7 (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, const RuntimeMethod* method) 
+{
+	{
+		RuntimeObject* L_0 = __this->___U3CU3E2__current;
+		return L_0;
+	}
+}
+// Method Definition Index: 33283
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__36_System_Collections_IEnumerator_Reset_m704CD34646D7E64BCD8E20545445271832CC5A3A (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, const RuntimeMethod* method) 
+{
+	{
+		NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A* L_0 = (NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A_il2cpp_TypeInfo_var)));
+		NotSupportedException__ctor_m1398D0CDE19B36AA3DE9392879738C1EA2439CDF(L_0, NULL);
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CHitTriggerU3Ed__36_System_Collections_IEnumerator_Reset_m704CD34646D7E64BCD8E20545445271832CC5A3A_RuntimeMethod_var)));
+	}
+}
+// Method Definition Index: 33284
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CHitTriggerU3Ed__36_System_Collections_IEnumerator_get_Current_m6FA5EF21C107DDB43F1CC77AE5DFD6694AA8E63C (U3CHitTriggerU3Ed__36_t6883295D1EAEC9BCEE3AA29242B2692F672755B6* __this, const RuntimeMethod* method) 
+{
+	{
+		RuntimeObject* L_0 = __this->___U3CU3E2__current;
+		return L_0;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// Method Definition Index: 33285
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_add_OnLaserHitTriggered_m47B7B263DFA2295CDA373CFF35DD0DA60385E520 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* V_0 = NULL;
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* V_1 = NULL;
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* V_2 = NULL;
+	{
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_0 = __this->___OnLaserHitTriggered;
+		V_0 = L_0;
+	}
+
+IL_0007:
+	{
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_1 = V_0;
+		V_1 = L_1;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_2 = V_1;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_3 = ___0_value;
+		Delegate_t* L_4;
+		L_4 = Delegate_Combine_m1F725AEF318BE6F0426863490691A6F4606E7D00(L_2, L_3, NULL);
+		V_2 = ((LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*)CastclassSealed((RuntimeObject*)L_4, LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A_il2cpp_TypeInfo_var));
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A** L_5 = (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A**)(&__this->___OnLaserHitTriggered);
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_6 = V_2;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_7 = V_1;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_8;
+		L_8 = InterlockedCompareExchangeImpl<LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*>(L_5, L_6, L_7);
+		V_0 = L_8;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_9 = V_0;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_10 = V_1;
+		if ((!(((RuntimeObject*)(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*)L_9) == ((RuntimeObject*)(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*)L_10))))
+		{
+			goto IL_0007;
+		}
+	}
+	{
+		return;
+	}
+}
+// Method Definition Index: 33286
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_remove_OnLaserHitTriggered_m647770F7033EB80B8E538683D378AD992B323524 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* V_0 = NULL;
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* V_1 = NULL;
+	LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* V_2 = NULL;
+	{
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_0 = __this->___OnLaserHitTriggered;
+		V_0 = L_0;
+	}
+
+IL_0007:
+	{
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_1 = V_0;
+		V_1 = L_1;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_2 = V_1;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_3 = ___0_value;
+		Delegate_t* L_4;
+		L_4 = Delegate_Remove_m8B7DD5661308FA972E23CA1CC3FC9CEB355504E3(L_2, L_3, NULL);
+		V_2 = ((LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*)CastclassSealed((RuntimeObject*)L_4, LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A_il2cpp_TypeInfo_var));
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A** L_5 = (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A**)(&__this->___OnLaserHitTriggered);
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_6 = V_2;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_7 = V_1;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_8;
+		L_8 = InterlockedCompareExchangeImpl<LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*>(L_5, L_6, L_7);
+		V_0 = L_8;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_9 = V_0;
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_10 = V_1;
+		if ((!(((RuntimeObject*)(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*)L_9) == ((RuntimeObject*)(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*)L_10))))
+		{
+			goto IL_0007;
+		}
+	}
+	{
+		return;
+	}
+}
+// Method Definition Index: 33287
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_Awake_m7902B2509A832F821E4B18D324FB047C41E88838 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:182>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_0 = __this->___hitSparkParticleSystem;
+		NullCheck(L_0);
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678 L_1;
+		L_1 = ParticleSystem_get_emission_mD9402CE632A3607DA0B0486F9F58F7FB2B44CF08(L_0, NULL);
+		__this->___hitSparkEmission = L_1;
+		Il2CppCodeGenWriteBarrier((void**)&(((&__this->___hitSparkEmission))->___m_ParticleSystem), (void*)NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:183>
+		return;
+	}
+}
+// Method Definition Index: 33288
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_OnEnable_mC770D8A1F195959BA380456E1D34A2F13F3D6890 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:187>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0;
+		L_0 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
+		__this->___gameObjectCached = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___gameObjectCached), (void*)L_0);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:188>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_1 = __this->___laserLineRendererArc;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_2;
+		L_2 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_1, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_2)
+		{
+			goto IL_002b;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:188>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_3 = __this->___laserLineRendererArc;
+		int32_t L_4 = __this->___laserArcSegments;
+		NullCheck(L_3);
+		LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65(L_3, L_4, NULL);
+	}
+
+IL_002b:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:189>
+		return;
+	}
+}
+// Method Definition Index: 33289
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_Start_mC526A57009D623DA29E3D2BEFC2CC9F7ECBFC4F2 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:193>
+		float L_0 = __this->___maxLaserLength;
+		__this->___startLaserLength = L_0;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:194>
+		RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C* L_1 = __this->___laserOscillationPositionerScript;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_2;
+		L_2 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_1, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_2)
+		{
+			goto IL_002b;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:194>
+		RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C* L_3 = __this->___laserOscillationPositionerScript;
+		float L_4 = __this->___oscillationThreshold;
+		NullCheck(L_3);
+		L_3->___radius = L_4;
+	}
+
+IL_002b:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:195>
+		return;
+	}
+}
+// Method Definition Index: 33290
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_OscillateLaserParts_mB3DCB5AE256B73E75D6F5007B0AEC85F13B49A42 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, float ___0_currentLaserDistance, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_1;
+	memset((&V_1), 0, sizeof(V_1));
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_2;
+	memset((&V_2), 0, sizeof(V_2));
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_3;
+	memset((&V_3), 0, sizeof(V_3));
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:202>
+		RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C* L_0 = __this->___laserOscillationPositionerScript;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
+		{
+			goto IL_000f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:202>
+		return;
+	}
+
+IL_000f:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:204>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_2 = __this->___middleGoPiece;
+		NullCheck(L_2);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_3;
+		L_3 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_2, NULL);
+		NullCheck(L_3);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_4;
+		L_4 = Transform_get_localPosition_mA9C86B990DF0685EA1061A120218993FDCC60A95(L_3, NULL);
+		float L_5 = L_4.___y;
+		RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C* L_6 = __this->___laserOscillationPositionerScript;
+		NullCheck(L_6);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* L_7 = (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7*)(&L_6->___randomPointInCircle);
+		float L_8 = L_7->___y;
+		float L_9;
+		L_9 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		float L_10 = __this->___oscillationSpeed;
+		float L_11;
+		L_11 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline(L_5, L_8, ((float)il2cpp_codegen_multiply(L_9, L_10)), NULL);
+		__this->___lerpYValue = L_11;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:207>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_12 = __this->___startGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_13;
+		L_13 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_12, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_13)
+		{
+			goto IL_010e;
+		}
+	}
+	{
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_14 = __this->___middleGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_15;
+		L_15 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_14, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_15)
+		{
+			goto IL_010e;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:209>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_16 = __this->___startGoPiece;
+		NullCheck(L_16);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_17;
+		L_17 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_16, NULL);
+		NullCheck(L_17);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_18;
+		L_18 = Transform_get_localPosition_mA9C86B990DF0685EA1061A120218993FDCC60A95(L_17, NULL);
+		float L_19 = L_18.___x;
+		RandomPositionMover_tDB7CE4F273470FF755384D59D9F38E18F263366C* L_20 = __this->___laserOscillationPositionerScript;
+		NullCheck(L_20);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* L_21 = (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7*)(&L_20->___randomPointInCircle);
+		float L_22 = L_21->___y;
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_0), L_19, L_22, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:210>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_23 = __this->___startGoPiece;
+		NullCheck(L_23);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_24;
+		L_24 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_23, NULL);
+		NullCheck(L_24);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_25;
+		L_25 = Transform_get_localPosition_mA9C86B990DF0685EA1061A120218993FDCC60A95(L_24, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_26;
+		L_26 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_25, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_27 = V_0;
+		float L_28;
+		L_28 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		float L_29 = __this->___oscillationSpeed;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_30;
+		L_30 = Vector2_Lerp_m1A36103F7967F653A929556E26E6D052C298C00C_inline(L_26, L_27, ((float)il2cpp_codegen_multiply(L_28, L_29)), NULL);
+		V_1 = L_30;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:211>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_31 = __this->___startGoPiece;
+		NullCheck(L_31);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_32;
+		L_32 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_31, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_33 = V_1;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_34;
+		L_34 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_33, NULL);
+		NullCheck(L_32);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_32, L_34, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:213>
+		float L_35 = ___0_currentLaserDistance;
+		float L_36 = __this->___startSpriteWidth;
+		float L_37 = __this->___lerpYValue;
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_2), ((float)il2cpp_codegen_add(((float)(L_35/(2.0f))), ((float)(L_36/(4.0f))))), L_37, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:214>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_38 = __this->___middleGoPiece;
+		NullCheck(L_38);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_39;
+		L_39 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_38, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_40 = V_2;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_41;
+		L_41 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_40, NULL);
+		NullCheck(L_39);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_39, L_41, NULL);
+	}
+
+IL_010e:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:218>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_42 = __this->___endGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_43;
+		L_43 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_42, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_43)
+		{
+			goto IL_014d;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:220>
+		float L_44 = ___0_currentLaserDistance;
+		float L_45 = __this->___startSpriteWidth;
+		float L_46 = __this->___lerpYValue;
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_3), ((float)il2cpp_codegen_add(L_44, ((float)(L_45/(2.0f))))), L_46, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:221>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_47 = __this->___endGoPiece;
+		NullCheck(L_47);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_48;
+		L_48 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_47, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_49 = V_3;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_50;
+		L_50 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_49, NULL);
+		NullCheck(L_48);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_48, L_50, NULL);
+	}
+
+IL_014d:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:223>
+		return;
+	}
+}
+// Method Definition Index: 33291
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserArcVertices_m298E7BA2444EC815707E6796209F0DA93A9EBF55 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, float ___0_distancePoint, bool ___1_useHitPoint, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	float V_1 = 0.0f;
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_2;
+	memset((&V_2), 0, sizeof(V_2));
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:233>
+		V_0 = 1;
+		goto IL_0088;
+	}
+
+IL_0007:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:235>
+		int32_t L_0 = V_0;
+		float L_1;
+		L_1 = Time_get_time_m3A271BB1B20041144AC5B7863B71AB1F0150374B(NULL);
+		float L_2;
+		L_2 = Random_Range_m5236C99A7D8AE6AC9190592DC66016652A2D2494((0.5f), (1.29999995f), NULL);
+		float L_3;
+		L_3 = sinf(((float)il2cpp_codegen_add(((float)L_0), ((float)il2cpp_codegen_multiply(L_1, L_2)))));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:236>
+		float L_4 = __this->___laserArcMaxYDown;
+		float L_5 = __this->___laserArcMaxYUp;
+		float L_6;
+		L_6 = Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline(L_3, L_4, L_5, NULL);
+		V_1 = L_6;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:237>
+		int32_t L_7 = V_0;
+		float L_8 = V_1;
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&V_2), ((float)il2cpp_codegen_multiply(((float)L_7), (1.20000005f))), L_8, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:239>
+		bool L_9 = ___1_useHitPoint;
+		if (!L_9)
+		{
+			goto IL_0072;
+		}
+	}
+	{
+		int32_t L_10 = V_0;
+		int32_t L_11 = __this->___laserArcSegments;
+		if ((!(((uint32_t)L_10) == ((uint32_t)((int32_t)il2cpp_codegen_subtract(L_11, 1))))))
+		{
+			goto IL_0072;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:241>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_12 = __this->___laserLineRendererArc;
+		int32_t L_13 = V_0;
+		float L_14 = ___0_distancePoint;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_15;
+		memset((&L_15), 0, sizeof(L_15));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_15), L_14, (0.0f), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_16;
+		L_16 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_15, NULL);
+		NullCheck(L_12);
+		LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1(L_12, L_13, L_16, NULL);
+		goto IL_0084;
+	}
+
+IL_0072:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:245>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_17 = __this->___laserLineRendererArc;
+		int32_t L_18 = V_0;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_19 = V_2;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_20;
+		L_20 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_19, NULL);
+		NullCheck(L_17);
+		LineRenderer_SetPosition_m84C4AD9ADC6AC62B33DB4D7E4C9F066DFF8440C1(L_17, L_18, L_20, NULL);
+	}
+
+IL_0084:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:233>
+		int32_t L_21 = V_0;
+		V_0 = ((int32_t)il2cpp_codegen_add(L_21, 1));
+	}
+
+IL_0088:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:233>
+		int32_t L_22 = V_0;
+		int32_t L_23 = __this->___laserArcSegments;
+		if ((((int32_t)L_22) < ((int32_t)L_23)))
+		{
+			goto IL_0007;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:248>
+		return;
+	}
+}
+// Method Definition Index: 33292
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_Update_m2A4BD464FEB7346861EDBD4EE8DAE6FCC7D01297 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_GetComponent_TisRenderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF_m026EB44DB6238F13E2AFBECF1FBBE924CB1B040A_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 V_1;
+	memset((&V_1), 0, sizeof(V_1));
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_2;
+	memset((&V_2), 0, sizeof(V_2));
+	float V_3 = 0.0f;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_4;
+	memset((&V_4), 0, sizeof(V_4));
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:252>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___gameObjectCached;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
+		{
+			goto IL_04d4;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:254>
+		bool L_2 = __this->___laserActive;
+		if (!L_2)
+		{
+			goto IL_04d4;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:257>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = __this->___startGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_4;
+		L_4 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_3, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_4)
+		{
+			goto IL_008f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:259>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_5 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)(&__this->___startGoPiece);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = __this->___laserStartPiece;
+		SpriteBasedLaser_InstantiateLaserPart_mFB2A7E55031E9B9710614D40B6F53C862693E283(__this, L_5, L_6, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:261>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_7 = __this->___startGoPiece;
+		NullCheck(L_7);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_8;
+		L_8 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_7, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_9;
+		L_9 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_8);
+		Transform_set_parent_m9BD5E563B539DD5BEC342736B03F97B38A243234(L_8, L_9, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:262>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_10 = __this->___startGoPiece;
+		NullCheck(L_10);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_11;
+		L_11 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_10, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_12;
+		L_12 = Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline(NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_13;
+		L_13 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_12, NULL);
+		NullCheck(L_11);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_11, L_13, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:263>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_14 = __this->___laserStartPiece;
+		NullCheck(L_14);
+		Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* L_15;
+		L_15 = GameObject_GetComponent_TisRenderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF_m026EB44DB6238F13E2AFBECF1FBBE924CB1B040A(L_14, GameObject_GetComponent_TisRenderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF_m026EB44DB6238F13E2AFBECF1FBBE924CB1B040A_RuntimeMethod_var);
+		NullCheck(L_15);
+		Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3 L_16;
+		L_16 = Renderer_get_bounds_m390CF334730C3C34E45CE59F1D08C3B9F3109C7C(L_15, NULL);
+		V_1 = L_16;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_17;
+		L_17 = Bounds_get_size_m0699A53A55A78B3201D7270D6F338DFA91B6FAD4_inline((&V_1), NULL);
+		float L_18 = L_17.___x;
+		__this->___startSpriteWidth = L_18;
+	}
+
+IL_008f:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:267>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_19 = __this->___middleGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_20;
+		L_20 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_19, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_20)
+		{
+			goto IL_00df;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:269>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_21 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)(&__this->___middleGoPiece);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_22 = __this->___laserMiddlePiece;
+		SpriteBasedLaser_InstantiateLaserPart_mFB2A7E55031E9B9710614D40B6F53C862693E283(__this, L_21, L_22, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:271>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_23 = __this->___middleGoPiece;
+		NullCheck(L_23);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_24;
+		L_24 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_23, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_25;
+		L_25 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_24);
+		Transform_set_parent_m9BD5E563B539DD5BEC342736B03F97B38A243234(L_24, L_25, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:272>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_26 = __this->___middleGoPiece;
+		NullCheck(L_26);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_27;
+		L_27 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_26, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_28;
+		L_28 = Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline(NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_29;
+		L_29 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_28, NULL);
+		NullCheck(L_27);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_27, L_29, NULL);
+	}
+
+IL_00df:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:275>
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:276>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_30 = __this->___middleGoPiece;
+		NullCheck(L_30);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_31;
+		L_31 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_30, NULL);
+		float L_32 = __this->___maxLaserLength;
+		float L_33 = __this->___startSpriteWidth;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_34 = __this->___middleGoPiece;
+		NullCheck(L_34);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_35;
+		L_35 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_34, NULL);
+		NullCheck(L_35);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_36;
+		L_36 = Transform_get_localScale_m804A002A53A645CDFCD15BB0F37209162720363F(L_35, NULL);
+		float L_37 = L_36.___y;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_38 = __this->___middleGoPiece;
+		NullCheck(L_38);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_39;
+		L_39 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_38, NULL);
+		NullCheck(L_39);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_40;
+		L_40 = Transform_get_localScale_m804A002A53A645CDFCD15BB0F37209162720363F(L_39, NULL);
+		float L_41 = L_40.___z;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_42;
+		memset((&L_42), 0, sizeof(L_42));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_42), ((float)il2cpp_codegen_add(((float)il2cpp_codegen_subtract(L_32, L_33)), (0.200000003f))), L_37, L_41, NULL);
+		NullCheck(L_31);
+		Transform_set_localScale_mBA79E811BAF6C47B80FF76414C12B47B3CD03633(L_31, L_42, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:278>
+		bool L_43 = __this->___oscillateLaser;
+		if (!L_43)
+		{
+			goto IL_014a;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:280>
+		float L_44 = __this->___maxLaserLength;
+		SpriteBasedLaser_OscillateLaserParts_mB3DCB5AE256B73E75D6F5007B0AEC85F13B49A42(__this, L_44, NULL);
+		goto IL_01d1;
+	}
+
+IL_014a:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:284>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_45 = __this->___middleGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_46;
+		L_46 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_45, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_46)
+		{
+			goto IL_0191;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:286>
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:287>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_47 = __this->___middleGoPiece;
+		NullCheck(L_47);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_48;
+		L_48 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_47, NULL);
+		float L_49 = __this->___maxLaserLength;
+		float L_50 = __this->___startSpriteWidth;
+		float L_51 = __this->___lerpYValue;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_52;
+		memset((&L_52), 0, sizeof(L_52));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_52), ((float)il2cpp_codegen_add(((float)(L_49/(2.0f))), ((float)(L_50/(4.0f))))), L_51, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_53;
+		L_53 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_52, NULL);
+		NullCheck(L_48);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_48, L_53, NULL);
+	}
+
+IL_0191:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:290>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_54 = __this->___endGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_55;
+		L_55 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_54, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_55)
+		{
+			goto IL_01d1;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:292>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_56 = __this->___endGoPiece;
+		NullCheck(L_56);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_57;
+		L_57 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_56, NULL);
+		float L_58 = __this->___maxLaserLength;
+		float L_59 = __this->___startSpriteWidth;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_60;
+		memset((&L_60), 0, sizeof(L_60));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_60), ((float)il2cpp_codegen_add(L_58, ((float)(L_59/(2.0f))))), (0.0f), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_61;
+		L_61 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_60, NULL);
+		NullCheck(L_57);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_57, L_61, NULL);
+	}
+
+IL_01d1:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:297>
+		bool L_62 = __this->___laserRotationEnabled;
+		if (!L_62)
+		{
+			goto IL_032e;
+		}
+	}
+	{
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_63 = __this->___targetGo;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_64;
+		L_64 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_63, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_64)
+		{
+			goto IL_032e;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:300>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_65 = __this->___targetGo;
+		NullCheck(L_65);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_66;
+		L_66 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_65, NULL);
+		NullCheck(L_66);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_67;
+		L_67 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_66, NULL);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_68 = __this->___gameObjectCached;
+		NullCheck(L_68);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_69;
+		L_69 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_68, NULL);
+		NullCheck(L_69);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_70;
+		L_70 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_69, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_71;
+		L_71 = Vector3_op_Subtraction_mE42023FF80067CB44A1D4A27EB7CF2B24CABB828_inline(L_67, L_70, NULL);
+		V_2 = L_71;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:303>
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_72 = V_2;
+		float L_73 = L_72.___y;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_74 = V_2;
+		float L_75 = L_74.___x;
+		float L_76;
+		L_76 = atan2f(L_73, L_75);
+		__this->___laserAngle = L_76;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:304>
+		float L_77 = __this->___laserAngle;
+		if ((!(((float)L_77) < ((float)(0.0f)))))
+		{
+			goto IL_0249;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:306>
+		float L_78 = __this->___laserAngle;
+		__this->___laserAngle = ((float)il2cpp_codegen_add((6.28318548f), L_78));
+	}
+
+IL_0249:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:310>
+		float L_79 = __this->___laserAngle;
+		V_3 = ((float)il2cpp_codegen_multiply(L_79, (57.2957802f)));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:312>
+		bool L_80 = __this->___lerpLaserRotation;
+		if (!L_80)
+		{
+			goto IL_02e3;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:314>
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:315>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_81;
+		L_81 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_82;
+		L_82 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_82);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_83;
+		L_83 = Transform_get_rotation_m32AF40CA0D50C797DA639A696F8EAEC7524C179C(L_82, NULL);
+		float L_84 = V_3;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_85;
+		L_85 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_85);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_86;
+		L_86 = Transform_get_forward_mFCFACF7165FDAB21E80E384C494DF278386CEE2F(L_85, NULL);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_87;
+		L_87 = Quaternion_AngleAxis_mF37022977B297E63AA70D69EA1C4C922FF22CC80(L_84, L_86, NULL);
+		float L_88;
+		L_88 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
+		float L_89 = __this->___turningRate;
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_90;
+		L_90 = Quaternion_Slerp_m0A9969F500E7716EA4F6BC4E7D5464372D8E9E15(L_83, L_87, ((float)il2cpp_codegen_multiply(L_88, L_89)), NULL);
+		NullCheck(L_81);
+		Transform_set_rotation_m61340DE74726CF0F9946743A727C4D444397331D(L_81, L_90, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:318>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_91;
+		L_91 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_91);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_92;
+		L_92 = Transform_get_rotation_m32AF40CA0D50C797DA639A696F8EAEC7524C179C(L_91, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_93;
+		L_93 = Vector3_get_right_mFF573AFBBB2186E7AFA1BA7CA271A78DF67E4EA0_inline(NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_94;
+		L_94 = Quaternion_op_Multiply_mE1EBA73F9173432B50F8F17CE8190C5A7986FB8C(L_92, L_93, NULL);
+		V_4 = L_94;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:321>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_95;
+		L_95 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_95);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_96;
+		L_96 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_95, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_97;
+		L_97 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_96, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_98 = V_4;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_99;
+		L_99 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_98, NULL);
+		float L_100 = __this->___maxLaserRaycastDistance;
+		LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB L_101 = __this->___mask;
+		int32_t L_102;
+		L_102 = LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D(L_101, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_103;
+		L_103 = Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F(L_97, L_99, L_100, L_102, NULL);
+		V_0 = L_103;
+		goto IL_0365;
+	}
+
+IL_02e3:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:325>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_104;
+		L_104 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		float L_105 = V_3;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_106;
+		L_106 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_106);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_107;
+		L_107 = Transform_get_forward_mFCFACF7165FDAB21E80E384C494DF278386CEE2F(L_106, NULL);
+		Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 L_108;
+		L_108 = Quaternion_AngleAxis_mF37022977B297E63AA70D69EA1C4C922FF22CC80(L_105, L_107, NULL);
+		NullCheck(L_104);
+		Transform_set_rotation_m61340DE74726CF0F9946743A727C4D444397331D(L_104, L_108, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:328>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_109;
+		L_109 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_109);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_110;
+		L_110 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_109, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_111;
+		L_111 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_110, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_112 = V_2;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_113;
+		L_113 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_112, NULL);
+		float L_114 = __this->___maxLaserRaycastDistance;
+		LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB L_115 = __this->___mask;
+		int32_t L_116;
+		L_116 = LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D(L_115, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_117;
+		L_117 = Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F(L_111, L_113, L_114, L_116, NULL);
+		V_0 = L_117;
+		goto IL_0365;
+	}
+
+IL_032e:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:334>
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_118;
+		L_118 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_118);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_119;
+		L_119 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_118, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_120;
+		L_120 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_119, NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_121;
+		L_121 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_121);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_122;
+		L_122 = Transform_get_right_mC6DC057C23313802E2186A9E0DB760D795A758A4(L_121, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_123;
+		L_123 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_122, NULL);
+		float L_124 = __this->___maxLaserRaycastDistance;
+		LayerMask_t97CB6BDADEDC3D6423C7BCFEA7F86DA2EC6241DB L_125 = __this->___mask;
+		int32_t L_126;
+		L_126 = LayerMask_op_Implicit_m7F5A5B9D079281AC445ED39DEE1FCFA9D795810D(L_125, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Physics2D_t64C0DB5246067DAC2E83A52558A0AC68AF3BE94D_il2cpp_TypeInfo_var);
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_127;
+		L_127 = Physics2D_Raycast_m5BF2A59AAEE0B488FB3ECD1D3AF3537FD7789E7F(L_120, L_123, L_124, L_126, NULL);
+		V_0 = L_127;
+	}
+
+IL_0365:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:337>
+		bool L_128 = __this->___ignoreCollisions;
+		if (L_128)
+		{
+			goto IL_04bc;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:339>
+		Collider2D_t6A17BA7734600EF3F26588E9ED903617D5B8EB52* L_129;
+		L_129 = RaycastHit2D_get_collider_mB56DFCD16B708852EEBDBB490BC8665DBF7487FD((&V_0), NULL);
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_130;
+		L_130 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_129, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_130)
+		{
+			goto IL_0468;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:341>
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_131;
+		L_131 = RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B((&V_0), NULL);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_132;
+		L_132 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_132);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_133;
+		L_133 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_132, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_134;
+		L_134 = Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline(L_133, NULL);
+		float L_135;
+		L_135 = Vector2_Distance_mBACBB1609E1894D68F882D86A93519E311810C89_inline(L_131, L_134, NULL);
+		float L_136 = __this->___startSpriteWidth;
+		__this->___maxLaserLength = ((float)il2cpp_codegen_add(L_135, ((float)(L_136/(4.0f)))));
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:342>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_137 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)(&__this->___endGoPiece);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_138 = __this->___laserEndPiece;
+		SpriteBasedLaser_InstantiateLaserPart_mFB2A7E55031E9B9710614D40B6F53C862693E283(__this, L_137, L_138, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:345>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_139 = __this->___hitSparkParticleSystem;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_140;
+		L_140 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_139, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_140)
+		{
+			goto IL_03f9;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:347>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_141 = __this->___hitSparkParticleSystem;
+		NullCheck(L_141);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_142;
+		L_142 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_141, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_143;
+		L_143 = RaycastHit2D_get_point_mB35E988E9E04328EFE926228A18334326721A36B((&V_0), NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_144;
+		L_144 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_143, NULL);
+		NullCheck(L_142);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_142, L_144, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:348>
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* L_145 = (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678*)(&__this->___hitSparkEmission);
+		EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867(L_145, (bool)1, NULL);
+	}
+
+IL_03f9:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:351>
+		bool L_146 = __this->___useArc;
+		if (!L_146)
+		{
+			goto IL_042f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:353>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_147 = __this->___laserLineRendererArc;
+		NullCheck(L_147);
+		bool L_148;
+		L_148 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_147, NULL);
+		if (L_148)
+		{
+			goto IL_041a;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:353>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_149 = __this->___laserLineRendererArc;
+		NullCheck(L_149);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_149, (bool)1, NULL);
+	}
+
+IL_041a:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:355>
+		float L_150 = __this->___maxLaserLength;
+		SpriteBasedLaser_SetLaserArcVertices_m298E7BA2444EC815707E6796209F0DA93A9EBF55(__this, L_150, (bool)1, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:356>
+		SpriteBasedLaser_SetLaserArcSegmentLength_mC1339499EAC1B4884A2995C166A4D9D79FD4170A(__this, NULL);
+		goto IL_0448;
+	}
+
+IL_042f:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:360>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_151 = __this->___laserLineRendererArc;
+		NullCheck(L_151);
+		bool L_152;
+		L_152 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_151, NULL);
+		if (!L_152)
+		{
+			goto IL_0448;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:360>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_153 = __this->___laserLineRendererArc;
+		NullCheck(L_153);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_153, (bool)0, NULL);
+	}
+
+IL_0448:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:363>
+		bool L_154 = __this->___waitingForTriggerTime;
+		if (L_154)
+		{
+			goto IL_04d4;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:363>
+		float L_155 = __this->___collisionTriggerInterval;
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_156 = V_0;
+		RuntimeObject* L_157;
+		L_157 = SpriteBasedLaser_HitTrigger_m2E846591C69324A6C6166D6188BCF0387563DEA0(__this, L_155, L_156, NULL);
+		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_158;
+		L_158 = MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812(__this, L_157, NULL);
+		return;
+	}
+
+IL_0468:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:367>
+		SpriteBasedLaser_SetLaserBackToDefaults_m64361AD591536F3777888EBC1ED80AE1AE5B2EF5(__this, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:369>
+		bool L_159 = __this->___useArc;
+		if (!L_159)
+		{
+			goto IL_04a2;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:371>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_160 = __this->___laserLineRendererArc;
+		NullCheck(L_160);
+		bool L_161;
+		L_161 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_160, NULL);
+		if (L_161)
+		{
+			goto IL_048f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:371>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_162 = __this->___laserLineRendererArc;
+		NullCheck(L_162);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_162, (bool)1, NULL);
+	}
+
+IL_048f:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:372>
+		SpriteBasedLaser_SetLaserArcSegmentLength_mC1339499EAC1B4884A2995C166A4D9D79FD4170A(__this, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:374>
+		SpriteBasedLaser_SetLaserArcVertices_m298E7BA2444EC815707E6796209F0DA93A9EBF55(__this, (0.0f), (bool)0, NULL);
+		return;
+	}
+
+IL_04a2:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:378>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_163 = __this->___laserLineRendererArc;
+		NullCheck(L_163);
+		bool L_164;
+		L_164 = Renderer_get_enabled_mFDDF363859AEC88105A925FA7EA341C077B09B54(L_163, NULL);
+		if (!L_164)
+		{
+			goto IL_04d4;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:378>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_165 = __this->___laserLineRendererArc;
+		NullCheck(L_165);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_165, (bool)0, NULL);
+		return;
+	}
+
+IL_04bc:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:384>
+		SpriteBasedLaser_SetLaserBackToDefaults_m64361AD591536F3777888EBC1ED80AE1AE5B2EF5(__this, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:386>
+		SpriteBasedLaser_SetLaserArcVertices_m298E7BA2444EC815707E6796209F0DA93A9EBF55(__this, (0.0f), (bool)0, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:387>
+		SpriteBasedLaser_SetLaserArcSegmentLength_mC1339499EAC1B4884A2995C166A4D9D79FD4170A(__this, NULL);
+	}
+
+IL_04d4:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:391>
+		return;
+	}
+}
+// Method Definition Index: 33293
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SpriteBasedLaser_HitTrigger_m2E846591C69324A6C6166D6188BCF0387563DEA0 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, float ___0_triggerInterval, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___1_hit, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* L_0 = (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47*)il2cpp_codegen_object_new(U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47_il2cpp_TypeInfo_var);
+		U3CHitTriggerU3Ed__43__ctor_m361BDB4E876302BF207C08D6A4F32AB4FC8CD600(L_0, 0, NULL);
+		U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* L_1 = L_0;
+		NullCheck(L_1);
+		L_1->___U3CU3E4__this = __this;
+		Il2CppCodeGenWriteBarrier((void**)(&L_1->___U3CU3E4__this), (void*)__this);
+		U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* L_2 = L_1;
+		float L_3 = ___0_triggerInterval;
+		NullCheck(L_2);
+		L_2->___triggerInterval = L_3;
+		U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* L_4 = L_2;
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_5 = ___1_hit;
+		NullCheck(L_4);
+		L_4->___hit = L_5;
+		return L_4;
+	}
+}
+// Method Definition Index: 33294
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserState_mCDCCFD71E449F0112D2BA8A8D778DFFBD061261A (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, bool ___0_enabledStatus, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:412>
+		bool L_0 = ___0_enabledStatus;
+		__this->___laserActive = L_0;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:413>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1 = __this->___startGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_2;
+		L_2 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_1, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_2)
+		{
+			goto IL_0021;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:413>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = __this->___startGoPiece;
+		bool L_4 = ___0_enabledStatus;
+		NullCheck(L_3);
+		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_3, L_4, NULL);
+	}
+
+IL_0021:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:414>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_5 = __this->___middleGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_6;
+		L_6 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_5, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_6)
+		{
+			goto IL_003b;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:414>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_7 = __this->___middleGoPiece;
+		bool L_8 = ___0_enabledStatus;
+		NullCheck(L_7);
+		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_7, L_8, NULL);
+	}
+
+IL_003b:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:415>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_9 = __this->___endGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_10;
+		L_10 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_9, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_10)
+		{
+			goto IL_0055;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:415>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_11 = __this->___endGoPiece;
+		bool L_12 = ___0_enabledStatus;
+		NullCheck(L_11);
+		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_11, L_12, NULL);
+	}
+
+IL_0055:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:416>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_13 = __this->___laserLineRendererArc;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_14;
+		L_14 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_13, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_14)
+		{
+			goto IL_006f;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:416>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_15 = __this->___laserLineRendererArc;
+		bool L_16 = ___0_enabledStatus;
+		NullCheck(L_15);
+		Renderer_set_enabled_m015E6D7B825528A31182F267234CC6A925F71DA8(L_15, L_16, NULL);
+	}
+
+IL_006f:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:417>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_17 = __this->___hitSparkParticleSystem;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_18;
+		L_18 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_17, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_18)
+		{
+			goto IL_0089;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:417>
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* L_19 = (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678*)(&__this->___hitSparkEmission);
+		bool L_20 = ___0_enabledStatus;
+		EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867(L_19, L_20, NULL);
+	}
+
+IL_0089:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:418>
+		return;
+	}
+}
+// Method Definition Index: 33295
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserArcSegmentLength_mC1339499EAC1B4884A2995C166A4D9D79FD4170A (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	int32_t V_0 = 0;
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:425>
+		float L_0 = __this->___maxLaserLength;
+		int32_t L_1;
+		L_1 = Mathf_Abs_mD945EDDEA0D62D21BFDBAB7B1C0F18DFF1CEC905_inline(il2cpp_codegen_cast_double_to_int<int32_t>(L_0), NULL);
+		V_0 = L_1;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:426>
+		LineRenderer_tEFEF960672DB69CB14B6D181FAE6292F0CF8B63D* L_2 = __this->___laserLineRendererArc;
+		int32_t L_3 = V_0;
+		NullCheck(L_2);
+		LineRenderer_SetVertexCount_m6DCE48FFDE98B22A0046CACA7A43439D76D4FF65(L_2, L_3, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:427>
+		int32_t L_4 = V_0;
+		__this->___laserArcSegments = L_4;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:428>
+		return;
+	}
+}
+// Method Definition Index: 33296
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_SetLaserBackToDefaults_m64361AD591536F3777888EBC1ED80AE1AE5B2EF5 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:437>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___endGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_0, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:439>
+		float L_1 = __this->___startLaserLength;
+		__this->___maxLaserLength = L_1;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:442>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_2 = __this->___hitSparkParticleSystem;
+		bool L_3;
+		L_3 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_2, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_3)
+		{
+			goto IL_0061;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:444>
+		EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678* L_4 = (EmissionModule_t0F469FA4A08003F6D9C610D2F716A9DFDB9A3678*)(&__this->___hitSparkEmission);
+		EmissionModule_set_enabled_mC82B6915ED485AB8DB54DFA6599C9C973BB5D867(L_4, (bool)0, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:445>
+		ParticleSystem_tB19986EE308BD63D36FB6025EEEAFBEDB97C67C1* L_5 = __this->___hitSparkParticleSystem;
+		NullCheck(L_5);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_6;
+		L_6 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(L_5, NULL);
+		float L_7 = __this->___maxLaserLength;
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_8;
+		L_8 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
+		NullCheck(L_8);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_9;
+		L_9 = Transform_get_position_m69CD5FA214FDAE7BB701552943674846C220FDE1(L_8, NULL);
+		float L_10 = L_9.___y;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_11;
+		memset((&L_11), 0, sizeof(L_11));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_11), L_7, L_10, NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_12;
+		L_12 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_11, NULL);
+		NullCheck(L_6);
+		Transform_set_position_mA1A817124BB41B685043DED2A9BA48CDF37C4156(L_6, L_12, NULL);
+	}
+
+IL_0061:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:447>
+		return;
+	}
+}
+// Method Definition Index: 33297
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_InstantiateLaserPart_mFB2A7E55031E9B9710614D40B6F53C862693E283 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** ___0_laserComponent, GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___1_laserPart, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:451>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_0 = ___0_laserComponent;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1 = *((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)L_0);
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_2;
+		L_2 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_1, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_2)
+		{
+			goto IL_0055;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:453>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_3 = ___0_laserComponent;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_4 = ___1_laserPart;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_5;
+		L_5 = Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3(L_4, Object_Instantiate_TisGameObject_t76FEDD663AB33C991A9C9A23129337651094216F_m10D87C6E0708CA912BBB02555BF7D0FBC5D7A2B3_RuntimeMethod_var);
+		*((RuntimeObject**)L_3) = (RuntimeObject*)L_5;
+		Il2CppCodeGenWriteBarrier((void**)(RuntimeObject**)L_3, (void*)(RuntimeObject*)L_5);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:454>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_6 = ___0_laserComponent;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_7 = *((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)L_6);
+		NullCheck(L_7);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_8;
+		L_8 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_7, NULL);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_9;
+		L_9 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
+		NullCheck(L_9);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_10;
+		L_10 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_9, NULL);
+		NullCheck(L_8);
+		Transform_set_parent_m9BD5E563B539DD5BEC342736B03F97B38A243234(L_8, L_10, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:455>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_11 = ___0_laserComponent;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_12 = *((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)L_11);
+		NullCheck(L_12);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_13;
+		L_13 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_12, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_14;
+		L_14 = Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline(NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_15;
+		L_15 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_14, NULL);
+		NullCheck(L_13);
+		Transform_set_localPosition_mDE1C997F7D79C0885210B7732B4BA50EE7D73134(L_13, L_15, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:456>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F** L_16 = ___0_laserComponent;
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_17 = *((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F**)L_16);
+		NullCheck(L_17);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_18;
+		L_18 = GameObject_get_transform_m0BC10ADFA1632166AE5544BDF9038A2650C2AE56(L_17, NULL);
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_19;
+		L_19 = Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline(NULL);
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_20;
+		L_20 = Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline(L_19, NULL);
+		NullCheck(L_18);
+		Transform_set_localEulerAngles_m0458551662A1A51FDCA4C0417282B25D391661DF(L_18, L_20, NULL);
+	}
+
+IL_0055:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:458>
+		return;
+	}
+}
+// Method Definition Index: 33298
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser_DisableLaserGameObjectComponents_m176A826DB6EE6BBEA5F72B62CAAB48E0DA9030DC (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:466>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___startGoPiece;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_0, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:467>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1 = __this->___middleGoPiece;
+		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_1, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:468>
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_2 = __this->___endGoPiece;
+		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_2, NULL);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:469>
+		return;
+	}
+}
+// Method Definition Index: 33299
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SpriteBasedLaser__ctor_m9D06B2DD5B89ED87C22E4F8E634A3B96B7AED066 (SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* __this, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:32>
+		__this->___laserArcSegments = ((int32_t)20);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:48>
+		__this->___maxLaserLength = (20.0f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:53>
+		__this->___oscillationSpeed = (1.0f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:103>
+		__this->___turningRate = (3.0f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:109>
+		__this->___collisionTriggerInterval = (0.25f);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:131>
+		__this->___oscillationThreshold = (0.200000003f);
+		MonoBehaviour__ctor_m592DB0105CA0BC97AA1C5F4AD27B12D68A3B7C1E(__this, NULL);
+		return;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+void LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_Multicast(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	il2cpp_array_size_t length = __this->___delegates->max_length;
+	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates->GetAddressAtUnchecked(0));
+	for (il2cpp_array_size_t i = 0; i < length; i++)
+	{
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* currentDelegate = reinterpret_cast<LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A*>(delegatesToInvoke[i]);
+		typedef void (*FunctionPointerType) (RuntimeObject*, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+		((FunctionPointerType)currentDelegate->___invoke_impl)((Il2CppObject*)currentDelegate->___method_code, ___0_hitInfo, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method));
+	}
+}
+void LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_OpenInst(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr)(___0_hitInfo, method);
+}
+void LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_OpenStatic(LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr)(___0_hitInfo, method);
+}
+IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc)(RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA);
+	PInvokeFunc il2cppPInvokeFunc = reinterpret_cast<PInvokeFunc>(il2cpp_codegen_get_reverse_pinvoke_function_ptr(__this));
+	il2cppPInvokeFunc(___0_hitInfo);
+
+}
+// Method Definition Index: 33300
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LaserHitTriggerHandler__ctor_m7F5D390775B1766AEBFC0DCD59B5C97014EE2CBD (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) 
+{
+	__this->___method_ptr = (intptr_t)il2cpp_codegen_get_method_pointer((RuntimeMethod*)___1_method);
+	__this->___method = ___1_method;
+	__this->___m_target = ___0_object;
+	Il2CppCodeGenWriteBarrier((void**)(&__this->___m_target), (void*)___0_object);
+	int parameterCount = il2cpp_codegen_method_parameter_count((RuntimeMethod*)___1_method);
+	__this->___method_code = (intptr_t)__this;
+	if (MethodIsStatic((RuntimeMethod*)___1_method))
+	{
+		bool isOpen = parameterCount == 1;
+		if (isOpen)
+			__this->___invoke_impl = (intptr_t)&LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_OpenStatic;
+		else
+			{
+				__this->___invoke_impl = __this->___method_ptr;
+				__this->___method_code = (intptr_t)__this->___m_target;
+			}
+	}
+	else
+	{
+		if (___0_object == NULL)
+			il2cpp_codegen_raise_exception(il2cpp_codegen_get_argument_exception(NULL, "Delegate to an instance method cannot have null 'this'."), NULL);
+		__this->___invoke_impl = __this->___method_ptr;
+		__this->___method_code = (intptr_t)__this->___m_target;
+	}
+	__this->___extra_arg = (intptr_t)&LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_Multicast;
+}
+// Method Definition Index: 33301
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1 (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_hitInfo, reinterpret_cast<RuntimeMethod*>(__this->___method));
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// Method Definition Index: 33302
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__43__ctor_m361BDB4E876302BF207C08D6A4F32AB4FC8CD600 (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
+{
+	{
+		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
+		int32_t L_0 = ___0_U3CU3E1__state;
+		__this->___U3CU3E1__state = L_0;
+		return;
+	}
+}
+// Method Definition Index: 33303
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__43_System_IDisposable_Dispose_mFC78B85BE4FC46E26C0106183B1E04AEC909EBCC (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, const RuntimeMethod* method) 
+{
+	{
+		return;
+	}
+}
+// Method Definition Index: 33304
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CHitTriggerU3Ed__43_MoveNext_m748509AEDFAD42B42127DFF746129A434A66E5AB (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* V_1 = NULL;
+	{
+		int32_t L_0 = __this->___U3CU3E1__state;
+		V_0 = L_0;
+		SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* L_1 = __this->___U3CU3E4__this;
+		V_1 = L_1;
+		int32_t L_2 = V_0;
+		if (!L_2)
+		{
+			goto IL_0017;
+		}
+	}
+	{
+		int32_t L_3 = V_0;
+		if ((((int32_t)L_3) == ((int32_t)1)))
+		{
+			goto IL_0058;
+		}
+	}
+	{
+		return (bool)0;
+	}
+
+IL_0017:
+	{
+		__this->___U3CU3E1__state = (-1);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:401>
+		SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* L_4 = V_1;
+		NullCheck(L_4);
+		L_4->___waitingForTriggerTime = (bool)1;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:402>
+		SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* L_5 = V_1;
+		NullCheck(L_5);
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_6 = L_5->___OnLaserHitTriggered;
+		if (!L_6)
+		{
+			goto IL_003e;
+		}
+	}
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:402>
+		SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* L_7 = V_1;
+		NullCheck(L_7);
+		LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* L_8 = L_7->___OnLaserHitTriggered;
+		RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA L_9 = __this->___hit;
+		NullCheck(L_8);
+		LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_inline(L_8, L_9, NULL);
+	}
+
+IL_003e:
+	{
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:403>
+		float L_10 = __this->___triggerInterval;
+		WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3* L_11 = (WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3*)il2cpp_codegen_object_new(WaitForSeconds_tF179DF251655B8DF044952E70A60DF4B358A3DD3_il2cpp_TypeInfo_var);
+		WaitForSeconds__ctor_m579F95BADEDBAB4B3A7E302C6EE3995926EF2EFC(L_11, L_10, NULL);
+		__this->___U3CU3E2__current = L_11;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)L_11);
+		__this->___U3CU3E1__state = 1;
+		return (bool)1;
+	}
+
+IL_0058:
+	{
+		__this->___U3CU3E1__state = (-1);
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:404>
+		SpriteBasedLaser_tF5D0105DB602EA93ED7A81FD13259B643704CA42* L_12 = V_1;
+		NullCheck(L_12);
+		L_12->___waitingForTriggerTime = (bool)0;
+		//<source_info:E:/Projects/Sigma/BSG2/Assets/2DLaserPack/Scripts/SpriteBasedLaser.cs:405>
+		return (bool)0;
+	}
+}
+// Method Definition Index: 33305
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CHitTriggerU3Ed__43_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mA1A52C5002881D6E27521D9D36BD72D5A2DBF315 (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, const RuntimeMethod* method) 
+{
+	{
+		RuntimeObject* L_0 = __this->___U3CU3E2__current;
+		return L_0;
+	}
+}
+// Method Definition Index: 33306
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CHitTriggerU3Ed__43_System_Collections_IEnumerator_Reset_mABA173A224EA115F5CE30495F3A8E2C677A62AB0 (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, const RuntimeMethod* method) 
+{
+	{
+		NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A* L_0 = (NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A_il2cpp_TypeInfo_var)));
+		NotSupportedException__ctor_m1398D0CDE19B36AA3DE9392879738C1EA2439CDF(L_0, NULL);
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CHitTriggerU3Ed__43_System_Collections_IEnumerator_Reset_mABA173A224EA115F5CE30495F3A8E2C677A62AB0_RuntimeMethod_var)));
+	}
+}
+// Method Definition Index: 33307
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CHitTriggerU3Ed__43_System_Collections_IEnumerator_get_Current_m25EA7B8B55F267A138F16C2D79A45AA73A09929F (U3CHitTriggerU3Ed__43_tB4D295455F1599DFEDAA520B300CB7259DC80B47* __this, const RuntimeMethod* method) 
+{
+	{
+		RuntimeObject* L_0 = __this->___U3CU3E2__current;
+		return L_0;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+// Method Definition Index: 39952
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector3_Distance_m2314DB9B8BD01157E013DF87BEA557375C7F9FF9_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	float V_0 = 0.0f;
+	float V_1 = 0.0f;
+	float V_2 = 0.0f;
+	float V_3 = 0.0f;
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = ___0_a;
+		float L_1 = L_0.___x;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_2 = ___1_b;
+		float L_3 = L_2.___x;
+		V_0 = ((float)il2cpp_codegen_subtract(L_1, L_3));
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_4 = ___0_a;
+		float L_5 = L_4.___y;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_6 = ___1_b;
+		float L_7 = L_6.___y;
+		V_1 = ((float)il2cpp_codegen_subtract(L_5, L_7));
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_8 = ___0_a;
+		float L_9 = L_8.___z;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_10 = ___1_b;
+		float L_11 = L_10.___z;
+		V_2 = ((float)il2cpp_codegen_subtract(L_9, L_11));
+		float L_12 = V_0;
+		float L_13 = V_0;
+		float L_14 = V_1;
+		float L_15 = V_1;
+		float L_16 = V_2;
+		float L_17 = V_2;
+		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
+		double L_18;
+		L_18 = sqrt(((double)((float)il2cpp_codegen_add(((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_12, L_13)), ((float)il2cpp_codegen_multiply(L_14, L_15)))), ((float)il2cpp_codegen_multiply(L_16, L_17))))));
+		V_3 = ((float)L_18);
+		goto IL_0040;
+	}
+
+IL_0040:
+	{
+		float L_19 = V_3;
+		return L_19;
+	}
+}
+// Method Definition Index: 40059
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7* __this, float ___0_x, float ___1_y, const RuntimeMethod* method) 
+{
+	{
+		float L_0 = ___0_x;
+		__this->___x = L_0;
+		float L_1 = ___1_y;
+		__this->___y = L_1;
+		return;
+	}
+}
+// Method Definition Index: 39968
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Subtraction_mE42023FF80067CB44A1D4A27EB7CF2B24CABB828_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___1_b, const RuntimeMethod* method) 
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = ___0_a;
+		float L_1 = L_0.___x;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_2 = ___1_b;
+		float L_3 = L_2.___x;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_4 = ___0_a;
+		float L_5 = L_4.___y;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_6 = ___1_b;
+		float L_7 = L_6.___y;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_8 = ___0_a;
+		float L_9 = L_8.___z;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_10 = ___1_b;
+		float L_11 = L_10.___z;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_12;
+		memset((&L_12), 0, sizeof(L_12));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_12), ((float)il2cpp_codegen_subtract(L_1, L_3)), ((float)il2cpp_codegen_subtract(L_5, L_7)), ((float)il2cpp_codegen_subtract(L_9, L_11)), NULL);
+		V_0 = L_12;
+		goto IL_0030;
+	}
+
+IL_0030:
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_13 = V_0;
+		return L_13;
+	}
+}
+// Method Definition Index: 39966
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_get_right_mFF573AFBBB2186E7AFA1BA7CA271A78DF67E4EA0_inline (const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = ((Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_StaticFields*)il2cpp_codegen_static_fields_for(Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_il2cpp_TypeInfo_var))->___rightVector;
+		V_0 = L_0;
+		goto IL_0009;
+	}
+
+IL_0009:
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_1 = V_0;
+		return L_1;
+	}
+}
+// Method Definition Index: 40086
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_op_Implicit_mE8EBEE9291F11BB02F062D6E000F4798968CBD96_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_v, const RuntimeMethod* method) 
+{
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = ___0_v;
+		float L_1 = L_0.___x;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_2 = ___0_v;
+		float L_3 = L_2.___y;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_4), L_1, L_3, NULL);
+		V_0 = L_4;
+		goto IL_0015;
+	}
+
+IL_0015:
+	{
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_5 = V_0;
+		return L_5;
+	}
+}
+// Method Definition Index: 40073
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Vector2_Distance_mBACBB1609E1894D68F882D86A93519E311810C89_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_b, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	float V_0 = 0.0f;
+	float V_1 = 0.0f;
+	float V_2 = 0.0f;
+	{
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_0 = ___0_a;
+		float L_1 = L_0.___x;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_2 = ___1_b;
+		float L_3 = L_2.___x;
+		V_0 = ((float)il2cpp_codegen_subtract(L_1, L_3));
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_4 = ___0_a;
+		float L_5 = L_4.___y;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_6 = ___1_b;
+		float L_7 = L_6.___y;
+		V_1 = ((float)il2cpp_codegen_subtract(L_5, L_7));
+		float L_8 = V_0;
+		float L_9 = V_0;
+		float L_10 = V_1;
+		float L_11 = V_1;
+		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
+		double L_12;
+		L_12 = sqrt(((double)((float)il2cpp_codegen_add(((float)il2cpp_codegen_multiply(L_8, L_9)), ((float)il2cpp_codegen_multiply(L_10, L_11))))));
+		V_2 = ((float)L_12);
+		goto IL_002e;
+	}
+
+IL_002e:
+	{
+		float L_13 = V_2;
+		return L_13;
+	}
+}
+// Method Definition Index: 40087
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector2_op_Implicit_m6D9CABB2C791A192867D7A4559D132BE86DD3EB7_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_v, const RuntimeMethod* method) 
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_0 = ___0_v;
+		float L_1 = L_0.___x;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_2 = ___0_v;
+		float L_3 = L_2.___y;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_4;
+		memset((&L_4), 0, sizeof(L_4));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_4), L_1, L_3, (0.0f), NULL);
+		V_0 = L_4;
+		goto IL_001a;
+	}
+
+IL_001a:
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_5 = V_0;
+		return L_5;
+	}
+}
+// Method Definition Index: 40024
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Mathf_Abs_mD945EDDEA0D62D21BFDBAB7B1C0F18DFF1CEC905_inline (int32_t ___0_value, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	int32_t V_0 = 0;
+	{
+		int32_t L_0 = ___0_value;
+		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
+		int32_t L_1;
+		L_1 = il2cpp_codegen_abs(L_0);
+		V_0 = L_1;
+		goto IL_000a;
+	}
+
+IL_000a:
+	{
+		int32_t L_2 = V_0;
+		return L_2;
+	}
+}
+// Method Definition Index: 40039
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp_mEB9AEA827D27D20FCC787F7375156AF46BB12BBF_inline (float ___0_value, float ___1_min, float ___2_max, const RuntimeMethod* method) 
+{
+	bool V_0 = false;
+	bool V_1 = false;
+	float V_2 = 0.0f;
+	{
+		float L_0 = ___0_value;
+		float L_1 = ___1_min;
+		V_0 = (bool)((((float)L_0) < ((float)L_1))? 1 : 0);
+		bool L_2 = V_0;
+		if (!L_2)
+		{
+			goto IL_000e;
+		}
+	}
+	{
+		float L_3 = ___1_min;
+		___0_value = L_3;
+		goto IL_0019;
+	}
+
+IL_000e:
+	{
+		float L_4 = ___0_value;
+		float L_5 = ___2_max;
+		V_1 = (bool)((((float)L_4) > ((float)L_5))? 1 : 0);
+		bool L_6 = V_1;
+		if (!L_6)
+		{
+			goto IL_0019;
+		}
+	}
+	{
+		float L_7 = ___2_max;
+		___0_value = L_7;
+	}
+
+IL_0019:
+	{
+		float L_8 = ___0_value;
+		V_2 = L_8;
+		goto IL_001d;
+	}
+
+IL_001d:
+	{
+		float L_9 = V_2;
+		return L_9;
+	}
+}
+// Method Definition Index: 33278
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void LaserHitTriggerHandler_Invoke_m8BE1E83D02134648AF1D68CEA1C86BA48B6DBC90_inline (LaserHitTriggerHandler_t3CD5B81323AC2A83CBB015FBCD13B3873943B2BA* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_hitInfo, reinterpret_cast<RuntimeMethod*>(__this->___method));
+}
+// Method Definition Index: 40042
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline (float ___0_a, float ___1_b, float ___2_t, const RuntimeMethod* method) 
+{
+	float V_0 = 0.0f;
+	{
+		float L_0 = ___0_a;
+		float L_1 = ___1_b;
+		float L_2 = ___0_a;
+		float L_3 = ___2_t;
+		float L_4;
+		L_4 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(L_3, NULL);
+		V_0 = ((float)il2cpp_codegen_add(L_0, ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_subtract(L_1, L_2)), L_4))));
+		goto IL_0010;
+	}
+
+IL_0010:
+	{
+		float L_5 = V_0;
+		return L_5;
+	}
+}
+// Method Definition Index: 40060
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_Lerp_m1A36103F7967F653A929556E26E6D052C298C00C_inline (Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___0_a, Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 ___1_b, float ___2_t, const RuntimeMethod* method) 
+{
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		float L_0 = ___2_t;
+		float L_1;
+		L_1 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(L_0, NULL);
+		___2_t = L_1;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_2 = ___0_a;
+		float L_3 = L_2.___x;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_4 = ___1_b;
+		float L_5 = L_4.___x;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_6 = ___0_a;
+		float L_7 = L_6.___x;
+		float L_8 = ___2_t;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_9 = ___0_a;
+		float L_10 = L_9.___y;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_11 = ___1_b;
+		float L_12 = L_11.___y;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_13 = ___0_a;
+		float L_14 = L_13.___y;
+		float L_15 = ___2_t;
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_16;
+		memset((&L_16), 0, sizeof(L_16));
+		Vector2__ctor_m9525B79969AFFE3254B303A40997A56DEEB6F548_inline((&L_16), ((float)il2cpp_codegen_add(L_3, ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_subtract(L_5, L_7)), L_8)))), ((float)il2cpp_codegen_add(L_10, ((float)il2cpp_codegen_multiply(((float)il2cpp_codegen_subtract(L_12, L_14)), L_15)))), NULL);
+		V_0 = L_16;
+		goto IL_003d;
+	}
+
+IL_003d:
+	{
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_17 = V_0;
+		return L_17;
+	}
+}
+// Method Definition Index: 40088
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 Vector2_get_zero_m32506C40EC2EE7D5D4410BF40D3EE683A3D5F32C_inline (const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_0 = ((Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_StaticFields*)il2cpp_codegen_static_fields_for(Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7_il2cpp_TypeInfo_var))->___zeroVector;
+		V_0 = L_0;
+		goto IL_0009;
+	}
+
+IL_0009:
+	{
+		Vector2_t1FD6F485C871E832B347AB2DC8CBA08B739D8DF7 L_1 = V_0;
+		return L_1;
+	}
+}
+// Method Definition Index: 39204
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Bounds_get_size_m0699A53A55A78B3201D7270D6F338DFA91B6FAD4_inline (Bounds_t367E830C64BBF235ED8C3B2F8CF6254FDCAD39C3* __this, const RuntimeMethod* method) 
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = __this->___m_Extents;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_1;
+		L_1 = Vector3_op_Multiply_m87BA7C578F96C8E49BB07088DAAC4649F83B0353_inline(L_0, (2.0f), NULL);
+		V_0 = L_1;
+		goto IL_0014;
+	}
+
+IL_0014:
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_2 = V_0;
+		return L_2;
+	}
+}
+// Method Definition Index: 39942
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* __this, float ___0_x, float ___1_y, float ___2_z, const RuntimeMethod* method) 
+{
+	{
+		float L_0 = ___0_x;
+		__this->___x = L_0;
+		float L_1 = ___1_y;
+		__this->___y = L_1;
+		float L_2 = ___2_z;
+		__this->___z = L_2;
+		return;
+	}
+}
+// Method Definition Index: 33301
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void LaserHitTriggerHandler_Invoke_mD9D466E669F3FCF5F143BDB10A642A60288757B1_inline (LaserHitTriggerHandler_t85FD936A2DA7EE6F4E1728B47FC2EB46C9D08C1A* __this, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA ___0_hitInfo, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, RaycastHit2D_t3EAAA06E6603C6BC61AC1291DD881C5C1E23BDFA, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl)((Il2CppObject*)__this->___method_code, ___0_hitInfo, reinterpret_cast<RuntimeMethod*>(__this->___method));
+}
+// Method Definition Index: 40041
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline (float ___0_value, const RuntimeMethod* method) 
+{
+	bool V_0 = false;
+	float V_1 = 0.0f;
+	bool V_2 = false;
+	{
+		float L_0 = ___0_value;
+		V_0 = (bool)((((float)L_0) < ((float)(0.0f)))? 1 : 0);
+		bool L_1 = V_0;
+		if (!L_1)
+		{
+			goto IL_0015;
+		}
+	}
+	{
+		V_1 = (0.0f);
+		goto IL_002d;
+	}
+
+IL_0015:
+	{
+		float L_2 = ___0_value;
+		V_2 = (bool)((((float)L_2) > ((float)(1.0f)))? 1 : 0);
+		bool L_3 = V_2;
+		if (!L_3)
+		{
+			goto IL_0029;
+		}
+	}
+	{
+		V_1 = (1.0f);
+		goto IL_002d;
+	}
+
+IL_0029:
+	{
+		float L_4 = ___0_value;
+		V_1 = L_4;
+		goto IL_002d;
+	}
+
+IL_002d:
+	{
+		float L_5 = V_1;
+		return L_5;
+	}
+}
+// Method Definition Index: 39970
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 Vector3_op_Multiply_m87BA7C578F96C8E49BB07088DAAC4649F83B0353_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___0_a, float ___1_d, const RuntimeMethod* method) 
+{
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 V_0;
+	memset((&V_0), 0, sizeof(V_0));
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = ___0_a;
+		float L_1 = L_0.___x;
+		float L_2 = ___1_d;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_3 = ___0_a;
+		float L_4 = L_3.___y;
+		float L_5 = ___1_d;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_6 = ___0_a;
+		float L_7 = L_6.___z;
+		float L_8 = ___1_d;
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_9;
+		memset((&L_9), 0, sizeof(L_9));
+		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_9), ((float)il2cpp_codegen_multiply(L_1, L_2)), ((float)il2cpp_codegen_multiply(L_4, L_5)), ((float)il2cpp_codegen_multiply(L_7, L_8)), NULL);
+		V_0 = L_9;
+		goto IL_0021;
+	}
+
+IL_0021:
+	{
+		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_10 = V_0;
+		return L_10;
+	}
+}
