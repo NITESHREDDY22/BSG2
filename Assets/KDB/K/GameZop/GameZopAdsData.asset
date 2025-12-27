@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae46d7326bf68b42a8b8256cd92176f, type: 3}
+  m_Name: GameZopAdsData
+  m_EditorClassIdentifier: 
+  bannerListA:
+  - name: gameZop1
+    image: {fileID: 21300000, guid: 54509cb29df794549bc84f61af34b801, type: 3}
+    url: https://11136.play.gamezop.com/
+  - name: gameZop2
+    image: {fileID: 21300000, guid: 643d8806893906f4f9db4ab648cfdbe2, type: 3}
+    url: https://11136.play.gamezop.com/
+  - name: gameZop3
+    image: {fileID: 21300000, guid: 1a7cf7cbfc3cf414bac067672878302b, type: 3}
+    url: https://11136.play.gamezop.com/
+  bannerListB:
+  - name: astroZop1
+    image: {fileID: 21300000, guid: 7df9c246cef27d64488d8f1a680761e8, type: 3}
+    url: https://11137.read.astrozop.com/
+  - name: astroZop2
+    image: {fileID: 21300000, guid: b994d800587740042a7130c927368bbb, type: 3}
+    url: https://11137.read.astrozop.com/
+  - name: astroZop3
+    image: {fileID: 21300000, guid: f43574cf5da513f4fbe500ceeb9f2b6f, type: 3}
+    url: https://11137.read.astrozop.com/
+  interstitialListA:
+  - name: gameZop1
+    image: {fileID: 21300000, guid: 3fccba06037ddee4089446107385fd79, type: 3}
+    url: https://11136.play.gamezop.com/
+  - name: gameZop2
+    image: {fileID: 21300000, guid: 203a2de9167d9a54bba8362e01bdcb6c, type: 3}
+    url: https://11136.play.gamezop.com/
+  - name: gameZop3
+    image: {fileID: 21300000, guid: 5cab8e91846604643b157f262c0c7e5f, type: 3}
+    url: https://11136.play.gamezop.com/
+  interstitialListB:
+  - name: astroZop1
+    image: {fileID: 21300000, guid: 125b52f1f63ffa242b369a19324f42ac, type: 3}
+    url: https://11137.read.astrozop.com/
+  - name: astroZop2
+    image: {fileID: 21300000, guid: 4c70e63355c40a543b4f794bbbb8066a, type: 3}
+    url: https://11137.read.astrozop.com/
+  - name: astroZop3
+    image: {fileID: 21300000, guid: 04c4ef3b80f1bd745afc5684d87eaa00, type: 3}
+    url: https://11137.read.astrozop.com/

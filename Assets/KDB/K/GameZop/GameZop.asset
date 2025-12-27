@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af023c5501b12404a8982fedd6bb00f6, type: 3}
+  m_Name: GameZop
+  m_EditorClassIdentifier: 
+  listA:
+  - adName: gameZop1
+    adImage: {fileID: 21300000, guid: 54509cb29df794549bc84f61af34b801, type: 3}
+    targetUrl: https://11136.play.gamezop.com/
+  - adName: gameZop2
+    adImage: {fileID: 21300000, guid: 643d8806893906f4f9db4ab648cfdbe2, type: 3}
+    targetUrl: https://11136.play.gamezop.com/
+  - adName: gameZop3
+    adImage: {fileID: 21300000, guid: 1a7cf7cbfc3cf414bac067672878302b, type: 3}
+    targetUrl: https://11136.play.gamezop.com/
+  listB:
+  - adName: astroZop1
+    adImage: {fileID: 21300000, guid: 7df9c246cef27d64488d8f1a680761e8, type: 3}
+    targetUrl: https://11137.read.astrozop.com/
+  - adName: astroZop2
+    adImage: {fileID: 21300000, guid: b994d800587740042a7130c927368bbb, type: 3}
+    targetUrl: https://11137.read.astrozop.com/
+  - adName: astroZop3
+    adImage: {fileID: 21300000, guid: f43574cf5da513f4fbe500ceeb9f2b6f, type: 3}
+    targetUrl: https://11137.read.astrozop.com/

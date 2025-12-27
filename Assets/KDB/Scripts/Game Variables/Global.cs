@@ -50,5 +50,27 @@ public class Global : MonoBehaviour
     public static int adRetryTime = 60;
 
     public static int coinsToReload = 100;
+
+    public static int playerRatingMultiplier
+    {
+        get => PlayerPrefs.GetInt("playerRatingMultiplier",0);
+        set
+        {
+            //_playerRatingMultiplier = value;
+            PlayerPrefs.SetInt("playerRatingMultiplier", value);
+            PlayerPrefs.Save();
+        }
+    }
+    private static int? _finalReloadCoins = 0;
+    public static int finalReloadCoins
+    {
+        get
+        {
+            _finalReloadCoins = coinsToReload * playerRatingMultiplier;
+            return _finalReloadCoins.Value;
+        }
+    }
+
     public static int defaultCoins = 1000;
+    public static bool customAdsEnabled = true;
 }

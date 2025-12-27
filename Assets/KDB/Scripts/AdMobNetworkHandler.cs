@@ -574,6 +574,7 @@ private void HandlePaidEvent(
         new Parameter("ad_format", adFormat),
         new Parameter("currency", adValue.CurrencyCode),
         new Parameter("value", revenue),
+        new Parameter("revenue_debug", revenue),
         new Parameter("ad_value_precision", adValue.Precision.ToString())
     };
 
@@ -584,6 +585,7 @@ private void HandlePaidEvent(
         $"Format: {adFormat}\n" +
         $"Unit: {adUnitId}\n" +
         $"Revenue: {revenue} {adValue.CurrencyCode}\n" +
+        $"revenue_debug: {revenue}"+
         $"Precision: {adValue.Precision}"
     );
 }

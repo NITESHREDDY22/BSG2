@@ -42,4 +42,7 @@ public class GameConfig {
     public int adRetryTime = 60;
     public int coinsToReload = 100;
     public int defaultCoins = 1000;
+    public float showGameAds = .5f;
+    public float showAstroAds = .5f;
+    public bool customAdsEnabled = true;
 }

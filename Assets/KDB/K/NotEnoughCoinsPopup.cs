@@ -9,7 +9,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     [Header("Popup Root")]
     [SerializeField] private GameObject popupPanel;
     [SerializeField]private Text currentCoinsTxt,coinsToBuyTxt,reqCoinsTxt;
-    [SerializeField]private GameObject infoPopup,optionsPopup,coinsInfoPopup;
+    [SerializeField]private GameObject infoPopup,optionsPopup,coinsInfoPopup,coinStatus;
 
     [Header("Callbacks")]
     public UnityEvent OnOpenCallback;
@@ -34,12 +34,15 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     // -----------------------
     public void Open()
     {
-        reqCoinsTxt.text = ""+(Global.coinsToReload-GameManager.GetCoins());
+        reqCoinsTxt.text = ""+(Global.finalReloadCoins-GameManager.GetCoins());
         popupPanel.SetActive(true);
         ShowNotEnoughCoinsPopup();
         OnOpenCallback?.Invoke();
         if (AdManager._instance)
             AdManager._instance.HidebannerAd();
+
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_Open_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
+        );
     }
 
     public void Close()
@@ -48,6 +51,9 @@ public class NotEnoughCoinsPopup : MonoBehaviour
         OnCloseCallback?.Invoke();
         if (AdManager._instance)
             AdManager._instance.ShowbannerAd();
+
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_Close_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
+        );
     }
     public bool IsActive()
     {
@@ -88,8 +94,21 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     public void WatchAdSuccess()
     {
         //OnWatchAdCallback?.Invoke();
-        Close();
-        GameManager.Instance.ReloadLevelNoInterstitial();
+        //Close();
+        //GameManager.Instance.ReloadLevelNoInterstitial();
+        
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_VideoSuccess_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
+        );
+        Invoke(nameof(Close),2.5f);
+        if (CoinFlyAnimator.Instance)
+        {
+            CoinFlyAnimator.Instance.Play(reqCoinsTxt.GetComponent<RectTransform>(), coinStatus.GetComponent<RectTransform>(),spawnParent, () =>
+            {
+                Debug.Log("ShowCoinsAnimation complete");
+                PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + 300);
+                GameManager.AddCoins();
+            });
+        } 
     }
 
     public  void WatchAdToRetryLevel()
@@ -105,6 +124,8 @@ public class NotEnoughCoinsPopup : MonoBehaviour
                         WatchAdSuccess();
                     }
                 },AdType.Reward);
+
+                
 
     }
 
@@ -139,6 +160,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
 
     public void ShowCoinDeduction(Vector3 worldPosition, int amount)
     {
+        if(amount<=0)return;
         var popup = Instantiate(popupPrefab, spawnParent);
         RectTransform rt = popup.GetComponent<RectTransform>();
         rt.anchoredPosition = spawnParent.GetComponent<RectTransform>().rect.center;

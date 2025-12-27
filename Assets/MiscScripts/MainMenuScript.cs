@@ -142,7 +142,8 @@ public class MainMenuScript : MonoBehaviour
             StoreManager._instance.ScrollContent.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             StoreManager._instance.ScrollContent2.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             if(FirebaseEvents.instance)
-            FirebaseEvents.instance.LogFirebaseEvent("StoreBtn_clicked_MainMenu");
+                FirebaseEvents.instance.LogFirebaseEvent("StoreBtn_clicked_MainMenu");
+                
             GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
 
         }

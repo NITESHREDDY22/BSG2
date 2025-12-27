@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BuyIAP : MonoBehaviour
 {
+    public string source = "store";
     [SerializeField] ItemType currentItem;
     [SerializeField] TextMeshProUGUI priceText;
     [SerializeField] Text priceText1;
@@ -28,10 +29,14 @@ public class BuyIAP : MonoBehaviour
     {
         InappManager.Instance.PurchaseItem(currentItem);
 
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("Buy_product_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay+
+        "_currentItem_"+currentItem.ToString()+"_source_"+source);
+
         if (FirebaseEvents.instance != null)
         {
             FirebaseEvents.instance.LogFirebaseEvent("AdBlockerPurchaseClicked", "success");
         }
+        
     }
 
     void PostPurchase(ItemType itemType)

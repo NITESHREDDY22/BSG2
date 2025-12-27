@@ -162,6 +162,13 @@ public class GameManager : MonoBehaviour
             AdManager._instance.ShowbannerAd();
         }
         Time.timeScale = 1;
+        if (CustomAdManager.Instance)
+        {
+            CustomAdManager.Instance.HideBanner();
+            CustomAdManager.Instance.HideInterstitial();
+        }
+        if(PlayerPerformance.Instance)
+        PlayerPerformance.Instance.RecordAttempt();
     }
 
     public void pause()
@@ -212,12 +219,16 @@ public class GameManager : MonoBehaviour
     void LoadLevel()
     {
         Debug.Log($"coins:{GameManager.GetCoins()}");
-        if (GameManager.GetCoins() >= Global.coinsToReload)
+        if (GameManager.GetCoins() >= (Global.finalReloadCoins))
         {
+            if (!SoundManager.IsMuted())
+            {
+                SoundsHandler.Instance.PlaySource2Clip(4, 0);
+            }
             Invoke(nameof(ReloadLevel), .8f);
-            GameManager.DeductCoins(Global.coinsToReload);
+            GameManager.DeductCoins(Global.finalReloadCoins);
             if (NotEnoughCoinsPopup.Instance)
-                NotEnoughCoinsPopup.Instance.ShowCoinDeduction(Vector2.zero, Global.coinsToReload);
+                NotEnoughCoinsPopup.Instance.ShowCoinDeduction(Vector2.zero, Global.finalReloadCoins);
         }
         else
         {
@@ -237,10 +248,10 @@ public class GameManager : MonoBehaviour
             Global.tutorialDisplaye = true;
             Global.noOfTries = Global.noOfTries + 1;
             //ClickSound.Play ();
-            if (!SoundManager.IsMuted())
+            /* if (!SoundManager.IsMuted())
             {
                 SoundsHandler.Instance.PlaySource2Clip(4, 0);
-            }
+            } */
             if (!gameOverPanel.activeInHierarchy && !gameFailed.activeInHierarchy)
             {
                 currentAdDisplayTime = Time.time;
@@ -251,6 +262,11 @@ public class GameManager : MonoBehaviour
                             if (result)
                             {
                                 AdManager._instance.DelayOnShowAds();
+                            }
+                            else
+                            {
+                                if(CustomAdManager.Instance)
+                                CustomAdManager.Instance.ShowInterstitial();
                             }
                         });
                 }
@@ -377,7 +393,17 @@ public class GameManager : MonoBehaviour
         }
         if (!gameOverPanel.activeInHierarchy && !gameFailed.activeInHierarchy)
         {
-            AdManager._instance.ShowCommonInterstitial();
+            //AdManager._instance.ShowCommonInterstitial();
+            AdManager._instance.ShowCommonInterstitial((result) =>
+                        {
+                            Debug.Log($"ShowCommonInterstitial::{result}");
+                            if (!result)
+                            {
+                                if(CustomAdManager.Instance)
+                                CustomAdManager.Instance.ShowInterstitial();
+                            }
+                        });
+
         }
         Global.noOfTries = 0;
         Time.timeScale = 1;
@@ -1704,7 +1730,7 @@ public class GameManager : MonoBehaviour
 
     public float playTime;
 
-    void ShowNewLevelComplete()
+    public void ShowNewLevelComplete()
     {
         try
         {
@@ -1944,6 +1970,7 @@ public class GameManager : MonoBehaviour
 
 
             LevelSelectionHandler.SetStarsOfLevel(Global.CurrentLeveltoPlay, WorldSelectionHandler.worldSelected, count);
+            if(PlayerPerformance.Instance)PlayerPerformance.Instance.CompleteLevel();
         }
         catch (Exception exp)
         {

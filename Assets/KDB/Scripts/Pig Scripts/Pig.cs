@@ -266,6 +266,8 @@ public class Pig : MonoBehaviour
                         if (AdManager._instance)
                             AdManager._instance.HidebannerAd();
 
+                        if(CustomAdManager.Instance)CustomAdManager.Instance.ShowBanner();
+
                         //Uncomment for coin animation
                         //GameObject.FindObjectOfType<GameManager>().StartCoroutine(GameObject.FindObjectOfType<GameManager>().ShowCoinsAnimation());
                     }

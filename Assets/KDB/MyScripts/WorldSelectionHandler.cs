@@ -27,6 +27,11 @@ public class WorldSelectionHandler : MonoBehaviour
         // GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
         if (AdManager._instance)
             AdManager._instance.ShowbannerAd();
+
+        if (CustomAdManager.Instance)
+        {
+            CustomAdManager.Instance.HideBanner();
+        }
     }
    
     void starsupdate()

@@ -74,7 +74,7 @@ public class CoinFlyAnimator : MonoBehaviour
                     onComplete?.Invoke();
             }));
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.075f);
     }
 }
 

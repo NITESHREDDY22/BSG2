@@ -15,7 +15,7 @@ namespace Assets.SimpleLocalization
 			LocalizationManager.Read();
            SystemLanguage T = Application.systemLanguage;
 #if UNITY_EDITOR
-            T = SystemLanguage.German;
+            T = SystemLanguage.English;
 #endif
             switch (T)
 			{

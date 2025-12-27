@@ -235,7 +235,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.adRetryTime = config.adRetryTime;
                     bannerAdShowLevelFrom = config.showBannerFrom;
                     Global.coinsToReload = config.coinsToReload;
+#if UNITY_EDITOR
+                    //Global.coinsToReload = 0; // For test
+#endif
                     Global.defaultCoins = config.defaultCoins;
+                    CustomAdManager.adsEnabled = config.customAdsEnabled;
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
@@ -596,6 +600,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
                 void ShowLevelPlayLaunchInterStital(bool flag)
                 {
+                    Debug.Log($"ShowLaunchInterstitial:{flag}");
                     isLaunchAdShown = flag;
                     if (!flag)
                     {
@@ -614,6 +619,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                         //        lastAdShownDateTime = DateTime.UtcNow;
                         //    }
                         //});
+                        if (CustomAdManager.Instance)
+                            CustomAdManager.Instance.ShowInterstitial();
 
                     }
                     else
@@ -742,7 +749,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             adMobNetworkHandler.ShowInterstitialAd(AdType.Interstital, ShowLevelPlayLaunchInterStital);
             void ShowLevelPlayLaunchInterStital(bool flag)
             {
-
+                Debug.Log($"ShowInterstitial:{flag}");
                 if (!flag)
                 {
                     //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Interstital, (result)=>
@@ -763,6 +770,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     //    }
                     //   callBack?.Invoke(shown);
                     //});
+                    if (CustomAdManager.Instance)
+                            CustomAdManager.Instance.ShowInterstitial();
                 }
                 else
                 {
@@ -808,11 +817,24 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowCommonInterstitial(Action<bool> callBack=null)
     {      
-        Debug.Log("Increase Interstitial Counter");
+        Debug.Log($"Increase ShowCommon Interstitial Counter:{adDelayMet()}");
         try
         {
             if (adDelayMet())
-                ShowInterstitial(callBack);           
+                ShowInterstitial((callBack)=>
+                {
+                    Debug.Log($"ShowCommonInterstitial:{callBack}");
+                    if(callBack)
+                    {
+                        
+                    }
+                    else
+                    {
+                        if (CustomAdManager.Instance)
+                            CustomAdManager.Instance.ShowInterstitial();
+                    }
+
+                });
         }
         catch (Exception exp)
         {
@@ -859,9 +881,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             {
                 ShowInterstitial((result) =>
                 {
+                    Debug.Log($"ShowGameFailInterstitial:{result}");
                     if(result)
                     {
                         //counter = 0;
+                    }
+                    else
+                    {
+                        if (CustomAdManager.Instance)
+                            CustomAdManager.Instance.ShowInterstitial();
                     }
                 });
                 
@@ -913,9 +941,15 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             {
                     ShowInterstitial((result) =>
                     {
+                        Debug.Log($"ShowGameWinInterstitial:{result}");
                         if (result)
                         {
                             //counter2 = 0;
+                        }
+                        else
+                        {
+                            if (CustomAdManager.Instance)
+                            CustomAdManager.Instance.ShowInterstitial();
                         }
                     });                
             }          
