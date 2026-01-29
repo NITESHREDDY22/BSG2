@@ -1034,6 +1034,50 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4205603612045351850}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &260370324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 260370326}
+  - component: {fileID: 260370325}
+  m_Layer: 0
+  m_Name: LogOnScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &260370325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260370324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47513adb67ddd2d40beb1c107dc6eb06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &260370326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260370324}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &281717794
 GameObject:
   m_ObjectHideFlags: 0
@@ -4454,7 +4498,7 @@ MonoBehaviour:
   adManager: {fileID: 1163193292}
   isInterNetConnected: 0
   noInterNetPopup: {fileID: 176788097}
-  mandatoryInternetToPlayFromLevel: 10
+  mandatoryInternetToPlayFromLevel: -1
 --- !u!114 &1163193297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8547,11 +8591,51 @@ PrefabInstance:
       propertyPath: source
       value: notEnoughCoins
       objectReference: {fileID: 0}
+    - target: {fileID: 4319061320851349407, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: currentItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 655213606}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 655213606}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseFirebaseLog
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: NotEnoughCoinsPopup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969724158381873483, guid: c009d26a14db2f842a8a2a4aecd9bd00,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7490058560385608219, guid: c009d26a14db2f842a8a2a4aecd9bd00,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8589,3 +8673,4 @@ SceneRoots:
   - {fileID: 940588564}
   - {fileID: 655213610}
   - {fileID: 2056061417}
+  - {fileID: 260370326}

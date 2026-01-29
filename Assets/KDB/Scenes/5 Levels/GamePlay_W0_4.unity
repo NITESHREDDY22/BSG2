@@ -944,6 +944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 64073602}
   - component: {fileID: 64073603}
+  - component: {fileID: 64073604}
   m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
@@ -1031,6 +1032,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &64073604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64073601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b6afcc7a859514d8e27fa353870987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Soundbtn: {fileID: 0}
 --- !u!1 &65537534
 GameObject:
   m_ObjectHideFlags: 0

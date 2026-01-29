@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
         SkipLevelBtn.SetActive(false);
         //if (Global.noOfTries>= Global.retryCount &&((AdManager._instance.rewardBasedVideo.IsLoaded() || (AdManager._instance.unityRewardReady && AdManager._instance.enableUnityAds))))
-
+    
         if (Global.noOfTries >= Global.retryCount &&  AdManager._instance &&
             ((AdManager._instance.adMobNetworkHandler!=null && 
             AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo!=null && 
@@ -169,6 +169,13 @@ public class GameManager : MonoBehaviour
         }
         if(PlayerPerformance.Instance)
         PlayerPerformance.Instance.RecordAttempt();
+
+
+        //Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+        //FirebaseEvents.instance.LogFirebaseEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+        Debug.Log("Firebase event LevelStart logged");
+        
     }
 
     public void pause()
@@ -218,7 +225,7 @@ public class GameManager : MonoBehaviour
     }
     void LoadLevel()
     {
-        Debug.Log($"coins:{GameManager.GetCoins()}");
+        Debug.Log($"Total coins:{GameManager.GetCoins()} coinsToCharge: {Global.finalReloadCoins}");
         if (GameManager.GetCoins() >= (Global.finalReloadCoins))
         {
             if (!SoundManager.IsMuted())
@@ -238,13 +245,11 @@ public class GameManager : MonoBehaviour
 
     public void ReloadLevel()
     {
-        Debug.Log("ReloadLevel");
+        Debug.Log("Try ReloadLevel");
         AdManager._instance.ShowLoadingPanel();
         Global.tutorialDisplaye = true;
         Global.noOfTries = Global.noOfTries + 1;
         //ClickSound.Play ();
-        if (!SoundManager.IsMuted())
-        {
             Global.tutorialDisplaye = true;
             Global.noOfTries = Global.noOfTries + 1;
             //ClickSound.Play ();
@@ -285,7 +290,6 @@ public class GameManager : MonoBehaviour
                 AdManager._instance.FireBaseActions(targetKey, "retry", "success");
             }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
     public void ReloadLevelNoInterstitial()
     {
@@ -306,7 +310,7 @@ public class GameManager : MonoBehaviour
     {
         if(InternetValidator.Instance)
         {
-            if(!InternetValidator.Instance.canProceedToNextLevel)
+            if(!InternetValidator.Instance.canProceedToNextLevel())
             {
                 CheckNoInterNetPopup();
                 return;
@@ -1971,6 +1975,8 @@ public class GameManager : MonoBehaviour
 
             LevelSelectionHandler.SetStarsOfLevel(Global.CurrentLeveltoPlay, WorldSelectionHandler.worldSelected, count);
             if(PlayerPerformance.Instance)PlayerPerformance.Instance.CompleteLevel();
+
+            if(SkipLevelBtn)SkipLevelBtn.SetActive(false);
         }
         catch (Exception exp)
         {
