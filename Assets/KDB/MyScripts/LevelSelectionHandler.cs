@@ -143,4 +143,15 @@ public class LevelSelectionHandler : MonoBehaviour {
         }
     }
 
+    public void UnlockAllLevels()
+    {
+        unlockedLevels = PlayerPrefsX.GetBoolArray("_unlockedlevels" + worldNumb, false, WorldSelectionHandler.totalLevels[worldNumb]);
+        for (int i = 0; i < unlockedLevels.Length; i++)
+        {
+           unlockedLevels[i] = true;
+        }
+        PlayerPrefsX.SetBoolArray("_unlockedlevels" + worldNumb, unlockedLevels);
+        ConfigLvlButtons();
+    }
+
 }

@@ -244,4 +244,50 @@ public class WorldSelectionHandler : MonoBehaviour
         }
         return TotalStars;
     }
+
+    public void UnlockAllWorlds()
+    {
+        unlockedWorlds = PlayerPrefsX.GetBoolArray("_unlockedWorlds", false, worldImages.Length);
+        for(int i=0;i<worldImages.Length;i++)
+        {
+            unlockedWorlds[i] = true;
+        }
+
+        PlayerPrefsX.SetBoolArray("_unlockedWorlds", unlockedWorlds);
+        PlayerPrefs.Save();
+        /* generateWorldObjs();
+        ConfigLvlButtons(); */
+    }
+
+    public static void UnlockAllWorldsAndLevels()
+    {
+        int worldCount = WorldSelectionHandler.totalLevels.Length;
+
+        // Unlock all worlds
+        bool[] unlockedWorlds = new bool[worldCount];
+        for (int w = 0; w < worldCount; w++)
+        {
+            unlockedWorlds[w] = true;
+
+            int levelCount = WorldSelectionHandler.totalLevels[w];
+
+            // Unlock all levels in this world
+            bool[] unlockedLevels = new bool[levelCount];
+            int[] levelStars = new int[levelCount];
+
+            for (int l = 0; l < levelCount; l++)
+            {
+                unlockedLevels[l] = true;
+                levelStars[l] = 3; // max stars
+            }
+
+            PlayerPrefsX.SetBoolArray("_unlockedlevels" + w, unlockedLevels);
+            PlayerPrefsX.SetIntArray("_levelStars" + w, levelStars);
+        }
+
+        PlayerPrefsX.SetBoolArray("_unlockedWorlds", unlockedWorlds);
+        PlayerPrefs.Save();
+
+        Debug.Log("DEV CHEAT: All worlds, levels, and stars unlocked");
+    }
 }
