@@ -64,6 +64,7 @@ public class FirebaseEvents : MonoBehaviour
             if (this.isFirebaseInit == Firebase.InitResult.Success)
             {
                 Firebase.Analytics.FirebaseAnalytics.LogEvent(_log, new Firebase.Analytics.Parameter(paramname, value));
+                Debug.Log($"<color=black>FirebaseEvent = {_log}, {paramname} = {value}</color>");
             }
             else
             {

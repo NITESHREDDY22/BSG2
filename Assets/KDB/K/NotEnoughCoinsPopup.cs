@@ -43,6 +43,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
 
         Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_Open_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
         );
+        Debug.Log("NotEnoughCoins_Open_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
     }
 
     public void Close()
@@ -52,9 +53,16 @@ public class NotEnoughCoinsPopup : MonoBehaviour
         if (AdManager._instance)
             AdManager._instance.ShowbannerAd();
 
-            Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_Close_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
-        );
+        //CloseFirebaseLog();
     }
+
+    public void CloseFirebaseLog()
+    {
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_Close_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
+    );
+    Debug.Log("NotEnoughCoins_Close_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+    }
+
     public bool IsActive()
     {
         return popupPanel.activeSelf;
@@ -85,6 +93,8 @@ public class NotEnoughCoinsPopup : MonoBehaviour
                 Debug.LogWarning("[NotEnoughCoinsPopup] IAP failed!");
                 OnIAPFailedCallback?.Invoke();
             }); */
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_buyCoins_click_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+            Debug.Log("NotEnoughCoins_buyCoins_click_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
     }
 
 
@@ -99,6 +109,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
         
         Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_VideoSuccess_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
         );
+        Debug.Log("NotEnoughCoins_VideoSuccess_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
         Invoke(nameof(Close),2.5f);
         if (CoinFlyAnimator.Instance)
         {
@@ -114,6 +125,9 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     public  void WatchAdToRetryLevel()
     {
         Debug.LogError("WatchAdToRetryLevel CLICKED");
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_Video_Click_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay
+        );
+        Debug.Log("NotEnoughCoins_Video_Click_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
         AdManager._instance.rewardTypeToUnlock = RewardType.retryLevel;
         AdManager._instance.ShowRewardedVideo(result=>
                 {
@@ -149,9 +163,10 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     }
     public void ShowNotEnoughCoinsPopup()
     {
-        infoPopup.SetActive(true);
+        /* infoPopup.SetActive(true);
         optionsPopup.SetActive(false);
-        coinsInfoPopup.SetActive(false);
+        coinsInfoPopup.SetActive(false); */
+        GetCoins();
     }
 
 /// Coin Toast

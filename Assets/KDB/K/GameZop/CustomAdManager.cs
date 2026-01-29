@@ -60,6 +60,7 @@ public class CustomAdManager : MonoBehaviour
             _activeBanner = selected;
             bannerDisplayImage.sprite = _activeBanner.image;
             SetCanvasState(bannerCanvasGroup, true);
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("GameZop_banner_"+selected.name + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
         }
         else HideBanner();
     }
@@ -74,6 +75,7 @@ public class CustomAdManager : MonoBehaviour
             _activeInterstitial = selected;
             interstitialDisplayImage.sprite = _activeInterstitial.image;
             SetCanvasState(interstitialCanvasGroup, true);
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("GameZop_Interstitial_"+selected.name + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
         }
         else HideInterstitial();
     }
@@ -135,6 +137,7 @@ public class CustomAdManager : MonoBehaviour
 #else
         Application.OpenURL(url);
 #endif
+    Firebase.Analytics.FirebaseAnalytics.LogEvent("GameZop_OpenURL_url"+url + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
     }
 
     private void OpenChromeTab(string url)
