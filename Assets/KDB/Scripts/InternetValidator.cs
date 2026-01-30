@@ -18,7 +18,7 @@ public class InternetValidator : MonoBehaviour
     private bool triggerEvent;
     public Action<bool> OnInterNetCheck;
     private string cachedLevel;
-    public int mandatoryInternetToPlayFromLevel = 40;
+    public int mandatoryInternetToPlayFromLevel = -1;
 
     private void Awake()
     {
@@ -96,7 +96,7 @@ public class InternetValidator : MonoBehaviour
         }
         else
         {
-            if (noInterNetPopup && !canProceedToNextLevel)
+            if (noInterNetPopup && !canProceedToNextLevel())
             {
                 noInterNetPopup.SetActive(true);
             }
@@ -156,8 +156,45 @@ public class InternetValidator : MonoBehaviour
 
     }
 
-    public bool canProceedToNextLevel =>(isInterNetConnected || 
-        (!isInterNetConnected && !(GameConstants.targetLevelReached(mandatoryInternetToPlayFromLevel))));
+    /* public bool canProceedToNextLevel =>(isInterNetConnected || 
+        (!isInterNetConnected && !(GameConstants.targetLevelReached(mandatoryInternetToPlayFromLevel)))); */
+
+    public bool canProceedToNextLevel()
+    {
+        //CheckInterNetConnectivity();
+        int LevelNumber = GameConstants.getLastUnlcokedLevel;
+        bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
+        Debug.Log($"canGotoNextLevel isInterNetConnected:{isInterNetConnected},isConnected?{isConnected}");
+        isInterNetConnected = isConnected;
+        if (isInterNetConnected)
+        {
+            return true;
+        }
+        else
+        {
+            int worldNumber = GameConstants.getLastWorldUnlocked;
+            Debug.Log($"canGotoNextLevel worldNumber:{worldNumber},LevelNumber:{LevelNumber}, mandatoryInternetToPlayFromLevel:{mandatoryInternetToPlayFromLevel}");
+            if (worldNumber > -1)
+            {
+                if (mandatoryInternetToPlayFromLevel <= -1)
+                {
+                    return true;
+                }
+
+                if (mandatoryInternetToPlayFromLevel != -1 && LevelNumber < mandatoryInternetToPlayFromLevel && worldNumber < 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+
+    }
 
     void OnApplicationFocus(bool hasFocus)
     {

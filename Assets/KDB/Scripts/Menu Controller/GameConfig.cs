@@ -24,7 +24,7 @@ public class GameConfig {
     public int World3ReqStars=60;
     public int World4ReqStars=120;
     public int World5ReqStars=30;
-    public int InternetMandtoryLevel=10;
+    public int InternetMandtoryLevel=-1;
     public int PremiumPopUpInterval=3;
     public int FIRST_LVLS_SET_AD_GAP=2;
     public int SECOND_LVLS_SET_AD_GAP = 3;
