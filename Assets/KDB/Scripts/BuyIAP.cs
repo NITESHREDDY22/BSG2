@@ -31,6 +31,12 @@ public class BuyIAP : MonoBehaviour
 
         Firebase.Analytics.FirebaseAnalytics.LogEvent("Buy_product_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay+
         "_currentItem_"+currentItem.ToString()+"_source_"+source);
+        /* if (source == "notEnoughCoins")
+        {
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_buyCoins_success_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay +
+        "_currentItem_" + currentItem.ToString() + "_source_" + source);
+        } */
+        Debug.Log($"[Butproduct] source {source}");
 
         if (FirebaseEvents.instance != null)
         {

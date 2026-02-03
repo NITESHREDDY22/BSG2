@@ -38,6 +38,10 @@ public static class GameConstants
             case ItemType.Noads:
                 PlayerPrefs.SetString(NoAdsKey, NoAdsPurchased);
                 Coins += 5000;
+                if(NotEnoughCoinsPopup.Instance && NotEnoughCoinsPopup.Instance.IsActive())
+                {
+                    Firebase.Analytics.FirebaseAnalytics.LogEvent("NotEnoughCoins_buyCoins_success_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                }
                 break;
             case ItemType.coin_pack1:
                 Coins += 10000;
