@@ -9,6 +9,8 @@ public class CustomAdManager : MonoBehaviour
     [Header("Global Toggle")]
     public static bool adsEnabled = true;
 
+    public static bool showGameZopInterstitials = true;
+
     [Header("Common Probabilities (e.g., A=0.3, B=0.5. Sum <= 1.0)")]
     [Range(0f, 1f)] public float listAProb = 0.3f;
     [Range(0f, 1f)] public float listBProb = 0.5f;
@@ -67,7 +69,14 @@ public class CustomAdManager : MonoBehaviour
 
     public void ShowInterstitial()
     {
+        
+        bool condition = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
+                AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
+
+        Debug.Log($"[Ads][GameZop]ShowInterstitial can show{condition}");
+        if(condition)return;
         if (!CanShowAds()) return;
+        if(!showGameZopInterstitials)return;
 
         var selected = DetermineWeightedItem(adData.interstitialListA, adData.interstitialListB, "Interstitial");
         if (selected != null)

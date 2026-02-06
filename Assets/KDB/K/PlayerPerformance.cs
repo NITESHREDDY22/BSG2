@@ -1,95 +1,195 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerPerformance : MonoBehaviour
 {
-    // Singleton Instance
     public static PlayerPerformance Instance { get; private set; }
 
-    [Header("Game Tracking")]
-    public int totalAttempts = 0;
-    //public int currentLevel = 1;
-    public int maxLevels = 5;
+    public enum CampaignRatingType
+    {
+        StandardCampaign,   // 5 Levels (LIVE)
+        ExtendedCampaign    // 10 Levels (NEW)
+    }
 
-    [SerializeField]
-    private int playerRating = 0;
+    [Header("Campaign Configuration")]
+    public int standardCampaignLevels = 5;
+    public int extendedCampaignLevels = 10;
+
+    [Header("Attempts Tracking")]
+    public int standardCampaignAttempts = 0;
+    public int extendedCampaignAttempts = 0;
+
+    [SerializeField] private int standardCampaignRating = 0;
+    [SerializeField] private int extendedCampaignRating = 0;
+
+    #region Unity Lifecycle
 
     private void Awake()
     {
-        // Persistence: Make sure this object stays alive across all 5 levels
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("[PlayerPerformance] Singleton initialized (persistent).");
         }
         else
         {
+            Debug.LogWarning("[PlayerPerformance] Duplicate instance destroyed.");
             Destroy(gameObject);
         }
     }
 
-    // 1. Call this when the player dies or restarts
-    public void RecordAttempt()
-    {
-        totalAttempts++;
-        Debug.Log($"Attempt logged! Total so far: {totalAttempts}");
-    }
+    #endregion
 
-    // 2. Call this when the player finishes a level
-    public void CompleteLevel()
+    #region Attempt Tracking
+
+    public void RecordAttempt(CampaignRatingType campaignType)
     {
-         Debug.Log($"GAME COMPLETE! \n level:{Global.CurrentLeveltoPlay},\n totalAttempts:{totalAttempts},\n maxLevels:{maxLevels}");
-        if (Global.CurrentLeveltoPlay < maxLevels-1)
+        if (campaignType == CampaignRatingType.StandardCampaign)
         {
-            //currentLevel++;
-            Debug.Log($"Level {Global.CurrentLeveltoPlay - 1} Clear! Next up: Level {Global.CurrentLeveltoPlay}");
-            // SceneManager.LoadScene("Level" + currentLevel);
+            standardCampaignAttempts++;
+            Debug.Log($"[PlayerPerformance][Attempt] Standard Campaign | Total Attempts: {standardCampaignAttempts}");
         }
         else
         {
-            FinishGame();
+            extendedCampaignAttempts++;
+            Debug.Log($"[PlayerPerformance][Attempt] Extended Campaign | Total Attempts: {extendedCampaignAttempts}");
         }
     }
 
-    // 3. Logic to determine the Star Rating
-    public int GetStarRating()
+    #endregion
+
+    #region Level Completion
+
+    public void CompleteLevel(CampaignRatingType campaignType)
     {
-        // Based on 5 levels total:
-        if (totalAttempts <= maxLevels+2) return 3;   // Almost perfect (0-2 deaths total)
-        if (totalAttempts <= (maxLevels*2)) return 2;  // Good (average 2-3 deaths per level)
-        return 1;                           // Persistence (many deaths, but finished)
+        Debug.Log($"[PlayerPerformance][Level Complete] Campaign: {campaignType}, LevelIndex: {Global.CurrentLeveltoPlay}");
+
+        if (campaignType == CampaignRatingType.StandardCampaign)
+        {
+            if (Global.CurrentLeveltoPlay >= standardCampaignLevels - 1)
+            {
+                Debug.Log("[PlayerPerformance] Standard Campaign finished.");
+                FinishStandardCampaign();
+            }
+        }
+        else
+        {
+            if (Global.CurrentLeveltoPlay >= extendedCampaignLevels - 1)
+            {
+                Debug.Log("[PlayerPerformance] Extended Campaign finished.");
+                FinishExtendedCampaign();
+            }
+        }
     }
 
-    // 4. Logic to determine the Text Category
-    public string GetRatingTitle()
+    #endregion
+
+    #region Rating Logic
+
+    public int GetStarRating(CampaignRatingType campaignType)
     {
-        int stars = GetStarRating();
-        return stars switch
+        int attempts;
+        int totalLevels;
+
+        if (campaignType == CampaignRatingType.StandardCampaign)
+        {
+            attempts = standardCampaignAttempts;
+            totalLevels = standardCampaignLevels;
+        }
+        else
+        {
+            attempts = extendedCampaignAttempts;
+            totalLevels = extendedCampaignLevels;
+        }
+
+        int stars =
+            attempts <= totalLevels + 2 ? 3 :
+            attempts <= totalLevels * 2 ? 2 : 1;
+
+        Debug.Log($"[PlayerPerformance][Rating Calc] {campaignType} | Attempts: {attempts}, Stars: {stars}");
+        return stars;
+    }
+
+    public string GetRatingTitle(CampaignRatingType campaignType)
+    {
+        int stars = GetStarRating(campaignType);
+
+        string title = stars switch
         {
             3 => "Elite Master",
             2 => "Skilled Player",
             _ => "Determined Survivor"
         };
+
+        Debug.Log($"[PlayerPerformance][Rating Title] {campaignType} | {title}");
+        return title;
     }
 
-    private void FinishGame()
+    #endregion
+
+    #region Finish Campaigns
+
+    // 🔒 DO NOT CHANGE PlayerPrefs KEY (LIVE USERS)
+    private void FinishStandardCampaign()
     {
-        if(PlayerPrefs.HasKey("RatingDone") && PlayerPrefsX.GetBool("RatingDone") == true)
-        return;
+        if (PlayerPrefs.HasKey("RatingDone") && PlayerPrefsX.GetBool("RatingDone"))
+        {
+            Debug.Log("[PlayerPerformance] Standard Campaign rating already exists. Skipping.");
+            return;
+        }
 
-        int stars = GetStarRating();
-        string title = GetRatingTitle();
-        playerRating = stars;
+        int stars = GetStarRating(CampaignRatingType.StandardCampaign);
+        string title = GetRatingTitle(CampaignRatingType.StandardCampaign);
+
+        standardCampaignRating = stars;
         Global.playerRatingMultiplier = stars;
-        Debug.Log($"GAME COMPLETE! Rating: {stars} Stars - {title} ({totalAttempts} attempts)");
-        PlayerPrefsX.SetBool("RatingDone",true);
+
+        Debug.Log($"[PlayerPerformance][FINISH] Standard Campaign | Stars: {stars} ({title}) | Attempts: {standardCampaignAttempts}");
+
+        PlayerPrefsX.SetBool("RatingDone", true);
         PlayerPrefs.Save();
-        // You would typically trigger your Win UI here
     }
+
+    // 🆕 SAFE NEW KEY
+    private void FinishExtendedCampaign()
+    {
+        if (PlayerPrefsX.GetBool("ExtendedCampaignRatingDone", false))
+        {
+            Debug.Log("[PlayerPerformance] Extended Campaign rating already exists. Skipping.");
+            return;
+        }
+
+        int stars = GetStarRating(CampaignRatingType.ExtendedCampaign);
+        string title = GetRatingTitle(CampaignRatingType.ExtendedCampaign);
+
+        extendedCampaignRating = stars;
+        Global.playerExtendedRating = stars;
+
+        Debug.Log($"[PlayerPerformance][FINISH] Extended Campaign | Stars: {stars} ({title}) | Attempts: {extendedCampaignAttempts}");
+
+        PlayerPrefsX.SetBool("ExtendedCampaignRatingDone", true);
+        PlayerPrefs.Save();
+    }
+
+    public static bool IsExtendedRatingGiven()
+    {
+        return PlayerPrefsX.GetBool("ExtendedCampaignRatingDone", false);
+    }
+
+    #endregion
+
+    #region Reset (Use Carefully!)
 
     public void ResetStats()
     {
-        totalAttempts = 0;
-        //currentLevel = 1;
+        standardCampaignAttempts = 0;
+        extendedCampaignAttempts = 0;
+
+        // ❗ DO NOT reset "RatingDone" for live users
+        PlayerPrefsX.SetBool("ExtendedCampaignRatingDone", false);
+
+        Debug.Log("[PlayerPerformance] Stats reset (Standard Campaign preserved).");
     }
+
+    #endregion
 }

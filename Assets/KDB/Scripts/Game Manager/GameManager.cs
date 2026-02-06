@@ -167,8 +167,11 @@ public class GameManager : MonoBehaviour
             CustomAdManager.Instance.HideBanner();
             CustomAdManager.Instance.HideInterstitial();
         }
-        if(PlayerPerformance.Instance)
-        PlayerPerformance.Instance.RecordAttempt();
+        if (PlayerPerformance.Instance)
+        {
+            PlayerPerformance.Instance.RecordAttempt(PlayerPerformance.CampaignRatingType.StandardCampaign);
+            PlayerPerformance.Instance.RecordAttempt(PlayerPerformance.CampaignRatingType.ExtendedCampaign);
+        }
 
 
         //Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
@@ -288,6 +291,9 @@ public class GameManager : MonoBehaviour
                 }
                 targetKey = targetKey.Replace(" ", "");
                 AdManager._instance.FireBaseActions(targetKey, "retry", "success");
+
+                Firebase.Analytics.FirebaseAnalytics.LogEvent("Retry_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                Debug.Log("[Firebase]Retry_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
             }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -328,14 +334,16 @@ public class GameManager : MonoBehaviour
         }
 
         currentAdDisplayTime = Time.time;
-        //Debug.Log("currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManage
-        //r._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
+        
         bool condition1 = currentAdDisplayTime - AdManager._instance.lastAdDisplayTime >  Global.backFillAdGapToContinue;
         bool condition2 = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
                 AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
 
+        Debug.Log("[Ads]currentAdDisplayTime " + currentAdDisplayTime + " lastAdDisplayTime " + AdManager._instance.lastAdDisplayTime + "Global.backFillAdGapToContinue" + Global.backFillAdGapToContinue);
+        Debug.Log($"[Ads]is RewardAd Available condition1:{condition1}, condition2:{condition2}");
+
 #if UNITY_EDITOR
-        condition1 = condition2 = true;
+        //condition1 = condition2 = true;
 #endif
         if (condition1 && condition2)
         {
@@ -434,6 +442,7 @@ public class GameManager : MonoBehaviour
         {
             levelactive = (Global.CurrentLeveltoPlay - (((int)(Global.CurrentLeveltoPlay / 5)) * 5));
         }
+        Debug.Log($"levelactive:{levelactive}");
         for (int i = 0; i < LevelsParent.childCount; i++)
         {
             if (i == levelactive)
@@ -491,6 +500,7 @@ public class GameManager : MonoBehaviour
         }
         //BirdsGeneration
         //birdsgroup.transform.position = Camera.main.ScreenToWorldPoint(ballCountTxt.rectTransform.transform.position);
+        Debug.Log($"CurrentLeveltoPlay:{Global.CurrentLeveltoPlay}, balls:{Level_ballCount[Global.CurrentLeveltoPlay]}");
         for (int i = 0; i < Level_ballCount[Global.CurrentLeveltoPlay]; i++)
         {
             GameObject G = Instantiate(ballPrefab, birdsgroup);
@@ -1827,6 +1837,7 @@ public class GameManager : MonoBehaviour
 
     void DelayShowLevelCompleteAd()
     {
+         
         try
         {
             if (AdManager._instance != null)
@@ -1836,16 +1847,19 @@ public class GameManager : MonoBehaviour
                     && AdManager._instance.adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd())
                 {
                     AdManager._instance.ShowLaunchInterstitial();
+                    Debug.Log($"[Ads]DelayShowLevelCompleteAd ShowLaunchInterstitial)");
                 }
                 else
                 {
                     AdManager._instance.ShowGameWinInterstitial();
+                    Debug.Log($"[Ads]DelayShowLevelCompleteAd ShowGameWinInterstitial)");
                 }                        
                 // AdManager._instance.ShowFBInterstitial();                
             }
         }
         catch (Exception exp)
         {
+            Debug.Log($"[Ads]DelayShowLevelCompleteAd failed)");
             try
             {
                 System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
@@ -1974,7 +1988,8 @@ public class GameManager : MonoBehaviour
 
 
             LevelSelectionHandler.SetStarsOfLevel(Global.CurrentLeveltoPlay, WorldSelectionHandler.worldSelected, count);
-            if(PlayerPerformance.Instance)PlayerPerformance.Instance.CompleteLevel();
+            if(PlayerPerformance.Instance)PlayerPerformance.Instance.CompleteLevel(PlayerPerformance.CampaignRatingType.StandardCampaign);
+            if(PlayerPerformance.Instance)PlayerPerformance.Instance.CompleteLevel(PlayerPerformance.CampaignRatingType.ExtendedCampaign);
 
             if(SkipLevelBtn)SkipLevelBtn.SetActive(false);
         }

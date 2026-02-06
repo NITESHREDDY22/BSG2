@@ -45,4 +45,6 @@ public class GameConfig {
     public float showGameAds = .5f;
     public float showAstroAds = .5f;
     public bool customAdsEnabled = true;
+    public bool showGameZopInterstitials = true;
+    public bool tragectoryChallenge = false; 
 }

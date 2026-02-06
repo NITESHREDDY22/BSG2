@@ -235,11 +235,17 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.adRetryTime = config.adRetryTime;
                     bannerAdShowLevelFrom = config.showBannerFrom;
                     Global.coinsToReload = config.coinsToReload;
+                    Global.defaultCoins = config.defaultCoins;
+                    Global.tragectoryChallenge = config.tragectoryChallenge;
 #if UNITY_EDITOR
                     //Global.coinsToReload = 0; // For test
+                    Global.tragectoryChallenge = true;
 #endif
-                    Global.defaultCoins = config.defaultCoins;
+#if CHEATS_ON
+                    Global.tragectoryChallenge = true;
+#endif
                     CustomAdManager.adsEnabled = config.customAdsEnabled;
+                    CustomAdManager.showGameZopInterstitials = config.showGameZopInterstitials;
                     OnConfigLoaded?.Invoke(config);
                 }
                 else
@@ -937,8 +943,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
         try
         {
+            Debug.Log($"[Ads]ShowGameWinInterstitial adDelayMet){adDelayMet()}");
             if (adDelayMet())
             {
+                Debug.Log($"[Ads]ShowGameWinInterstitial adDelayMet)");
                     ShowInterstitial((result) =>
                     {
                         Debug.Log($"ShowGameWinInterstitial:{result}");

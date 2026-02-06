@@ -74,6 +74,7 @@ public class SlingShot : MonoBehaviour
                 //
             }
         }
+        SetTragectoryConfig();
     }
 
     void Start()
@@ -199,7 +200,7 @@ public class SlingShot : MonoBehaviour
                         if (Input.GetMouseButton(0))
                         {
                             Vector3 location;
-                            float sligSize = 1.5f;
+                            float sligSize = maxSlingDistance;
                             if (anyWhereDragEnabled)
                             {
                                 location = Vector3.zero;
@@ -459,7 +460,8 @@ public class SlingShot : MonoBehaviour
     }
 
     Vector2 segVelocity;
-    float _interval = 0.7f;
+    public float _interval = 0.7f;
+    public int totalSegments = 25;
     [SerializeField] bool oldLine = true;
 
     void DisplayTrajectoryLineRenderer(float distance)
@@ -469,7 +471,7 @@ public class SlingShot : MonoBehaviour
             SetTrajectoryLineRendererActive(true);
             Vector3 v2 = slingShootMiddleVector - birdToThrow.transform.position;
             //v2.y += 1.5f;
-            int segmentCount = 25;
+            int segmentCount = totalSegments;
             Vector2[] segments = new Vector2[segmentCount];
             segments[0] = birdToThrow.transform.position;
             segVelocity = new Vector2(v2.x, v2.y) * throwSpeed * distance;
@@ -528,7 +530,8 @@ public class SlingShot : MonoBehaviour
         }
     }
 
-    float maxScale = .15f, scaleDecreaseRate = 0.01f;
+    float maxScale = .15f;
+    public float scaleDecreaseRate = 0.01f;
     [SerializeField] GameObject _dot;
     private GameObject[] spots;
     bool created = false;
@@ -874,6 +877,8 @@ public class SlingShot : MonoBehaviour
     }
 
     public BallType _ballType = BallType.normal;
+    public float maxSlingDistance = 1.5f;
+
     public enum BallType
     {
         magic, splitballs, stone, bomb, tragectory, normal
@@ -929,5 +934,54 @@ public class SlingShot : MonoBehaviour
                 //
             }
         }
+    }
+    public void SetTragectoryConfig()
+    {
+        SetTragectoryDifficulty();
+        if(!Global.tragectoryChallenge)
+        {
+            tragectoryDifficultyLevel = TragectoryLevel.easy;
+            Debug.Log($"{DebugPrefix} Challenge is disabled? {Global.tragectoryChallenge}");
+        }
+         Debug.Log($"{DebugPrefix}set SetTragectoryConfig to ?{tragectoryDifficultyLevel}");
+        
+        switch (tragectoryDifficultyLevel)
+        {
+            case TragectoryLevel.easy:
+            _interval = .7f;
+            totalSegments = 25;
+            scaleDecreaseRate = 0.01f;
+            break;
+            case TragectoryLevel.medium:
+            _interval = .6f;
+            totalSegments = 20;
+            scaleDecreaseRate = 0.013f;
+            break;
+            case TragectoryLevel.hard:
+            _interval = .45f;
+            totalSegments = 16;
+            scaleDecreaseRate = 0.018f;
+            break;
+        }
+    }
+private string DebugPrefix = "[tragectory]";
+    private void SetTragectoryDifficulty()
+    {
+        Debug.Log($"{DebugPrefix}is ExtendedCampaignRatingDone?{PlayerPerformance.IsExtendedRatingGiven()}");
+        if (PlayerPerformance.IsExtendedRatingGiven() == false)
+        {
+            tragectoryDifficultyLevel = TragectoryLevel.easy;
+        }
+        else
+        {
+            tragectoryDifficultyLevel =  (TragectoryLevel)Global.playerExtendedRating-1;
+            Debug.Log($"{DebugPrefix}set tragectoryDifficultyLevel to ?{tragectoryDifficultyLevel} playerExtendedRating:{Global.playerExtendedRating}");
+        }
+    }
+
+    public static TragectoryLevel tragectoryDifficultyLevel = TragectoryLevel.hard;
+    public enum TragectoryLevel
+    {
+        easy,medium,hard
     }
 } // SlingShot

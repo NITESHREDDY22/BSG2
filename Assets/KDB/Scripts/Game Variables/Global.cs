@@ -51,6 +51,8 @@ public class Global : MonoBehaviour
 
     public static int coinsToReload = 100;
 
+    public static bool tragectoryChallenge = true;
+
     public static int playerRatingMultiplier
     {
         get => PlayerPrefs.GetInt("playerRatingMultiplier",0);
@@ -58,6 +60,15 @@ public class Global : MonoBehaviour
         {
             //_playerRatingMultiplier = value;
             PlayerPrefs.SetInt("playerRatingMultiplier", value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static int playerExtendedRating
+    {
+        get => PlayerPrefs.GetInt("playerExtendedRating",0);
+        set
+        {
+            PlayerPrefs.SetInt("playerExtendedRating", value);
             PlayerPrefs.Save();
         }
     }
