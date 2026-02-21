@@ -1,4 +1,6 @@
+using Firebase.Analytics;
 using UnityEngine;
+using static SlingShot;
 
 public class PlayerPerformance : MonoBehaviour
 {
@@ -169,6 +171,16 @@ public class PlayerPerformance : MonoBehaviour
 
         PlayerPrefsX.SetBool("ExtendedCampaignRatingDone", true);
         PlayerPrefs.Save();
+
+        TragectoryLevel tragectoryLevel = (TragectoryLevel)Global.playerExtendedRating - 1;
+        FirebaseAnalytics.LogEvent(
+        "tragectory_rating_completed",
+        new Parameter("stars", stars),
+        new Parameter("tragectory_level", tragectoryLevel.ToString()),
+        new Parameter("rating_title", title),
+        new Parameter("attempts", extendedCampaignAttempts)
+    );
+        Debug.Log($"[FirebaseAnalytics] Event Sent: tragectory_rating_completed | stars={stars}, title={title}, tragectory_level={tragectoryLevel}, attempts={extendedCampaignAttempts}");
     }
 
     public static bool IsExtendedRatingGiven()
