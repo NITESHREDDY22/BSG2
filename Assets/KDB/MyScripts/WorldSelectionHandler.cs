@@ -32,6 +32,9 @@ public class WorldSelectionHandler : MonoBehaviour
         {
             CustomAdManager.Instance.HideBanner();
         }
+        #if UNLOCK_ALL_ON
+        UnlockAllWorldsAndLevels();
+        #endif
     }
    
     void starsupdate()

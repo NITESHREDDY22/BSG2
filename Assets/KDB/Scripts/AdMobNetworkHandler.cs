@@ -1661,4 +1661,14 @@ private void HandlePaidEvent(
         yield return null;
         callback?.Invoke();
     }
+    // Add this inside AdMobNetworkHandler.cs
+    public bool IsRewardAdReady()
+    {
+        if (keyValuePairs.TryGetValue(AdType.Reward, out AdItem item))
+        {
+            // Check our internal flag AND the AdMob SDK's internal check
+            return item.isAdReady && item.RewardedAd != null && item.RewardedAd.CanShowAd();
+        }
+        return false;
+    }
 }

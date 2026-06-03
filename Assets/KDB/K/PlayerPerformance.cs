@@ -38,6 +38,10 @@ public class PlayerPerformance : MonoBehaviour
             Debug.LogWarning("[PlayerPerformance] Duplicate instance destroyed.");
             Destroy(gameObject);
         }
+
+        #if PRODUCTION_BUILD_ON
+        Debug.unityLogger.logEnabled = false;
+        #endif
     }
 
     #endregion

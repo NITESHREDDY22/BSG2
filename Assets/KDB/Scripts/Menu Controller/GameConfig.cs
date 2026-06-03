@@ -47,4 +47,5 @@ public class GameConfig {
     public bool customAdsEnabled = true;
     public bool showGameZopInterstitials = true;
     public bool tragectoryChallenge = false; 
+    public int notEnoughRewardCoins = 500;
 }
