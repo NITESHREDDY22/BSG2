@@ -21,6 +21,9 @@ using GoogleMobileAds.Api.Mediation.UnityAds;
 using GoogleMobileAds.Mediation.AppLovin.Api;
 using GoogleMobileAds.Mediation.DTExchange.Api;
 using GoogleMobileAds.Mediation.IronSource.Api;
+using GoogleMobileAds.Ump.Api;
+using System.Security.Cryptography;
+using System.Text;
 
 //using AudienceNetwork;
 //using GoogleMobileAdsMediationTestSuite.Api;
@@ -141,6 +144,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     public bool isLaunchAdShown;
 
     private bool isHybidEnabled=false;
+
+    [Header("GDPR Settings")]
+    [SerializeField] private Text debugIdText;
+    private bool isConsentProcessed = false;
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -237,6 +244,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.coinsToReload = config.coinsToReload;
                     Global.defaultCoins = config.defaultCoins;
                     Global.tragectoryChallenge = config.tragectoryChallenge;
+                    NotEnoughCoinsPopup.rewardCoins = config.notEnoughRewardCoins;
 #if UNITY_EDITOR
                     //Global.coinsToReload = 0; // For test
                     Global.tragectoryChallenge = true;
@@ -300,8 +308,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //AudienceNetworkAds.Initialize();
         //AdSettings.AddTestDevice("07b03dd5-2c63-4b49-bb75-4c5ad7068bb6");
         //LoadFBInterstitial();
+         HideLoadingPanel();
         yield return new WaitForSeconds(1f);
-        StartCoroutine(InitializeAdNetworks());
+        //StartCoroutine(InitializeAdNetworks());
+        StartCoroutine(GatherConsentAndInit());
         SetDefaultData();
         try
         {
@@ -312,6 +322,165 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         catch (Exception e)
         {
             //
+        }
+    }
+
+    public bool IsConsentGatheringFinished { get; private set; } = false;
+    private IEnumerator GatherConsentAndInit()
+{
+    IsConsentGatheringFinished = false; 
+    Debug.Log("<color=yellow>[GDPR]</color> Entering GatherConsentAndInit...");
+
+    FireBaseActions("GDPR_Process", "Status", "Started");
+
+    // 1. Prepare Parameters
+    ConsentRequestParameters requestParameters;
+
+#if PRODUCTION_BUILD_OFF
+    // TEST MODE LOGIC
+    Debug.Log("<color=cyan>[GDPR TEST]</color> Test Mode Active. Resetting consent and setting EEA geography.");
+    ConsentInformation.Reset(); // Force the form to appear for testing purposes
+    
+    string testId = GetAdMobHashedDeviceId();
+    if (debugIdText != null) debugIdText.text = $"Test ID: {testId}";
+
+    var debugSettings = new ConsentDebugSettings
+    {
+        DebugGeography = DebugGeography.EEA, // Force EEA behavior
+        TestDeviceHashedIds = new List<string> { testId }
+    };
+
+    requestParameters = new ConsentRequestParameters
+    {
+        TagForUnderAgeOfConsent = false,
+        ConsentDebugSettings = debugSettings
+    };
+#else
+    // PRODUCTION MODE LOGIC
+    // In production, we provide no debug settings.
+    requestParameters = new ConsentRequestParameters
+    {
+        TagForUnderAgeOfConsent = false
+    };
+#endif
+
+    bool updateCompleted = false;
+    
+    // 2. Request Consent Info Update
+    ConsentInformation.Update(requestParameters, (FormError error) =>
+    {
+        if (error != null)
+        {
+            Debug.LogError($"<color=red>[GDPR Error]</color> Update Failed: {error.ErrorCode} - {error.Message}");
+            FireBaseActions("GDPR_Error", "Step", "Update_Failed");
+            updateCompleted = true;
+            return;
+        }
+
+        // 3. Check Privacy Requirement Status (For Analytics)
+        string userRegion = "Unknown";
+        if (ConsentInformation.PrivacyOptionsRequirementStatus == PrivacyOptionsRequirementStatus.Required)
+            userRegion = "EEA_Regulated";
+        else if (ConsentInformation.PrivacyOptionsRequirementStatus == PrivacyOptionsRequirementStatus.NotRequired)
+            userRegion = "Non_EEA";
+
+        FireBaseActions("GDPR_Region_Detected", "Region", userRegion);
+
+        // 4. Handle the Form
+        if (ConsentInformation.IsConsentFormAvailable())
+        {
+            // IMPORTANT: GDPR Form is a native overlay. 
+            // If your LoadingPanel is high depth, it might block interaction.
+            if(LoadingPanel != null) LoadingPanel.SetActive(false);
+
+            ConsentForm.LoadAndShowConsentFormIfRequired((FormError formError) =>
+            {
+                if (formError != null)
+                {
+                    Debug.LogError($"<color=red>[GDPR Error]</color> Form Show Failed: {formError.Message}");
+                    FireBaseActions("GDPR_Error", "Step", "Show_Failed");
+                }
+                else
+                {
+                    bool hasConsent = (ConsentInformation.ConsentStatus == ConsentStatus.Obtained);
+                    FireBaseActions("GDPR_User_Choice", "Consented", hasConsent.ToString());
+                }
+                updateCompleted = true;
+            });
+        }
+        else
+        {
+            Debug.Log("<color=green>[GDPR]</color> Form not required for this user.");
+            updateCompleted = true;
+        }
+    });
+
+    // 5. Safety Timeout (Wait max 5 seconds for UMP to respond)
+    float timeoutCounter = 0;
+    while (!updateCompleted && timeoutCounter < 5f) 
+    {
+        timeoutCounter += 0.1f;
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    IsConsentGatheringFinished = true;
+
+    // 6. Final check: Can we show ads?
+    if (ConsentInformation.CanRequestAds())
+    {
+        Debug.Log("<color=green>[GDPR]</color> Initializing Ad Networks...");
+        StartCoroutine(InitializeAdNetworks());
+    }
+    else
+    {
+        FireBaseActions("GDPR_Process", "Status", "Ads_Blocked_By_User");
+        Debug.LogWarning("<color=orange>[GDPR]</color> Consent denied or not yet obtained. Ads will not initialize.");
+    }
+}
+
+    private string GetAdMobHashedDeviceId()
+    {
+        string deviceId = "";
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        try {
+            using (var clsSettingsSecure = new AndroidJavaClass("android.provider.Settings$Secure"))
+            {
+                using (var clsUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+                {
+                    using (var objActivity = clsUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                    {
+                        var objResolver = objActivity.Call<AndroidJavaObject>("getContentResolver");
+                        deviceId = clsSettingsSecure.CallStatic<string>("getString", objResolver, "android_id");
+                        Debug.Log($"<color=cyan>[GDPR TEST]</color> Native Android ID retrieved: {deviceId}");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Debug.LogError("Failed to get Native Android ID: " + e.Message);
+            deviceId = SystemInfo.deviceUniqueIdentifier;
+        }
+#else
+        deviceId = SystemInfo.deviceUniqueIdentifier;
+        Debug.Log($"<color=cyan>[GDPR TEST]</color> Using SystemInfo ID: {deviceId}");
+#endif
+
+        string hashed = GetMD5Hash(deviceId);
+        return hashed;
+    }
+    private string GetMD5Hash(string input)
+    {
+        using (MD5 md5 = MD5.Create())
+        {
+            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2")); // Hexadecimal uppercase
+            }
+            return sb.ToString();
         }
     }
 
@@ -435,9 +604,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             appKey=levelPlayConfig.AppKey;
             //levelPlayNetworkHandler.SetAdConfig(levelPlayConfig);       
         }
+    }
 
-       
-
+    private bool UserGaveConsent()
+    {
+        // If we can request ads, it usually means consent was obtained or not required
+        // In a strict TCF 2.2 environment, you'd check the ConsentStatus
+        return ConsentInformation.ConsentStatus == ConsentStatus.Obtained;
     }
     IEnumerator InitializeAdNetworks()
     {
@@ -449,14 +622,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
         //MobileAdsEventExecutor.ExecuteInUpdate(() =>
         //{ 
-        DTExchange.SetGDPRConsent(true);
-        
-        // AppLovin
-        AppLovin.SetHasUserConsent(true);
-        
-        // IronSource
-        IronSource.SetConsent(true);
-       
+        // --- DYNAMIC GDPR CHECK ---
+    bool hasConsent = UserGaveConsent();
+    Debug.Log($"<color=green>[GDPR]</color> Setting mediation consent flags to: {hasConsent}");
+
+    DTExchange.SetGDPRConsent(hasConsent);
+    AppLovin.SetHasUserConsent(hasConsent);
+    IronSource.SetConsent(hasConsent);
+    // ---------------------------
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             Debug.Log("InitializationStatus initialization");
@@ -464,9 +637,10 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             // This callback is called once the MobileAds SDK is initialized.
             isAdMobInitialized = true;
             adMobNetworkHandler.Initialize(isAdMobInitialized);
+            bool hasConsent = UserGaveConsent();
 
-            GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("gdpr.consent", true);
-            GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("privacy.consent", true);
+            GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("gdpr.consent", hasConsent);
+            GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("privacy.consent", hasConsent);
 
             Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
             foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
@@ -1414,6 +1588,23 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //    //GameManager.Instance.gameState = GameState.Reward_Video_Started;
         //});
     }
+
+    // Add this inside AdManager.cs
+public bool IsRewardedVideoAvailable()
+{
+    if (adMobNetworkHandler != null)
+    {
+        return adMobNetworkHandler.IsRewardAdReady();
+    }
+    
+    // Fallback: if you have LevelPlay or other handlers, check them here too
+    /*
+    if (levelPlayNetworkHandler != null && levelPlayNetworkHandler.IsRewardReady()) 
+        return true;
+    */
+
+    return false;
+}
 
     /*
     public void HandleRewardBasedVideoClosed(LevelPlayAdInfo levelPlayAdInfo)

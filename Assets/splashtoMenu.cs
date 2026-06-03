@@ -23,6 +23,11 @@ public class splashtoMenu : MonoBehaviour {
         float progress = 0;
         float currentTime = 0;
         adReady = false;
+
+        while (AdManager._instance == null || !AdManager._instance.IsConsentGatheringFinished)
+        {
+            yield return null; // Stay here while the popup is visible
+        }
         while (progress < timetoload)
         {
             progressslider.fillAmount = (progress / timetoload);
