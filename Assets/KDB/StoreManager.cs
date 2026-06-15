@@ -250,16 +250,43 @@ public class StoreManager : MonoBehaviour
             }
             else
             {
+                bool canShowRewardAd = false;
 
+                if (AdManager._instance == null)
+                {
+                    Debug.LogError("AdManager._instance is NULL");
+                }
+                else if (AdManager._instance.adMobNetworkHandler == null)
+                {
+                    Debug.LogError("adMobNetworkHandler is NULL");
+                }
+                else if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo == null)
+                {
+                    Debug.LogError("adMobRewardBasedVideo is NULL");
+                }
+                else
+                {
+                    canShowRewardAd =
+                        AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd();
+                }
+                if (canShowRewardAd)
+                {
+                    if (RewardPanel != null)
+                        RewardPanel.SetActive(true);
+                    else
+                        Debug.LogError("RewardPanel is NULL");
+
+                    FirebaseEvents.instance?.LogFirebaseEvent("StoreRewardPopupShown");
+                }
                 //Show Popup For not Enough Coins
-                if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
+                /* if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
                     //|| AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
                 {
                     RewardPanel.SetActive(true);
                     FirebaseEvents.instance.LogFirebaseEvent("StoreRewardPopupShown");
 
-                }
-              
+                } */
+
                 //totalcoinsAnim.Play();
             }
         }
@@ -277,7 +304,7 @@ public class StoreManager : MonoBehaviour
         BottleStoreobjstatus status1 = Bottles[index].myStatBottle;
         //Debug.LogError("AAAAADDFFDD_" + index);
         //yield return new WaitForSeconds(0f);
-
+        Debug.Log("CTA1 status1 " + status1);
         if (status1 == BottleStoreobjstatus.Select_bottle)
         {
 
@@ -303,12 +330,32 @@ public class StoreManager : MonoBehaviour
             }
             else
             {
-                //Show Popup For not Enough Coins
-                if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd())
-                   //|| AdManager._instance.levelPlayNetworkHandler.levelPlayrewardBasedVideo.IsAdReady())
+                bool canShowRewardAd = false;
+
+                if (AdManager._instance == null)
                 {
+                    Debug.LogError("AdManager._instance is NULL");
+                }
+                else if (AdManager._instance.adMobNetworkHandler == null)
+                {
+                    Debug.LogError("adMobNetworkHandler is NULL");
+                }
+                else if (AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo == null)
+                {
+                    Debug.LogError("adMobRewardBasedVideo is NULL");
+                }
+                else
+                {
+                    canShowRewardAd =
+                        AdManager._instance.adMobNetworkHandler.adMobRewardBasedVideo.CanShowAd();
+                }
+                //Show Popup For not Enough Coins
+                if (canShowRewardAd)
+                {
+                    if (RewardPanel != null)
                     RewardPanel.SetActive(true);
-                    FirebaseEvents.instance.LogFirebaseEvent("StoreRewardPopupShown");
+                    
+                    FirebaseEvents.instance?.LogFirebaseEvent("StoreRewardPopupShown");
                 }
                 //totalcoinsAnim.Play();
             }

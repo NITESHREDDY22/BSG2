@@ -124,7 +124,7 @@ namespace Assets.SimpleLocalization
                 Dictionary["English"].TryAdd("Exit.ConfirmText", "ARE YOU SURE..?");
                 Dictionary["English"].TryAdd("HidePanel.Text", "Loading...");
                 Dictionary["English"].TryAdd("StorePanel.text", "StorePanel");
-                Dictionary["English"].TryAdd("SelectString", "SelectString");
+                Dictionary["English"].TryAdd("SelectString", "Select");
                 Dictionary["English"].TryAdd("SpinWheel.text", "Spin wheel");
                 Dictionary["English"].TryAdd("Spin", "Spin");
                 Dictionary["English"].TryAdd("Watchvideo.Text", "WATCH VIDEO\r\n TO SPIN");
