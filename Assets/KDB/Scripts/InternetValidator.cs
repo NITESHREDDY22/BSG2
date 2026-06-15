@@ -115,7 +115,7 @@ public class InternetValidator : MonoBehaviour
             {
                 if (FirebaseEvents.instance != null)
                 {
-                    FirebaseEvents.instance.LogFirebaseEvent("Internet_Connectivity", "Connected_succesfully ");
+                    FirebaseEvents.instance.LogFirebaseEvent("Internet_Connectivity","status", "Connected_succesfully");
                 }
                 triggerEvent = true;
             }
@@ -162,7 +162,7 @@ public class InternetValidator : MonoBehaviour
     public bool canProceedToNextLevel()
     {
         //CheckInterNetConnectivity();
-        int LevelNumber = GameConstants.getLastUnlcokedLevel;
+        int LevelNumber = Global.CurrentLeveltoPlay;//GameConstants.getLastUnlcokedLevel;
         bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
         Debug.Log($"canGotoNextLevel isInterNetConnected:{isInterNetConnected},isConnected?{isConnected}");
         isInterNetConnected = isConnected;
@@ -181,7 +181,7 @@ public class InternetValidator : MonoBehaviour
                     return true;
                 }
 
-                if (mandatoryInternetToPlayFromLevel != -1 && LevelNumber < mandatoryInternetToPlayFromLevel && worldNumber < 1)
+                if (mandatoryInternetToPlayFromLevel != -1 && LevelNumber < mandatoryInternetToPlayFromLevel)
                 {
                     return true;
                 }

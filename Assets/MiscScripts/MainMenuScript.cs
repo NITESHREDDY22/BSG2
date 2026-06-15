@@ -144,6 +144,7 @@ public class MainMenuScript : MonoBehaviour
             if(FirebaseEvents.instance)
                 FirebaseEvents.instance.LogFirebaseEvent("StoreBtn_clicked_MainMenu");
                 
+            if(GifAdsManager.Instance && GifAdsManager.Instance._adObjs.Length > 0)
             GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
 
         }

@@ -7,7 +7,7 @@ public class CustomAdManager : MonoBehaviour
     public static CustomAdManager Instance { get; private set; }
 
     [Header("Global Toggle")]
-    public static bool adsEnabled = true;
+    public static bool adsEnabled = false;
 
     public static bool showGameZopInterstitials = true;
 
@@ -28,6 +28,8 @@ public class CustomAdManager : MonoBehaviour
 
     private AdData.AdItem _activeBanner;
     private AdData.AdItem _activeInterstitial;
+
+    public const bool showGameZopAds = false;
 
     private void Awake()
     {
@@ -54,6 +56,7 @@ public class CustomAdManager : MonoBehaviour
 
     public void ShowBanner()
     {
+        if (!showGameZopAds) return;
         if (!CanShowAds()) return;
 
         var selected = DetermineWeightedItem(adData.bannerListA, adData.bannerListB, "Banner");
@@ -69,7 +72,7 @@ public class CustomAdManager : MonoBehaviour
 
     public void ShowInterstitial()
     {
-        
+        if (!showGameZopAds) return;
         bool condition = AdManager._instance.adMobNetworkHandler != null && AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial != null &&
                 AdManager._instance.adMobNetworkHandler.adMobRewardedInterstitial.CanShowAd();
 
@@ -146,6 +149,7 @@ public class CustomAdManager : MonoBehaviour
 #else
         Application.OpenURL(url);
 #endif
+return;
     Firebase.Analytics.FirebaseAnalytics.LogEvent("GameZop_OpenURL_url"+url + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
     }
 

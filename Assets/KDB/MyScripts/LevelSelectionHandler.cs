@@ -92,14 +92,33 @@ public class LevelSelectionHandler : MonoBehaviour {
                 return;
             }
         }
+        
+        
+        Global.CurrentLeveltoPlay = _tr.GetSiblingIndex();
+        if(InternetValidator.Instance)
+        {
+            if(!InternetValidator.Instance.canProceedToNextLevel())
+            {
+                CheckNoInterNetPopup();
+                return;
+            }
+        }
+
         SoundManager.PlaySFX("Click2");
         AdManager._instance.ShowLoadingPanel(true);
-        Global.CurrentLeveltoPlay = _tr.GetSiblingIndex();
         SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString() + "_" + (int)(Global.CurrentLeveltoPlay / 5));
         //SceneManager.LoadScene("GamePlay_W0_0_Exp");
 
         //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString()+"_"+(int)(Global.CurrentLeveltoPlay/10));
         //SceneManager.LoadScene("GamePlay_W" + WorldSelectionHandler.worldSelected.ToString());
+    }
+
+    void CheckNoInterNetPopup(bool status=false)
+    {
+        if (InternetValidator.Instance != null)
+        {
+            InternetValidator.Instance.CheckNoInterNetPopup();
+        }
     }
 
 

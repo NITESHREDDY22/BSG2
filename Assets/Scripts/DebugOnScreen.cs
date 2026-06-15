@@ -43,7 +43,7 @@ public class DebugOnScreen : MonoBehaviour
         buttonStyle.fontStyle = FontStyle.Bold;
 
         // Toggle button
-        if (GUI.Button(new Rect(Screen.width * .3f, Screen.height * .02f, Screen.width * .25f, Screen.height * .05f), showLogs ? "Hide Logs" : "Show Logs", buttonStyle))
+        if (GUI.Button(new Rect(Screen.width * .1f, Screen.height * .02f, Screen.width * .1f, Screen.height * .05f), showLogs ? "Hide Logs" : "Show Logs", buttonStyle))
         {
             showLogs = !showLogs;
         }
