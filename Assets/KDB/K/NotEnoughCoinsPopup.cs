@@ -11,6 +11,9 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     [SerializeField] private Text currentCoinsTxt, coinsToBuyTxt, reqCoinsTxt, coinsInfoTxt;
     [SerializeField] private GameObject infoPopup, optionsPopup, coinsInfoPopup, coinStatus;
 
+    [Header("UI Controls")]
+    [SerializeField] private Button watchAdBtn; // <--- ADDED: Assign this in Inspector
+
     [Header("In-House Ad Settings")]
     [SerializeField] private InHouseAdController inHouseAd; 
 
@@ -38,7 +41,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     // -----------------------
     //   FIREBASE HELPER
     // -----------------------
-    private void LogFirebase(string eventName)
+    /* private void LogFirebase(string eventName)
     {
         // Maintains the exact naming convention: EventName_W1_L1
         string fullEventName = eventName + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay;
@@ -49,9 +52,54 @@ public class NotEnoughCoinsPopup : MonoBehaviour
             // Trims characters from the start to keep only the last 40 characters
             fullEventName = fullEventName.Substring(fullEventName.Length - 40);
         }
-
-        Firebase.Analytics.FirebaseAnalytics.LogEvent(fullEventName);
+        Debug.Log($"IsFirebaseReady{FirebaseEvents.IsFirebaseReady}");
+        try
+        {
+        if (FirebaseEvents.IsFirebaseReady)
+        {
+            Firebase.Analytics.FirebaseAnalytics.LogEvent(fullEventName);
+        }
+        }
+        catch
+        {
+            Debug.Log("Firebase event logging failed for event: " + fullEventName);
+        }
         Debug.Log("[Firebase Log]: " + fullEventName);
+    } */
+    private void LogFirebase(string eventName)
+    {
+        int worldNumber = WorldSelectionHandler.worldSelected;
+        int levelNumber = Global.CurrentLeveltoPlay;
+
+        // Keep the Firebase event name length protection
+        string trimmedEventName = eventName;
+
+        if (trimmedEventName.Length > 40)
+        {
+            trimmedEventName = trimmedEventName.Substring(trimmedEventName.Length - 40);
+        }
+
+        Debug.Log($"IsFirebaseReady: {FirebaseEvents.IsFirebaseReady}");
+
+        try
+        {
+            if (FirebaseEvents.IsFirebaseReady)
+            {
+                Firebase.Analytics.FirebaseAnalytics.LogEvent(
+                    trimmedEventName,
+                    new Firebase.Analytics.Parameter("world", worldNumber),
+                    new Firebase.Analytics.Parameter("level", levelNumber)
+                );
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(
+                $"Firebase event logging failed. Event={trimmedEventName}, World={worldNumber}, Level={levelNumber}\n{e}");
+        }
+
+        Debug.Log(
+            $"[Firebase Log]: {trimmedEventName} | world={worldNumber} | level={levelNumber}");
     }
 
     // -----------------------
@@ -59,6 +107,8 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     // -----------------------
     public void Open()
     {
+        if (watchAdBtn != null) watchAdBtn.interactable = true; 
+
         reqCoinsTxt.text = "" + (Global.finalReloadCoins - GameManager.GetCoins());
         coinsInfoTxt.text = "+" + rewardCoins.ToString();
         popupPanel.SetActive(true);
@@ -106,9 +156,13 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     // -----------------------
     public void WatchAdSuccess(string adNetwork = "video")
     {
+        #if UNITY_EDITOR
+        //GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+        #endif
+        Debug.Log($"WatchAdSuccess: User earned coins reward.{adNetwork}");
         LogFirebase("NotEnoughCoins_VidScss_"+adNetwork);
+        if (watchAdBtn != null) watchAdBtn.interactable = false;
         
-        Invoke(nameof(Close), 2.5f);
         if (CoinFlyAnimator.Instance)
         {
             CoinFlyAnimator.Instance.Play(coinsInfoTxt.GetComponent<RectTransform>(), coinStatus.GetComponent<RectTransform>(), spawnParent, () =>
@@ -116,20 +170,34 @@ public class NotEnoughCoinsPopup : MonoBehaviour
                 Debug.Log("ShowCoinsAnimation complete");
                 PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + rewardCoins);
                 GameManager.AddCoins();
+                Invoke(nameof(Close), 1f);
             });
+        }
+        else
+        {
+            // Fallback if animator is missing
+            PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") + rewardCoins);
+            GameManager.AddCoins();
+            Close();
         }
     }
 
     public void WatchAdToGetCoins()
     {
+        if (watchAdBtn != null) watchAdBtn.interactable = false;
         Debug.LogError("WatchAdToGetCoins CLICKED");
         LogFirebase("NotEnoughCoins_Vid_Clk");
 
         // Check availability before trying to show
         // Note: Replace 'IsRewardedVideoAvailable' with the actual check in your AdManager
-        string netStatus = Application.internetReachability.ToString();
-        LogFirebase("NotEnoughCoins_NetStat_" + netStatus);
-        bool adReady = AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable();
+        // 1. Get Network Status
+        NetworkReachability reachability = Application.internetReachability;
+        LogFirebase("NotEnoughCoins_NetStat_" + reachability.ToString());
+
+        // 2. Determine if we should attempt a real Ad or go straight to InHouse
+        bool hasInternet = (reachability != NetworkReachability.NotReachable);
+        bool adReady = hasInternet && AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable();
+        Debug.Log($"Ad Ready: {adReady}, Internet Available: {hasInternet}");
 
         if (adReady)
         {
@@ -138,13 +206,14 @@ public class NotEnoughCoinsPopup : MonoBehaviour
             {
                 if (result)
                 {
-                    GameManager.Instance.gameState = GameState.Reward_Video_Completed;
+                    //GameManager.Instance.gameState = GameState.Reward_Video_Completed;
                     AdManager._instance.rewardedvideosuccess = true;
                     WatchAdSuccess("admob");
                 }
                 else
                 {
                     // 2. Track Ad Skipped / Cancelled
+                    if (watchAdBtn != null) watchAdBtn.interactable = true;
                     LogFirebase("NotEnoughCoins_Vid_Skipped");
                     Debug.Log("User skipped the rewarded video.");
                 }
@@ -161,12 +230,14 @@ public class NotEnoughCoinsPopup : MonoBehaviour
                 // Instead of SetActive here, we call the new combined method
                 inHouseAd.OpenAndShow(() =>
                 {
+                    if (watchAdBtn != null) watchAdBtn.interactable = true;
                     LogFirebase("NotEnoughCoins_InHseAd_RwdGrantd");
                     WatchAdSuccess("inhouse");
                 });
             }
             else
             {
+                
                 Debug.LogError("InHouseAd reference is missing in Inspector!");
             }
         }
