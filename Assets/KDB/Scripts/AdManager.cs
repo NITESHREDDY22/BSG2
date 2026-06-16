@@ -148,6 +148,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     [Header("GDPR Settings")]
     [SerializeField] private Text debugIdText;
     private bool isConsentProcessed = false;
+
+    [SerializeField] private bool testGDPRInEditor = false;
+
+    [Header("Mediation Settings")]
+    public bool enableMediation = false; // Set to false to only use pure AdMob
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -196,7 +201,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 //
             }
         }
+        
         Initialize();
+        
        
         lastAdDisplayTime = Time.time;
         lastAdShownDateTime = DateTime.UtcNow;
@@ -206,14 +213,23 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     private IEnumerator Start()
     {
+         HideLoadingPanel();
+        Debug.Log($"loadedFromServer:{Global.loadedFromServer}");
         if (!Global.loadedFromServer)
         {
-
-            string url = "https://puzzle-games-d9a78.firebaseapp.com/bsg2_prams.json";
-            WWW www = new WWW(url);
-            yield return www;
-            try
+            Debug.Log($"{Application.internetReachability}");
+            if (Application.internetReachability == NetworkReachability.NotReachable)
             {
+                Debug.LogWarning("AdManager: no internet connection, skipping remote config fetch.");
+                Global.loadedFromServer = true;
+            }
+            else
+            {
+                string url = "https://puzzle-games-d9a78.firebaseapp.com/bsg2_prams.json";
+                WWW www = new WWW(url);
+                yield return www;
+                try
+                {
                 if (www.error == null)
                 {
 
@@ -308,11 +324,18 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         //AudienceNetworkAds.Initialize();
         //AdSettings.AddTestDevice("07b03dd5-2c63-4b49-bb75-4c5ad7068bb6");
         //LoadFBInterstitial();
-         HideLoadingPanel();
         yield return new WaitForSeconds(1f);
-        //StartCoroutine(InitializeAdNetworks());
-        StartCoroutine(GatherConsentAndInit());
-        SetDefaultData();
+            //StartCoroutine(InitializeAdNetworks());
+            Debug.Log($"isEditor?{Application.isEditor},testGDPRInEditor?{testGDPRInEditor}");
+            if (Application.isEditor && !testGDPRInEditor)
+            {
+                StartCoroutine(InitializeAdNetworks());
+            }
+            else
+            {
+                StartCoroutine(GatherConsentAndInit());
+            }
+            SetDefaultData();
         try
         {
 
@@ -323,6 +346,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
             //
         }
+    }
     }
 
     public bool IsConsentGatheringFinished { get; private set; } = false;
@@ -336,7 +360,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     // 1. Prepare Parameters
     ConsentRequestParameters requestParameters;
 
-#if PRODUCTION_BUILD_OFF
+#if GDPR_TEST_ON
     // TEST MODE LOGIC
     Debug.Log("<color=cyan>[GDPR TEST]</color> Test Mode Active. Resetting consent and setting EEA geography.");
     ConsentInformation.Reset(); // Force the form to appear for testing purposes
@@ -373,6 +397,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         {
             Debug.LogError($"<color=red>[GDPR Error]</color> Update Failed: {error.ErrorCode} - {error.Message}");
             FireBaseActions("GDPR_Error", "Step", "Update_Failed");
+            AdTestToast.Instance?.Show($"GDPR Error: {error.ErrorCode}");
             updateCompleted = true;
             return;
         }
@@ -392,18 +417,20 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             // IMPORTANT: GDPR Form is a native overlay. 
             // If your LoadingPanel is high depth, it might block interaction.
             if(LoadingPanel != null) LoadingPanel.SetActive(false);
-
+            AdTestToast.Instance?.Show("GDPR: Showing Form...");
             ConsentForm.LoadAndShowConsentFormIfRequired((FormError formError) =>
             {
                 if (formError != null)
                 {
                     Debug.LogError($"<color=red>[GDPR Error]</color> Form Show Failed: {formError.Message}");
                     FireBaseActions("GDPR_Error", "Step", "Show_Failed");
+                    AdTestToast.Instance?.Show("GDPR Form Show Failed");
                 }
                 else
                 {
                     bool hasConsent = (ConsentInformation.ConsentStatus == ConsentStatus.Obtained);
                     FireBaseActions("GDPR_User_Choice", "Consented", hasConsent.ToString());
+                    AdTestToast.Instance?.Show("GDPR Form Processed");
                 }
                 updateCompleted = true;
             });
@@ -411,13 +438,14 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         else
         {
             Debug.Log("<color=green>[GDPR]</color> Form not required for this user.");
+            AdTestToast.Instance?.Show("GDPR: Form Not Required");
             updateCompleted = true;
         }
     });
 
     // 5. Safety Timeout (Wait max 5 seconds for UMP to respond)
     float timeoutCounter = 0;
-    while (!updateCompleted && timeoutCounter < 5f) 
+    while (!updateCompleted && timeoutCounter < 15f) 
     {
         timeoutCounter += 0.1f;
         yield return new WaitForSeconds(0.1f);
@@ -429,11 +457,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     if (ConsentInformation.CanRequestAds())
     {
         Debug.Log("<color=green>[GDPR]</color> Initializing Ad Networks...");
+        AdTestToast.Instance?.Show("Ads Init: Starting SDK...");
         StartCoroutine(InitializeAdNetworks());
     }
     else
     {
         FireBaseActions("GDPR_Process", "Status", "Ads_Blocked_By_User");
+        AdTestToast.Instance?.Show("Ads Init: BLOCKED by User Consent");
         Debug.LogWarning("<color=orange>[GDPR]</color> Consent denied or not yet obtained. Ads will not initialize.");
     }
 }
@@ -494,6 +524,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void ShowLoadingPanel(bool showBannerAdFlag=false)
     {
+        Debug.Log("ShowLoadingPanel called");
         LoadingPanel.SetActive(true);
     }
     public void HideLoadingPanel()
@@ -612,9 +643,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // In a strict TCF 2.2 environment, you'd check the ConsentStatus
         return ConsentInformation.ConsentStatus == ConsentStatus.Obtained;
     }
+
+    private bool hasRequestedLaunchAd = false; // The Gate
+    private bool usingSecondaryInterstitialId = false;
+    private bool usingSecondaryLaunchId = false;
     IEnumerator InitializeAdNetworks()
     {
-
+        hasRequestedLaunchAd = false; // Reset
         Debug.Log("InitializeAdNetworks initialization");
 
         yield return null;
@@ -625,22 +660,38 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         // --- DYNAMIC GDPR CHECK ---
     bool hasConsent = UserGaveConsent();
     Debug.Log($"<color=green>[GDPR]</color> Setting mediation consent flags to: {hasConsent}");
-
-    DTExchange.SetGDPRConsent(hasConsent);
-    AppLovin.SetHasUserConsent(hasConsent);
-    IronSource.SetConsent(hasConsent);
-    // ---------------------------
+        if (enableMediation)
+        {
+            AdTestToast.Instance?.Show("Ads: Mediation Enabled.");
+            DTExchange.SetGDPRConsent(hasConsent);
+            AppLovin.SetHasUserConsent(hasConsent);
+            IronSource.SetConsent(hasConsent);
+        }
+        else
+        {
+            AdTestToast.Instance?.Show("Ads: Mediation DISABLED. Pure AdMob mode.");
+        }
+        // ---------------------------
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
+            
             Debug.Log("InitializationStatus initialization");
 
             // This callback is called once the MobileAds SDK is initialized.
             isAdMobInitialized = true;
+            AdTestToast.Instance?.Show("AdMob SDK Initialized!");
             adMobNetworkHandler.Initialize(isAdMobInitialized);
             bool hasConsent = UserGaveConsent();
 
             GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("gdpr.consent", hasConsent);
             GoogleMobileAds.Mediation.UnityAds.Api.UnityAds.SetConsentMetaData("privacy.consent", hasConsent);
+
+            if (!hasRequestedLaunchAd)
+            {
+                hasRequestedLaunchAd = true;
+                AdTestToast.Instance?.Show("Requesting Launch Ad (via Success)");
+                RequestLaunchInterstitial();
+            }
 
             Dictionary<string, AdapterStatus> map = initStatus.getAdapterStatusMap();
             foreach (KeyValuePair<string, AdapterStatus> keyValuePair in map)
@@ -652,10 +703,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     case AdapterState.NotReady:
                         // The adapter initialization did not complete.
                         MonoBehaviour.print("Adapter: " + className + " not ready.");
+                        AdTestToast.Instance?.Show($"Adapter Fail: {className}");
                         break;
                     case AdapterState.Ready:
                         // The adapter was successfully initialized.
                         MonoBehaviour.print("Adapter: " + className + " is initialized.");
+                        AdTestToast.Instance?.Show($"AdMob SDK Initialized! Adapter Success: {className}");
                         break;
                 }
             }
@@ -686,9 +739,35 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
        // });
 
 
-        yield return new WaitUntil(() => isAdMobInitialized);
+        float initWaitStart = Time.realtimeSinceStartup;
+        const float initWaitTimeout = 5f;
+        while (!isAdMobInitialized && Time.realtimeSinceStartup - initWaitStart < initWaitTimeout)
+        {
+            yield return null;
+        }
 
-        yield return new WaitForSeconds(1);
+        if (!isAdMobInitialized)
+        {
+            Debug.LogWarning("AdManager: MobileAds.Initialize callback did not arrive in time; continuing without ad initialization.");
+
+            string timeoutReason = "Unknown Timeout";
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+                timeoutReason = "No Internet Connection";
+            else
+                timeoutReason = "SDK Internal Hang / Google Play Services issue";
+
+            AdTestToast.Instance?.Show($"AdMob Init Fail TIMEOUT! {timeoutReason}");
+            isAdMobInitialized = true;
+            //FireBaseActions("AdMob_Init_Fail_Timeout", "Reason", timeoutReason);
+            if (!hasRequestedLaunchAd)
+            {
+                hasRequestedLaunchAd = true;
+                AdTestToast.Instance?.Show("Strategy: Requesting Launch Ad (via Timeout)");
+                RequestLaunchInterstitial();
+            }
+        }
+
+        //yield return new WaitForSeconds(1);
        
         StartCoroutine(RequestAppOpenAd());        
 
@@ -1001,6 +1080,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         try
         {
             if (adDelayMet())
+            {
+                AdTestToast.Instance?.Show("Logic: Ad Gap Met. Attempting Show...");
                 ShowInterstitial((callBack)=>
                 {
                     Debug.Log($"ShowCommonInterstitial:{callBack}");
@@ -1015,6 +1096,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     }
 
                 });
+            }
+            else
+            {
+                double secondsLeft = Global.InterstitialAdGap - (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
+                AdTestToast.Instance?.Show($"Logic: Ad Gap NOT Met ({Mathf.CeilToInt((float)secondsLeft)}s remain)");
+            }
         }
         catch (Exception exp)
         {
@@ -1059,6 +1146,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
             if (adDelayMet())
             {
+                AdTestToast.Instance?.Show("Trigger: Game Fail -> Showing Ad");
                 ShowInterstitial((result) =>
                 {
                     Debug.Log($"ShowGameFailInterstitial:{result}");
@@ -1073,6 +1161,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     }
                 });
                 
+            }
+            else
+            {
+                double remaining = Global.InterstitialAdGap - (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
+            AdTestToast.Instance?.Show($"Ad Delay: Fail Ad blocked. Wait {remaining:F1}s.");
             }
            
         }
@@ -1120,6 +1213,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             Debug.Log($"[Ads]ShowGameWinInterstitial adDelayMet){adDelayMet()}");
             if (adDelayMet())
             {
+                AdTestToast.Instance?.Show("Trigger: Game Win -> Showing Ad");
                 Debug.Log($"[Ads]ShowGameWinInterstitial adDelayMet)");
                     ShowInterstitial((result) =>
                     {
@@ -1134,7 +1228,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                             CustomAdManager.Instance.ShowInterstitial();
                         }
                     });                
-            }          
+            }
+            else
+            {
+                double remaining = Global.InterstitialAdGap - (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
+            AdTestToast.Instance?.Show($"Ad Delay: Win Ad blocked. Wait {remaining:F1}s.");
+            }
             
         }
         catch (Exception exp)
@@ -1266,16 +1365,91 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         adMobNetworkHandler.RequestRewardInterstitial(adType);
     }
 
-    public void CheckSecondaryInterstitialStatus(bool result)
+    //public void CheckSecondaryInterstitialStatus(bool result)
+    //{
+    //if (!result && !adMobNetworkHandler.isInterstitialLoaded )
+    //{
+    //LoadSecondaryInterstitialAd();
+    //}        
+    //}
+    /* public void CheckSecondaryInterstitialStatus(bool result)
     {
-        if (!result && !adMobNetworkHandler.isInterstitialLoaded )
+        if (result)
         {
-            LoadSecondaryInterstitialAd();
-        }        
+            // RESET HERE: If an ad (Primary or Secondary) loads successfully, 
+            // we reset the state for the NEXT request session.
+            usingSecondaryInterstitialId = false;
+            usingSecondaryLaunchId = false;
+            return;
+        }
+
+        // HANDLE LAUNCH FALLBACK
+        if (!adMobNetworkHandler.LaunchInterstitialState() && !usingSecondaryLaunchId) {
+            LoadSecondaryLaunchAd();
+        } 
+        // HANDLE STANDARD INTERSTITIAL PING-PONG
+        else if (!adMobNetworkHandler.adMobInterstitial.CanShowAd()) {
+            if (!usingSecondaryInterstitialId) LoadSecondaryInterstitialAd();
+            else ResetToPrimaryWithDelay();
+        }
+    } */
+
+    public void CheckSecondaryInterstitialStatus(bool result, AdType type)
+    {
+        if (result)
+        {
+            if (type == AdType.Interstital) usingSecondaryInterstitialId = false;
+            if (type == AdType.Launch) usingSecondaryLaunchId = false;
+            return;
+        }
+
+        // ONLY fallback for Launch if the failing ad WAS a Launch ad
+        if (type == AdType.Launch && !usingSecondaryLaunchId)
+        {
+            LoadSecondaryLaunchAd();
+        }
+        // ONLY fallback for regular Interstitial if the failing ad WAS Interstitial
+        else if (type == AdType.Interstital)
+        {
+            if (!usingSecondaryInterstitialId)
+                LoadSecondaryInterstitialAd();
+            else
+                ResetToPrimaryWithDelay();
+        }
+    }
+
+    void LoadSecondaryLaunchAd() {
+        usingSecondaryLaunchId = true;
+        var adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+    if (adMobConfig == null) return;
+
+        AdUnitConfig sec = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
+        AdTestToast.Instance?.Show("Fallback: Launch Primary Failed -> Trying Secondary");
+        adMobNetworkHandler.SetLaunchId(sec.AdUnitId);
+        adMobNetworkHandler.RequestInterstitial(AdType.Launch, "Secondary"); 
+    }
+
+    void LoadSecondaryInterstitialAd() {
+        usingSecondaryInterstitialId = true;
+        var adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+    if (adMobConfig == null) return;
+
+        AdUnitConfig sec = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
+        AdTestToast.Instance?.Show("Fallback: Interstitial Primary Failed -> Trying Secondary");
+        adMobNetworkHandler.SetInterStitalId(sec.AdUnitId);
+        adMobNetworkHandler.RequestInterstitial(AdType.Interstital, "Secondary");
+    }
+
+    void ResetToPrimaryWithDelay() {
+        usingSecondaryInterstitialId = false;
+        AdUnitConfig pri = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.Interstital);
+        AdTestToast.Instance?.Show("Fallback: All Failed. Cooling down...");
+        adMobNetworkHandler.SetInterStitalId(pri.AdUnitId);
+        adMobNetworkHandler.RequestWithManualDelay(AdType.Interstital, Global.adRetryTime);
     }
 
     private bool isSecondaryInterstialLoaded;
-    private void LoadSecondaryInterstitialAd()
+    /* private void LoadSecondaryInterstitialAd()
     {
         if (isSecondaryInterstialLoaded)
             return;
@@ -1295,7 +1469,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 isSecondaryInterstialLoaded = true;
             }
         }
-    }
+    } */
 
     public void CheckSecondaryRewardAdStatus(bool result)
     {
@@ -1375,9 +1549,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public IEnumerator RequestAppOpenAd()
     {
-        int result = 0;
-        yield return null;
-        if (Global.isAppOpenAdEnabled)
+        /* int result = 0;
+        yield return null; */
+        /* if (Global.isAppOpenAdEnabled)
         {
             adMobNetworkHandler.RequestAppOpenAd((adAvailable) =>
             {
@@ -1394,30 +1568,40 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         else
         {
             result = 1;
+        } */
+        if (Global.isAppOpenAdEnabled)
+        {
+            AdTestToast.Instance?.Show("AppOpen: Requesting...");
+            adMobNetworkHandler.RequestAppOpenAd();
         }
 
-        yield return new WaitUntil(() => result != 0);
+        /* if (result == 0)
+        {
+            Debug.LogWarning("AdManager: RequestAppOpenAd callback did not arrive in time; skipping app open ad.");
+            result = 1;
+        } */
 
-        if (Global.isAppOpenAdEnabled && result == 2 && SceneManager.GetActiveScene().name.Contains("Splash"))
+        /* if (Global.isAppOpenAdEnabled && result == 2 && SceneManager.GetActiveScene().name.Contains("Splash"))
         {
 
             yield return new WaitForSeconds(1);
             ShowAppOpenAd();
-        }
+        } */
 
-        if (Global.isLaunchInterstitialEnabled)
+        /* if (Global.isLaunchInterstitialEnabled)
         {
             yield return new WaitForSeconds(1);
             RequestLaunchInterstitial();
-        }
+        } */
+        
         if (Global.isIntersitialsEnabled)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(10);
             RequestInterstitial();
         }
         if (Global.isBannerEnabled)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(5);
             RequestBannerAd();          
         }
     }
@@ -1960,6 +2144,35 @@ public bool IsRewardedVideoAvailable()
     public void RequestExitInterstitial()
     {  
        
+    }
+
+    public void ResetIdToPrimary()
+    {
+        // 1. Reset local tracking flags
+        usingSecondaryInterstitialId = false;
+        usingSecondaryLaunchId = false;
+
+        // 2. Find the AdMob Config safely
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if (adMobConfig != null)
+        {
+            // 3. Get the Primary Interstitial ID
+            AdUnitConfig priInter = adMobConfig.adConfigs.Find(x => x.AdType == AdType.Interstital);
+            if (priInter != null && !string.IsNullOrEmpty(priInter.AdUnitId))
+            {
+                adMobNetworkHandler.SetInterStitalId(priInter.AdUnitId);
+            }
+
+            // 4. Get the Primary Launch ID
+            AdUnitConfig priLaunch = adMobConfig.adConfigs.Find(x => x.AdType == AdType.Launch);
+            if (priLaunch != null && !string.IsNullOrEmpty(priLaunch.AdUnitId))
+            {
+                adMobNetworkHandler.SetLaunchId(priLaunch.AdUnitId);
+            }
+
+            AdTestToast.Instance?.Show("Ads: IDs Reset to Primary");
+            Debug.Log("AdManager: All IDs reset to Primary configuration.");
+        }
     }
 
 

@@ -23,18 +23,29 @@ public class splashtoMenu : MonoBehaviour {
         float progress = 0;
         float currentTime = 0;
         adReady = false;
+        #if UNITY_EDITOR
+        timetoload = 2;
+        #endif
 
+        float consentWaitStart = Time.realtimeSinceStartup;
+        const float consentWaitTimeout = 20f;
         while (AdManager._instance == null || !AdManager._instance.IsConsentGatheringFinished)
         {
+            if (Time.realtimeSinceStartup - consentWaitStart > consentWaitTimeout)
+            {
+                Debug.LogWarning("splashtoMenu: consent/init timeout, continuing without waiting.");
+                break;
+            }
             yield return null; // Stay here while the popup is visible
         }
+
         while (progress < timetoload)
         {
             progressslider.fillAmount = (progress / timetoload);
 
             if (progress - currentTime >= 1 && !adReady)
             {
-                if (AdManager._instance.LaunchInterstitialState())
+                if (AdManager._instance != null && AdManager._instance.LaunchInterstitialState())
                 {
                     Debug.Log("IXD Check");
                     adReady = true;
@@ -61,7 +72,13 @@ public class splashtoMenu : MonoBehaviour {
         if (adReady || editorTest || progress >= timetoload) 
         {
             Debug.Log("IXD Ready");
-            if(AdManager._instance!=null && AdManager._instance.isLaunchInterstitialEnabled)
+
+            if (adReady)
+                AdTestToast.Instance?.Show("Splash: Launch Ad Ready! Showing...");
+            else
+                AdTestToast.Instance?.Show("Splash: No Ad, Moving to Menu");
+
+            if (AdManager._instance!=null && AdManager._instance.isLaunchInterstitialEnabled)
             AdManager._instance.ShowLaunchInterstitial(true);
 
             if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -72,6 +89,19 @@ public class splashtoMenu : MonoBehaviour {
                 //    FirebaseEvents.instance.LogFirebaseEvent("Internet_Not_Connected");
                 //}
             }
+
+            if (FirebaseEvents.instance != null)
+            {
+                try
+                {
+                    FirebaseEvents.instance.LogFirebaseEvent("First_time_menu");
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogError($"[Firebase] Error logging event: {e.Message}");
+                }
+            }
+            Debug.Log("<color=green>[Firebase]</color> Main Menu Logged");
 
             SceneManager.LoadScene("MainMenu");
         }
