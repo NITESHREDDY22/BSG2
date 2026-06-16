@@ -59,7 +59,18 @@ public class InHouseAdController : MonoBehaviour
     {
         string fullEvent = eventName + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay;
         if (fullEvent.Length > 40) fullEvent = fullEvent.Substring(fullEvent.Length - 40);
-        Firebase.Analytics.FirebaseAnalytics.LogEvent(fullEvent);
+        try
+        {
+            if (FirebaseEvents.IsFirebaseReady)
+            {
+                Firebase.Analytics.FirebaseAnalytics.LogEvent(fullEvent);
+            }
+        }
+        catch
+        {
+            Debug.Log("Firebase event logging failed for event: " + fullEvent);
+        }
+        //Firebase.Analytics.FirebaseAnalytics.LogEvent(fullEvent);
         Debug.Log("[InHouseAd Log]: " + fullEvent);
     }
 

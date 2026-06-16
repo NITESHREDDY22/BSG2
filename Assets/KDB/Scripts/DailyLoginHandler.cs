@@ -56,12 +56,12 @@ public class DailyLoginHandler : MonoBehaviour
 
     public void OnAdClickedCallBack(string arg1, string arg2)
     {
-        SendEvent(ClicksKey, arg1, arg2);
+        //SendEvent(ClicksKey, arg1, arg2);
     }
 
     public void OnAdImpressionCallBack(string arg1, string arg2)
     {
-        SendEvent(ImpressionKey, arg1, arg2);
+        //SendEvent(ImpressionKey, arg1, arg2);
     }
 
     void SendEvent(string eventKey,string adtype,string newtorktype)

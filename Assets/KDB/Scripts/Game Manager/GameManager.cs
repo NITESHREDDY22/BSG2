@@ -176,9 +176,20 @@ public class GameManager : MonoBehaviour
 
         //Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
         //FirebaseEvents.instance.LogFirebaseEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
-        Debug.Log("Firebase event LevelStart logged");
-        
+        Debug.Log($"IsFirebaseReady{FirebaseEvents.IsFirebaseReady}");
+        try
+        {
+        if (FirebaseEvents.IsFirebaseReady)
+        {
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+            Debug.Log("Firebase event LevelStart logged");
+        }
+        }
+        catch
+        {
+            Debug.Log("Firebase event LevelStart logging failed for W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+        }
+
     }
 
     public void pause()
@@ -290,11 +301,22 @@ public class GameManager : MonoBehaviour
                     targetKey = levelFailRetryKey.Replace("param", levelNum);
                 }
                 targetKey = targetKey.Replace(" ", "");
-                AdManager._instance.FireBaseActions(targetKey, "retry", "success");
-
-                Firebase.Analytics.FirebaseAnalytics.LogEvent("Retry_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
-                Debug.Log("[Firebase]Retry_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+            Debug.Log($"IsFirebaseReady 1{FirebaseEvents.IsFirebaseReady}");
+            try
+            {
+                if (FirebaseEvents.IsFirebaseReady)
+                {
+                    //AdManager._instance.FireBaseActions(targetKey, "retry", "success");
+                    Debug.Log($"IsFirebaseReady 2{FirebaseEvents.IsFirebaseReady}");
+                    //Firebase.Analytics.FirebaseAnalytics.LogEvent("Retry_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                    Debug.Log("[Firebase]Retry_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                }
             }
+            catch
+            {
+                Debug.Log($"[Error]Failed to log Firebase event for retrying level W{WorldSelectionHandler.worldSelected}_L{Global.CurrentLeveltoPlay}");
+            }
+        }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void ReloadLevelNoInterstitial()
@@ -1957,6 +1979,7 @@ public class GameManager : MonoBehaviour
 
     public void NewShowStars(int count)
     {
+        Debug.Log("NewShowStars " + count);
         // Debug.LogError("EndGameWon World" + WorldSelectionHandler.worldNumb + "L" + Global.CurrentLeveltoPlay);
         // playTime = Time.time - startTime;
         // Debug.LogError("W" + WorldSelectionHandler.worldNumb + " L" + Global.CurrentLeveltoPlay + "Playtime = " + playTime);
@@ -1983,6 +2006,7 @@ public class GameManager : MonoBehaviour
             int coinsEarned = PlayerPrefs.GetInt("coins");
             GameManager.Instance.totalcoinsatWin.text = coinsEarned.ToString();
             int currentStars = LevelSelectionHandler.levelStars[Global.CurrentLeveltoPlay];
+            Debug.Log("currentStars " + currentStars + " count " + count);
             if (currentStars < count)
                 StartCoroutine(ShowCoinsAnimation(count, currentStars));
 
@@ -1995,6 +2019,7 @@ public class GameManager : MonoBehaviour
         }
         catch (Exception exp)
         {
+            Debug.Log($"[Error]NewShowStars failed)");
             try
             {
                 System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
@@ -2022,6 +2047,7 @@ public class GameManager : MonoBehaviour
             catch (Exception e)
             {
                 //
+                Debug.Log($"[Error]NewShowStars failed) with exception {e.Message}");
             }
         }
     }
@@ -2030,6 +2056,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator ShowCoinsAnimation(int t, int s)
     {
+        Debug.Log("ShowCoinsAnimation started with t " + t + " s " + s);
         int coinsEarned = PlayerPrefs.GetInt("coins");
         GameManager.Instance.totalcoinsatWin.text = coinsEarned.ToString();
 

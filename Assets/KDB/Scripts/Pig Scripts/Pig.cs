@@ -28,6 +28,7 @@ public class Pig : MonoBehaviour
     {
         try
         {
+            Debug.Log($"BottleSelected:{PlayerPrefs.GetInt("BottleSelected", 0)}");
             if (PlayerPrefs.GetInt("BottleSelected", 0) > 0)
             {
                 GetComponent<SpriteRenderer>().sprite = GameManager.Instance.BottleSkins[PlayerPrefs.GetInt("BottleSelected", 0)];
@@ -213,21 +214,39 @@ public class Pig : MonoBehaviour
                         gameMngr.replayBtn.SetActive(false);
                         Debug.Log("unlock next lvl " + Global.CurrentLeveltoPlay);
                         Debug.Log(WorldSelectionHandler.worldSelected + " " + Global.CurrentLeveltoPlay + "-Finish");
-                        Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelComplete_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                        Debug.Log($"IsFirebaseReady{FirebaseEvents.IsFirebaseReady}");
+                        try
+                        {
+                            if (FirebaseEvents.IsFirebaseReady)
+                            {
+                                Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelComplete_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                            }
+                        }
+                        catch
+                        {
+                            Debug.Log("Firebase event LevelComplete logging failed");
+                        }
 
-                        Analytics.CustomEvent(WorldSelectionHandler.worldSelected + " " + Global.CurrentLeveltoPlay + "- Finish ", new Dictionary<string, object>
+                        try
+                        {
+                            Analytics.CustomEvent(WorldSelectionHandler.worldSelected + " " + Global.CurrentLeveltoPlay + "- Finish ", new Dictionary<string, object>
                                             {
                                                 { "LEVEL", Global.retryCount },
 
                                          });
-
-
+                        }
+                        catch
+                        {
+                            Debug.Log("Custom event LevelComplete logging failed");
+                        }
+                        
                         if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
                         {
                             LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay);
                             LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay + 1);
                         }
 
+                        Debug.Log($"Give Stars {gameMngr.Give3Stars[Global.CurrentLeveltoPlay]}");
                         //Block for 3 stars logic -- Added newly
                         if (gameMngr.Give3Stars[Global.CurrentLeveltoPlay])
                         {
@@ -237,6 +256,7 @@ public class Pig : MonoBehaviour
                         }
                         else
                         {
+                            Debug.Log($"Give Stars {Global.TotalbirdCount - (Global.birdCount)}");
                             if ((Global.TotalbirdCount - (Global.birdCount)) > 1)
                             {
                                 gameMngr.NewShowStars(3);
