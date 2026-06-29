@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Unity.Notifications.Android;
 using UnityEngine.SceneManagement;
+using Firebase.Analytics; // Added Firebase Namespace
 
 public class NotificationManager : MonoBehaviour
 {
@@ -39,6 +40,16 @@ public class NotificationManager : MonoBehaviour
         yield return new WaitForSeconds(1f); // Wait a second to ensure everything is initialized
         if (_hasHandledThisSession) yield break;
 
+        // --- NEW: Check if Game was opened via Notification ---
+        var intent = AndroidNotificationCenter.GetLastNotificationIntent();
+        if (intent != null)
+        {
+            LogFirebase("Notification_Opened");
+            Debug.Log("App opened via notification tap.");
+        }
+
+        LogFirebase("Notification_Setup_Start");
+
         CreateNotificationChannel();
 
         // Request permission on startup (Android 13+)
@@ -47,7 +58,12 @@ public class NotificationManager : MonoBehaviour
         // If permission is granted, schedule the two-stage reminder
         if (AndroidNotificationCenter.UserPermissionToPost == PermissionStatus.Allowed)
         {
+            LogFirebase("Notification_Permission_Allowed");
             ScheduleDoubleDailyReminder();
+        }
+        else
+        {
+            LogFirebase("Notification_Permission_Denied");
         }
 
         _hasHandledThisSession = true;
@@ -117,6 +133,43 @@ public class NotificationManager : MonoBehaviour
         };
         AndroidNotificationCenter.SendNotification(note2, channelId);
 
+        LogFirebase("Notification_Scheduled_Success");
         Debug.Log("Scheduled 2 daily notifications with a 5-minute gap.");
+    }
+
+    // --- Firebase Logging Implementation ---
+    private void LogFirebase(string eventName)
+    {
+        int worldNumber = WorldSelectionHandler.worldSelected;
+        int levelNumber = Global.CurrentLeveltoPlay;
+
+        string trimmedEventName = eventName;
+
+        if (trimmedEventName.Length > 40)
+        {
+            trimmedEventName = trimmedEventName.Substring(trimmedEventName.Length - 40);
+        }
+
+        Debug.Log($"IsFirebaseReady: {FirebaseEvents.IsFirebaseReady}");
+
+        try
+        {
+            if (FirebaseEvents.IsFirebaseReady)
+            {
+                Firebase.Analytics.FirebaseAnalytics.LogEvent(
+                    trimmedEventName,
+                    new Firebase.Analytics.Parameter("world", worldNumber),
+                    new Firebase.Analytics.Parameter("level", levelNumber)
+                );
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(
+                $"Firebase event logging failed. Event={trimmedEventName}, World={worldNumber}, Level={levelNumber}\n{e}");
+        }
+
+        Debug.Log(
+            $"[Firebase Log]: {trimmedEventName} | world={worldNumber} | level={levelNumber}");
     }
 }
