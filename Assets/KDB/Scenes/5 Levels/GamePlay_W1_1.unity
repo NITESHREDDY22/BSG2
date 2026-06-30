@@ -15579,7 +15579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76acd02b2e8b0da4bad7c85763b0e5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.6
   transfB: {fileID: 1176888394}
   childTransf: {fileID: 431570001}
 --- !u!1 &815298187
@@ -18102,7 +18102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76acd02b2e8b0da4bad7c85763b0e5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.6
   transfB: {fileID: 1596660756}
   childTransf: {fileID: 573137153}
 --- !u!1 &1035146552

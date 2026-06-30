@@ -955,7 +955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4380133195881148, guid: c15f54901db4f0e4392465927ef10893, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.9000006
+      value: -5.120001
       objectReference: {fileID: 0}
     - target: {fileID: 4380133195881148, guid: c15f54901db4f0e4392465927ef10893, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16434,7 +16434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4380133195881148, guid: c15f54901db4f0e4392465927ef10893, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.78
+      value: 0.55999994
       objectReference: {fileID: 0}
     - target: {fileID: 4380133195881148, guid: c15f54901db4f0e4392465927ef10893, type: 3}
       propertyPath: m_LocalPosition.z
@@ -28721,8 +28721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4108a818e860246a34df19df7a212e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  maxRotation: 45
+  speed: 10
+  maxRotation: 35
 --- !u!50 &1529114297
 Rigidbody2D:
   serializedVersion: 4
@@ -38686,7 +38686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4380133195881148, guid: c15f54901db4f0e4392465927ef10893, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.16
+      value: -2.38
       objectReference: {fileID: 0}
     - target: {fileID: 4380133195881148, guid: c15f54901db4f0e4392465927ef10893, type: 3}
       propertyPath: m_LocalPosition.z

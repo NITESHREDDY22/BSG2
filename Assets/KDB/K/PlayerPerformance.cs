@@ -40,7 +40,7 @@ public class PlayerPerformance : MonoBehaviour
         }
 
         #if PRODUCTION_BUILD_ON
-        //Debug.unityLogger.logEnabled = false;
+        Debug.unityLogger.logEnabled = false;
         #endif
         #if !CHEATS_ON
         Debug.unityLogger.logEnabled = false;

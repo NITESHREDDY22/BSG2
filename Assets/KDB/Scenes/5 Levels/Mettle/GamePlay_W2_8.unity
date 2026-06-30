@@ -2230,7 +2230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalScale.y
@@ -2270,7 +2270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61913405097599242, guid: c76f89e324e8a264ea55e8d189c7e9d9,
         type: 3}
@@ -2711,7 +2711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalScale.y
@@ -2751,7 +2751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61913405097599242, guid: c76f89e324e8a264ea55e8d189c7e9d9,
         type: 3}
@@ -6951,7 +6951,7 @@ Transform:
   m_GameObject: {fileID: 413000398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.43, y: -4.37, z: 5}
+  m_LocalPosition: {x: 9.968, y: -4.37, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6971,7 +6971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293c0ace268913f41851e3ea82cd97ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.7
   transfB: {fileID: 1899160777}
   childTransf: {fileID: 413000399}
 --- !u!1 &422716290
@@ -12579,7 +12579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalScale.y
@@ -12591,7 +12591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12619,7 +12619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4109555448973262, guid: c76f89e324e8a264ea55e8d189c7e9d9, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61913405097599242, guid: c76f89e324e8a264ea55e8d189c7e9d9,
         type: 3}
@@ -16894,7 +16894,7 @@ Transform:
   m_GameObject: {fileID: 953896015}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0300001, y: 0.9, z: 5}
+  m_LocalPosition: {x: -0.67300004, y: 1.171, z: 5}
   m_LocalScale: {x: 0.7, y: 0.90999997, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -26459,7 +26459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293c0ace268913f41851e3ea82cd97ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.7
   transfB: {fileID: 1963170690}
   childTransf: {fileID: 1330829752}
 --- !u!1001 &1341908918
@@ -29108,7 +29108,7 @@ Transform:
   m_GameObject: {fileID: 1522272347}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.07, y: 1.94, z: 0}
+  m_LocalPosition: {x: -0.713, y: 2.2110002, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29342,7 +29342,7 @@ Transform:
   m_GameObject: {fileID: 1528823707}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.02, y: -0.40000007, z: 5}
+  m_LocalPosition: {x: 3.3769999, y: -0.12900004, z: 5}
   m_LocalScale: {x: 0.7, y: 0.90999997, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -34679,7 +34679,7 @@ Transform:
   m_GameObject: {fileID: 1552193436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.53729963, w: 0.8433915}
-  m_LocalPosition: {x: 0.97999996, y: 0.26, z: 0}
+  m_LocalPosition: {x: 1.337, y: 0.531, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36665,7 +36665,7 @@ Transform:
   m_GameObject: {fileID: 1729690378}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.03, y: -0.55, z: 0}
+  m_LocalPosition: {x: 3.387, y: -0.27899998, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -37128,7 +37128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 293c0ace268913f41851e3ea82cd97ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.75
   transfB: {fileID: 1100882290}
   childTransf: {fileID: 1770002996}
 --- !u!1 &1775986112
@@ -43898,7 +43898,7 @@ MonoBehaviour:
   rewardBall: {fileID: 0}
   ballPrefab: {fileID: 1876404952628938, guid: ac03fefafef004fea8bd013224d0555b, type: 3}
   birdsgroup: {fileID: 1262838808}
-  Level_ballCount: 060000000600000006000000080000000600000005000000050000000800000006000000030000000800000006000000060000000500000008000000070000000500000005000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000
+  Level_ballCount: 060000000a00000006000000090000000b0000000500000005000000080000000600000003000000080000000600000006000000050000000800000007000000050000000500000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000600000006000000060000000800000006000000080000000a000000060000000600000006000000060000000600000006000000
   Give3Stars: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   currentBirdIndex: 0
   gameOverPanel: {fileID: 616109203}
