@@ -42,6 +42,8 @@ public class SlingShot : MonoBehaviour
             xOrigin = slingbase.transform.position.x;
             yOrigin = slingbase.transform.position.y;
             myQuaternion = slingbase.transform.rotation;
+
+            SetTragectoryConfig();
         }
         catch (Exception exp)
         {
@@ -540,28 +542,36 @@ public class SlingShot : MonoBehaviour
     {
         try
         {
-            if (!created)
-            {
-                spots = new GameObject[poses.Length];
+             if (!created)
+        {
+            spots = new GameObject[poses.Length];
 
-                for (int i = 0; i < poses.Length; i++)
-                //for(int i = poses.Length-1;i>-1;i--)
-                {
-                    GameObject gob = Instantiate(_dot) as GameObject;
-                    //gob.transform.localScale = new Vector3(.35f-(i*(_interval*.01f)), .35f-(i* (_interval * .01f)), 1);
-                    gob.transform.localScale = new Vector3(.3f - (i * scaleDecreaseRate), .3f - (i * scaleDecreaseRate), 1);
-                    spots[i] = gob;
+            // Define your start and end sizes
+            float startScale = 0.3f;
+            float endScale = 0.05f; 
 
-                    //if (_ballType != BallType.tragectory)
-                    //    spots[i].SetActive(false);
-                }
-                created = true;
-                spots[0].SetActive(false);
-            }
             for (int i = 0; i < poses.Length; i++)
             {
-                spots[i].transform.position = new Vector3(poses[i].x, poses[i].y, 0);
+                GameObject gob = Instantiate(_dot) as GameObject;
+                
+                // Calculate scale based on the dot's position in the line (0 to 1)
+                // This ensures the line always tapers perfectly from start to finish
+                float progress = (float)i / (float)poses.Length;
+                float currentScale = Mathf.Lerp(startScale, endScale, progress);
+                
+                gob.transform.localScale = new Vector3(currentScale, currentScale, 1);
+                spots[i] = gob;
             }
+            created = true;
+            spots[0].SetActive(false); // Hide the first dot inside the bird
+        }
+
+        // Update positions
+        for (int i = 0; i < poses.Length; i++)
+        {
+            if(spots[i] != null)
+                spots[i].transform.position = new Vector3(poses[i].x, poses[i].y, 0);
+        }
         }
         catch (Exception exp)
         {
@@ -935,35 +945,49 @@ public class SlingShot : MonoBehaviour
             }
         }
     }
+
+    public static int retryCount = 0; // Static persists across scene reloads
+    [Header("Retry Progression Settings")]
+    private int segmentsAddedPerRetry = 5;
+    private float intervalAddedPerRetry = 0.05f;
+    private int maxSegments = 40;
     public void SetTragectoryConfig()
+{
+    SetTragectoryDifficulty();
+    
+    if (!Global.tragectoryChallenge)
     {
-        SetTragectoryDifficulty();
-        if(!Global.tragectoryChallenge)
-        {
-            tragectoryDifficultyLevel = TragectoryLevel.easy;
-            Debug.Log($"{DebugPrefix} Challenge is disabled? {Global.tragectoryChallenge}");
-        }
-         Debug.Log($"{DebugPrefix}set SetTragectoryConfig to ?{tragectoryDifficultyLevel}");
-        
-        switch (tragectoryDifficultyLevel)
-        {
-            case TragectoryLevel.easy:
+        tragectoryDifficultyLevel = TragectoryLevel.easy;
+    }
+
+    // 1. Set Base Values for the current difficulty
+    switch (tragectoryDifficultyLevel)
+    {
+        case TragectoryLevel.easy:
             _interval = .7f;
             totalSegments = 25;
-            scaleDecreaseRate = 0.01f;
             break;
-            case TragectoryLevel.medium:
+        case TragectoryLevel.medium:
             _interval = .6f;
             totalSegments = 20;
-            scaleDecreaseRate = 0.013f;
             break;
-            case TragectoryLevel.hard:
+        case TragectoryLevel.hard:
             _interval = .45f;
             totalSegments = 16;
-            scaleDecreaseRate = 0.018f;
             break;
-        }
     }
+
+    // 2. APPLY PROGRESSIVE INCREASE (based on static retryCount)
+    // We add more dots and push them further apart each time the player retries
+    totalSegments += (retryCount * segmentsAddedPerRetry);
+    _interval += (retryCount * intervalAddedPerRetry);
+
+    // 3. Safety Caps
+    totalSegments = Mathf.Min(totalSegments, maxSegments); 
+    _interval = Mathf.Min(_interval, 1.1f); // Prevents dots from being too far apart
+
+    Debug.Log($"{DebugPrefix} Retry: {retryCount} | Segments: {totalSegments} | Interval: {_interval}");
+}
 private string DebugPrefix = "[tragectory]";
     private void SetTragectoryDifficulty()
     {

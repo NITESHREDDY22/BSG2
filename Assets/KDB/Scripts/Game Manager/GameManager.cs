@@ -108,9 +108,9 @@ public class GameManager : MonoBehaviour
                 //}
             if (Global.isRewaredAdsEnabled && AdManager._instance)
             {
-                AdManager._instance.RequestRewardBasedVideo(AdType.Reward);
+                /* AdManager._instance.RequestRewardBasedVideo(AdType.Reward);
                 AdManager._instance.RequestRewardBasedVideo(AdType.RewardContinue);
-                AdManager._instance.RequestRewardedInterstitial(AdType.RewardedInterStitial);
+                AdManager._instance.RequestRewardedInterstitial(AdType.RewardedInterStitial); */
             }
             AdManager.onlyOnce = true;
         }
@@ -246,6 +246,7 @@ public class GameManager : MonoBehaviour
             {
                 SoundsHandler.Instance.PlaySource2Clip(4, 0);
             }
+            SlingShot.retryCount++;
             Invoke(nameof(ReloadLevel), .8f);
             GameManager.DeductCoins(Global.finalReloadCoins);
             if (NotEnoughCoinsPopup.Instance)
@@ -441,6 +442,7 @@ public class GameManager : MonoBehaviour
         }
         Global.noOfTries = 0;
         Time.timeScale = 1;
+        SlingShot.retryCount = 0;
         SceneManager.LoadScene("LevelSelection");
     }
     public void GoBackToWorldSel()
@@ -480,8 +482,9 @@ public class GameManager : MonoBehaviour
         isTutorialCompleted = true;
         if (WorldSelectionHandler.worldSelected == 0 && Global.CurrentLeveltoPlay == 0)
         {
-            tutorAnim.SetActive(true);
+            //tutorAnim.SetActive(true);
             isTutorialCompleted = false;
+            TutorialOverlay.Instance?.ShowTutorial(TutorialOverlay.VideoSourceType.Local,"BSG2TutVideo.mp4");
         }
         /*for (int i = 0; i < LevelsParent.childCount; i++)
         {
@@ -595,6 +598,12 @@ public class GameManager : MonoBehaviour
         InternetValidator.Instance.OnInterNetCheck += CheckNoInterNetPopup;
         AdManager.OnIngameAdClosed += ShowNoAdsButton;
         MultiSetHandler.OnSetChanged+=setChanged;
+         TutorialOverlay.Instance.OnTutorialClosed += OnTutorialClosed;
+    }
+
+    private void OnTutorialClosed(bool obj)
+    {
+        doneSelected();
     }
 
     private void setChanged()
@@ -612,6 +621,7 @@ public class GameManager : MonoBehaviour
         }
         AdManager.OnIngameAdClosed -= ShowNoAdsButton;
         MultiSetHandler.OnSetChanged -= setChanged;
+        TutorialOverlay.Instance.OnTutorialClosed -= OnTutorialClosed;
 
 
     }
@@ -1775,6 +1785,7 @@ public class GameManager : MonoBehaviour
 
 
             gameOverPanel.SetActive(true);
+            SlingShot.retryCount = 0;
             //AudioManager.Instance.LevClear.Play();
 
 
@@ -1980,6 +1991,7 @@ public class GameManager : MonoBehaviour
     public void NewShowStars(int count)
     {
         Debug.Log("NewShowStars " + count);
+        SlingShot.retryCount = 0;
         // Debug.LogError("EndGameWon World" + WorldSelectionHandler.worldNumb + "L" + Global.CurrentLeveltoPlay);
         // playTime = Time.time - startTime;
         // Debug.LogError("W" + WorldSelectionHandler.worldNumb + " L" + Global.CurrentLeveltoPlay + "Playtime = " + playTime);
