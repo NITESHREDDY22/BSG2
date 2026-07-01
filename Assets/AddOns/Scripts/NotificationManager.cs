@@ -115,7 +115,7 @@ public class NotificationManager : MonoBehaviour
             Title = "Ready to Smash Some Bottles?",
             Text = "Your next challenge is waiting! Grab the slingshot, break the bottles, and beat your best score.",
             FireTime = baseFireTime,
-            RepeatInterval = TimeSpan.FromDays(1), // Repeat every 24 hours
+            RepeatInterval = TimeSpan.FromHours(Global.notificationInterval), // Repeat every 24 hours
             SmallIcon = smallIcon,
             LargeIcon = largeIcon
         };
@@ -126,8 +126,8 @@ public class NotificationManager : MonoBehaviour
         {
             Title = "New Levels Need a Champion!",
             Text = "Can you clear every bottle with the perfect shot? Jump back in and continue your bottle-breaking adventure!",
-            FireTime = baseFireTime.AddMinutes(5), // 5 minute gap
-            RepeatInterval = TimeSpan.FromDays(1), // Repeat every 24 hours
+            FireTime = baseFireTime.AddHours(Global.secondNotificationDelay), // 1 hr gap
+            RepeatInterval = TimeSpan.FromHours(Global.notificationInterval), // Repeat every 24 hours
             SmallIcon = smallIcon,
             LargeIcon = largeIcon
         };

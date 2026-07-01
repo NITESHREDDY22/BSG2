@@ -48,4 +48,8 @@ public class GameConfig {
     public bool showGameZopInterstitials = true;
     public bool tragectoryChallenge = false; 
     public int notEnoughRewardCoins = 500;
+
+    public int rewardAdsRequestDelay = 120;
+    public int notificationInterval = 24;
+    public int secondNotificationDelay = 1;
 }

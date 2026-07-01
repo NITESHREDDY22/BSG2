@@ -48,6 +48,9 @@ public class Global : MonoBehaviour
     public static bool isAppOpenAdEnabled = false;
     public static bool isLaunchInterstitialEnabled = true;
     public static int adRetryTime = 60;
+    public static int rewardAdsRequestDelay = 120;
+    public static int notificationInterval = 24;
+    public static int secondNotificationDelay = 1;
 
     public static int coinsToReload = 100;
 
