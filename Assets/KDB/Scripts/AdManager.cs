@@ -261,6 +261,9 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                     Global.defaultCoins = config.defaultCoins;
                     Global.tragectoryChallenge = config.tragectoryChallenge;
                     NotEnoughCoinsPopup.rewardCoins = config.notEnoughRewardCoins;
+                    Global.rewardAdsRequestDelay = config.rewardAdsRequestDelay;
+                    Global.notificationInterval = config.rewardAdsRequestDelay;
+                    Global.secondNotificationDelay = config.secondNotificationDelay;
 #if UNITY_EDITOR
                     //Global.coinsToReload = 0; // For test
                     Global.tragectoryChallenge = true;
@@ -746,7 +749,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             yield return null;
         }
 
-        if (!isAdMobInitialized)
+        /* if (!isAdMobInitialized)
         {
             Debug.LogWarning("AdManager: MobileAds.Initialize callback did not arrive in time; continuing without ad initialization.");
 
@@ -765,10 +768,36 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
                 AdTestToast.Instance?.Show("Strategy: Requesting Launch Ad (via Timeout)");
                 RequestLaunchInterstitial();
             }
+        } */
+
+        bool isOffline = (Application.internetReachability == NetworkReachability.NotReachable);
+
+        if (!isAdMobInitialized || isOffline)
+        {
+            Debug.LogWarning($"AdManager: Ads not ready. Init: {isAdMobInitialized}, Offline: {isOffline}");
+
+            // Inform the user why ads aren't appearing yet
+            if (isOffline)
+                AdTestToast.Instance?.Show("Ads: No Internet. Waiting for connection...");
+            else
+                AdTestToast.Instance?.Show("Ads: SDK initializing...");
+
+
+            if (!hasRequestedLaunchAd)
+            {
+                hasRequestedLaunchAd = true;
+                RequestLaunchInterstitial();
+            }
+
+            // Start the watchdog if it's not already running
+            if (!_isRetryLoopRunning)
+            {
+                StartCoroutine(RetryInitWhenInternetReturns());
+            }
         }
 
         //yield return new WaitForSeconds(1);
-       
+
         StartCoroutine(RequestAppOpenAd());        
 
        
@@ -781,6 +810,61 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
             //LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
             //LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
+    }
+
+    private bool _isRetryLoopRunning = false;
+
+    private IEnumerator RetryInitWhenInternetReturns()
+    {
+        _isRetryLoopRunning = true;
+        Debug.Log("<color=orange>[Ads Watchdog]</color> Started.");
+
+        // We stay in this loop until we have internet AND have successfully triggered ads
+        while (true)
+        {
+            if (Application.internetReachability != NetworkReachability.NotReachable)
+            {
+                // INTERNET IS BACK!
+
+                if (!isAdMobInitialized)
+                {
+                    // If for some reason the SDK isn't even locally ready, try the full init
+                    AdTestToast.Instance?.Show("Ads: Retrying Full Initialization...");
+                    yield return StartCoroutine(InitializeAdNetworks());
+                }
+                else
+                {
+                    // The SDK is already "Initialized" but we were offline.
+                    // Just trigger the ad loading sequence.
+                    TriggerAllAdLoadSequences();
+                }
+
+                // Once we've triggered the loads, we can stop the loop.
+                break;
+            }
+            else
+            {
+                // STILL OFFLINE
+                AdTestToast.Instance?.Show("Ads: Still Offline. Checking again in 10s...");
+            }
+
+            yield return new WaitForSeconds(10f);
+        }
+
+        _isRetryLoopRunning = false;
+        Debug.Log("<color=green>[Ads Watchdog]</color> Successfully triggered ads and stopped.");
+    }
+
+    private void TriggerAllAdLoadSequences()
+    {
+        AdTestToast.Instance?.Show("Ads: Internet found. Loading all ad types...");
+
+        // This starts the chain of requests (AppOpen -> Interstitial -> Banner -> Reward)
+        // exactly like your original script does at the end of initialization.
+        StartCoroutine(RequestAppOpenAd());
+
+        // Note: Your RequestAppOpenAd() already handles the 1s/5s/10s delays 
+        // for Interstitials, Banners, and Rewards internally.
     }
 
     /*
@@ -1398,6 +1482,11 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         if (result)
         {
+            if ((type == AdType.Interstital && usingSecondaryInterstitialId) ||
+            (type == AdType.Launch && usingSecondaryLaunchId))
+            {
+                ResetIdToPrimary();
+            }
             if (type == AdType.Interstital) usingSecondaryInterstitialId = false;
             if (type == AdType.Launch) usingSecondaryLaunchId = false;
             return;
@@ -1593,17 +1682,30 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             yield return new WaitForSeconds(1);
             RequestLaunchInterstitial();
         } */
-        
-        if (Global.isIntersitialsEnabled)
-        {
-            yield return new WaitForSeconds(10);
-            RequestInterstitial();
-        }
         if (Global.isBannerEnabled)
         {
             yield return new WaitForSeconds(5);
             RequestBannerAd();          
         }
+        
+        if (Global.isIntersitialsEnabled)
+        {
+            yield return new WaitForSeconds(30);
+            RequestInterstitial();
+        }
+        
+        if(Global.isRewaredAdsEnabled)
+        {
+            yield return new WaitForSeconds(Global.rewardAdsRequestDelay);
+            RequestRewardAds();          
+        }
+    }
+
+    private void RequestRewardAds()
+    {
+        RequestRewardBasedVideo(AdType.Reward);
+        RequestRewardBasedVideo(AdType.RewardContinue);
+        RequestRewardedInterstitial(AdType.RewardedInterStitial);
     }
 
     public void ShowAppOpenAd()

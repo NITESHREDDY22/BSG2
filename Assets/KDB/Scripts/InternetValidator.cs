@@ -172,7 +172,7 @@ public class InternetValidator : MonoBehaviour
         }
         else
         {
-            int worldNumber = GameConstants.getLastWorldUnlocked;
+            int worldNumber = WorldSelectionHandler.worldSelected;
             Debug.Log($"canGotoNextLevel worldNumber:{worldNumber},LevelNumber:{LevelNumber}, mandatoryInternetToPlayFromLevel:{mandatoryInternetToPlayFromLevel}");
             if (worldNumber > -1)
             {

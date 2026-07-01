@@ -1,3 +1,4 @@
+using Facebook.Unity;
 using Firebase.Analytics;
 using GoogleMobileAds.Api;
 using GoogleMobileAds.Common;
@@ -344,6 +345,16 @@ public class AdMobNetworkHandler :MonoBehaviour
         if (item == null || string.IsNullOrEmpty(item.AdID) || !isAdMobInitialized || item.isAdRequested )
             return;
 
+
+        if (FirebaseEvents.instance != null)
+        {
+            // Log a specific event like "AdUnit_Requested_Primary"
+            FirebaseEvents.instance.LogFirebaseEvent(
+                "AdUnit_Request_Attempt",
+                "Label", label // This will be "Primary" or "Secondary"
+            );
+        }
+
         //B Debug.LogError("Asdf RequestLaunchInterstitial 2222  ===="+item.AdID+ " type=== "+adType);
         if (currentAdLabels.ContainsKey(adType)) currentAdLabels[adType] = label;
         else currentAdLabels.Add(adType, label);
@@ -640,8 +651,31 @@ private void HandlePaidEvent(
     };
 
     FirebaseAnalytics.LogEvent("ad_revenue", parameters);
+        try
+        {
+            var metadata = new Dictionary<string, object>
+    {
+        { "ad_platform", "Google_AdMob" },
+        { "currency", adValue.CurrencyCode },
+        { "ad_precision_type", adValue.Precision.ToString() } // Tracks if estimation or exact auction win
+    };
 
-    Debug.Log(
+            Debug.Log($"[Facebook SDK] Logging AdImpression event. Revenue: {revenue}, Currency: {adValue.CurrencyCode}, Precision: {adValue.Precision}");
+
+            FB.LogAppEvent(
+                logEvent: "AdImpression",
+                valueToSum: (float)revenue,
+                parameters: metadata
+            );
+
+            Debug.Log("[Facebook SDK] AdImpression event logged successfully.");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"[Facebook SDK] Failed to log AdImpression event. Exception: {e}");
+        }
+
+        Debug.Log(
         $"[AdRevenue]\n" +
         $"Format: {adFormat}\n" +
         $"Unit: {adUnitId}\n" +
@@ -752,7 +786,7 @@ private void HandlePaidEvent(
 
     public void RequestRewardBasedVideo(AdType adType = AdType.Reward)
     {
-
+        AdTestToast.Instance?.Show($"AdMob: Requesting reward Type: {adType}");
         AdItem item = null;
 
         if (keyValuePairs.TryGetValue(adType, out AdItem adItem))
@@ -1638,6 +1672,7 @@ private void HandlePaidEvent(
         {
 
         }
+        
     }
 
     void OnAdClicked(AdType adType)
