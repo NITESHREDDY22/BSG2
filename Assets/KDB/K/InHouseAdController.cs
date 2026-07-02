@@ -57,7 +57,7 @@ public class InHouseAdController : MonoBehaviour
 
     private void LogFirebase(string eventName)
     {
-        string fullEvent = eventName + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay;
+        string fullEvent = eventName;// + "_W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay;
         if (fullEvent.Length > 40) fullEvent = fullEvent.Substring(fullEvent.Length - 40);
         try
         {

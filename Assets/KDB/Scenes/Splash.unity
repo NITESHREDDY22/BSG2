@@ -6367,7 +6367,7 @@ MonoBehaviour:
   adManager: {fileID: 1163193292}
   isInterNetConnected: 0
   noInterNetPopup: {fileID: 176788097}
-  mandatoryInternetToPlayFromLevel: -1
+  mandatoryInternetToPlayFromLevel: 40
 --- !u!114 &1163193297
 MonoBehaviour:
   m_ObjectHideFlags: 0

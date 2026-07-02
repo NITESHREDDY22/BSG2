@@ -18,11 +18,15 @@ public class InternetValidator : MonoBehaviour
     private bool triggerEvent;
     public Action<bool> OnInterNetCheck;
     private string cachedLevel;
-    public int mandatoryInternetToPlayFromLevel = -1;
+    /* public int mandatoryInternetToPlayFromLevel = 40; */
+
+    private const string MandatoryInternetLevelKey = "MandatoryInternetLevel";
 
     private void Awake()
     {
         Instance= this;
+    Debug.Log(
+        $"[InternetValidator] Cached Mandatory Level = {mandatoryInternetToPlayFromLevel}");
         CheckInterNetConnectivity();
 
 #if UNITY_EDITOR
@@ -39,6 +43,15 @@ public class InternetValidator : MonoBehaviour
         //    Debug.LogError("World Number " + i);
         //}        
 #endif
+    }
+    public static int mandatoryInternetToPlayFromLevel
+    {
+        get => PlayerPrefs.GetInt(MandatoryInternetLevelKey, 40);
+        set
+        {
+            PlayerPrefs.SetInt(MandatoryInternetLevelKey, value);
+            PlayerPrefs.Save();
+        }
     }
 
     private void OnEnable()
@@ -58,6 +71,8 @@ public class InternetValidator : MonoBehaviour
     private void OnConfigLoaded(GameConfig config)
     {
         mandatoryInternetToPlayFromLevel = config.InternetMandtoryLevel;
+        Debug.Log(
+            $"[InternetValidator] Saved Mandatory Level = {mandatoryInternetToPlayFromLevel}");
     }
 
     public void CheckInterNetConnectivity(int timer = 0, Action<bool> callBack = null)
@@ -159,7 +174,7 @@ public class InternetValidator : MonoBehaviour
     /* public bool canProceedToNextLevel =>(isInterNetConnected || 
         (!isInterNetConnected && !(GameConstants.targetLevelReached(mandatoryInternetToPlayFromLevel)))); */
 
-    public bool canProceedToNextLevel()
+    /* public bool canProceedToNextLevel()
     {
         //CheckInterNetConnectivity();
         int LevelNumber = Global.CurrentLeveltoPlay;//GameConstants.getLastUnlcokedLevel;
@@ -194,6 +209,51 @@ public class InternetValidator : MonoBehaviour
         }
         return true;
 
+    } */
+
+    private string logHead = "[canProceedToNextLevel]";
+    public bool canProceedToNextLevel()
+    {
+        bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
+        isInterNetConnected = isConnected;
+
+        Debug.Log($"{logHead} Internet Connected: {isInterNetConnected}");
+
+        if (isInterNetConnected)
+        {
+            Debug.Log($"{logHead} Internet available. Allowing gameplay.");
+            return true;
+        }
+
+        if (mandatoryInternetToPlayFromLevel <= -1)
+        {
+            Debug.Log($"{logHead} Mandatory Internet Level = {mandatoryInternetToPlayFromLevel}. Restriction disabled.");
+            return true;
+        }
+
+        int worldNumber = WorldSelectionHandler.worldSelected;   // 0-based
+        int levelNumber = Global.CurrentLeveltoPlay;             // 1-based
+
+        int globalLevel = levelNumber;
+
+        Debug.Log($"{logHead} Calculating Global Level...");
+        Debug.Log($"{logHead} Current World: {worldNumber}, Local Level: {levelNumber}");
+
+        for (int i = 0; i < worldNumber; i++)
+        {
+            globalLevel += WorldSelectionHandler.totalLevels[i];
+
+            Debug.Log($"{logHead} Added World {i} Levels ({WorldSelectionHandler.totalLevels[i]}) -> Running Global Level = {globalLevel}");
+        }
+
+        Debug.Log($"{logHead} Final Global Level = {globalLevel}");
+        Debug.Log($"{logHead} Mandatory Internet From Global Level = {mandatoryInternetToPlayFromLevel}");
+
+        bool canProceed = globalLevel < mandatoryInternetToPlayFromLevel;
+
+        Debug.Log($"{logHead} Decision = {(canProceed ? "ALLOW (Offline)" : "BLOCK (Internet Required)")}");
+
+        return canProceed;
     }
 
     void OnApplicationFocus(bool hasFocus)

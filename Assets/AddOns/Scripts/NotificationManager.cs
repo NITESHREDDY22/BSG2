@@ -157,9 +157,7 @@ public class NotificationManager : MonoBehaviour
             if (FirebaseEvents.IsFirebaseReady)
             {
                 Firebase.Analytics.FirebaseAnalytics.LogEvent(
-                    trimmedEventName,
-                    new Firebase.Analytics.Parameter("world", worldNumber),
-                    new Firebase.Analytics.Parameter("level", levelNumber)
+                    trimmedEventName
                 );
             }
         }
