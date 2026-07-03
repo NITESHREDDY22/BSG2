@@ -19,6 +19,7 @@ public class InternetValidator : MonoBehaviour
     public Action<bool> OnInterNetCheck;
     private string cachedLevel;
     /* public int mandatoryInternetToPlayFromLevel = 40; */
+    //[SerializeField] private GameObject closeBtn;
 
     private const string MandatoryInternetLevelKey = "MandatoryInternetLevel";
 
@@ -317,5 +318,11 @@ public class InternetValidator : MonoBehaviour
             }
         }
         cacheInternetStatus = status;
+    }
+
+    public void CloseButtonClick()
+    {
+        //closeBtn.SetActive(false);
+        noInterNetPopup.SetActive(false);
     }
 }
