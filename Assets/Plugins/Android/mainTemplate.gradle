@@ -35,8 +35,10 @@ dependencies {
     implementation 'com.google.ads.mediation:vungle:7.5.0.0' // Assets/GoogleMobileAds/Mediation/LiftoffMonetize/Editor/LiftoffMonetizeMediationDependencies.xml:24
     implementation 'com.google.android.gms:play-services-ads:24.4.0' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:7
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' // Packages/singular-unity-package/SingularSDK/Editor/SingularSDKDependencies.xml:10
-    implementation 'com.google.android.gms:play-services-appset:16.0.0' // Packages/singular-unity-package/SingularSDK/Editor/SingularSDKDependencies.xml:9
+    // implementation 'com.google.android.gms:play-services-appset:16.0.0' // Packages/singular-unity-package/SingularSDK/Editor/SingularSDKDependencies.xml:9
+    implementation 'com.google.android.gms:play-services-appset:16.0.2' // Assets/GameAnalytics/Editor/Android/Dependencies.xml:4
     implementation 'com.google.android.gms:play-services-base:18.6.0' // Assets/Firebase/Editor/AppDependencies.xml:17
+    implementation 'com.google.android.instantapps:instantapps:1.1.0' // Assets/GameAnalytics/Editor/Android/Dependencies.xml:3
     implementation 'com.google.android.ump:user-messaging-platform:3.2.0' // Assets/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
     implementation 'com.google.firebase:firebase-analytics:22.4.0' // Assets/Firebase/Editor/AppDependencies.xml:15
     implementation 'com.google.firebase:firebase-analytics-unity:12.10.1' // Assets/Firebase/Editor/AnalyticsDependencies.xml:18

@@ -179,16 +179,17 @@ public class GameManager : MonoBehaviour
         Debug.Log($"IsFirebaseReady{FirebaseEvents.IsFirebaseReady}");
         try
         {
-        if (FirebaseEvents.IsFirebaseReady)
-        {
-            Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
-            Debug.Log("Firebase event LevelStart logged");
-        }
+            if (FirebaseEvents.IsFirebaseReady)
+            {
+                Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                Debug.Log("Firebase event LevelStart logged");
+            }
         }
         catch
         {
             Debug.Log("Firebase event LevelStart logging failed for W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
         }
+        AnalyticsManager.LogEvent(GameAnalyticsSDK.GAProgressionStatus.Start);
 
     }
 
@@ -1294,8 +1295,20 @@ public class GameManager : MonoBehaviour
                                                 { "LEVEL", Global.retryCount },
 
                                          });
+                try
+                {
+                    if (FirebaseEvents.instance != null)
+                    {
+                        FirebaseEvents.instance.LogFirebaseEvent("LevelFail", "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                    }
+                }
+                catch (Exception e)
+                {
+                    //
+                }
+                //Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelFail_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
 
-                Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelFail_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                AnalyticsManager.LogEvent(GameAnalyticsSDK.GAProgressionStatus.Fail);
 
                 if (AdManager._instance)
                     AdManager._instance.HidebannerAd();

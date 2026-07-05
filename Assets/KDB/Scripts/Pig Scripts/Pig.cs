@@ -226,6 +226,7 @@ public class Pig : MonoBehaviour
                         {
                             Debug.Log("Firebase event LevelComplete logging failed");
                         }
+                        AnalyticsManager.LogEvent(GameAnalyticsSDK.GAProgressionStatus.Complete);
 
                         try
                         {
