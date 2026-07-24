@@ -1696,34 +1696,13 @@ public class GameManager : MonoBehaviour
 
             pauseBtn.SetActive(false);
             replayBtn.SetActive(false);
+            
+
             if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
             {
                 LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay);
                 LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay + 1);
             }
-
-            /*if (Give3Stars[Global.CurrentLeveltoPlay])
-            {
-                PlayerPrefs.SetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay, 3);
-                stars[2].SetActive(true);
-                Debug.LogError("Entered 3 star default");
-            }
-            else
-            {*/
-
-            //Debug.LogError("Skipped 3 star default");
-            /* if (birds.Count - Global.birdCount > 1 && PlayerPrefs.GetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay) < 3)
-             {
-                 PlayerPrefs.SetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay, 3);
-             }
-             else if (birds.Count - Global.birdCount > 0 && PlayerPrefs.GetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay) < 2)
-             {
-                 PlayerPrefs.SetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay, 2);
-             }
-             else if (PlayerPrefs.GetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay) < 1)
-             {
-                 PlayerPrefs.SetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay, 1);
-             }*/
             if (birds.Count - Global.birdCount > 1)
             {
                 stars[2].SetActive(true);
@@ -1787,6 +1766,61 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private IEnumerator AnimatePanelsTransition(int stars)
+    {
+        yield return new WaitForSeconds(3f);
+        // 1. Setup RectTransforms
+        RectTransform gameOverRect = gameOverPanel.GetComponent<RectTransform>();
+        RectTransform completionRect = GameCompletionPopup.Instance.popupPanel.GetComponent<RectTransform>();
+
+        // 2. Prepare GameCompletionPopup (Show it and move it off-screen to the left)
+        GameCompletionPopup.Instance.Show(stars);
+        // Ensure the object is active before trying to move it
+        GameCompletionPopup.Instance.gameObject.SetActive(true);
+
+        // Position it far to the left (using -2000 to ensure it's off-screen)
+        completionRect.anchoredPosition = new Vector2(-2000, 0);
+
+        // 3. Tweening Variables
+        float duration = 1f; // How long the transition takes
+        float elapsed = 0f;
+
+        Vector2 gameOverStartPos = gameOverRect.anchoredPosition;
+        Vector2 gameOverEndPos = new Vector2(2000, 0); // Move off-screen to the right
+
+        Vector2 completionStartPos = new Vector2(-2000, 0);
+        Vector2 completionEndPos = Vector2.zero; // Target: Middle of the screen
+
+        // 4. Perform the Animation
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // Use a smooth "Ease Out" curve
+            t = t * t * (3f - 2f * t); 
+
+            // Move current panel to the right
+            gameOverRect.anchoredPosition = Vector2.Lerp(gameOverStartPos, gameOverEndPos, t);
+
+            // Move completion panel from left to middle
+            completionRect.anchoredPosition = Vector2.Lerp(completionStartPos, completionEndPos, t);
+
+            yield return null;
+        }
+
+        // 5. Ensure final positions are exact
+        gameOverRect.anchoredPosition = gameOverEndPos;
+        completionRect.anchoredPosition = completionEndPos;
+
+        // 6. Final Logic & Logging
+        if(!Global.limitedEvents)
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("GameComplete_Show_First_totalStars_" + stars);
+
+        // Optional: disable the GameOverPanel object once it's off-screen to save performance
+        // gameObject.SetActive(false); 
+    }
+
     public float playTime;
 
     public void ShowNewLevelComplete()
@@ -1804,11 +1838,26 @@ public class GameManager : MonoBehaviour
 
             pauseBtn.SetActive(false);
             replayBtn.SetActive(false);
-            //Debug.Log("unlock next lvl " + Global.CurrentLeveltoPlay);
+            //Debug.Log("unlock next lvl " + Global.CurrentLeveltoPlay);\
+            Debug.Log($"CurrentLeveltoPlay:{Global.CurrentLeveltoPlay},total:{(WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1)}");
             if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
             {
                 LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay);
                 LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay + 1);
+            }
+            else
+            {
+                Debug.Log("All LEVELS CLEARED");
+                levelNo.text = "All Levels Cleared";
+                retry.GetComponent<Button>().interactable = false;
+                menu.GetComponent<Button>().interactable = false;
+                levelup.GetComponent<Button>().interactable = false;
+                int totalStars = Global.TotalStarsAchivedWorld1 + Global.TotalStarsAchivedWorld2 + Global.TotalStarsAchivedWorld3+ Global.TotalStarsAchivedWorld4 + Global.TotalStarsAchivedWorld5;
+                Debug.Log($"[Show GameCompletionPopup]totalStars:{totalStars},getNatureStars:{Global.TotalStarsAchivedWorld1},getDesertStars:{Global.TotalStarsAchivedWorld2},getSnowStars:{Global.TotalStarsAchivedWorld3},getVolcanoStars:{Global.TotalStarsAchivedWorld4},getSpaceStars:{Global.TotalStarsAchivedWorld5}");
+                if (GameCompletionPopup.Instance != null)
+                {
+                    StartCoroutine(AnimatePanelsTransition(totalStars));
+                }
             }
             if ((Global.TotalbirdCount - Global.birdCount > 1 && PlayerPrefs.GetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay) < 3))
             {
@@ -1990,7 +2039,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    [SerializeField] GameObject[] stars;
+    [SerializeField]public GameObject[] stars;
     public void ShowStars(int count)
     {
         for (int i = 0; i < count; i++)

@@ -17,8 +17,9 @@ public static class GameConstants
     static readonly string NoAdsNotPurchased = "NotPurchased";
     static readonly string CoinsKey = "coins";
 
-    public static bool InternetConnected=false;   
-   
+    public static bool InternetConnected=false;
+    internal static string allLevelsCompleteKey = "allLevelsComplete";
+
     /// <summary>
     /// returns true if NoAds purchased
     /// </summary>
