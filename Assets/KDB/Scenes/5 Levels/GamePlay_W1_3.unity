@@ -6122,6 +6122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 344226155}
+  - component: {fileID: 344226156}
   m_Layer: 0
   m_Name: level_18
   m_TagString: Untagged
@@ -6145,6 +6146,25 @@ Transform:
   - {fileID: 1962190887}
   m_Father: {fileID: 1566631680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344226156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344226154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &351201502
 GameObject:
   m_ObjectHideFlags: 0
@@ -10175,6 +10195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 576895595}
+  - component: {fileID: 576895596}
   m_Layer: 0
   m_Name: level_16
   m_TagString: Untagged
@@ -10198,6 +10219,25 @@ Transform:
   - {fileID: 562737103}
   m_Father: {fileID: 1566631680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &576895596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576895594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &600639416
 GameObject:
   m_ObjectHideFlags: 0
@@ -13006,6 +13046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 748194057}
+  - component: {fileID: 748194058}
   m_Layer: 0
   m_Name: level_20
   m_TagString: Untagged
@@ -13029,6 +13070,25 @@ Transform:
   - {fileID: 340647088}
   m_Father: {fileID: 1566631680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748194058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748194056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &749482671
 GameObject:
   m_ObjectHideFlags: 0
@@ -15588,6 +15648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 899353468}
+  - component: {fileID: 899353469}
   m_Layer: 0
   m_Name: level_19
   m_TagString: Untagged
@@ -15611,6 +15672,25 @@ Transform:
   - {fileID: 2136182146}
   m_Father: {fileID: 1566631680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899353469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899353467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1001 &904724673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23056,6 +23136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1119826134}
+  - component: {fileID: 1119826135}
   m_Layer: 0
   m_Name: level_17
   m_TagString: Untagged
@@ -23079,6 +23160,25 @@ Transform:
   - {fileID: 1526422961}
   m_Father: {fileID: 1566631680}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1119826135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119826133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &1129648448
 GameObject:
   m_ObjectHideFlags: 0

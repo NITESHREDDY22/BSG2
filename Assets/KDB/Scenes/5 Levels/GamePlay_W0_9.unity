@@ -7276,6 +7276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 433687820}
+  - component: {fileID: 433687821}
   m_Layer: 0
   m_Name: level_50
   m_TagString: Brick
@@ -7299,6 +7300,25 @@ Transform:
   - {fileID: 960875025}
   m_Father: {fileID: 645590807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433687821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433687819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1001 &456491076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13287,6 +13307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 799844754}
+  - component: {fileID: 799844755}
   m_Layer: 0
   m_Name: level_47
   m_TagString: Brick
@@ -13310,6 +13331,25 @@ Transform:
   - {fileID: 1660252006}
   m_Father: {fileID: 645590807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799844755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799844753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!4 &800803065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4547901399915448, guid: bf90594178ac96f4da6d89309bec47a0,
@@ -14390,6 +14430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 856966505}
+  - component: {fileID: 856966506}
   m_Layer: 0
   m_Name: level_49
   m_TagString: Brick
@@ -14413,6 +14454,25 @@ Transform:
   - {fileID: 2124164578}
   m_Father: {fileID: 645590807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &856966506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856966504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &874494671
 GameObject:
   m_ObjectHideFlags: 0
@@ -17355,6 +17415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1029923579}
+  - component: {fileID: 1029923580}
   m_Layer: 0
   m_Name: level_48
   m_TagString: Brick
@@ -17378,6 +17439,25 @@ Transform:
   - {fileID: 1062619042}
   m_Father: {fileID: 645590807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029923580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029923578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &1032213196
 GameObject:
   m_ObjectHideFlags: 0
@@ -46494,6 +46574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1932755962}
+  - component: {fileID: 1932755963}
   m_Layer: 0
   m_Name: level_46
   m_TagString: Brick
@@ -46517,6 +46598,25 @@ Transform:
   - {fileID: 2001072141}
   m_Father: {fileID: 645590807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1932755963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932755961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e147ae1cd823e4845884d243bee52836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraFollow: {fileID: 0}
+  targetSet: 0
+  currentSetTargetCount: 0
+  slingShot: {fileID: 0}
+  slingShotBalls: {fileID: 0}
+  multiSets: []
+  allBottles: []
 --- !u!1 &1936640757
 GameObject:
   m_ObjectHideFlags: 0
