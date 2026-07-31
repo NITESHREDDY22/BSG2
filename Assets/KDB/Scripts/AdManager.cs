@@ -79,46 +79,6 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public Image loadingFillBar;
 
-
-
-
-    /*
-    #region Admob
-    [Header(" Android ")]
-    //public static string interstitialId = "ca-app-pub-3411062052281263/3692188687";
-    public string adMobInterstitialId;
-    public bool useAdMobInterStitial;
-
-    public string adMobLaunchinterStitialId;
-    public bool useLaunchAdMobInterStitial;
-    // public string admobexitInterstitialId;
-    public string adMobRewardBasedVideoId;
-    public bool useadMobRewardBasedVideo;
-
-    public string adMobContinueModelRewardBasedVideoId;
-    public bool useadMobContinueRewardBasedVideo;
-    public string bannerId;
-
-    [Header(" iOS ")]
-    public string iOS_interstitialID;
-    public string iOS_bannerID;
-    public string iOS_rewardedId;
-
-
-    #endregion
-
-    ////fb ads
-    //private AudienceNetwork.InterstitialAd fbInterstitialAd;
-    //private bool isFBLoaded;
-   // [SerializeField] string bannerAdUnitId = "thnfvcsog13bhn08";
-    [SerializeField] string interstitialAdUnitId = "z8axy0332hnr585z";
-    public bool useLevelPlayInterStital;
-    [SerializeField] string rewardAdUnitId = "hgncqhneupu7bppt";
-    public bool useLevelPlayReward;
-    [SerializeField] string LaunchinterstitialAdUnitId = "68ozdvrgw2w8rw44";
-    public bool useLaunchInterStitial;
-    */
-
     private bool isAdMobInitialized;    
     private string appKey = "1ab7561b5";
 
@@ -153,6 +113,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     [Header("Mediation Settings")]
     public bool enableMediation = false; // Set to false to only use pure AdMob
+
+
+    /* [Header("Launch Ad Settings")]
+    [Tooltip("If true, the game will ignore the specific Launch Ad ID and use the regular Interstitial Waterfall for the first ad.")]
+    public static bool useRegularInterstitialAsLaunch = false; */
+
     private void Awake()
     {
         // PlayerPrefs.DeleteAll();
@@ -213,122 +179,8 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     private IEnumerator Start()
     {
-         HideLoadingPanel();
-        Debug.Log($"loadedFromServer:{Global.loadedFromServer}");
-        if (!Global.loadedFromServer)
-        {
-            Debug.Log($"{Application.internetReachability}");
-            if (Application.internetReachability == NetworkReachability.NotReachable)
-            {
-                Debug.LogWarning("AdManager: no internet connection, skipping remote config fetch.");
-                Global.loadedFromServer = true;
-            }
-            else
-            {
-                string url = "https://puzzle-games-d9a78.firebaseapp.com/bsg2_prams.json";
-                WWW www = new WWW(url);
-                yield return www;
-                try
-                {
-                if (www.error == null)
-                {
-
-                    GameConfig config = new GameConfig();
-
-                    config = JsonUtility.FromJson<GameConfig>(www.text);
-                    Debug.Log("config data" + www.text);
-                    //Global.isNativeAdsEnabled = config.isNativeAdsEnabled;
-                    GOFAdInterval = config.GOFAdInterval;
-                    GOWAdInterval = config.GOWAdInterval;
-                    Global.backFillAdGapToContinue = config.backFillAdGapToContinue;
-                    Global.World2ReqStars = config.World2ReqStars;
-                    Global.World3ReqStars = config.World3ReqStars;
-                    Global.World4ReqStars = config.World4ReqStars;
-                    Global.World5ReqStars = config.World5ReqStars;
-                    gapBetweenAds = config.FIRST_LVLS_SET_AD_GAP;
-                    gapBetweenAdsSecondary = config.SECOND_LVLS_SET_AD_GAP;
-                    isLaunchInterstitialEnabled = config.showLaunchAd;
-                    Global.isLaunchInterstitialEnabled = config.showLaunchAd;
-                    Global.InterstitialAdGap = config.InterstitialAdGap;
-                    Global.isSingularEnabled = config.isSingularEnabled;
-                    Global.isBannerEnabled = config.isBannerEnabled;
-                    Global.isIntersitialsEnabled = config.isIntersitialsEnabled;
-                    Global.isRewaredAdsEnabled = config.isRewaredAdsEnabled;
-                    Global.isAppOpenAdEnabled = config.isAppOpenAdEnabled;
-                    Global.adRetryTime = config.adRetryTime;
-                    bannerAdShowLevelFrom = config.showBannerFrom;
-                    Global.coinsToReload = config.coinsToReload;
-                    Global.defaultCoins = config.defaultCoins;
-                    Global.tragectoryChallenge = config.tragectoryChallenge;
-                    NotEnoughCoinsPopup.rewardCoins = config.notEnoughRewardCoins;
-                    Global.rewardAdsRequestDelay = config.rewardAdsRequestDelay;
-                    Global.notificationInterval = config.rewardAdsRequestDelay;
-                    Global.secondNotificationDelay = config.secondNotificationDelay;
-#if UNITY_EDITOR
-                    //Global.coinsToReload = 0; // For test
-                    Global.tragectoryChallenge = true;
-#endif
-#if CHEATS_ON
-                    Global.tragectoryChallenge = true;
-#endif
-                    CustomAdManager.adsEnabled = config.customAdsEnabled;
-                    CustomAdManager.showGameZopInterstitials = config.showGameZopInterstitials;
-                    OnConfigLoaded?.Invoke(config);
-                }
-                else
-                {
-                    Debug.Log("ERROR: " + www.error);
-                }
-                Global.loadedFromServer = true;
-            }
-            catch (Exception exp)
-            {
-                try
-                {
-                    System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                    var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                    var lineNumber = stackFrame.GetFileLineNumber();
-                    string errorline = "Line:" + lineNumber;
-                    if (lineNumber == 0)
-                    {
-                        int index = exp.ToString().IndexOf("at");
-                        int length = exp.ToString().Substring(index).Length;
-                        if (length > 99)
-                        {
-                            errorline = "Line:" + exp.ToString().Substring(index, 100);
-                        }
-                        else
-                        {
-                            errorline = "Line2:" + exp.ToString().Substring(index);
-                        }
-                    }
-                    if (FirebaseEvents.instance != null)
-                    {
-                        FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_Start", exp.Message + "at " + errorline);
-                    }
-                }
-                catch (Exception e)
-                {
-                    //
-                }
-            }
-        }
-        //if (!Advertisement.isInitialized && Advertisement.isSupported)
-        //{
-        //    Advertisement.Initialize(androidGameID, testMode, this);
-        //}
-        /*//testsuite
-        MediationTestSuite.AdRequest = new AdRequest.Builder()
-            .AddTestDevice("2077ef9a63d2b398840261c8221a0c9b")
-            .Build();
-        */
-
-        //fb intialise
-        //AudienceNetworkAds.Initialize();
-        //AdSettings.AddTestDevice("07b03dd5-2c63-4b49-bb75-4c5ad7068bb6");
-        //LoadFBInterstitial();
+        HideLoadingPanel();
         yield return new WaitForSeconds(1f);
-            //StartCoroutine(InitializeAdNetworks());
             Debug.Log($"isEditor?{Application.isEditor},testGDPRInEditor?{testGDPRInEditor}");
             if (Application.isEditor && !testGDPRInEditor)
             {
@@ -341,15 +193,12 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             SetDefaultData();
         try
         {
-
-
             FindObjectOfType<StoreManager>().CoinsCount.text = PlayerPrefs.GetInt("coins", 0).ToString();
         }
         catch (Exception e)
         {
             //
         }
-    }
     }
 
     public bool IsConsentGatheringFinished { get; private set; } = false;
@@ -536,48 +385,76 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     }
 
     Coroutine cacheBannerAd;
-    public void ShowLoadingForBanner(float timer,bool canCheckLastAdDisplay=false)
+    public void ShowLoadingForBanner(float timer, bool canCheckLastAdDisplay = false)
     {
+        Debug.Log($"[Ads] ShowLoadingForBanner called. CheckGap: {canCheckLastAdDisplay}");
+
         loadingFillBar.fillAmount = 0;
         LoadingPanelForBanner.SetActive(true);
+
+        // Ensure game isn't paused while loading ad
         Time.timeScale = 1;
-        if(cacheBannerAd!=null)
+
+        if (cacheBannerAd != null)
         {
             StopCoroutine(cacheBannerAd);
         }
-        cacheBannerAd= StartCoroutine(handleBannerAdLoading(timer, ()=>
+
+        cacheBannerAd = StartCoroutine(handleBannerAdLoading(timer, () =>
         {
             if (canCheckLastAdDisplay)
             {
-                //currentAdDisplayTime = Time.time;
-              
-                if (adDelayMet())
+                // Use the updated tier-based delay check for AppOpenAd
+                if (adDelayMet(AdType.AppOpenAd))
                 {
+                    AdTestToast.Instance?.Show("AOA: Delay met. Showing ad...");
                     ShowAppOpenAd();
+                }
+                else
+                {
+                    // adDelayMet(AdType.AppOpenAd) already shows a toast with the time remaining.
+                    Debug.Log("[Ads] AppOpenAd suppressed: Cooling down.");
+                    HideLoadingForBanner(); // Hide if we aren't showing the ad
                 }
             }
             else
             {
+                AdTestToast.Instance?.Show("AOA: Forced Show (No Gap Check)");
                 ShowAppOpenAd();
             }
         }));
-       
     }
 
-    IEnumerator handleBannerAdLoading(float timerTarget,Action callback)
+    IEnumerator handleBannerAdLoading(float timerTarget, Action callback)
     {
         float timer = 0;
         float lerpValue = 0;
-        float targetTimer = timerTarget-0.15f;
+        float targetTimer = timerTarget - 0.15f;
+
+        // Small delay before starting
         yield return new WaitForSeconds(0.15f);
+
+        // If ad isn't even loaded in the background, don't make user wait
+        if (!adMobNetworkHandler.IsAdAvailable)
+        {
+            Debug.Log("[Ads] AOA not loaded. Aborting loading bar.");
+            AdTestToast.Instance?.Show("AOA Fail: Ad not ready");
+            HideLoadingForBanner();
+            yield break;
+        }
+
+        // Trigger the logic (which calls ShowAppOpenAd)
         callback?.Invoke();
+
+        // Progress the bar while the ad is preparing to pop up
         while (timer < targetTimer)
         {
-            timer+= Time.deltaTime;
+            timer += Time.unscaledDeltaTime; // Use unscaled to ignore pause
             lerpValue = timer / targetTimer;
-            loadingFillBar.fillAmount=lerpValue;           
+            loadingFillBar.fillAmount = lerpValue;
             yield return null;
         }
+
         HideLoadingForBanner();
     }
 
@@ -648,7 +525,13 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     }
 
     private bool hasRequestedLaunchAd = false; // The Gate
-    private bool usingSecondaryInterstitialId = false;
+    private int currentInterstitialTierIndex = 0; 
+private readonly AdType[] interstitialTierOrder = {
+    AdType.VeryHighCPMInterstitial,
+    AdType.HighCPMInterstitial,
+    AdType.MediumCPMInterstitial,
+    AdType.LowCPMInterstitial
+};
     private bool usingSecondaryLaunchId = false;
     IEnumerator InitializeAdNetworks()
     {
@@ -882,133 +765,113 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     */
     public void RequestLaunchInterstitial()
     {
-        /*
-        string adUnitId;
-        if (testMode)
+        if (Global.useRegularInterstitialAsLaunch)
         {
-        #if UNITY_ANDROID
-                    adUnitId = "ca-app-pub-3940256099942544/1033173712";
-        #elif UNITY_IOS
-                       adUnitId = "ca-app-pub-3940256099942544/4411468910";
-        #else
-                       adUnitId = "unexpected_platform";
-        #endif
+            Debug.Log("[Ads] Flow: useRegularInterstitialAsLaunch is TRUE. Requesting VeryHighCPM Interstitial instead of Launch ID.");
+            // We request the start of the regular waterfall
+            adMobNetworkHandler.RequestInterstitial(AdType.VeryHighCPMInterstitial);
         }
         else
         {
-        #if UNITY_ANDROID
-                    adUnitId = "ca-app-pub-3411062052281263/3169444505";
-        #elif UNITY_IOS
-                    adUnitId = iOS_interstitialID;
-        #else
-                    adUnitId = "unexpected_platform";
-        #endif
+            Debug.Log("[Ads] Flow: useRegularInterstitialAsLaunch is FALSE. Requesting dedicated Launch Ad.");
+            adMobNetworkHandler.RequestInterstitial(AdType.Launch);
         }
-        // Initialize an InterstitialAd.
-        launchInterstitial = new InterstitialAd(adUnitId);
-
-        // Called when an ad request has successfully loaded.
-        //this.launchInterstitial.OnAdLoaded += HandleOnAdLoadedLaunch;
-        // Called when an ad request failed to load.
-        //this.launchInterstitial.OnAdFailedToLoad += HandleOnAdFailedToLoadLaunch;
-        // Called when an ad is shown.
-        //this.launchInterstitial.OnAdOpening += HandleOnAdOpenedLaunch;
-        // Called when the ad is closed.
-        this.launchInterstitial.OnAdClosed += HandleOnAdClosedLaunch;
-        // Called when the ad click caused the user to leave the application.
-        //this.launchInterstitial.OnAdLeavingApplication += HandleOnAdLeavingApplicationLaunch;
-
-        // Create an empty ad request.
-        AdRequest request = new AdRequest.Builder().Build();
-
-
-         //Load the interstitial with the request.
-        launchInterstitial.LoadAd(request);
-        */
-
-        //Debug.Log("Asdf RequestLaunchInterstitial 0000");
-
-        adMobNetworkHandler.RequestInterstitial(AdType.Launch);
-        // levelPlayNetworkHandler.RequestInterstitial(AdType.Launch);
-        //hybidNetworkHandler.RequestLaunchInterstitial();
-        
+        //adMobNetworkHandler.RequestInterstitial(AdType.Launch);   
     }
-    public void ShowLaunchInterstitial(bool shownow=false)
+    public void ShowLaunchInterstitial(bool shownow = false)
     {
-        
         try
         {
-            if (adDelayMet() || shownow)
+
+            // --- NEW FLOW SWITCH ---
+            if (Global.useRegularInterstitialAsLaunch)
             {
-                adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, ShowLevelPlayLaunchInterStital);
-                void ShowLevelPlayLaunchInterStital(bool flag)
+                Debug.Log("[Ads] ShowLaunchInterstitial: Redirecting to regular Interstitial Waterfall.");
+                // We call ShowInterstitial with a callback to handle the isLaunchAdShown flag
+                AdTestToast.Instance?.Show("Launch Ad: Attempting show Regular Interstitial...");
+                ShowInterstitial((success) =>
                 {
-                    Debug.Log($"ShowLaunchInterstitial:{flag}");
-                    isLaunchAdShown = flag;
-                    if (!flag)
+                    isLaunchAdShown = success;
+                },true);
+                return;
+            }
+            // --- END NEW FLOW SWITCH ---
+            // 1. Check if the gap for Launch ads is met (Launch gap is usually 0)
+            if (adDelayMet(AdType.Launch) || shownow)
+            {
+                Debug.Log("[Ads] ShowLaunchInterstitial: Attempting to display...");
+                AdTestToast.Instance?.Show("Launch Ad: Attempting show...");
+
+                // 2. Try the primary Launch ID first
+                if (adMobNetworkHandler.IsInterstitialReady(AdType.Launch))
+                {
+                    adMobNetworkHandler.ShowInterstitialAd(AdType.Launch, (success) =>
                     {
-                        //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Launch, (result)=>
-                        //{
-                        //    if(result)
-                        //    {
-                        //        lastAdDisplayTime = Time.time;
-                        //    }
-                        //});
-                        //hybidNetworkHandler.ShowLaunchInterstitial((shown)=>
-                        //{
-                        //    if(shown)
-                        //    {
-                        //        lastAdDisplayTime = Time.time;
-                        //        lastAdShownDateTime = DateTime.UtcNow;
-                        //    }
-                        //});
-                        if (CustomAdManager.Instance)
-                            CustomAdManager.Instance.ShowInterstitial();
-
-                    }
-                    else
-                    {
-                        lastAdDisplayTime = Time.time;
-                        lastAdShownDateTime = DateTime.UtcNow;
-                    }
-
-
-                    //Debug.Log("lastAdDisplayTime " + lastAdDisplayTime);
+                        HandleLaunchAdResult(success, "Primary Launch");
+                    });
                 }
+                // 3. WATERFALL FALLBACK: If specific Launch ad isn't ready, try the Very High CPM tier
+                else if (adMobNetworkHandler.IsInterstitialReady(AdType.VeryHighCPMInterstitial))
+                {
+                    AdTestToast.Instance?.Show("Launch Primary not ready. Using VeryHigh tier fallback...");
+                    adMobNetworkHandler.ShowInterstitialAd(AdType.VeryHighCPMInterstitial, (success) =>
+                    {
+                        HandleLaunchAdResult(success, "VeryHigh Fallback");
+                    });
+                }
+                else
+                {
+                    // 4. ULTIMATE FALLBACK: Custom Ads
+                    Debug.Log("[Ads] ShowLaunchInterstitial: No AdMob units ready. Trying Custom Ad.");
+                    AdTestToast.Instance?.Show("Launch: All AdMob units failed. Trying Custom...");
+
+                    if (CustomAdManager.Instance)
+                        CustomAdManager.Instance.ShowInterstitial();
+                }
+            }
+            else
+            {
+                Debug.Log("[Ads] ShowLaunchInterstitial: Delay not met.");
+                // adDelayMet already shows a toast with the time remaining.
             }
         }
         catch (Exception exp)
         {
+            // Preserving your original detailed exception logging
             try
             {
                 System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
                 var stackFrame = trace.GetFrame(trace.FrameCount - 1);
                 var lineNumber = stackFrame.GetFileLineNumber();
                 string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
                 if (FirebaseEvents.instance != null)
                 {
                     FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowLaunchInterstitial", exp.Message + "at " + errorline);
                 }
             }
-            catch (Exception e)
-            {
-                //
-            }
+            catch (Exception) { }
         }
+    }
 
+    // Helper to handle result and update timestamps
+    private void HandleLaunchAdResult(bool flag, string sourceName)
+    {
+        Debug.Log($"[Ads] ShowLaunchInterstitial ({sourceName}) success: {flag}");
+        isLaunchAdShown = flag;
+
+        if (flag)
+        {
+            lastAdDisplayTime = Time.time;
+            lastAdShownDateTime = DateTime.UtcNow;
+            AdTestToast.Instance?.Show($"{sourceName} Shown Successfully");
+        }
+        else
+        {
+            // Rare case: ad reported ready but failed to show
+            AdTestToast.Instance?.Show($"{sourceName} Display Failed. Trying Custom...");
+            if (CustomAdManager.Instance)
+                CustomAdManager.Instance.ShowInterstitial();
+        }
     }
     public void RequestInterstitial()
     {
@@ -1077,282 +940,103 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
         */
 
-        adMobNetworkHandler.RequestInterstitial(AdType.Interstital);
+        adMobNetworkHandler.RequestInterstitial(AdType.VeryHighCPMInterstitial);
         // levelPlayNetworkHandler.RequestInterstitial(AdType.Interstital);
         //hybidNetworkHandler.RequestInterstitial();
     }
 
-    public void ShowInterstitial(Action<bool> callBack=null)
+    public void ShowInterstitial(Action<bool> callBack = null,bool isLaunchAd = false)
     {
-        try
+        int displayLevel = Global.CurrentLeveltoPlay;
+        int currentWorld = WorldSelectionHandler.worldSelected;
+
+        // We block ads ONLY if we are in the first world AND below the level threshold
+        // If we are in World 1, 2, etc., ads will show regardless of level number.
+        bool isAdFreeZone = (currentWorld < 1 && displayLevel < Global.adsEnabledFromLevel);
+
+        // 1. Level Check Feedback
+        if (!isLaunchAd && isAdFreeZone)// displayLevel < Global.adsEnabledFromLevel)
         {
-            if (!canShowAd)
-                return;
+            string adFreeMsg = $"World {currentWorld} Level {displayLevel} is Ad-Free (Ads start at Lvl {Global.adsEnabledFromLevel})";
+            Debug.Log($"[Ads] {adFreeMsg}");
+            AdTestToast.Instance?.Show(adFreeMsg);
+            callBack?.Invoke(false);
+            return;
+        }
 
-            adMobNetworkHandler.ShowInterstitialAd(AdType.Interstital, ShowLevelPlayLaunchInterStital);
-            void ShowLevelPlayLaunchInterStital(bool flag)
+        /* if (!canShowAd)
+        {
+            AdTestToast.Instance?.Show("Ads currently suppressed (canShowAd = false)");
+            return;
+        } */
+
+        // 2. Preparation for Detailed Feedback
+        System.Text.StringBuilder statusReport = new System.Text.StringBuilder();
+        statusReport.AppendLine("<b>Waterfall Status:</b>");
+
+        double secondsSinceLastAd = (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
+
+        // 3. Loop through tiers to find a winner or build the failure report
+        foreach (AdType tier in interstitialTierOrder)
+        {
+            bool isReady = adMobNetworkHandler.IsInterstitialReady(tier);
+            float requiredGap = GetGapForTier(tier);
+            bool timeMet = isLaunchAd || secondsSinceLastAd >= requiredGap;
+
+            if (isReady && timeMet)
             {
-                Debug.Log($"ShowInterstitial:{flag}");
-                if (!flag)
-                {
-                    //levelPlayNetworkHandler.ShowInterstitialAd(AdType.Interstital, (result)=>
-                    //{
-                    //    callBack?.Invoke(result);
-                    //    if(result)
-                    //    {
-                    //        lastAdDisplayTime = Time.time;
-                    //    }
-                    //});
+                string gapInfo = isLaunchAd ? "Launch Bypass" : $"Gap {requiredGap}s met";
+                // SUCCESS CASE
+                AdTestToast.Instance?.Show($"<b>SHOWING: {tier}</b>\n(gapInfo)");
 
-                    //hybidNetworkHandler.ShowInterstitial((shown)=>
-                    //{
-                    //    if (shown)
-                    //    {
-                    //        lastAdDisplayTime = Time.time;
-                    //        lastAdShownDateTime = DateTime.UtcNow;
-                    //    }
-                    //   callBack?.Invoke(shown);
-                    //});
-                    if (CustomAdManager.Instance)
-                            CustomAdManager.Instance.ShowInterstitial();
-                }
+                adMobNetworkHandler.ShowInterstitialAd(tier, (success) =>
+                {
+                    if (success)
+                    {
+                        lastAdDisplayTime = Time.time;
+                        lastAdShownDateTime = DateTime.UtcNow;
+                        callBack?.Invoke(true);
+                    }
+                    else
+                    {
+                        AdTestToast.Instance?.Show($"{tier} object error. Trying Custom.");
+                        TryCustomAd(callBack);
+                    }
+                });
+                return; // Exit function, we found an ad!
+            }
+            else
+            {
+                // FAILURE CASE FOR THIS TIER - Build string for toast
+                string reason = "";
+                if (!isReady)
+                    reason = "<color=red>Not Loaded</color>";
                 else
-                {
-                    callBack?.Invoke(true);
-                    lastAdDisplayTime = Time.time;
-                    lastAdShownDateTime = DateTime.UtcNow;
+                    reason = $"Wait <color=yellow>{(requiredGap - secondsSinceLastAd):F1}s</color>";
 
-                }
-            }    
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
+                statusReport.AppendLine($"- {tier}: {reason}");
             }
         }
+
+        // 4. If we reach here, NO tier was eligible. Show the final detailed report.
+        string finalReport = statusReport.ToString();
+        Debug.Log($"[Ads] {finalReport}");
+        AdTestToast.Instance?.Show(finalReport);
+
+        TryCustomAd(callBack);
     }
 
-    public void ShowCommonInterstitial(Action<bool> callBack=null)
-    {      
-        Debug.Log($"Increase ShowCommon Interstitial Counter:{adDelayMet()}");
-        try
-        {
-            if (adDelayMet())
-            {
-                AdTestToast.Instance?.Show("Logic: Ad Gap Met. Attempting Show...");
-                ShowInterstitial((callBack)=>
-                {
-                    Debug.Log($"ShowCommonInterstitial:{callBack}");
-                    if(callBack)
-                    {
-                        
-                    }
-                    else
-                    {
-                        if (CustomAdManager.Instance)
-                            CustomAdManager.Instance.ShowInterstitial();
-                    }
-
-                });
-            }
-            else
-            {
-                double secondsLeft = Global.InterstitialAdGap - (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
-                AdTestToast.Instance?.Show($"Logic: Ad Gap NOT Met ({Mathf.CeilToInt((float)secondsLeft)}s remain)");
-            }
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowCommonInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
-
-    }
-
-    public void ShowGameFailInterstitial()
+    private void TryCustomAd(Action<bool> callBack)
     {
-        //counter++;
-        //Debug.Log("Increase Interstitial Counter "+counter + " Get "+GetCounter);
-        try
-        {
-
-            if (adDelayMet())
-            {
-                AdTestToast.Instance?.Show("Trigger: Game Fail -> Showing Ad");
-                ShowInterstitial((result) =>
-                {
-                    Debug.Log($"ShowGameFailInterstitial:{result}");
-                    if(result)
-                    {
-                        //counter = 0;
-                    }
-                    else
-                    {
-                        if (CustomAdManager.Instance)
-                            CustomAdManager.Instance.ShowInterstitial();
-                    }
-                });
-                
-            }
-            else
-            {
-                double remaining = Global.InterstitialAdGap - (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
-            AdTestToast.Instance?.Show($"Ad Delay: Fail Ad blocked. Wait {remaining:F1}s.");
-            }
-           
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowFailInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
+        if (CustomAdManager.Instance)
+            CustomAdManager.Instance.ShowInterstitial();
+        callBack?.Invoke(false);
     }
 
-    public void ShowGameWinInterstitial()
-    {
-        //counter2++;
-        //counter2++;
-        //Debug.Log("Increase Interstitial Counter---" + counter2 + " Get " + GetCounter);
+    public void ShowCommonInterstitial(Action<bool> callBack = null) => ShowInterstitial(callBack);
+    public void ShowGameFailInterstitial() => ShowInterstitial();
+    public void ShowGameWinInterstitial() => ShowInterstitial();
 
-        try
-        {
-            Debug.Log($"[Ads]ShowGameWinInterstitial adDelayMet){adDelayMet()}");
-            if (adDelayMet())
-            {
-                AdTestToast.Instance?.Show("Trigger: Game Win -> Showing Ad");
-                Debug.Log($"[Ads]ShowGameWinInterstitial adDelayMet)");
-                    ShowInterstitial((result) =>
-                    {
-                        Debug.Log($"ShowGameWinInterstitial:{result}");
-                        if (result)
-                        {
-                            //counter2 = 0;
-                        }
-                        else
-                        {
-                            if (CustomAdManager.Instance)
-                            CustomAdManager.Instance.ShowInterstitial();
-                        }
-                    });                
-            }
-            else
-            {
-                double remaining = Global.InterstitialAdGap - (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
-            AdTestToast.Instance?.Show($"Ad Delay: Win Ad blocked. Wait {remaining:F1}s.");
-            }
-            
-        }
-        catch (Exception exp)
-        {
-            try
-            {
-                System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
-                var stackFrame = trace.GetFrame(trace.FrameCount - 1);
-                var lineNumber = stackFrame.GetFileLineNumber();
-                string errorline = "Line:" + lineNumber;
-                if (lineNumber == 0)
-                {
-                    int index = exp.ToString().IndexOf("at");
-                    int length = exp.ToString().Substring(index).Length;
-                    if (length > 99)
-                    {
-                        errorline = "Line:" + exp.ToString().Substring(index, 100);
-                    }
-                    else
-                    {
-                        errorline = "Line2:" + exp.ToString().Substring(index);
-                    }
-                }
-                if (FirebaseEvents.instance != null)
-                {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "Admanager_ShowGameWinInterstitial", exp.Message + "at " + errorline);
-                }
-            }
-            catch (Exception e)
-            {
-                //
-            }
-        }
-    }
-    
     int GetCounter
     {
         get
@@ -1362,11 +1046,35 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }
     }
 
-    public bool LaunchInterstitialState()
+    /* public bool LaunchInterstitialState()
     {
         return ((adMobNetworkHandler != null &&
             adMobNetworkHandler.adMobLaunchInterstitial != null && adMobNetworkHandler != null && adMobNetworkHandler.adMobLaunchInterstitial.CanShowAd()));
             //|| (levelPlayNetworkHandler.levelPlayLaunchInterstitial != null && levelPlayNetworkHandler.levelPlayLaunchInterstitial.IsAdReady()));
+    } */
+
+    public bool LaunchInterstitialState()
+    {
+        if (adMobNetworkHandler == null) return false;
+
+        if (Global.useRegularInterstitialAsLaunch)
+        {
+            // --- COVERAGE FOR NEW FLOW ---
+            // We check the waterfall items because 'adMobLaunchInterstitial' is null in this mode
+            foreach (AdType tier in interstitialTierOrder)
+            {
+                // This checks item.Interstitial != null && item.Interstitial.CanShowAd()
+                if (adMobNetworkHandler.IsInterstitialReady(tier)) return true;
+            }
+            return false;
+        }
+        else
+        {
+            // --- COVERAGE FOR ORIGINAL FLOW ---
+            // This replaces your original line with a safer dictionary-based check 
+            // that looks at the exact same 'CanShowAd()' status.
+            return adMobNetworkHandler.IsInterstitialReady(AdType.Launch);
+        }
     }
 
     public void ShowRewardedVideo(Action<bool> callBack,AdType adType=AdType.Reward)
@@ -1480,62 +1188,40 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
 
     public void CheckSecondaryInterstitialStatus(bool result, AdType type)
     {
-        if (result)
+        if (result) return; // Load success, stop waterfall
+
+        // LAUNCH FALLBACK
+        if (type == AdType.Launch && !usingSecondaryLaunchId)
         {
-            if ((type == AdType.Interstital && usingSecondaryInterstitialId) ||
-            (type == AdType.Launch && usingSecondaryLaunchId))
-            {
-                ResetIdToPrimary();
-            }
-            if (type == AdType.Interstital) usingSecondaryInterstitialId = false;
-            if (type == AdType.Launch) usingSecondaryLaunchId = false;
+            usingSecondaryLaunchId = true;
+            AdTestToast.Instance?.Show("Launch Primary Failed -> Pinging VeryHigh Tier");
+            adMobNetworkHandler.RequestInterstitial(AdType.VeryHighCPMInterstitial);
             return;
         }
 
-        // ONLY fallback for Launch if the failing ad WAS a Launch ad
-        if (type == AdType.Launch && !usingSecondaryLaunchId)
+        // REGULAR INTERSTITIAL WATERFALL
+        int tierIndex = Array.IndexOf(interstitialTierOrder, type);
+        if (tierIndex != -1)
         {
-            LoadSecondaryLaunchAd();
-        }
-        // ONLY fallback for regular Interstitial if the failing ad WAS Interstitial
-        else if (type == AdType.Interstital)
-        {
-            if (!usingSecondaryInterstitialId)
-                LoadSecondaryInterstitialAd();
+            int nextTierIndex = tierIndex + 1;
+            if (nextTierIndex < interstitialTierOrder.Length)
+            {
+                AdType nextType = interstitialTierOrder[nextTierIndex];
+                AdTestToast.Instance?.Show($"Waterfall: {type} failed -> Pinging {nextType}");
+
+                // Logic: AdMobNetworkHandler already has the IDs mapped from SetAdConfig
+                adMobNetworkHandler.RequestInterstitial(nextType);
+            }
             else
-                ResetToPrimaryWithDelay();
+            {
+                AdTestToast.Instance?.Show("Waterfall: All tiers failed. Cooling down.");
+                ResetIdToPrimary();
+                // Start cooling down the VeryHigh tier for the next retry
+                adMobNetworkHandler.RequestWithManualDelay(AdType.VeryHighCPMInterstitial, Global.adRetryTime);
+            }
         }
     }
 
-    void LoadSecondaryLaunchAd() {
-        usingSecondaryLaunchId = true;
-        var adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
-    if (adMobConfig == null) return;
-
-        AdUnitConfig sec = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
-        AdTestToast.Instance?.Show("Fallback: Launch Primary Failed -> Trying Secondary");
-        adMobNetworkHandler.SetLaunchId(sec.AdUnitId);
-        adMobNetworkHandler.RequestInterstitial(AdType.Launch, "Secondary"); 
-    }
-
-    void LoadSecondaryInterstitialAd() {
-        usingSecondaryInterstitialId = true;
-        var adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
-    if (adMobConfig == null) return;
-
-        AdUnitConfig sec = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.SecondaryInterstitial);
-        AdTestToast.Instance?.Show("Fallback: Interstitial Primary Failed -> Trying Secondary");
-        adMobNetworkHandler.SetInterStitalId(sec.AdUnitId);
-        adMobNetworkHandler.RequestInterstitial(AdType.Interstital, "Secondary");
-    }
-
-    void ResetToPrimaryWithDelay() {
-        usingSecondaryInterstitialId = false;
-        AdUnitConfig pri = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.Interstital);
-        AdTestToast.Instance?.Show("Fallback: All Failed. Cooling down...");
-        adMobNetworkHandler.SetInterStitalId(pri.AdUnitId);
-        adMobNetworkHandler.RequestWithManualDelay(AdType.Interstital, Global.adRetryTime);
-    }
 
     private bool isSecondaryInterstialLoaded;
     /* private void LoadSecondaryInterstitialAd()
@@ -1687,14 +1373,17 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
             yield return new WaitForSeconds(5);
             RequestBannerAd();          
         }
-        
+
         if (Global.isIntersitialsEnabled)
         {
-            yield return new WaitForSeconds(30);
-            RequestInterstitial();
+            if (!Global.useRegularInterstitialAsLaunch)
+            {
+                yield return new WaitForSeconds(20);
+                RequestInterstitial();
+            }
         }
-        
-        if(Global.isRewaredAdsEnabled)
+
+        if (Global.isRewaredAdsEnabled)
         {
             yield return new WaitForSeconds(Global.rewardAdsRequestDelay);
             RequestRewardAds();          
@@ -1705,7 +1394,7 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
     {
         RequestRewardBasedVideo(AdType.Reward);
         RequestRewardBasedVideo(AdType.RewardContinue);
-        RequestRewardedInterstitial(AdType.RewardedInterStitial);
+        //RequestRewardedInterstitial(AdType.RewardedInterStitial);
     }
 
     public void ShowAppOpenAd()
@@ -1751,17 +1440,46 @@ public class AdManager : MonoBehaviour //, IUnityAdsListener
         }       
     }
 
-    public bool adDelayMet()
+    public bool adDelayMet(AdType type)
     {
-        double seconds = (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
-       // Debug.LogError("current " + DateTime.UtcNow + "Last " + lastAdShownDateTime + " backFillAdGapToContinue" + Global.InterstitialAdGap + "seconds " + seconds);
+        double secondsSinceLastAd = (DateTime.UtcNow - lastAdShownDateTime).TotalSeconds;
+        float requiredGap = GetGapForTier(type);
+        bool isMet = secondsSinceLastAd >= requiredGap;
 
-        if (seconds > Global.InterstitialAdGap)
+        if (!isMet && type != AdType.Launch)
         {
-            return true;
+            float timeLeft = requiredGap - (float)secondsSinceLastAd;
+            string statusMsg = $"{type} Cooling Down: {timeLeft:F1}s remaining";
+
+            Debug.Log($"<color=orange>[Cooldown]</color> {statusMsg}");
+            AdTestToast.Instance?.Show(statusMsg);
         }
-        return false;
+
+        return isMet;
     }
+
+    private float GetGapForTier(AdType type)
+    {
+        float gap = type switch
+        {
+            AdType.VeryHighCPMInterstitial => Global.GapVeryHighCPM,
+            AdType.HighCPMInterstitial => Global.GapHighCPM,
+            AdType.MediumCPMInterstitial => Global.GapMediumCPM,
+            AdType.LowCPMInterstitial => Global.GapLowCPM,
+            AdType.AppOpenAd => Global.InterstitialAdGap,
+            AdType.Launch => 0f,
+            _ => Global.GapHighCPM // Fallback
+        };
+
+        // Logging for traceability
+        if (type != AdType.Launch)
+        {
+            Debug.Log($"<b>[AD TIMING]</b> {type} required gap: {gap}s");
+        }
+
+        return gap;
+    }
+
 
     public void OnDestroy()
     {
@@ -2248,159 +1966,60 @@ public bool IsRewardedVideoAvailable()
        
     }
 
-    public void ResetIdToPrimary()
+    void LoadSecondaryLaunchAd()
     {
-        // 1. Reset local tracking flags
-        usingSecondaryInterstitialId = false;
-        usingSecondaryLaunchId = false;
+        usingSecondaryLaunchId = true;
 
-        // 2. Find the AdMob Config safely
-        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
-        if (adMobConfig != null)
+        // Find the Low CPM config (formerly Secondary)
+        AdUnitConfig lowCpmConfig = AdsConfiguration.AdConfigContainer[0].adConfigs.Find(x => x.AdType == AdType.LowCPMInterstitial);
+
+        if (lowCpmConfig != null)
         {
-            // 3. Get the Primary Interstitial ID
-            AdUnitConfig priInter = adMobConfig.adConfigs.Find(x => x.AdType == AdType.Interstital);
-            if (priInter != null && !string.IsNullOrEmpty(priInter.AdUnitId))
-            {
-                adMobNetworkHandler.SetInterStitalId(priInter.AdUnitId);
-            }
+            AdTestToast.Instance?.Show("Fallback: Launch Primary Failed -> Trying LowCPM Interstitial");
 
-            // 4. Get the Primary Launch ID
-            AdUnitConfig priLaunch = adMobConfig.adConfigs.Find(x => x.AdType == AdType.Launch);
-            if (priLaunch != null && !string.IsNullOrEmpty(priLaunch.AdUnitId))
-            {
-                adMobNetworkHandler.SetLaunchId(priLaunch.AdUnitId);
-            }
-
-            AdTestToast.Instance?.Show("Ads: IDs Reset to Primary");
-            Debug.Log("AdManager: All IDs reset to Primary configuration.");
+            // Temporarily swap the Launch Ad ID to the Low CPM ID
+            adMobNetworkHandler.SetLaunchId(lowCpmConfig.AdUnitId);
+            adMobNetworkHandler.RequestInterstitial(AdType.Launch, "Secondary_Launch");
         }
     }
 
-
-
-
-    //public void OnInitializationComplete()
-    //{
-    //    Debug.Log("Unity Ads initialization complete.");
-    //}
-
-    //public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-    //{
-    //    Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
-    //}
-    // Start is called before the first frame update
-
-    /*
-    public void LoadFBInterstitial()
+    public void ResetIdToPrimary()
     {
-        //string testfbid = "VID_HD_16_9_15S_APP_INSTALL#{366962342180685_366963662180553}";
-        //this.fbInterstitialAd = new AudienceNetwork.InterstitialAd(testfbid);
-        this.fbInterstitialAd = new AudienceNetwork.InterstitialAd("366962342180685_366963662180553");
-        this.fbInterstitialAd.Register(this.gameObject);
+        usingSecondaryLaunchId = false;
+        
+        AdConfig adMobConfig = AdsConfiguration.AdConfigContainer.Find(x => x.NetworkType == NetworkType.AdMob);
+        if (adMobConfig == null) return;
 
-        // Set delegates to get notified on changes or when the user interacts with the ad.
-        this.fbInterstitialAd.InterstitialAdDidLoad = (delegate () {
-            Debug.Log("Interstitial ad loaded.");
-            this.isFBLoaded = true;
-        });
-        fbInterstitialAd.InterstitialAdDidFailWithError = (delegate (string error) {
-            Debug.Log("Interstitial ad failed to load with error: " + error);
-        });
-        fbInterstitialAd.InterstitialAdWillLogImpression = (delegate () {
-            Debug.Log("Interstitial ad logged impression.");
-        });
-        fbInterstitialAd.InterstitialAdDidClick = (delegate () {
-            Debug.Log("Interstitial ad clicked.");
-        });
+        // Reset the Launch ID
+        AdUnitConfig priLaunch = adMobConfig.adConfigs.Find(x => x.AdType == AdType.Launch);
+        if (priLaunch != null) adMobNetworkHandler.SetLaunchId(priLaunch.AdUnitId);
 
-        this.fbInterstitialAd.interstitialAdDidClose = (delegate () {
-            Debug.Log("Interstitial ad did close.");
-            if (this.fbInterstitialAd != null)
+        foreach (AdType tier in interstitialTierOrder)
+        {
+            AdUnitConfig config = adMobConfig.adConfigs.Find(x => x.AdType == tier);
+            if (config != null)
             {
-                this.fbInterstitialAd.Dispose();
+                adMobNetworkHandler.SetInterStitalId(tier, config.AdUnitId);
+                
+                // --- NEW: Hard reset the 'Requested' flag so the next request isn't blocked ---
+                // This ensures that if a tier failed earlier, it's allowed to try again now.
+                var item = adMobNetworkHandler.GetAdItem(tier); // Add this helper to Handler
+                if (item != null) item.isAdRequested = false;
             }
-        });
-
-        // Initiate the request to load the ad.
-        this.fbInterstitialAd.LoadAd();
+        }
+        Debug.Log("[Ads] Waterfall IDs and Flags Reset to Primary.");
     }
-    */
-
-    /*
-   //Unity reward callbacks
-
-   // Implement IUnityAdsListener interface methods:
-   public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
-   {
-       // Define conditional logic for each ad completion status:
-       if (showResult == ShowResult.Finished)
-       {
-           // Reward the user for watching the ad to completion.
-           Debug.Log("rewardhandle Unity___log");
-           rewardedvideosuccess = true;
-       }
-       else if (showResult == ShowResult.Skipped)
-       {
-           // Do not reward the user for skipping the ad.
-           GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-       }
-       else if (showResult == ShowResult.Failed)
-       {
-           Debug.LogWarning("The ad did not finish due to an error.");
-           Debug.Log("rewardhandle Unity___log");
-           rewardedvideosuccess = true;
-       }
-   }
-
-   public void OnUnityAdsReady(string placementId)
-   {
-       // If the ready Placement is rewarded, show the ad:
-       if (placementId == androidRewardedVideoID)
-       {
-           // Optional actions to take when the placement becomes ready(For example, enable the rewarded ads button)
-           unityRewardReady = true;
-       }
-       else
-       {
-           unityRewardReady = false;
-       }
-   }
-
-   public void OnUnityAdsDidError(string message)
-   {
-       // Log the error.
-   }
-
-   public void OnUnityAdsDidStart(string placementId)
-   {
-       // Optional actions to take when the end-users triggers an ad.
-       GameManager.Instance.gameState = GameState.Reward_Video_Started;
-   }
-
-   // When the object that subscribes to ad events is destroyed, remove the listener:
-   public void OnDestroy()
-   {
-       //Advertisement.RemoveListener(this);
-   }
-
-   */
-
-    /*
-public void ShowFBInterstitial()
-{
-    if (this.isFBLoaded)
+    // --- NEW HELPER METHODS FOR REMOTE CONFIG ---
+    public void SetGaps(int primary, int secondary)
     {
-        this.fbInterstitialAd.Show();
-        this.isFBLoaded = false;
+        this.gapBetweenAds = primary;
+        this.gapBetweenAdsSecondary = secondary;
+    }
 
-    }
-    else
+    public void SetBannerLevel(int level)
     {
-        Debug.Log("Interstitial Ad not loaded!");
+        this.bannerAdShowLevelFrom = level;
     }
-}
-*/
 
     #endregion
 }

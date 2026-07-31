@@ -67,8 +67,10 @@ public class AnalyticsManager:MonoBehaviour
         switch (type)
         {
             case AdType.BannerAd:
-            case AdType.Interstital:
-            case AdType.SecondaryInterstitial:
+            case AdType.VeryHighCPMInterstitial:
+            case AdType.HighCPMInterstitial:
+            case AdType.MediumCPMInterstitial:
+            case AdType.LowCPMInterstitial:
             case AdType.Reward:
             case AdType.RewardContinue:
             case AdType.SecondaryReward: return GAAdType.RewardedVideo;
