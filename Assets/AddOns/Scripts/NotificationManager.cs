@@ -3,11 +3,10 @@ using System.Collections;
 using UnityEngine;
 using Unity.Notifications.Android;
 using UnityEngine.SceneManagement;
-using Firebase.Analytics; // Added Firebase Namespace
+using Firebase.Analytics;
 
 public class NotificationManager : MonoBehaviour
 {
-    // Ensures the logic only runs once per app launch
     private static bool _hasHandledThisSession = false;
 
     [Header("Settings")]
@@ -15,11 +14,13 @@ public class NotificationManager : MonoBehaviour
     public string smallIcon = "icon_small";
     public string largeIcon = "icon_large";
 
+    private int DaysToSchedule => Global.notificationDaysCount > 0 ? Global.notificationDaysCount : 7;
+
     void OnEnable()
     {
-        // Ensure that the notification logic only runs once per session
         SceneManager.sceneLoaded += SceneLoaded;
     }
+
     void OnDisable()
     {
         SceneManager.sceneLoaded -= SceneLoaded;
@@ -27,57 +28,50 @@ public class NotificationManager : MonoBehaviour
 
     private void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        Debug.Log($"SceneLoaded:{arg0.name}");
-        if(arg0.name.Contains("MainMenu") && !_hasHandledThisSession)
+        // We still run setup on MainMenu once to check if app was opened via notification 
+        // and to request permissions for the first time.
+        if (arg0.name.Contains("MainMenu") && !_hasHandledThisSession)
         {
-            StartCoroutine(SetupNotifications());
+            StartCoroutine(InitialSetup());
         }
     }
 
-
-    private IEnumerator SetupNotifications()
+    private IEnumerator InitialSetup()
     {
-        yield return new WaitForSeconds(1f); // Wait a second to ensure everything is initialized
+        yield return new WaitForSeconds(1f);
         if (_hasHandledThisSession) yield break;
 
-        // --- NEW: Check if Game was opened via Notification ---
+        // Check if opened via notification
         var intent = AndroidNotificationCenter.GetLastNotificationIntent();
-        if (intent != null)
-        {
-            LogFirebase("Notification_Opened");
-            Debug.Log("App opened via notification tap.");
-        }
-
-        LogFirebase("Notification_Setup_Start");
+        if (intent != null) LogFirebase("Notification_Opened");
 
         CreateNotificationChannel();
 
-        // Request permission on startup (Android 13+)
+        // Request permission (needed for Android 13+)
         yield return RequestPermission();
-
-        // If permission is granted, schedule the two-stage reminder
-        if (AndroidNotificationCenter.UserPermissionToPost == PermissionStatus.Allowed)
-        {
-            LogFirebase("Notification_Permission_Allowed");
-            ScheduleDoubleDailyReminder();
-        }
-        else
-        {
-            LogFirebase("Notification_Permission_Denied");
-        }
 
         _hasHandledThisSession = true;
     }
 
+    // --- KEY ADDITION: Handle Backgrounding ---
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        // If pauseStatus is true, the app is going to the background (User quit or minimized)
+        if (pauseStatus)
+        {
+            Debug.Log("App pausing/minimizing: Scheduling updated notifications.");
+            ScheduleProgressNotifications();
+        }
+    }
+
     private void CreateNotificationChannel()
     {
-        Debug.Log("CreateNotificationChannel");
         var channel = new AndroidNotificationChannel()
         {
             Id = channelId,
-            Name = "Daily Rewards",
+            Name = "Daily Progress Reminders",
             Importance = Importance.Default,
-            Description = "Reminders for your daily rewards",
+            Description = "Bottle breaking progress updates",
         };
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
     }
@@ -89,85 +83,127 @@ public class NotificationManager : MonoBehaviour
             yield return null;
     }
 
-    private void ScheduleDoubleDailyReminder()
+    // Define these at the top of your class as private fields
+    private readonly string[] titles = {
+    "The Slingshot is Calling! 🎯",
+    "Ready for some Shattered Glass? 💥",
+    "Target Practice Awaits! 🏹",
+    "The Bottles are Mocking You! 🔥",
+    "Can You Clear the Map? 🗺️",
+    "Bullseye Logic! 🧠",
+    "New Records to Break! 🏆"
+};
+
+    private readonly string[] messages = {
+    "You've smashed {0} levels already. {1} more stand in your way. Grab the slingshot!",
+    "The sound of breaking glass is waiting! {0} levels done, {1} left to conquer.",
+    "You’re on fire! 🔥 {0} levels mastered. Can you finish the remaining {1}?",
+    "Precision is everything. {1} challenges are waiting for your perfect shot.",
+    "Don't let the bottles win! You've cleared {0} levels—finish the other {1} now!",
+    "Your aim was legendary last time. Come back and beat the {1} remaining levels!",
+    "Strategy + Slingshot = Victory. {0} levels down, {1} more to go!"
+};
+
+    private void ScheduleProgressNotifications()
     {
-        // 1. Clear all old schedules to start fresh for this session
+        if (AndroidNotificationCenter.UserPermissionToPost != PermissionStatus.Allowed) return;
+
         AndroidNotificationCenter.CancelAllNotifications();
 
-        // Calculate the base time (e.g., 24 hours from now)
-        DateTime baseFireTime = DateTime.Now.AddHours(24);
-
-        // --- NOTIFICATION 1: The First Reminder ---
-        #if CHEATS_ON
-        var note0 = new AndroidNotification
+        // 1. Calculate Progress
+        int totalLevelsInGame = 0;
+        int totalUnlockedLevels = 0;
+        for (int i = 0; i < WorldSelectionHandler.totalLevels.Length; i++)
         {
-            Title = "Testing Notification",
-            Text = "Your next challenge is waiting! Grab the slingshot, break the bottles, and beat your best score.",
-            FireTime = DateTime.Now.AddMinutes(5),
-            RepeatInterval = TimeSpan.FromDays(1), // Repeat every 24 hours
-            SmallIcon = smallIcon,
-            LargeIcon = largeIcon
-        };
-        AndroidNotificationCenter.SendNotification(note0, channelId);
-        #endif
-        var note1 = new AndroidNotification
+            totalLevelsInGame += WorldSelectionHandler.totalLevels[i];
+            totalUnlockedLevels += LevelSelectionHandler.LevelsUnlocked(i);
+        }
+        int remaining = totalLevelsInGame - totalUnlockedLevels;
+
+        // 2. Handle Game Completion Case
+        if (remaining <= 0)
         {
-            Title = "Ready to Smash Some Bottles?",
-            Text = "Your next challenge is waiting! Grab the slingshot, break the bottles, and beat your best score.",
-            FireTime = baseFireTime,
-            RepeatInterval = TimeSpan.FromHours(Global.notificationInterval), // Repeat every 24 hours
-            SmallIcon = smallIcon,
-            LargeIcon = largeIcon
-        };
-        AndroidNotificationCenter.SendNotification(note1, channelId);
-
-        // --- NOTIFICATION 2: The 5-Minute Follow-up ---
-        var note2 = new AndroidNotification
-        {
-            Title = "New Levels Need a Champion!",
-            Text = "Can you clear every bottle with the perfect shot? Jump back in and continue your bottle-breaking adventure!",
-            FireTime = baseFireTime.AddHours(Global.secondNotificationDelay), // 1 hr gap
-            RepeatInterval = TimeSpan.FromHours(Global.notificationInterval), // Repeat every 24 hours
-            SmallIcon = smallIcon,
-            LargeIcon = largeIcon
-        };
-        AndroidNotificationCenter.SendNotification(note2, channelId);
-
-        LogFirebase("Notification_Scheduled_Success");
-        Debug.Log("Scheduled 2 daily notifications with a 5-minute gap.");
-    }
-
-    // --- Firebase Logging Implementation ---
-    private void LogFirebase(string eventName)
-    {
-        int worldNumber = WorldSelectionHandler.worldSelected;
-        int levelNumber = Global.CurrentLeveltoPlay;
-
-        string trimmedEventName = eventName;
-
-        if (trimmedEventName.Length > 40)
-        {
-            trimmedEventName = trimmedEventName.Substring(trimmedEventName.Length - 40);
+            ScheduleCompletionNotifications(totalUnlockedLevels);
+            return;
         }
 
-        Debug.Log($"IsFirebaseReady: {FirebaseEvents.IsFirebaseReady}");
+        // --- TEST NOTIFICATION (Random Message) ---
+#if CHEATS_ON
+        SendRandomTestNotification(totalUnlockedLevels, remaining);
+#endif
 
+        // 3. Schedule for the next N days (Sequential Rotation)
+        for (int day = 1; day <= DaysToSchedule; day++)
+        {
+            // For the real schedule, we use sequential rotation so they see different ones each day
+            int index = (day - 1) % titles.Length;
+            string finalTitle = titles[index];
+            string finalBody = string.Format(messages[index], totalUnlockedLevels, remaining);
+
+            DateTime fireTime = DateTime.Now.AddDays(day);
+            SendNotification(finalTitle, finalBody, fireTime);
+        }
+
+        LogFirebase("Notifications_Scheduled_Success");
+    }
+
+#if CHEATS_ON
+    private void SendRandomTestNotification(int finished, int remaining)
+    {
+        // Pick a completely random index from the list
+        int randomIndex = UnityEngine.Random.Range(0, titles.Length);
+
+        string testTitle = "[TEST] " + titles[randomIndex];
+        string testBody = string.Format(messages[randomIndex], finished, remaining);
+
+        // Schedule for 5 minutes from now
+        SendNotification(testTitle, testBody, DateTime.Now.AddMinutes(5));
+
+        Debug.Log($"<color=yellow>[Notification Test]</color> Picked index {randomIndex}: {testTitle}");
+    }
+#endif
+
+    // Helper method to reduce code duplication
+    private void SendNotification(string title, string body, DateTime fireTime)
+    {
+        var note = new AndroidNotification
+        {
+            Title = title,
+            Text = body,
+            FireTime = fireTime,
+            SmallIcon = smallIcon,
+            LargeIcon = largeIcon,
+            ShowTimestamp = true
+        };
+        AndroidNotificationCenter.SendNotification(note, channelId);
+    }
+    private void ScheduleCompletionNotifications(int total)
+    {
+        string title = "The World is Quiet... 🤫";
+        string body = $"You've smashed all {total} levels! Can you go back and get 3 stars on every single one?";
+
+        for (int day = 1; day <= DaysToSchedule; day++)
+        {
+            AndroidNotificationCenter.SendNotification(new AndroidNotification
+            {
+                Title = title,
+                Text = body,
+                FireTime = DateTime.Now.AddDays(day),
+                SmallIcon = smallIcon,
+                LargeIcon = largeIcon
+            }, channelId);
+        }
+    }
+
+    private void LogFirebase(string eventName)
+    {
         try
         {
             if (FirebaseEvents.IsFirebaseReady)
             {
-                Firebase.Analytics.FirebaseAnalytics.LogEvent(
-                    trimmedEventName
-                );
+                Firebase.Analytics.FirebaseAnalytics.LogEvent(eventName);
             }
         }
-        catch (System.Exception e)
-        {
-            Debug.LogError(
-                $"Firebase event logging failed. Event={trimmedEventName}, World={worldNumber}, Level={levelNumber}\n{e}");
-        }
-
-        Debug.Log(
-            $"[Firebase Log]: {trimmedEventName} | world={worldNumber} | level={levelNumber}");
+        catch (System.Exception) { /* Fail silently */ }
     }
 }

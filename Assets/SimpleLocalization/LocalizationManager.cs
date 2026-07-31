@@ -1193,5 +1193,28 @@ namespace Assets.SimpleLocalization
         {
             return text.Replace("[Newline]", "\n");
         }
+
+        public static string English = "English";
+        public static string French = "French";
+        public static string German = "German";
+        public static string Spanish = "Spanish";
+        public static string Chinese = "Chinese";
+        public static string Italian = "Italian";
+        public static string Portuguese = "Portuguese";
+        public static string Turkish = "Turkish";
+        public static string Russian = "Russian";
+        public static string Japanese = "Japanese";
+        public static string Korean = "Korean";
+        public static string Arabic = "Arabic";
+        public static string Hindi = "Hindi";
+        public static string Indonesian = "Indonesian";
+        public static string Thai = "Thai";
+        public static string Vietnamese = "Vietnamese";
+        public static string Malay = "Malay";
+        public static string Dutch = "Dutch";
+        public static string Swedish = "Swedish";
+        public static string Polish = "Polish";
+        public static string Ukrainian = "Ukrainian";
+
     }
 }
