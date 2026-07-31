@@ -8,6 +8,21 @@ public class FirebaseEvents : MonoBehaviour
 {
     public static FirebaseEvents instance;
     public static bool IsFirebaseReady = false;
+
+    private static bool firebaseInitDone = false;
+    public static bool FirebaseInitDone
+    {
+        get
+        {
+            Debug.Log($"[Firebase] FirebaseInitDone getting: {firebaseInitDone}");
+            return firebaseInitDone;
+        }
+        set
+        {
+            firebaseInitDone = value;
+            Debug.Log($"[Firebase] FirebaseInitDone set to: {value}");
+        }
+    }
 #if UNITY_IOS || UNITY_ANDROID
     public Firebase.InitResult isFirebaseInit;
     void Awake()
@@ -21,12 +36,14 @@ public class FirebaseEvents : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
+
+        isFirebaseInit = (Firebase.InitResult)(-1); 
 #if FIREBASEEVENTS
         StartCoroutine(InitFirebase());
 #endif
     }
 
-    IEnumerator InitFirebase()
+    /* IEnumerator InitFirebase()
     {
         yield return new WaitForSeconds(1f);
 #if FIREBASEEVENTS
@@ -60,7 +77,21 @@ public class FirebaseEvents : MonoBehaviour
                 }
         });
 #endif
+    } */
+
+    IEnumerator InitFirebase()
+    {
+        Debug.Log("[FIREBASE EVENTS] InitFirebase START");
+
+        yield return new WaitUntil(() => FirebaseInitDone);
+
+        Debug.Log("[FIREBASE EVENTS] FirebaseInitDone received");
+
+        isFirebaseInit = Firebase.InitResult.Success;
+
+        Debug.Log("[FIREBASE EVENTS] Analytics Ready");
     }
+
 
     /// just call this method to trigger events in firebase()
     /* public void LogFirebaseEvent(string _log, string paramname = null, string value = null)
@@ -90,7 +121,12 @@ public class FirebaseEvents : MonoBehaviour
     public void LogFirebaseEvent(string _log, string paramname = null, string value = null)
 {
 #if FIREBASEEVENTS
-    try
+        if (!FirebaseInitDone)
+        {
+            // Debug.Log($"[Firebase] Call to '{_log}' blocked: Dependencies not ready.");
+            return;
+        }
+        try
     {
         if (this.isFirebaseInit == Firebase.InitResult.Success)
         {
