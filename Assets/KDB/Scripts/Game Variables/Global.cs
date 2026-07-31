@@ -55,6 +55,7 @@ public class Global : MonoBehaviour
     public static int coinsToReload = 100;
 
     public static bool tragectoryChallenge = true;
+    public static string[] worldNames = new string[]{"Forest","Ancient","Mettle","Desert","Snow"};
 
     public static int playerRatingMultiplier
     {
@@ -87,4 +88,28 @@ public class Global : MonoBehaviour
 
     public static int defaultCoins = 1000;
     public static bool customAdsEnabled = true;
+    internal static bool limitedEvents = false;
+    internal static int adsEnabledFromLevel = 1;
+    internal static int notificationDaysCount = 7;
+
+    public static int GapVeryHighCPM = 60;
+    public static int GapHighCPM = 70;
+    public static int GapMediumCPM = 80;
+    public static int GapLowCPM = 90;
+    internal static bool requestNextAdOnShow = true;
+
+    public static bool useRegularInterstitialAsLaunch = true;
+
+    public static int currentWorldSelected
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("currentWorldSelected",0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("currentWorldSelected",value);
+            PlayerPrefs.Save();
+        }
+    }
 }
