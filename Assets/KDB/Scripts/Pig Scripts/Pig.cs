@@ -189,18 +189,18 @@ public class Pig : MonoBehaviour
                 }
                 if (!Global.botList.Contains(gameObject))
                 {
-                    Debug.Log("count " + Global.count);
-
                     Global.count = Global.count + 1;
+                    Debug.Log($"bottle count:{Global.count},targetBottles:{Global.target}.{gameMngr.gameOverPanel.activeSelf}");
+
                     Global.isBottleCollission = true;
                     Global.botList.Add(gameObject);
                     MultiSetHandler.OnBottlesBreak?.Invoke();
 
                     if (Global.count >= Global.target && !gameMngr.gameOverPanel.activeSelf)
                     {
-
+                        Debug.Log("Level complete");
                         gameMngr.gameState = GameState.Won;
-                        gameMngr.gameOverPanel.GetComponent<UIBase>().bottomElements.Delay = 2.75f;
+                        /* gameMngr.gameOverPanel.GetComponent<UIBase>().bottomElements.Delay = 2.75f; */
                         gameMngr.gameOverPanel.SetActive(true);
                         //level won audio
                         if (SoundsHandler.Instance != null)
@@ -240,11 +240,30 @@ public class Pig : MonoBehaviour
                         {
                             Debug.Log("Custom event LevelComplete logging failed");
                         }
-                        
+
                         if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
                         {
                             LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay);
                             LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay + 1);
+                        }
+                        else
+                        {
+                            gameMngr.levelNo.text = (Global.worldNames[WorldSelectionHandler.worldSelected]+" levels CLEARED").ToUpper();
+                            if(gameMngr.gameOverFrame)gameMngr.gameOverFrame.SetActive(false);
+                            if (WorldSelectionHandler.worldSelected == 4)
+                            {
+                                Debug.Log("All LEVELS CLEARED");
+                                gameMngr.levelNo.text = "All Levels Cleared";
+                                gameMngr.retry.GetComponent<Button>().interactable = false;
+                                gameMngr.menu.GetComponent<Button>().interactable = false;
+                                gameMngr.levelup.GetComponent<Button>().interactable = false;
+                                int totalStars = Global.TotalStarsAchivedWorld1 + Global.TotalStarsAchivedWorld2 + Global.TotalStarsAchivedWorld3 + Global.TotalStarsAchivedWorld4 + Global.TotalStarsAchivedWorld5;
+                                Debug.Log($"[Show GameCompletionPopup]totalStars:{totalStars},getNatureStars:{Global.TotalStarsAchivedWorld1},getDesertStars:{Global.TotalStarsAchivedWorld2},getSnowStars:{Global.TotalStarsAchivedWorld3},getVolcanoStars:{Global.TotalStarsAchivedWorld4},getSpaceStars:{Global.TotalStarsAchivedWorld5}");
+                                if (GameCompletionPopup.Instance != null)
+                                {
+                                    gameMngr?.StartCoroutine(gameMngr.AnimatePanelsTransition(totalStars));
+                                }
+                            }
                         }
 
                         Debug.Log($"Give Stars {gameMngr.Give3Stars[Global.CurrentLeveltoPlay]}");

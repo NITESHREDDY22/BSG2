@@ -196,7 +196,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
 
         // 2. Determine if we should attempt a real Ad or go straight to InHouse
         bool hasInternet = (reachability != NetworkReachability.NotReachable);
-        bool adReady = hasInternet && AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable();
+        bool adReady = AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable();
         Debug.Log($"Ad Ready: {adReady}, Internet Available: {hasInternet}");
 
         if (adReady)
@@ -224,7 +224,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
             /* // Triggered when no ad is available
             LogFirebase("NotEnoughCoins_NoAdAvl");
             ShowInHouseAd(); */
-            LogFirebase("NotEnoughCoins_NoAdAvil");
+            LogFirebase($"NotEnoughC_NoAdAvil_Int_{hasInternet}");
             if (inHouseAd != null)
             {
                 // Instead of SetActive here, we call the new combined method

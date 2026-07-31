@@ -103,7 +103,7 @@ public class InternetValidator : MonoBehaviour
 
     public void CheckNoInterNetPopup()
     {
-        if (isInterNetConnected)
+        /* if (isInterNetConnected)
         {
             if (noInterNetPopup)
             {
@@ -112,11 +112,11 @@ public class InternetValidator : MonoBehaviour
         }
         else
         {
-            if (noInterNetPopup && !canProceedToNextLevel())
+            if (noInterNetPopup && !canProceedToNextLevel(Global.CurrentLeveltoPlay))
             {
                 noInterNetPopup.SetActive(true);
             }
-        }
+        } */
     }
 
     IEnumerator CheckInternet(float timer = 0, Action<bool> callBack = null)
@@ -213,7 +213,7 @@ public class InternetValidator : MonoBehaviour
     } */
 
     private string logHead = "[canProceedToNextLevel]";
-    public bool canProceedToNextLevel()
+    public bool canProceedToNextLevel(int currentLevel)
     {
         bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
         isInterNetConnected = isConnected;
@@ -233,7 +233,7 @@ public class InternetValidator : MonoBehaviour
         }
 
         int worldNumber = WorldSelectionHandler.worldSelected;   // 0-based
-        int levelNumber = Global.CurrentLeveltoPlay;             // 1-based
+        int levelNumber = currentLevel;//Global.CurrentLeveltoPlay;             // 1-based
 
         int globalLevel = levelNumber;
 
@@ -324,5 +324,11 @@ public class InternetValidator : MonoBehaviour
     {
         //closeBtn.SetActive(false);
         noInterNetPopup.SetActive(false);
+    }
+
+    public void ShowNoInternetPopup()
+    {
+        Debug.Log("[InternetValidator]ShowNoInternetPopup");
+        noInterNetPopup.SetActive(true);
     }
 }

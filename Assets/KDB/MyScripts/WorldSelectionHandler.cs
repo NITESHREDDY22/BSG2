@@ -10,7 +10,7 @@ using TMPro;
 
 public class WorldSelectionHandler : MonoBehaviour
 {
-
+    public static Action<bool> worldSelectionShown;
     public Sprite[] worldImages;
     public GameObject WorldPrefab;//Achieve  30 stars to unlock this World
     public Transform contentPanel;
@@ -105,6 +105,7 @@ public class WorldSelectionHandler : MonoBehaviour
         //{
         generateWorldObjs();
         ConfigLvlButtons();
+        worldSelectionShown?.Invoke(true);
         //}
     }
 
@@ -117,7 +118,8 @@ public class WorldSelectionHandler : MonoBehaviour
             Wobj.name = worldImages[i].name;
             Wobj.GetComponent<Image>().sprite = worldImages[i];
             Wobj.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => SelectWorld(Wobj.transform));
-            
+            int worldIndex = i;
+            Wobj.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(() => ShowWorldIsLockedPopup(worldIndex));
 
             if (i == 1)
             {
@@ -214,6 +216,7 @@ public class WorldSelectionHandler : MonoBehaviour
             worldname_levelspanel[_tr.GetSiblingIndex()].GetComponent<LocalizedTextmeshPro>().Localize();
             UIPagesHandler._Instance.ShowPage(1 + _tr.GetSiblingIndex());
             worldSelected = _tr.GetSiblingIndex();
+            Global.currentWorldSelected = worldSelected;
         }
     }
 
@@ -283,6 +286,10 @@ public class WorldSelectionHandler : MonoBehaviour
                 unlockedLevels[l] = true;
                 levelStars[l] = 3; // max stars
             }
+            for (int l = levelCount-3; l < levelCount; l++)
+            {
+                levelStars[l] = UnityEngine.Random.Range(1,3); // to have star count short
+            }
 
             PlayerPrefsX.SetBoolArray("_unlockedlevels" + w, unlockedLevels);
             PlayerPrefsX.SetIntArray("_levelStars" + w, levelStars);
@@ -292,5 +299,46 @@ public class WorldSelectionHandler : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("DEV CHEAT: All worlds, levels, and stars unlocked");
+    }
+
+    [SerializeField] private Text lockedWorldText;
+    [SerializeField] private GameObject lockedWorldPopup;
+    public void ShowWorldIsLockedPopup(int worldIndex)
+    {
+        string txtLabel = "";
+        string[] splitString = new string[] { "", "" };
+         int starsRequired = 0;
+        if (worldIndex == 1)
+        {
+            txtLabel = LocalizationManager.Localize("Achieve _ stars in forest world to unlock this world");
+            splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
+            starsRequired = Global.World2ReqStars - Global.TotalStarsAchivedWorld1;
+        }
+        else if (worldIndex == 2)
+        {
+            txtLabel = LocalizationManager.Localize("Achieve _ stars in ancient world to unlock this world");
+            splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
+            starsRequired = Global.World3ReqStars - Global.TotalStarsAchivedWorld2;
+        }
+        else if (worldIndex == 3)
+        {
+            txtLabel = LocalizationManager.Localize("Achieve _ stars in mettle world to unlock this world");
+            splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
+            starsRequired = Global.World4ReqStars - Global.TotalStarsAchivedWorld3;
+        }
+        else if (worldIndex == 4)
+        {
+            txtLabel = LocalizationManager.Localize("Achieve _ stars in desert world to unlock this world");
+            splitString = txtLabel.Split(new string[] { "_" }, StringSplitOptions.None);
+            starsRequired = Global.World5ReqStars - Global.TotalStarsAchivedWorld4;
+        }
+        Debug.Log($"ShowWorldIsLockedPopup WorldIndex:{worldIndex} || SplitString:{splitString[0]} || {splitString[1]} || StarsReq:{starsRequired}");
+        lockedWorldText.text = splitString[0] + " " + starsRequired + " " + splitString[1];
+        lockedWorldPopup.SetActive(true);
+    }
+
+    public void CloseWorldIsLockedPopup()
+    {
+        lockedWorldPopup.SetActive(false);
     }
 }

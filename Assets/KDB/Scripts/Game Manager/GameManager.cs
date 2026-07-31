@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public int currentBirdIndex;
 
     [Header("GameRelative Declarations(UI,ingameelements)")]
-    public GameObject gameOverPanel;
+    public GameObject gameOverPanel,gameOverFrame;
     public GameObject SkipLevelBtn, _coinRef, gameFailed, rewardCanvas, levelup, menu, retry, failRetry, failMenu, star0, pauseBtn, replayBtn, tutorAnim, tutorOkBtn, gamePausePanel, ingamePausePanel;
     public Transform LevelsParent, spawnPoint, coinSpace, reachPoint;
 
@@ -340,9 +340,11 @@ public class GameManager : MonoBehaviour
     {
         if(InternetValidator.Instance)
         {
-            if(!InternetValidator.Instance.canProceedToNextLevel())
+
+            if(!InternetValidator.Instance.canProceedToNextLevel(Global.CurrentLeveltoPlay+1))
             {
-                CheckNoInterNetPopup();
+                //CheckNoInterNetPopup();
+                InternetValidator.Instance.ShowNoInternetPopup();
                 return;
             }
         }
@@ -599,7 +601,7 @@ public class GameManager : MonoBehaviour
         InternetValidator.Instance.OnInterNetCheck += CheckNoInterNetPopup;
         AdManager.OnIngameAdClosed += ShowNoAdsButton;
         MultiSetHandler.OnSetChanged+=setChanged;
-         TutorialOverlay.Instance.OnTutorialClosed += OnTutorialClosed;
+        TutorialOverlay.OnTutorialClosed += OnTutorialClosed;
     }
 
     private void OnTutorialClosed(bool obj)
@@ -622,7 +624,7 @@ public class GameManager : MonoBehaviour
         }
         AdManager.OnIngameAdClosed -= ShowNoAdsButton;
         MultiSetHandler.OnSetChanged -= setChanged;
-        TutorialOverlay.Instance.OnTutorialClosed -= OnTutorialClosed;
+        TutorialOverlay.OnTutorialClosed -= OnTutorialClosed;
 
 
     }
@@ -1145,6 +1147,7 @@ public class GameManager : MonoBehaviour
                 void OnAnimateToSling()
                 {
                     //Debug.LogError("Camera set to positin");
+                    Debug.Log("OnAnimateToSling");
                     cameraFollow.isFollowing = false;
                     if (AllPigsAreDestroyed())
                     {
@@ -1467,11 +1470,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CheckBottlsRemaining()
     {
+        
         yield return new WaitForSeconds(2);
         Pig[] bottles = GameObject.FindObjectsOfType<Pig>();
+        Debug.Log($"CheckBottlsRemaining : {bottles.Length}");
         try
         {
-            Debug.Log("bottles pending.. 1" + bottles.Length);
+            Debug.Log("bottles pending.." + bottles.Length);
             if (bottles.Length <= 0)
             {
                 ShowNewLevelComplete();
@@ -1513,7 +1518,7 @@ public class GameManager : MonoBehaviour
         try
         {
             bottles = GameObject.FindObjectsOfType<Pig>();
-            Debug.Log("bottles pending.. 2 " + bottles.Length);
+            Debug.Log("bottles pending.." + bottles.Length);
             if (bottles.Length <= 0)
             {
                 ShowNewLevelComplete();
@@ -1766,8 +1771,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator AnimatePanelsTransition(int stars)
+    public IEnumerator AnimatePanelsTransition(int stars)
     {
+        Debug.Log($"AnimatePanelsTransition stars:{stars}");
         yield return new WaitForSeconds(3f);
         // 1. Setup RectTransforms
         RectTransform gameOverRect = gameOverPanel.GetComponent<RectTransform>();
@@ -1786,7 +1792,7 @@ public class GameManager : MonoBehaviour
         float elapsed = 0f;
 
         Vector2 gameOverStartPos = gameOverRect.anchoredPosition;
-        Vector2 gameOverEndPos = new Vector2(2000, 0); // Move off-screen to the right
+        Vector2 gameOverEndPos = new Vector2(3000, 0); // Move off-screen to the right
 
         Vector2 completionStartPos = new Vector2(-2000, 0);
         Vector2 completionEndPos = Vector2.zero; // Target: Middle of the screen
@@ -1840,6 +1846,7 @@ public class GameManager : MonoBehaviour
             replayBtn.SetActive(false);
             //Debug.Log("unlock next lvl " + Global.CurrentLeveltoPlay);\
             Debug.Log($"CurrentLeveltoPlay:{Global.CurrentLeveltoPlay},total:{(WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1)}");
+            Debug.Log($"CurrentLeveltoPlay worldSelected:{WorldSelectionHandler.worldSelected}");
             if (Global.CurrentLeveltoPlay < (WorldSelectionHandler.totalLevels[WorldSelectionHandler.worldSelected] - 1))
             {
                 LevelSelectionHandler.UnlockLevel(Global.CurrentLeveltoPlay);
@@ -1847,16 +1854,21 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("All LEVELS CLEARED");
-                levelNo.text = "All Levels Cleared";
-                retry.GetComponent<Button>().interactable = false;
-                menu.GetComponent<Button>().interactable = false;
-                levelup.GetComponent<Button>().interactable = false;
-                int totalStars = Global.TotalStarsAchivedWorld1 + Global.TotalStarsAchivedWorld2 + Global.TotalStarsAchivedWorld3+ Global.TotalStarsAchivedWorld4 + Global.TotalStarsAchivedWorld5;
-                Debug.Log($"[Show GameCompletionPopup]totalStars:{totalStars},getNatureStars:{Global.TotalStarsAchivedWorld1},getDesertStars:{Global.TotalStarsAchivedWorld2},getSnowStars:{Global.TotalStarsAchivedWorld3},getVolcanoStars:{Global.TotalStarsAchivedWorld4},getSpaceStars:{Global.TotalStarsAchivedWorld5}");
-                if (GameCompletionPopup.Instance != null)
+                levelNo.text = (Global.worldNames[WorldSelectionHandler.worldSelected]+" levels CLEARED").ToUpper();
+                if(gameOverFrame)gameOverFrame.SetActive(false);
+                if (WorldSelectionHandler.worldSelected == 4)
                 {
-                    StartCoroutine(AnimatePanelsTransition(totalStars));
+                    Debug.Log("All LEVELS CLEARED");
+                    levelNo.text = "All Levels Cleared";
+                    retry.GetComponent<Button>().interactable = false;
+                    menu.GetComponent<Button>().interactable = false;
+                    levelup.GetComponent<Button>().interactable = false;
+                    int totalStars = Global.TotalStarsAchivedWorld1 + Global.TotalStarsAchivedWorld2 + Global.TotalStarsAchivedWorld3 + Global.TotalStarsAchivedWorld4 + Global.TotalStarsAchivedWorld5;
+                    Debug.Log($"[Show GameCompletionPopup]totalStars:{totalStars},getNatureStars:{Global.TotalStarsAchivedWorld1},getDesertStars:{Global.TotalStarsAchivedWorld2},getSnowStars:{Global.TotalStarsAchivedWorld3},getVolcanoStars:{Global.TotalStarsAchivedWorld4},getSpaceStars:{Global.TotalStarsAchivedWorld5}");
+                    if (GameCompletionPopup.Instance != null)
+                    {
+                        StartCoroutine(AnimatePanelsTransition(totalStars));
+                    }
                 }
             }
             if ((Global.TotalbirdCount - Global.birdCount > 1 && PlayerPrefs.GetInt("W" + WorldSelectionHandler.worldNumb + "level" + Global.CurrentLeveltoPlay) < 3))
@@ -2070,8 +2082,8 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 stars[i].SetActive(true);
-                stars[i].transform.DOLocalMoveY(500, 1.2f).From().SetDelay((i * .3f) + .5f).SetEase(Ease.OutBounce);
-                stars[i].transform.DOScale(0, 1.2f).From().SetDelay((i * .5f) + .5f).SetEase(Ease.OutCirc).OnStart(PlayStarSound);
+                stars[i].transform.DOLocalMoveY(500, 1.2f).From().SetDelay((i * .3f) + .75f).SetEase(Ease.OutBounce);
+                stars[i].transform.DOScale(0, 1.2f).From().SetDelay((i * .5f) + .75f).SetEase(Ease.OutCirc).OnStart(PlayStarSound);
                 // SoundsHandler.Instance.PlaySource2Clip(3, 0);
                 Debug.Log("NEWSHOW STARRRRRRRRRRSSSSSSSSSSSRSRRSRWSRSRRSRSRSRSRSR");
                 // SoundManager.PlaySFX("Click", false, (i * 0.4f) + 0.5f);
@@ -2131,17 +2143,18 @@ public class GameManager : MonoBehaviour
     public IEnumerator ShowCoinsAnimation(int t, int s)
     {
         Debug.Log("ShowCoinsAnimation started with t " + t + " s " + s);
+        yield return new WaitForSeconds(2f);
         int coinsEarned = PlayerPrefs.GetInt("coins");
         GameManager.Instance.totalcoinsatWin.text = coinsEarned.ToString();
 
         if (CoinFlyAnimator.Instance)
         {
-            CoinFlyAnimator.Instance.Play(star0.GetComponent<RectTransform>(), totalcoinsatWin.transform.parent.GetComponent<RectTransform>(),gameOverPanel.transform, () =>
+            CoinFlyAnimator.Instance.Play(star0.GetComponent<RectTransform>(), reachPoint.GetComponent<RectTransform>(),gameOverPanel.transform, () =>
             {
                 Debug.Log("ShowCoinsAnimation complete");
             });
         }   
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2f);
         t = (t - s);
         coinsEarned = PlayerPrefs.GetInt("coins") + (t * 100);
 
@@ -2295,10 +2308,11 @@ public class GameManager : MonoBehaviour
     {
         if (InternetValidator.Instance != null)
         {
-            if (gameOverPanel.activeSelf )
-            {
-                InternetValidator.Instance.CheckNoInterNetPopup();
-            }
+            /* if (gameOverPanel.activeSelf )
+            { 
+                //InternetValidator.Instance.CheckNoInterNetPopup();
+                InternetValidator.Instance.ShowNoInternetPopup();
+            } */
         }
     }
     void CheckPreimumPopUP()

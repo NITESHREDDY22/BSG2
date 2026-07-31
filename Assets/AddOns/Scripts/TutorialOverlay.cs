@@ -32,7 +32,7 @@ public class TutorialOverlay : MonoBehaviour
     [SerializeField] private Button rewatchButton;
     [SerializeField] private Button okayButton;
 
-    public event Action<bool> OnTutorialClosed;
+    public static event Action<bool> OnTutorialClosed;
 
     public enum VideoSourceType
     {

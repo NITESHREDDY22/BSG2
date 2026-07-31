@@ -97,9 +97,10 @@ public class LevelSelectionHandler : MonoBehaviour {
         Global.CurrentLeveltoPlay = _tr.GetSiblingIndex();
         if(InternetValidator.Instance)
         {
-            if(!InternetValidator.Instance.canProceedToNextLevel())
+            if(!InternetValidator.Instance.canProceedToNextLevel(Global.CurrentLeveltoPlay))
             {
-                CheckNoInterNetPopup();
+                //CheckNoInterNetPopup();
+                InternetValidator.Instance.ShowNoInternetPopup();
                 return;
             }
         }

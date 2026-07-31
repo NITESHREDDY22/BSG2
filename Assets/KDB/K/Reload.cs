@@ -19,7 +19,7 @@ public class Reload : MonoBehaviour
         if(Global.finalReloadCoins <=0)
         {
             reloadCoinsTxt.text = "";
-            Sprite replaySprite = Resources.Load<Sprite>("ReplayBtn");
+            Sprite replaySprite = Resources.Load<Sprite>("ReplayBtn2");
 
             // Assign it to the Image component
             if (replaySprite != null)

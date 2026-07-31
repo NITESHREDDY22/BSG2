@@ -23,7 +23,7 @@ public class GameCompletionPopup : MonoBehaviour
     [SerializeField] private Image fillImage;        // Must be Image Type: Filled
     [SerializeField] private TextMeshProUGUI progressText; // Shows "%"
     [SerializeField] private TextMeshProUGUI titleText; // Shows "%"
-    [SerializeField] private Text bodyTxt; // Shows "%"
+    [SerializeField] private Text bodyTxt,MasteryBtnTxt; // Shows "%"
     [SerializeField]Button menuBtn,masteryBtn,backBtn;
 
     public int maxPossibleStars;
@@ -83,11 +83,23 @@ public class GameCompletionPopup : MonoBehaviour
         StartCoroutine(AnimateCompletion(targetFillNormalized));
         titleText.text = GetStarHeadText(totalStarsAchieved,maxPossibleStars);//$"{totalStarsAchieved}/{maxPossibleStars} STARS";
         bodyTxt.text = GetBodyText(maxPossibleStars,totalStarsAchieved);//$"Collect {maxPossibleStars-totalStarsAchieved} more Stars to become MASTER";
+        if(MasteryBtnTxt)
+        MasteryBtnTxt.text = GetMasteryBtnText(maxPossibleStars,totalStarsAchieved);
 
         bool worldSelection = SceneManager.GetActiveScene().name.Contains("MainMenu");
         menuBtn.gameObject.SetActive(!worldSelection);
         masteryBtn.gameObject.SetActive(!worldSelection);
         backBtn.gameObject.SetActive(worldSelection);
+    }
+
+    private string GetMasteryBtnText(int maxPossibleStars, int totalStarsAchieved)
+    {
+        int remainingStars = maxPossibleStars - totalStarsAchieved;
+        bool isMaster = remainingStars <= 0;
+        if (isMaster)
+            return "Try Again";
+        else
+            return "Gain Mastery";
     }
 
     private IEnumerator AnimateCompletion(float targetFill)
@@ -244,104 +256,124 @@ public class GameCompletionPopup : MonoBehaviour
 
 
     string GetBodyText(int maxPossibleStars, int totalStarsAchieved)
-{
-    int remainingStars = maxPossibleStars - totalStarsAchieved;
+    {
+        int remainingStars = maxPossibleStars - totalStarsAchieved;
+        bool isMaster = remainingStars <= 0;
 
-    string worldLockDescription =
-        $"Collect {remainingStars} more Stars to become MASTER";
+        string worldLockDescription = isMaster
+            ? "Congratulations! You are now a MASTER!"
+            : $"Collect {remainingStars} more Stars to become MASTER";
 
-    if (LocalizationManager.Language == LocalizationManager.French)
-    {
-        worldLockDescription =
-            $"Collectez encore {remainingStars} étoiles pour devenir MAÎTRE";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Arabic)
-    {
-        worldLockDescription =
-            $"اجمع {remainingStars} نجمة إضافية لتصبح المحترف";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Dutch)
-    {
-        worldLockDescription =
-            $"Verzamel nog {remainingStars} sterren om MEESTER te worden";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.German)
-    {
-        worldLockDescription =
-            $"Sammle noch {remainingStars} Sterne, um MEISTER zu werden";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Italian)
-    {
-        worldLockDescription =
-            $"Raccogli ancora {remainingStars} stelle per diventare MAESTRO";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Japanese)
-    {
-        worldLockDescription =
-            $"あと{remainingStars}個のスターを集めてマスターになろう";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Polish)
-    {
-        worldLockDescription =
-            $"Zbierz jeszcze {remainingStars} gwiazdek, aby zostać MISTRZEM";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Portuguese)
-    {
-        worldLockDescription =
-            $"Colete mais {remainingStars} estrelas para se tornar MESTRE";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Russian)
-    {
-        worldLockDescription =
-            $"Соберите ещё {remainingStars} звёзд, чтобы стать МАСТЕРОМ";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Spanish)
-    {
-        worldLockDescription =
-            $"Recoge {remainingStars} estrellas más para convertirte en MAESTRO";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Turkish)
-    {
-        worldLockDescription =
-            $"USTA olmak için {remainingStars} yıldız daha topla";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Chinese)
-    {
-        worldLockDescription =
-            $"再收集 {remainingStars} 颗星星即可成为大师";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Vietnamese)
-    {
-        worldLockDescription =
-            $"Thu thập thêm {remainingStars} ngôi sao để trở thành BẬC THẦY";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Korean)
-    {
-        worldLockDescription =
-            $"{remainingStars}개의 별을 더 모아 마스터가 되세요";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Indonesian)
-    {
-        worldLockDescription =
-            $"Kumpulkan {remainingStars} bintang lagi untuk menjadi MASTER";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Thai)
-    {
-        worldLockDescription =
-            $"เก็บดาวเพิ่มอีก {remainingStars} ดวงเพื่อเป็น MASTER";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Hindi)
-    {
-        worldLockDescription =
-            $"मास्टर बनने के लिए {remainingStars} और सितारे एकत्र करें";
-    }
-    else if (LocalizationManager.Language == LocalizationManager.Ukrainian)
-    {
-        worldLockDescription =
-            $"Зберіть ще {remainingStars} зірок, щоб стати МАЙСТРОМ";
-    }
+        if (LocalizationManager.Language == LocalizationManager.French)
+        {
+            worldLockDescription = isMaster
+                ? "Félicitations ! Vous êtes maintenant un MAÎTRE !"
+                : $"Collectez encore {remainingStars} étoiles pour devenir MAÎTRE";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Arabic)
+        {
+            worldLockDescription = isMaster
+                ? "تهانينا! لقد أصبحت الآن المحترف!"
+                : $"اجمع {remainingStars} نجمة إضافية لتصبح المحترف";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Dutch)
+        {
+            worldLockDescription = isMaster
+                ? "Gefeliciteerd! Je bent nu een MEESTER!"
+                : $"Verzamel nog {remainingStars} sterren om MEESTER te worden";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.German)
+        {
+            worldLockDescription = isMaster
+                ? "Glückwunsch! Du bist jetzt ein MEISTER!"
+                : $"Sammle noch {remainingStars} Sterne, um MEISTER zu werden";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Italian)
+        {
+            worldLockDescription = isMaster
+                ? "Congratulazioni! Ora sei un MAESTRO!"
+                : $"Raccogli ancora {remainingStars} stelle per diventare MAESTRO";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Japanese)
+        {
+            worldLockDescription = isMaster
+                ? "おめでとうございます！あなたはマスターになりました！"
+                : $"あと{remainingStars}個のスターを集めてマスターになろう";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Polish)
+        {
+            worldLockDescription = isMaster
+                ? "Gratulacje! Jesteś teraz MISTRZEM!"
+                : $"Zbierz jeszcze {remainingStars} gwiazdek, aby zostać MISTRZEM";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Portuguese)
+        {
+            worldLockDescription = isMaster
+                ? "Parabéns! Você agora é um MESTRE!"
+                : $"Colete mais {remainingStars} estrelas para se tornar MESTRE";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Russian)
+        {
+            worldLockDescription = isMaster
+                ? "Поздравляем! Теперь вы МАСТЕР!"
+                : $"Соберите ещё {remainingStars} звёзд, чтобы стать МАСТЕРОМ";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Spanish)
+        {
+            worldLockDescription = isMaster
+                ? "¡Felicidades! ¡Ahora eres un MAESTRO!"
+                : $"Recoge {remainingStars} estrellas más para convertirte en MAESTRO";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Turkish)
+        {
+            worldLockDescription = isMaster
+                ? "Tebrikler! Artık bir USTA oldun!"
+                : $"USTA olmak için {remainingStars} yıldız daha topla";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Chinese)
+        {
+            worldLockDescription = isMaster
+                ? "恭喜！你现在是大师了！"
+                : $"再收集 {remainingStars} 颗星星即可成为大师";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Vietnamese)
+        {
+            worldLockDescription = isMaster
+                ? "Chúc mừng! Bạn hiện đã là BẬC THẦY!"
+                : $"Thu thập thêm {remainingStars} ngôi sao để trở thành BẬC THẦY";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Korean)
+        {
+            worldLockDescription = isMaster
+                ? "축하합니다! 이제 마스터가 되셨습니다!"
+                : $"{remainingStars}개의 별을 더 모아 마스터가 되세요";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Indonesian)
+        {
+            worldLockDescription = isMaster
+                ? "Selamat! Kamu sekarang adalah seorang MASTER!"
+                : $"Kumpulkan {remainingStars} bintang lagi untuk menjadi MASTER";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Thai)
+        {
+            worldLockDescription = isMaster
+                ? "ยินดีด้วย! ตอนนี้คุณเป็น MASTER แล้ว!"
+                : $"เก็บดาวเพิ่มอีก {remainingStars} ดวงเพื่อเป็น MASTER";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Hindi)
+        {
+            worldLockDescription = isMaster
+                ? "बधाई हो! अब आप मास्टर बन गए हैं!"
+                : $"मास्टर बनने के लिए {remainingStars} और सितारे एकत्र करें";
+        }
+        else if (LocalizationManager.Language == LocalizationManager.Ukrainian)
+        {
+            worldLockDescription = isMaster
+                ? "Вітаємо! Тепер ви МАЙСТЕР!"
+                : $"Зберіть ще {remainingStars} зірок, щоб стати МАЙСТРОМ";
+        }
 
-    return worldLockDescription;
-}
+        return worldLockDescription;
+    }
 
 }

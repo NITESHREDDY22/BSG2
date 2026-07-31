@@ -80,5 +80,10 @@ public class PrivacyButtonHandler : MonoBehaviour
                 }
             }
         });
+
+        if(FirebaseEvents.instance)
+                FirebaseEvents.instance.LogFirebaseEvent("PrivacyBtn_clicked");
+
+        AnalyticsManager.LogDesignEvent("PrivacyBtn_clicked");
     }
 }

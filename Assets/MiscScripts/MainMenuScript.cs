@@ -92,6 +92,10 @@ public class MainMenuScript : MonoBehaviour
         //GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
         SoundManager.PlaySFX("Click2");
         SceneManager.LoadScene("LevelSelection");
+        if(FirebaseEvents.instance)
+            FirebaseEvents.instance.LogFirebaseEvent("PlayBtn_clicked");
+
+        AnalyticsManager.LogDesignEvent("PlayBtn_clicked");
     }
 
     public void Exit()
@@ -103,6 +107,10 @@ public class MainMenuScript : MonoBehaviour
             AdManager._instance.showbannerExit();
         }
        // GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
+       if(FirebaseEvents.instance)
+            FirebaseEvents.instance.LogFirebaseEvent("ExitBtn_clicked");
+
+        AnalyticsManager.LogDesignEvent("ExitBtn_clicked");
     }
 
     public void okBtn()
@@ -120,6 +128,10 @@ public class MainMenuScript : MonoBehaviour
     public void rateus()
     {
         Application.OpenURL("https://play.google.com/store/apps/details?id=com.knockdown.bottleshootgame");
+        if(FirebaseEvents.instance)
+                FirebaseEvents.instance.LogFirebaseEvent("RateBtn_clicked");
+
+        AnalyticsManager.LogDesignEvent("RateBtn_clicked");
     }
     public void back()
     {
@@ -142,7 +154,9 @@ public class MainMenuScript : MonoBehaviour
             StoreManager._instance.ScrollContent.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             StoreManager._instance.ScrollContent2.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             if(FirebaseEvents.instance)
-                FirebaseEvents.instance.LogFirebaseEvent("StoreBtn_clicked_MainMenu");
+                FirebaseEvents.instance.LogFirebaseEvent("StoreBtn_clicked");
+
+            AnalyticsManager.LogDesignEvent("StoreBtn_clicked");
                 
             if(GifAdsManager.Instance && GifAdsManager.Instance._adObjs.Length > 0)
             GifAdsManager.Instance.HideAD(GifAdsManager.Instance._adObjs[0]);
