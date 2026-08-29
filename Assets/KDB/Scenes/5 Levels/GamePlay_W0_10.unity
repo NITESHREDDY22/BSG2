@@ -4506,7 +4506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4437998304086626, guid: a42ae298b3a47ea4a97fc1b194a80f65,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 887079505}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1694682688015700, guid: a42ae298b3a47ea4a97fc1b194a80f65,
         type: 3}
@@ -14485,6 +14489,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c137e4cdac299e64880b5b91ddcff08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &887079504
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 250917701}
+    m_Modifications:
+    - target: {fileID: 1919502557114074, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_Name
+      value: HintArrow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.46292135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8270806
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5620834
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -68.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1919502557114074, guid: a9ea145794841f74d9df082f504e0f61,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 887079507}
+  m_SourcePrefab: {fileID: 100100000, guid: a9ea145794841f74d9df082f504e0f61, type: 3}
+--- !u!4 &887079505 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4330222688105206, guid: a9ea145794841f74d9df082f504e0f61,
+    type: 3}
+  m_PrefabInstance: {fileID: 887079504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &887079506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1919502557114074, guid: a9ea145794841f74d9df082f504e0f61,
+    type: 3}
+  m_PrefabInstance: {fileID: 887079504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &887079507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887079506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293c0ace268913f41851e3ea82cd97ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.1
+  transfB: {fileID: 0}
+  childTransf: {fileID: 887079505}
 --- !u!1 &896225210
 GameObject:
   m_ObjectHideFlags: 0
@@ -18216,6 +18312,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1671911353
       objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 19900002, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
       propertyPath: m_SortingLayer
       value: 8
@@ -18223,6 +18323,10 @@ PrefabInstance:
     - target: {fileID: 19900002, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
       propertyPath: m_SortingLayerID
       value: -1671911353
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900002, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19900002, guid: f2dba9e16cd347f44a395b8204544ee5, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -45555,10 +45659,11 @@ MonoBehaviour:
   rewardBall: {fileID: 0}
   ballPrefab: {fileID: 1876404952628938, guid: ac03fefafef004fea8bd013224d0555b, type: 3}
   birdsgroup: {fileID: 1262838808}
-  Level_ballCount: 0500000005000000050000000500000005000000050000000600000006000000050000000500000005000000050000000500000004000000050000000500000005000000060000000400000005000000050000000600000006000000050000000500000007000000050000000500000005000000040000000600000008000000060000000700000007000000060000000600000006000000050000000600000006000000050000000500000006000000060000000600000005000000050000000500000004000000060000000a00000006000000070000000700000007000000080000000500000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
+  Level_ballCount: 0500000005000000050000000500000005000000050000000600000006000000050000000500000005000000050000000500000004000000050000000500000005000000060000000400000005000000050000000600000006000000050000000500000007000000050000000500000005000000040000000600000008000000060000000700000007000000060000000600000006000000050000000600000006000000050000000500000006000000060000000600000005000000050000000500000004000000080000000a00000006000000070000000700000007000000080000000500000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
   Give3Stars: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   currentBirdIndex: 0
   gameOverPanel: {fileID: 616109203}
+  gameOverFrame: {fileID: 0}
   SkipLevelBtn: {fileID: 1654498913}
   _coinRef: {fileID: 1934191733615300, guid: 047a3a0cfc1562c4db8657ec939231b9, type: 3}
   gameFailed: {fileID: 457058226}
@@ -45597,6 +45702,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f0fac6a54d7750489f43937c9e94b99, type: 3}
   startTime: 0
   levelPlayTime: 0
+  useStandaloneLevel: 0
+  standaloneLevelIndex: 50
   isCameraTransition: 0
   playTime: 0
   stars:

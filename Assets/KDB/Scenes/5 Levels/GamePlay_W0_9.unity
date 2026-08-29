@@ -46889,6 +46889,7 @@ MonoBehaviour:
   Give3Stars: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   currentBirdIndex: 0
   gameOverPanel: {fileID: 616109203}
+  gameOverFrame: {fileID: 0}
   SkipLevelBtn: {fileID: 1654498913}
   _coinRef: {fileID: 1934191733615300, guid: 047a3a0cfc1562c4db8657ec939231b9, type: 3}
   gameFailed: {fileID: 457058226}
@@ -46927,6 +46928,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f0fac6a54d7750489f43937c9e94b99, type: 3}
   startTime: 0
   levelPlayTime: 0
+  useStandaloneLevel: 0
+  standaloneLevelIndex: 0
   isCameraTransition: 0
   playTime: 0
   stars:

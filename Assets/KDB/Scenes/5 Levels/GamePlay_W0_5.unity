@@ -2903,7 +2903,7 @@ Transform:
   m_GameObject: {fileID: 94759645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22, y: 1.45, z: 0}
+  m_LocalPosition: {x: -0.030000001, y: 1.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4412,7 +4412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547901399915448, guid: bf90594178ac96f4da6d89309bec47a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2599998
+      value: 1.0099998
       objectReference: {fileID: 0}
     - target: {fileID: 4547901399915448, guid: bf90594178ac96f4da6d89309bec47a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5660,7 +5660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4547901399915448, guid: bf90594178ac96f4da6d89309bec47a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.64
+      value: 6.89
       objectReference: {fileID: 0}
     - target: {fileID: 4547901399915448, guid: bf90594178ac96f4da6d89309bec47a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6629,7 +6629,7 @@ Transform:
   m_GameObject: {fileID: 429629380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.93, y: -2.11, z: 0}
+  m_LocalPosition: {x: 0.68, y: -2.11, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9009,7 +9009,7 @@ Transform:
   m_GameObject: {fileID: 588561134}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.44, y: -0.9899998, z: 0}
+  m_LocalPosition: {x: 6.69, y: -0.9899998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12517,7 +12517,7 @@ Transform:
   m_GameObject: {fileID: 868384040}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.55, y: -3.1, z: 0}
+  m_LocalPosition: {x: 6.8, y: -3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12921,7 +12921,7 @@ Transform:
   m_GameObject: {fileID: 896805687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.5, w: 0.8660254}
-  m_LocalPosition: {x: 0.08000004, y: -0.19999984, z: 0}
+  m_LocalPosition: {x: -0.16999996, y: -0.19999984, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15983,6 +15983,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2006212529}
     m_Modifications:
+    - target: {fileID: 2086592728858297007, guid: 6649b9a3869d2ae47a314b70e6d0ba6d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -106.79993
+      objectReference: {fileID: 0}
     - target: {fileID: 2344242979739712225, guid: 6649b9a3869d2ae47a314b70e6d0ba6d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -22875,7 +22880,7 @@ Transform:
   m_GameObject: {fileID: 1320931257}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.42261827, w: 0.9063079}
-  m_LocalPosition: {x: 5.4700003, y: 0.7700002, z: 0}
+  m_LocalPosition: {x: 5.7200003, y: 0.7700002, z: 0}
   m_LocalScale: {x: 1, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23815,7 +23820,7 @@ Transform:
   m_GameObject: {fileID: 1413728134}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.6, y: 2.3, z: 0}
+  m_LocalPosition: {x: 5.85, y: 2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38699,10 +38704,11 @@ MonoBehaviour:
   rewardBall: {fileID: 0}
   ballPrefab: {fileID: 1876404952628938, guid: ac03fefafef004fea8bd013224d0555b, type: 3}
   birdsgroup: {fileID: 1262838808}
-  Level_ballCount: 0500000005000000050000000500000005000000050000000600000006000000050000000500000005000000050000000500000004000000050000000700000006000000050000000400000005000000050000000600000006000000050000000500000007000000060000000500000007000000060000000600000005000000050000000600000006000000060000000600000006000000050000000600000006000000050000000500000006000000060000000600000005000000050000000500000004000000040000000300000005000000050000000400000007000000080000000500000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
+  Level_ballCount: 0500000005000000050000000500000005000000050000000600000006000000050000000500000005000000050000000500000004000000050000000700000006000000050000000400000005000000050000000600000006000000050000000500000007000000080000000500000007000000060000000600000005000000050000000600000006000000060000000600000006000000050000000600000006000000050000000500000006000000060000000600000005000000050000000500000004000000040000000300000005000000050000000400000007000000080000000500000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000040000000400000004000000
   Give3Stars: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   currentBirdIndex: 0
   gameOverPanel: {fileID: 616109203}
+  gameOverFrame: {fileID: 0}
   SkipLevelBtn: {fileID: 1654498913}
   _coinRef: {fileID: 1934191733615300, guid: 047a3a0cfc1562c4db8657ec939231b9, type: 3}
   gameFailed: {fileID: 457058226}
@@ -38741,6 +38747,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f0fac6a54d7750489f43937c9e94b99, type: 3}
   startTime: 0
   levelPlayTime: 0
+  useStandaloneLevel: 0
+  standaloneLevelIndex: 26
   isCameraTransition: 0
   playTime: 0
   stars:
