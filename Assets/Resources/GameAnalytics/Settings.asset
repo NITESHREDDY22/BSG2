@@ -30,7 +30,7 @@ MonoBehaviour:
   secretKey:
   - 5813dfc6a26bda21614d6358ba3d26e5fd376a63
   Build:
-  - 2.4.5
+  - 2.4.8
   SelectedPlatformOrganization:
   - 
   SelectedPlatformStudio:

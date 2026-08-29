@@ -88,6 +88,7 @@ public class Pig : MonoBehaviour
 
     void explodebottle()
     {
+        Debug.Log("explodebottle");
         _explodable.explode();
         ExplosionForce ef = GameObject.FindObjectOfType<ExplosionForce>();
         ef.doExplosion(transform.position);
@@ -297,11 +298,11 @@ public class Pig : MonoBehaviour
                         //AdManager._instance.ShowGameWinInterstitial();
                         gameMngr.CallAdInPigScript();                       
 
-                        if (SingularEvents.instance!=null)
+                        /* if (SingularEvents.instance!=null)
                         {
                             SingularEvents.instance.SendLevelCompleteEvent(WorldSelectionHandler.worldSelected, Global.CurrentLeveltoPlay);
                             SingularEvents.instance.SendAchieventmentEvent();
-                        }
+                        } */
 
                         if (AdManager._instance)
                             AdManager._instance.HidebannerAd();

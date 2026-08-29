@@ -471,6 +471,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                         {
                             item.Interstitial = ad;
                             item.isAdReady = true;
+                            string adUnitId = item.AdID; 
 
                             // Register Event: Closed
                             item.Interstitial.OnAdFullScreenContentClosed += () =>
@@ -502,18 +503,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                             // Register Event: Paid (Revenue Tracking)
                             item.Interstitial.OnAdPaid += (AdValue adValue) =>
                             {
-                                float revenue = adValue.Value / 1_000_000f; // Micros to Dollars
-                                string currency = adValue.CurrencyCode;
-                                string revMsg = $"<b>[REVENUE]</b> {adType}: ${revenue:F6} ({adValue.Precision})";
-                                
-                                Debug.Log($"<color=green>{revMsg}</color>");
-                                //AdTestToast.Instance?.Show(revMsg);
-
-                                if (revenue > 0)
-                                {
-                                    Singular.SingularAdData data = new Singular.SingularAdData("Admob", currency, revenue);
-                                    Singular.SingularSDK.AdRevenue(data);
-                                }
+                                HandlePaidEvent(adValue, adUnitId, "interstitial");
                             };
 
                             // Link Global References for legacy compatibility
@@ -611,7 +601,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                 RequestInterstitial(AdType.VeryHighCPMInterstitial);
             }
 
-            RegisterPaidEvent(adToShow);
+            /* RegisterPaidEvent(adToShow); */
 
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {
@@ -636,7 +626,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         }
     }
 
-    public void RegisterPaidEvent(object ad)
+    /* public void RegisterPaidEvent(object ad)
     {
         if (ad == null) return;
 
@@ -664,70 +654,64 @@ public class AdMobNetworkHandler :MonoBehaviour
                 Debug.LogError("RegisterPaidEvent: Unsupported ad type");
                 break;
         }
+    } */
+
+    private void HandlePaidEvent(AdValue adValue, string adUnitId, string adFormat)
+    {
+        // Calculate revenue immediately
+        double revenue = adValue.Value / 1_000_000.0;
+        string currency = adValue.CurrencyCode;
+        int precision = (int)adValue.Precision;
+
+        // Move to Main Thread for Analytics SDKs
+        MobileAdsEventExecutor.ExecuteInUpdate(() =>
+        {
+            if (FirebaseEvents.FirebaseInitDone)
+            {
+                int currentWorldId = Global.currentWorldSelected;
+                string worldEventName = $"ad_revenue_world_{currentWorldId}";
+
+                // 1. Firebase Logging
+                Parameter[] parameters = {
+            new Parameter(FirebaseAnalytics.ParameterAdPlatform, "AdMob"),
+            new Parameter(FirebaseAnalytics.ParameterSource, "admob"),
+            new Parameter("ad_unit_name", adUnitId),
+            new Parameter("ad_format", adFormat),
+            new Parameter(FirebaseAnalytics.ParameterCurrency, currency),
+            new Parameter(FirebaseAnalytics.ParameterValue, revenue),
+            new Parameter("ad_value_precision", precision.ToString())
+            };
+                if (GameConstants.GetAllLevelsCompleteStatus() != string.Empty)
+                {
+                    worldEventName = $"{GameConstants.GetAllLevelsCompleteStatus()}_{worldEventName}";
+                }
+                FirebaseAnalytics.LogEvent(worldEventName, parameters);
+                /* FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventAdImpression, parameters); */
+            }
+
+            // 2. Facebook Logging
+            try
+            {
+                var metadata = new Dictionary<string, object> {
+                { "ad_platform", "Google_AdMob" },
+                { "currency", currency },
+                { "ad_unit", adUnitId }
+                };
+                FB.LogAppEvent("AdImpression", (float)revenue, metadata);
+            }
+            catch (Exception e) { Debug.LogError($"FB Log Fail: {e.Message}"); }
+
+            // 3. Singular Logging (Adding back what was in your original file)
+            /* try
+            {
+                Singular.SingularAdData data = new Singular.SingularAdData("Admob", currency, revenue);
+                Singular.SingularSDK.AdRevenue(data);
+            }
+            catch (Exception e) { Debug.LogError($"Singular Log Fail: {e.Message}"); } */
+
+            Debug.Log($"<color=green>[Revenue Recorded]</color> {adFormat} | {revenue} {currency}");
+        });
     }
-
-    private void HandlePaidEvent(
-    AdValue adValue,
-    string adUnitId,
-    string adFormat
-)
-{
-    double revenue = adValue.Value / 1_000_000.0;
-    int currentWorldId = Global.currentWorldSelected;
-
-    // 1. Create a specific event name for this world
-    // Example: "ad_imp_world_1"
-    string worldEventName = $"ad_revenue_world_{currentWorldId}";
-
-    Parameter[] parameters =
-    {
-        new Parameter(FirebaseAnalytics.ParameterAdPlatform, "AdMob"),
-        new Parameter(FirebaseAnalytics.ParameterSource, "admob"),
-        new Parameter("ad_unit_name", adUnitId),
-        new Parameter("ad_format", adFormat),
-        new Parameter(FirebaseAnalytics.ParameterCurrency, adValue.CurrencyCode),
-        new Parameter(FirebaseAnalytics.ParameterValue, revenue),
-        new Parameter("revenue_debug", revenue),
-        new Parameter("ad_value_precision", adValue.Precision.ToString())
-    };
-
-    //FirebaseAnalytics.LogEvent("ad_revenue", parameters);
-    FirebaseAnalytics.LogEvent(worldEventName, parameters);
-    FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventAdImpression, parameters);
-        try
-        {
-            var metadata = new Dictionary<string, object>
-    {
-        { "ad_platform", "Google_AdMob" },
-        { "currency", adValue.CurrencyCode },
-        { "ad_precision_type", adValue.Precision.ToString() } // Tracks if estimation or exact auction win
-    };
-
-            Debug.Log($"[Facebook SDK] Logging AdImpression event. Revenue: {revenue}, Currency: {adValue.CurrencyCode}, Precision: {adValue.Precision}");
-            double rawRevenue = adValue.Value/1000000.0;
-            double safeRevenue = Convert.ToDouble(rawRevenue);
-            FB.LogAppEvent(
-                logEvent: "AdImpression",
-                valueToSum: (float)safeRevenue,
-                parameters: metadata
-            );
-
-            Debug.Log("[Facebook SDK] AdImpression event logged successfully.");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"[Facebook SDK] Failed to log AdImpression event. Exception: {e}");
-        }
-
-        Debug.Log(
-        $"[AdRevenue]\n" +
-        $"Format: {adFormat}\n" +
-        $"Unit: {adUnitId}\n" +
-        $"Revenue: {revenue} {adValue.CurrencyCode}\n" +
-        $"revenue_debug: {revenue}"+
-        $"Precision: {adValue.Precision}"
-    );
-}
 
 
 
@@ -860,6 +844,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         return null;
     }
 
+    public static string LastRewardLoadError = "No_Error_Captured";
     public void RequestRewardBasedVideo(AdType adType = AdType.Reward)
     {
         AdTestToast.Instance?.Show($"AdMob: Requesting reward Type: {adType}");
@@ -896,6 +881,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                            MobileAdsEventExecutor.ExecuteInUpdate(() =>
                            {
                             AdTestToast.Instance?.Show($"Reward {adType} FAIL: {loadError.GetMessage()}");
+                            LastRewardLoadError = loadError.GetMessage().Replace(" ", "_"); 
                                item.isAdRequested = false;
                                item.isAdReady = false;
                                RequestAgain(adType);
@@ -932,6 +918,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                        {
                            item.RewardedAd = ad;
                            item.isAdReady = true;
+                           string adUnitId = item.AdID;
 
                            if (adType == AdType.Reward)
                            {
@@ -1000,30 +987,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                            ad.OnAdPaid += (AdValue adValue) =>
                            {
-                               float revenue = adValue.Value / 1_000_000f; // Convert micros to dollars
-                               string currency = adValue.CurrencyCode;
-
-                               // Check if revenue is positive and currency is valid
-                               if (revenue > 0 && !string.IsNullOrEmpty(currency))
-                               {
-                                   //TODO 
-                                   // Construct and send the Singular AdMon Event
-                                   
-                                   Singular.SingularAdData data = new Singular.SingularAdData(
-                                       "Admob",
-                                       currency,
-                                       revenue
-                                   );
-                                   Singular.SingularSDK.AdRevenue(data);
-
-                                   // Log the revenue data for debugging purposes
-                                   Debug.Log($"Ad Revenue reported to Singular: {data}");
-                                   
-                               }
-                               else
-                               {
-                                   Debug.LogError($"Invalid ad revenue data: revenue = {revenue}, currency = {currency}");
-                               }
+                                HandlePaidEvent(adValue, adUnitId, "rewarded");
                            };
                        }
                    });
@@ -1046,7 +1010,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         this.callBack = callBack;
         if (item!=null && item.RewardedAd!= null && item.RewardedAd.CanShowAd())
         {
-            RegisterPaidEvent(item.RewardedAd);
+            //RegisterPaidEvent(item.RewardedAd);
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {                
                 AdTestToast.Instance?.Show($"Displaying Reward {adType}...");
@@ -1152,6 +1116,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                        {
                            item.adMobRewardedInterstitial = ad;
                            item.isAdReady = true;
+                           string adUnitId = item.AdID;
                            this.rewardedInterStitialrequestcallBack?.Invoke(true,adType);
 
                            if (adType == AdType.RewardedInterStitial)
@@ -1218,30 +1183,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                            ad.OnAdPaid += (AdValue adValue) =>
                            {
-                               float revenue = adValue.Value / 1_000_000f; // Convert micros to dollars
-                               string currency = adValue.CurrencyCode;
-
-                               // Check if revenue is positive and currency is valid
-                               if (revenue > 0 && !string.IsNullOrEmpty(currency))
-                               {
-                                   //TODO 
-                                   // Construct and send the Singular AdMon Event
-
-                                   Singular.SingularAdData data = new Singular.SingularAdData(
-                                       "Admob",
-                                       currency,
-                                       revenue
-                                   );
-                                   Singular.SingularSDK.AdRevenue(data);
-
-                                   // Log the revenue data for debugging purposes
-                                   Debug.Log($"Ad Revenue reported to Singular: {data}");
-
-                               }
-                               else
-                               {
-                                   Debug.LogError($"Invalid ad revenue data: revenue = {revenue}, currency = {currency}");
-                               }
+                               HandlePaidEvent(adValue, adUnitId, "rewarded_interstitial");
                            };
 
                        }
@@ -1348,7 +1290,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         // Create an anchored adaptive banner view.
         bannerView = new BannerView(item.AdID, adaptiveSize, AdPosition.Bottom);
         // [END create_anchored_adaptive_banner_view]
-        
+        string adUnitId = item.AdID; 
 
         bannerView.OnBannerAdLoaded += () =>
         {
@@ -1380,30 +1322,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
         bannerView.OnAdPaid += (AdValue adValue) =>
         {
-            float revenue = adValue.Value / 1_000_000f; // Convert micros to dollars
-            string currency = adValue.CurrencyCode;
-
-            // Check if revenue is positive and currency is valid
-            if (revenue > 0 && !string.IsNullOrEmpty(currency))
-            {
-                // Construct and send the Singular AdMon Event
-                //TODO 
-                
-                Singular.SingularAdData data = new Singular.SingularAdData(
-                    "Admob",
-                    currency,
-                    revenue
-                );
-                Singular.SingularSDK.AdRevenue(data);
-
-                // Log the revenue data for debugging purposes
-                Debug.Log($"Ad Revenue reported to Singular: {data}");
-                
-            }
-            else
-            {
-                Debug.LogError($"Invalid ad revenue data: revenue = {revenue}, currency = {currency}");
-            }
+            HandlePaidEvent(adValue, adUnitId, "banner");
         };
     }
 
@@ -1484,7 +1403,7 @@ public class AdMobNetworkHandler :MonoBehaviour
         if (item.bannerView != null && item.isAdReady)
         {
             //Debug.LogError("Asdf ShowInterstitialAd 22222");
-            RegisterPaidEvent(item.bannerView);
+            //RegisterPaidEvent(item.bannerView);
 
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {
@@ -1609,6 +1528,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                             {
                                 item.appOpenAd = ad;
                                 item.isAdReady = true;
+                                string adUnitId = item.AdID;
                                 item.appOpenAd.OnAdFullScreenContentClosed += () =>
                                 {
                                     MobileAdsEventExecutor.ExecuteInUpdate(() =>
@@ -1637,30 +1557,7 @@ public class AdMobNetworkHandler :MonoBehaviour
 
                                 item.appOpenAd.OnAdPaid += (AdValue adValue) =>
                                 {
-                                    float revenue = adValue.Value / 1_000_000f; // Convert micros to dollars
-                                    string currency = adValue.CurrencyCode;
-
-                                    // Check if revenue is positive and currency is valid
-                                    if (revenue > 0 && !string.IsNullOrEmpty(currency))
-                                    {
-                                        //TODO 
-                                        
-                                        // Construct and send the Singular AdMon Event
-                                        Singular.SingularAdData data = new Singular.SingularAdData(
-                                            "Admob",
-                                            currency,
-                                            revenue
-                                        );
-                                        Singular.SingularSDK.AdRevenue(data);
-
-                                        // Log the revenue data for debugging purposes
-                                        Debug.Log($"Ad Revenue reported to Singular: {data}");
-                                        
-                                    }
-                                    else
-                                    {
-                                        Debug.LogError($"Invalid ad revenue data: revenue = {revenue}, currency = {currency}");
-                                    }
+                                    HandlePaidEvent(adValue, adUnitId, "appopen");
                                 };
                             }
 
@@ -1739,7 +1636,7 @@ public class AdMobNetworkHandler :MonoBehaviour
                 Debug.Log("<color=orange>[Analytics]</color> Logged first ad seen of this session.");
             }
 
-            if (adType == AdType.VeryHighCPMInterstitial)
+            /* if (adType == AdType.VeryHighCPMInterstitial)
             {
                 FireBaseActions(AdContent.AdMobVeryHighInterstitialImpression, AdMode.Impression, SuccessStatus.Success);
             }
@@ -1762,7 +1659,7 @@ public class AdMobNetworkHandler :MonoBehaviour
             if (adType == AdType.RewardedInterStitial)
             {
                 FireBaseActions(AdContent.AdmobRewardInterstitialImpression, AdMode.Impression, SuccessStatus.Success);
-            }
+            } */
             //OnAdImpressionCallBack?.Invoke(adType.ToString(),  NetworkType.AdMob.ToString());
             if(dailyLoginHandler != null) 
             dailyLoginHandler.OnAdImpressionCallBack(adType.ToString(), NetworkType.AdMob.ToString());
