@@ -225,6 +225,7 @@ public class Bird : MonoBehaviour
         //SoundManager.PlaySFX("Whoosh Sound");
         if(!SoundManager.IsMuted())
         {
+            if(SoundsHandler.Instance != null)
             SoundsHandler.Instance.PlaySource2Clip(5, 0.2f);
         }
         lineRenderer.enabled = true;

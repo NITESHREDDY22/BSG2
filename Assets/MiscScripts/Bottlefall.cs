@@ -6,6 +6,7 @@ public class Bottlefall : MonoBehaviour {
     public float floatStrength = .2f;
     GameManager gm;
     public GameObject HintObj;
+    private string groundTag = "ground";
 
     // Use this for initialization
     void Start()
@@ -22,10 +23,21 @@ public class Bottlefall : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D target)
     {
-        if (target.gameObject.tag == "Bird" || target.gameObject.tag == "pig")
+        if(groundTag != string.Empty)
         {
-            Destroy(target.gameObject);
-            Invoke("failLevel", .5f);
+            if(target.gameObject.tag == groundTag)
+            {
+                /* Destroy(target.gameObject); */
+                Invoke("failLevel", .5f);
+            }
+        }
+        else 
+        {
+            if (target.gameObject.tag == "Bird" || target.gameObject.tag == "pig")
+            {
+                Destroy(target.gameObject);
+                Invoke("failLevel", .5f);
+            }
         }
     }
 

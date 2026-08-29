@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
     private bool isStageChanged;
     private bool isTutorialCompleted;
 
+    [Header("Standalone Testing")]
+    public bool useStandaloneLevel = false; // Toggle this in Inspector
+    public int standaloneLevelIndex = 0;    // Level ID you want to test (0-indexed)
+
     private void OnDestroy()
     {
         if (AdManager._instance)
@@ -181,7 +185,7 @@ public class GameManager : MonoBehaviour
         {
             if (FirebaseEvents.IsFirebaseReady)
             {
-                Firebase.Analytics.FirebaseAnalytics.LogEvent("LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
+                Firebase.Analytics.FirebaseAnalytics.LogEvent(GameConstants.GetAllLevelsCompleteStatus()+"LevelStart_" + "W" + WorldSelectionHandler.worldSelected + "_L" + Global.CurrentLeveltoPlay);
                 Debug.Log("Firebase event LevelStart logged");
             }
         }
@@ -245,6 +249,7 @@ public class GameManager : MonoBehaviour
         {
             if (!SoundManager.IsMuted())
             {
+                if(SoundsHandler.Instance)
                 SoundsHandler.Instance.PlaySource2Clip(4, 0);
             }
             SlingShot.retryCount++;
@@ -456,6 +461,20 @@ public class GameManager : MonoBehaviour
     bool rewardUsed = false;
     void Awake()
     {
+        if(AdManager._instance == null)
+        {
+            useStandaloneLevel = true;
+        }
+        else
+        {
+            useStandaloneLevel = false;
+        }
+        if (useStandaloneLevel)
+        {
+            Global.CurrentLeveltoPlay = standaloneLevelIndex;
+            // Optional: WorldSelectionHandler.worldSelected = 0; // Set world if needed
+        }
+
         Debug.Log("Awake World " + WorldSelectionHandler.worldNumb + "Level" + Global.CurrentLeveltoPlay);
 
         if (AdManager._instance != null)
@@ -570,6 +589,12 @@ public class GameManager : MonoBehaviour
        
 
         gameState = GameState.Start;
+
+        if (useStandaloneLevel)
+        {
+            gameState = GameState.Playing;
+            AnimateBirdToSlingshot();
+        }
     }
 
 
@@ -1123,6 +1148,17 @@ public class GameManager : MonoBehaviour
                     Global.isBottleCollission = false;
                     Invoke("checkBottleCollision", 3f);
                 }
+                else
+                {
+                    // FIX: Simply increment the index instead of calculating from childCount
+                    if (useStandaloneLevel)
+                    {
+                        currentBirdIndex++;
+
+                        AnimateBirdToSlingshot();
+                        MultiSetHandler.OnBotlleAnimation?.Invoke();
+                    }
+                }
                 if (isStageChanged)
                 {
                     duration = 0.5f;
@@ -1211,7 +1247,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (FirebaseEvents.instance != null)
                 {
-                    FirebaseEvents.instance.LogFirebaseEvent("Exception", "AnimateCameratoStartPos", exp.Message + "at " + errorline);
+                    //FirebaseEvents.instance.LogFirebaseEvent("Exception", "AnimateCameratoStartPos", exp.Message + "at " + errorline);
                 }
             }
             catch (Exception e)

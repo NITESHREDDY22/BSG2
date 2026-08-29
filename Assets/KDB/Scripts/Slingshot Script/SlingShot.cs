@@ -547,7 +547,7 @@ public class SlingShot : MonoBehaviour
             spots = new GameObject[poses.Length];
 
             // Define your start and end sizes
-            float startScale = 0.3f;
+            float startScale = 0.35f;
             float endScale = 0.05f; 
 
             for (int i = 0; i < poses.Length; i++)
@@ -673,6 +673,8 @@ public class SlingShot : MonoBehaviour
         }
         catch (Exception exp)
         {
+            Debug.Log("ThrowBird Error Message: " + exp.Message);
+            Debug.Log("Exact Line: " + exp.StackTrace);
             try
             {
                 System.Diagnostics.StackTrace trace = new System.Diagnostics.StackTrace(exp, true);
@@ -949,8 +951,8 @@ public class SlingShot : MonoBehaviour
     public static int retryCount = 0; // Static persists across scene reloads
     [Header("Retry Progression Settings")]
     private int segmentsAddedPerRetry = 5;
-    private float intervalAddedPerRetry = 0.05f;
-    private int maxSegments = 40;
+    private float intervalAddedPerRetry = 0.04f; 
+private int maxSegments = 40;
     public void SetTragectoryConfig()
 {
     SetTragectoryDifficulty();
@@ -960,33 +962,37 @@ public class SlingShot : MonoBehaviour
         tragectoryDifficultyLevel = TragectoryLevel.easy;
     }
 
-    // 1. Set Base Values for the current difficulty
+    // 1. BASE VALUES (Increased for longer trajectory)
+    // We increase totalSegments more than _interval to keep the line "dense" but long.
     switch (tragectoryDifficultyLevel)
     {
         case TragectoryLevel.easy:
-            _interval = .7f;
-            totalSegments = 25;
+            _interval = 0.85f;      // Spacing between dots
+            totalSegments = 40;     // Number of dots (Increased from 25)
             break;
         case TragectoryLevel.medium:
-            _interval = .6f;
-            totalSegments = 20;
+            _interval = 0.75f; 
+            totalSegments = 30;     // Increased from 22
             break;
         case TragectoryLevel.hard:
-            _interval = .45f;
-            totalSegments = 16;
+            _interval = 0.65f; 
+            totalSegments = 25;     // Increased from 18
             break;
     }
 
     // 2. APPLY PROGRESSIVE INCREASE (based on static retryCount)
-    // We add more dots and push them further apart each time the player retries
+    // This ensures that even on "Hard", if the player fails, the line gets longer.
     totalSegments += (retryCount * segmentsAddedPerRetry);
     _interval += (retryCount * intervalAddedPerRetry);
 
-    // 3. Safety Caps
+    // 3. UPDATED SAFETY CAPS
+    // TotalSegments cap raised to 70 to allow for a very long path on multiple retries
     totalSegments = Mathf.Min(totalSegments, maxSegments); 
-    _interval = Mathf.Min(_interval, 1.1f); // Prevents dots from being too far apart
+    
+    // Interval cap raised to 1.3f so dots don't get 'teleported' too far apart
+    _interval = Mathf.Min(_interval, 1.3f); 
 
-    Debug.Log($"{DebugPrefix} Retry: {retryCount} | Segments: {totalSegments} | Interval: {_interval}");
+    Debug.Log($"{DebugPrefix} Difficulty: {tragectoryDifficultyLevel} | Retry: {retryCount} | Total Dots: {totalSegments} | Length Factor: {_interval}");
 }
 private string DebugPrefix = "[tragectory]";
     private void SetTragectoryDifficulty()

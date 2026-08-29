@@ -188,8 +188,10 @@ public class WorldSelectionHandler : MonoBehaviour
             else
             {
                 btns[i].transform.GetChild(1).gameObject.SetActive(true);
-                btns[i].transform.GetChild(3).gameObject.SetActive(false);
+                btns[i].transform.GetChild(3).gameObject.SetActive(true);
+                btns[i].transform.GetChild(3).GetChild(1).gameObject.SetActive(false);
                 btns[i].transform.GetChild(4).gameObject.SetActive(false);
+                btns[i].transform.GetChild(3).transform.Find("WorldName").GetComponent<TextMeshProUGUI>().text = LocalizationManager.Localize(array[i]);
             }
 
         }
