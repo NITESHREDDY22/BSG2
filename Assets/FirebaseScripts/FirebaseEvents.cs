@@ -7,7 +7,13 @@ using UnityEngine;
 public class FirebaseEvents : MonoBehaviour
 {
     public static FirebaseEvents instance;
-    public static bool IsFirebaseReady = false;
+    public static bool IsFirebaseReady
+    {
+        get
+        {
+            return firebaseInitDone;
+        }
+    }
 
     private static bool firebaseInitDone = false;
     public static bool FirebaseInitDone

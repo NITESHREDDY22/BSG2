@@ -116,5 +116,9 @@ public static class GameConstants
         return ULevels.FindLastIndex(x => x == true);
         
     }
+    public static string GetAllLevelsCompleteStatus()
+    {
+        return PlayerPrefs.GetString(allLevelsCompleteKey,"");
+    }
 
 }

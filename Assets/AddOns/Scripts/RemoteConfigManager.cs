@@ -177,7 +177,7 @@ public class RemoteConfigManager : MonoBehaviour
         Global.useRegularInterstitialAsLaunch = GetSafeBool("useRegularInterstitialAsLaunch", false);
 
         // --- COMPONENT SETTINGS ---
-        NotEnoughCoinsPopup.rewardCoins = GetSafeInt("notEnoughRewardCoins", 50);
+        NotEnoughCoinsPopup.rewardCoins = GetSafeInt("notEnoughRewardCoins", 300);
         CustomAdManager.adsEnabled = GetSafeBool("customAdsEnabled", true);
         CustomAdManager.showGameZopInterstitials = GetSafeBool("showGameZopInterstitials", true);
 

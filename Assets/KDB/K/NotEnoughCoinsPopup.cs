@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -13,6 +14,9 @@ public class NotEnoughCoinsPopup : MonoBehaviour
 
     [Header("UI Controls")]
     [SerializeField] private Button watchAdBtn; // <--- ADDED: Assign this in Inspector
+    [SerializeField] private GameObject loadingSpinner; // <--- ADDED: Assign a spinning UI element here
+    [SerializeField] private float adWaitTimeout = 7f;   // Time to wait for ad load (5-10s)
+    private Coroutine _adWaitCoroutine;
 
     [Header("In-House Ad Settings")]
     [SerializeField] private InHouseAdController inHouseAd; 
@@ -36,6 +40,7 @@ public class NotEnoughCoinsPopup : MonoBehaviour
 
         popupPanel.SetActive(false);
         if(inHouseAd)inHouseAd.gameObject.SetActive(false);
+        if(loadingSpinner) loadingSpinner.SetActive(false);
     }
 
     // -----------------------
@@ -125,9 +130,12 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     {
         popupPanel.SetActive(false);
         OnCloseCallback?.Invoke();
-        
-        if (AdManager._instance)
-            AdManager._instance.ShowbannerAd();
+
+        if (GameManager.Instance && (!GameManager.Instance.gameOverPanel.activeSelf && !GameManager.Instance.gameFailed.activeSelf))
+        {
+            if (AdManager._instance)
+                AdManager._instance.ShowbannerAd();
+        }
     }
 
     public void CloseFirebaseLog()
@@ -185,62 +193,120 @@ public class NotEnoughCoinsPopup : MonoBehaviour
     public void WatchAdToGetCoins()
     {
         if (watchAdBtn != null) watchAdBtn.interactable = false;
-        Debug.LogError("WatchAdToGetCoins CLICKED");
         LogFirebase("NotEnoughCoins_Vid_Clk");
-
-        // Check availability before trying to show
-        // Note: Replace 'IsRewardedVideoAvailable' with the actual check in your AdManager
-        // 1. Get Network Status
+        
         NetworkReachability reachability = Application.internetReachability;
-        LogFirebase("NotEnoughCoins_NetStat_" + reachability.ToString());
-
-        // 2. Determine if we should attempt a real Ad or go straight to InHouse
         bool hasInternet = (reachability != NetworkReachability.NotReachable);
-        bool adReady = AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable();
-        Debug.Log($"Ad Ready: {adReady}, Internet Available: {hasInternet}");
 
-        if (adReady)
+        if (!hasInternet)
         {
-            AdManager._instance.rewardTypeToUnlock = RewardType.retryLevel;
-            AdManager._instance.ShowRewardedVideo(result =>
-            {
-                if (result)
-                {
-                    //GameManager.Instance.gameState = GameState.Reward_Video_Completed;
-                    AdManager._instance.rewardedvideosuccess = true;
-                    WatchAdSuccess("admob");
-                }
-                else
-                {
-                    // 2. Track Ad Skipped / Cancelled
-                    if (watchAdBtn != null) watchAdBtn.interactable = true;
-                    LogFirebase("NotEnoughCoins_Vid_Skipped");
-                    Debug.Log("User skipped the rewarded video.");
-                }
-            }, AdType.Reward);
+            LogFirebase("NotEnoughC_NoNet");
+            ShowFallbackInHouse();
+            return;
+        }
+
+        // Check if ad is already ready
+        if (AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable())
+        {
+            LogFirebase("NotEnoughC_Ad_Prior");
+            ShowActualAd();
         }
         else
         {
-            /* // Triggered when no ad is available
-            LogFirebase("NotEnoughCoins_NoAdAvl");
-            ShowInHouseAd(); */
-            LogFirebase($"NotEnoughC_NoAdAvil_Int_{hasInternet}");
-            if (inHouseAd != null)
+            // Ad not ready, start the "Request and Wait" flow
+            if (_adWaitCoroutine != null) StopCoroutine(_adWaitCoroutine);
+            _adWaitCoroutine = StartCoroutine(WaitAndShowAd());
+        }
+    }
+
+    private IEnumerator WaitAndShowAd()
+    {
+        AdMobNetworkHandler.LastRewardLoadError = "Timeout_No_Response";
+        LogFirebase("NotEnoughC_AdWait_Start");
+        
+        // Show Loading Spinner UI
+        if (loadingSpinner) loadingSpinner.SetActive(true);
+
+        // Force a request if one isn't already in flight
+        if (AdManager._instance != null)
+        {
+            Debug.Log("Ad not ready. Requesting on-demand...");
+            AdManager._instance.RequestRewardBasedVideo(AdType.Reward);
+        }
+
+        float timer = 0f;
+        bool adFound = false;
+
+        // Poll for the ad status until timeout
+        while (timer < adWaitTimeout)
+        {
+            if (AdManager._instance != null && AdManager._instance.IsRewardedVideoAvailable())
             {
-                // Instead of SetActive here, we call the new combined method
-                inHouseAd.OpenAndShow(() =>
-                {
-                    if (watchAdBtn != null) watchAdBtn.interactable = true;
-                    LogFirebase("NotEnoughCoins_InHseAd_RwdGrantd");
-                    WatchAdSuccess("inhouse");
-                });
+                adFound = true;
+                break;
+            }
+
+            timer += Time.deltaTime;
+            yield return null; 
+        }
+
+        // Hide Spinner UI
+        if (loadingSpinner) loadingSpinner.SetActive(false);
+
+        if (adFound)
+        {
+            LogFirebase("NotEnoughC_Ad_OnDemand");
+            ShowActualAd();
+        }
+        else
+        {
+            string reason = AdMobNetworkHandler.LastRewardLoadError;
+            //LogFirebase("NotEnoughC_AdWait_Timeout");
+            LogFirebase("NotEnoughC_Ad_Fail_"+ reason);
+            Debug.LogWarning("Ad request timed out. Showing In-House fallback.");
+            ShowFallbackInHouse();
+        }
+    }
+
+    private void ShowActualAd()
+    {
+        AdManager._instance.rewardTypeToUnlock = RewardType.retryLevel;
+        AdManager._instance.ShowRewardedVideo(result =>
+        {
+            if (result)
+            {
+                AdManager._instance.rewardedvideosuccess = true;
+                WatchAdSuccess("admob");
             }
             else
             {
-                
-                Debug.LogError("InHouseAd reference is missing in Inspector!");
+                if (watchAdBtn != null) watchAdBtn.interactable = true;
+                LogFirebase("NotEnoughCoins_Vid_Skipped");
             }
+        }, AdType.Reward);
+    }
+
+    private void ShowFallbackInHouse()
+    {
+        if (inHouseAd != null)
+        {
+            inHouseAd.OpenAndShow(() =>
+            {
+                if (watchAdBtn != null) watchAdBtn.interactable = true;
+                LogFirebase("NotEnoughCoins_InHseAd_RwdGrantd");
+                WatchAdSuccess("inhouse");
+            });
         }
+        else
+        {
+            if (watchAdBtn != null) watchAdBtn.interactable = true;
+            Debug.LogError("InHouseAd reference missing!");
+        }
+    }
+    public void OnDisable()
+    {
+        if (_adWaitCoroutine != null) StopCoroutine(_adWaitCoroutine);
+        if (loadingSpinner) loadingSpinner.SetActive(false);
     }
 
 
